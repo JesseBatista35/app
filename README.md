@@ -1,9 +1,2 @@
+<img width="1860" height="513" alt="image" src="https://github.com/user-attachments/assets/e6a13897-3e47-454a-b5d4-5fc92a063ded" />
 
-[root@caddeapllx2821 p585600]# ip neigh show dev ens224
-10.188.0.14 FAILED
-10.188.0.18 FAILED
-10.188.0.16 FAILED
-10.188.0.13 FAILED
-10.188.0.11 FAILED
-10.188.0.17 FAILED
-[root@caddeapllx2821 p585600]#
