@@ -1,16 +1,10 @@
+Sandra, boa tarde! Peço desculpas pela confusão de antes. Eu estava tratando outra demanda de NFS em paralelo (de outro sistema) e acabei misturando as duas na nossa conversa. A pergunta sobre a sigla SICCV-batch não tem relação com o SIHDG, então pode desconsiderar.
 
--sh-4.2$ oc rsh sihdg-jboss8-des-115-f9xb5
-sh-5.1$
-sh-5.1$
-sh-5.1$
-sh-5.1$ df -h | grep sihdg
-nprdnfs01.ad.caixa:/ifs/cpwsprd01/nprd/fs_sihdg_sinaf   50G     0   50G   0% /sihdg_des
-hypernprd56.ad.caixa:/fs_sihdg                          50G     0   50G   0% /sihdg_des_pwc
-sh-5.1$
-sh-5.1$
-sh-5.1$ ls -la /sihdg_des
-total 64
-drwxrwxrwx. 3    99   99 32 Oct  7 19:40 .
-dr-xr-xr-x. 1 root  root 77 Oct  7 19:43 ..
-drwxrwxrwx. 2 jboss   99  0 Oct  7 19:39 Arquivos_SINAF
-sh-5.1$
+Sobre o SIHDG, os ajustes foram aplicados em DES e o release foi executado. Segue em anexo o print do terminal do OKD com os dois NFS montados:
+
+/sihdg_des: nprdnfs01.ad.caixa:/ifs/cpwsprd01/nprd/fs_sihdg_sinaf (SINAF, 50G)
+/sihdg_des_pwc: hypernprd56.ad.caixa:/fs_sihdg (PowerCenter, 50G)
+
+A propriedade SIHDG-path.arquivo.sinaf está apontando para /sihdg_des/Arquivos_SINAF/, e a pasta Arquivos_SINAF já foi criada (vazia).
+
+Ponto em aberto do lado de vocês: como o /sihdg_des agora é o storage novo, os arquivos que estavam no storage antigo continuam em /sihdg_des_pwc e precisam ser copiados para /sihdg_des/Arquivos_SINAF para a aplicação conseguir lê-los. Você consegue combinar quem faz essa cópia?
