@@ -7,3 +7,9 @@ timeout 5 bash -c '</dev/tcp/stgsiopivendasonline.blob.core.windows.net/2049' &&
 # 3. teste do mount com limite de tempo
 sudo timeout 30 mount -t nfs -o vers=3,nolock,proto=tcp,sec=sys \
   stgsiopivendasonline.blob.core.windows.net:/stgsiopivendasonline/arquivosrecebidos /arquivos-recebidos; echo "rc=$?"
+
+
+mkdir -p /arquivos-recebidos && chown jboss:jboss /arquivos-recebidos
+mountpoint -q /arquivos-recebidos && umount -f /arquivos-recebidos
+timeout 60 mount -t nfs -o vers=3,nolock,proto=tcp,sec=sys \
+  stgsiopivendasonline.blob.core.windows.net:/stgsiopivendasonline/arquivosrecebidos /arquivos-recebidos
