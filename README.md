@@ -1,28 +1,7 @@
+Obrigado pelo retorno e pela captura, pessoal. Esclarecendo um ponto: o 10.116.221.46 não é um servidor, é o IP de egress do namespace sihdg-tqs no OKD. Ele fica atribuído ao nó ceadecldlx084 (IP 10.116.208.104), e o pod do teste roda no nó ceadecldlx081 (IP 10.116.208.101). O tráfego do pod passa por VXLAN do 081 para o 084 e só então sai com o egress IP. Do nosso lado, conferi no cluster que o 10.116.221.46 está atribuído ao nó 084.
 
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get hostsubnet ceadecldlx084.nprd.caixa -o jsonpath='{.egressIPs}{"\n"}'
-[10.116.209.59 10.116.222.206 10.116.222.190 10.116.222.6 10.116.222.5 10.116.222.164 10.116.220.210 10.116.221.46 10.116.220.180 10.116.221.183]
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ ^C
--sh-4.2$ oc get hostsubnet ceadecldlx081.nprd.caixa -o jsonpath='{.hostIP}{"\n"}'
-10.116.208.101
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get hostsubnet ceadecldlx084.nprd.caixa -o jsonpath='{.hostIP}{"\n"}'
+A captura filtrou só host 10.116.221.46 host 10.116.29.201. Se o tráfego estiver saindo com outra origem (por exemplo o IP de um dos nós), ele não aparece nesse filtro. Isso é compatível com o que vimos: do mesmo pod, o banco antigo 10.116.29.23:1433 conecta, e o 10.116.29.201:31153 dá timeout.
 
-10.116.208.104
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get hostsubnet ceadecldlx081.nprd.caixa
-NAME                       HOST                       HOST IP          SUBNET         EGRESS CIDRS          EGRESS IPS
-ceadecldlx081.nprd.caixa   ceadecldlx081.nprd.caixa   10.116.208.101   25.1.38.0/23   ["10.116.192.0/19"]   ["10.116.220.121","10.116.221.178","10.116.221.86","10.116.220.92","10.116.220.221","10.116.220.138","10.116.209.36","10.116.221.39","10.116.222.123","10.116.220.175","10.116.221.179"]
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get hostsubnet ceadecldlx084.nprd.caixa
+Podem refazer a captura em AUTO_DES_APRES só por destino: host 10.116.29.201 e host 10.116.29.23? Assim vemos qual IP de origem chega ao firewall: 10.116.221.46, 10.116.208.101 ou 10.116.208.104.
 
-NAME                       HOST                       HOST IP          SUBNET         EGRESS CIDRS          EGRESS IPS
-ceadecldlx084.nprd.caixa   ceadecldlx084.nprd.caixa   10.116.208.104   25.3.40.0/23   ["10.116.192.0/19"]   ["10.116.209.59","10.116.222.206","10.116.222.190","10.116.222.6","10.116.222.5","10.116.222.164","10.116.220.210","10.116.221.46","10.116.220.180","10.116.221.183"]
--sh-4.2$
+Me avisem quando a captura estiver ativa que eu disparo o teste do pod na hora e passo o horário exato (3 tentativas para o .201:31153 e 1 para o .23:1433).
