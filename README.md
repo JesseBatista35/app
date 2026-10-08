@@ -1,1 +1,10 @@
-oc get hostsubnet ceadecldlx084.nprd.caixa -o jsonpath='{.egressIPs}{"\n"}'
+$
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$ oc get hostsubnet ceadecldlx084.nprd.caixa -o jsonpath='{.egressIPs}{"\n"}'
+[10.116.209.59 10.116.222.206 10.116.222.190 10.116.222.6 10.116.222.5 10.116.222.164 10.116.220.210 10.116.221.46 10.116.220.180 10.116.221.183]
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$
