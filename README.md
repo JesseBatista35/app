@@ -1,17 +1,10 @@
-$
--sh-4.2$
--sh-4.2$ oc rsh -c sihdg-jboss8-tqs sihdg-jboss8-tqs-28-q6ngx
-sh-5.1$
-sh-5.1$
-sh-5.1$
-sh-5.1$ for i in 1 2 3; do date -u '+%H:%M:%S UTC'; timeout 5 bash -c '</dev/tcp/10.116.29.201/31153'; echo "201:31153 rc=$?"; done
-14:28:45 UTC
-201:31153 rc=124
-14:28:50 UTC
-201:31153 rc=124
-14:28:55 UTC
-201:31153 rc=124
-sh-5.1$ date -u '+%H:%M:%S UTC'; timeout 5 bash -c '</dev/tcp/10.116.29.23/1433'; echo "23:1433 rc=$?"
-14:29:11 UTC
-23:1433 rc=0
-sh-5.1$
+Jesse, o pacote não está nem chegando no firewall.
+
+
+**<img width="1716" height="139" alt="image" src="https://github.com/user-attachments/assets/d84bed60-2f00-4f4b-be3c-8ef1b58845e2" />
+
+
+Nada, tem que verificar a configuração de rede desse servidor 10.116.221.46
+
+
+<img width="800" height="156" alt="image" src="https://github.com/user-attachments/assets/13f31d16-0c29-4324-accc-6b95350b8885" />
