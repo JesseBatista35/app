@@ -1,10 +1,3 @@
-Jesse, o pacote não está nem chegando no firewall.
-
-
-**<img width="1716" height="139" alt="image" src="https://github.com/user-attachments/assets/d84bed60-2f00-4f4b-be3c-8ef1b58845e2" />
-
-
-Nada, tem que verificar a configuração de rede desse servidor 10.116.221.46
-
-
-<img width="800" height="156" alt="image" src="https://github.com/user-attachments/assets/13f31d16-0c29-4324-accc-6b95350b8885" />
+oc get pod sihdg-jboss8-tqs-28-q6ngx -n sihdg-tqs -o wide
+oc get hostsubnet ceadecldlx084.nprd.caixa -o yaml | grep -i -A3 egress
+oc debug node/ceadecldlx084.nprd.caixa -- chroot /host ip -4 addr show | grep 10.116.221.46
