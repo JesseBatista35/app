@@ -1,30 +1,8 @@
+exit
 
-sh-4.4$
-sh-4.4$
-sh-4.4$ oc get networkpolicy -n sipdm-des
-sh: oc: command not found
-sh-4.4$
-sh-4.4$
-sh-4.4$ oc project -q
-sh: oc: command not found
-sh-4.4$
-sh-4.4$
-sh-4.4$ cat /var/run/secrets/kubernetes.io/serviceaccount/namespace
-sipdm-dessh-4.4$
-sh-4.4$
-sh-4.4$
-sh-4.4$ oc get networkpolicy -n^C
-sh-4.4$ ^C
-sh-4.4$
-sh-4.4$
-sh-4.4$
-sh-4.4$
-sh-4.4$
-sh-4.4$ oc get networkpolicy -n sipdm-des
-sh: oc: command not found
-sh-4.4$
-sh-4.4$
-sh-4.4$
-sh-4.4$ oc get pods -A | grep sipdm-api-estudante-des-264-s2lvb
-sh: oc: command not found
-sh-4.4$
+oc get networkpolicy -n sipdm-des
+oc get egressfirewall -n sipdm-des 2>/dev/null
+oc get egressnetworkpolicy -n sipdm-des 2>/dev/null
+oc get netnamespace sipdm-des 2>/dev/null
+oc get egressip 2>/dev/null
+oc get pod sipdm-api-estudante-des-264-s2lvb -n sipdm-des -o wide
