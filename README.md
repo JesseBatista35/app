@@ -1,15 +1,30 @@
 
-oc get networkpolicy -n <namespace>
-oc get egressfirewall -n <namespace> 2>/dev/null
-oc get egressnetworkpolicy -n <namespace> 2>/dev/null
-
-
-oc get pod sipdm-api-estudante-des-264-s2lvb -o wide      # pega o NODE
-oc debug node/<node>
-chroot /host
-timeout 5 bash -c '</dev/tcp/10.116.100.127/1433' && echo OK || echo FALHOU
-
-
-cat /var/run/secrets/kubernetes.io/serviceaccount/namespace
-
-oc get pods -A | grep sipdm-api-estudante-des-264-s2lvb
+sh-4.4$
+sh-4.4$
+sh-4.4$ oc get networkpolicy -n sipdm-des
+sh: oc: command not found
+sh-4.4$
+sh-4.4$
+sh-4.4$ oc project -q
+sh: oc: command not found
+sh-4.4$
+sh-4.4$
+sh-4.4$ cat /var/run/secrets/kubernetes.io/serviceaccount/namespace
+sipdm-dessh-4.4$
+sh-4.4$
+sh-4.4$
+sh-4.4$ oc get networkpolicy -n^C
+sh-4.4$ ^C
+sh-4.4$
+sh-4.4$
+sh-4.4$
+sh-4.4$
+sh-4.4$
+sh-4.4$ oc get networkpolicy -n sipdm-des
+sh: oc: command not found
+sh-4.4$
+sh-4.4$
+sh-4.4$
+sh-4.4$ oc get pods -A | grep sipdm-api-estudante-des-264-s2lvb
+sh: oc: command not found
+sh-4.4$
