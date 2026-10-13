@@ -1,55 +1,14 @@
+À equipe de Virtualização,
 
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$ getent hosts hypernprd12.ad.caixa
-10.188.0.16     hypernprd12.ad.caixa
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$ ip -br link
-lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP>
-ens192           UP             00:50:56:82:3b:cf <BROADCAST,MULTICAST,UP,LOWER_UP>
-ens224           UP             00:50:56:82:a5:1d <BROADCAST,MULTICAST,UP,LOWER_UP>
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$ ip -br addr
-lo               UNKNOWN        127.0.0.1/8 ::1/128
-ens192           UP             10.116.202.23/19 fe80::250:56ff:fe82:3bcf/64
-ens224           UP             10.188.6.225/19 fe80::250:56ff:fe82:a51d/64
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$ nmcli -f NAME,DEVICE,TYPE con show
-NAME                         DEVICE  TYPE
-VMware customization ens192  ens192  ethernet
-lo                           lo      loopback
-VMware customization ens224  ens224  ethernet
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$
-[p585600@caddeapllx2821 ~]$ sudo tcpdump -i ens256 -n -c 20 arp
-[sudo] senha para p585600:
-tcpdump: ens256: No such device exists
-(SIOCGIFHWADDR: No such device)
-[p585600@caddeapllx2821 ~]$ sudo su
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]# tcpdump -i ens256 -n -c 20 arp
-tcpdump: ens256: No such device exists
-(SIOCGIFHWADDR: No such device)
-[root@caddeapllx2821 p585600]# nmcli con mod "VMware customization ens224" ipv4.addresses 10.188.6.225/16
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]# nmcli con up "VMware customization ens224"
-Conexão ativada com sucesso (caminho D-Bus ativo: /org/freedesktop/NetworkManager/ActiveConnection/4)
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]#
-[root@caddeapllx2821 p585600]# arping -c3 -I ens224 10.188.0.16
-ARPING 10.188.0.16 de 10.188.6.225 ens224
-Enviadas 3 sondas (3 broadcast(s))
-Recebida(s) 0 resposta(s)
-[root@caddeapllx2821 p585600]# ip neigh show dev ens224
-[root@caddeapllx2821 p585600]#
+Prezados,
+
+Em atendimento ao parecer da CETEL nesta REQ (host 10.188.6.225 não visível na rede), foi verificado no servidor caddeapllx2821.agil.nprd.caixa.gov.br (SICCV-batch, TQS) que a interface de backup ens224 (Network adapter 2, MAC 00:50:56:82:a5:1d), com IP 10.188.6.225/16 da rede BACKUP-NPRD (10.188.0.0/16), está conectada ao port group tn-NPRD|NPRD_BKP-ap|VL3697-ep (rede 192.168.224.0/19). A captura de tráfego na interface confirma apenas tráfego dessa faixa, por isso o IP não é visto na rede.
+
+Solicitamos alterar o port group da vNIC ens224 da VM caddeapllx2821 para tn-BACKUP|BACKUP-NPRD-ap|BACKUP-NPRD-ep, rede de acesso ao storage hypernprd12.ad.caixa (10.188.0.16). A configuração de IP no sistema operacional já foi ajustada pela esteira e não requer alteração.
+
+Após o ajuste, a esteira reexecutará a release do SICCV-batch em TQS para concluir a montagem do NFS hypernprd12.ad.caixa:/fs_siccv (WO0000081801601).
+
+Atenciosamente,
+Jessé Mouta Pereira Batista
+Analista
+CTIS / CESTI Esteira DEVOPS DES TQS NPRD****
