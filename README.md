@@ -1,4 +1,5 @@
-Jesse Mouta Pereira Batista boa tarde, pode ajudar aqui no entendimento dessa demanda WO0000081857473 , que esta com nosso colega Fabio e tem uma orientação sua?
+Boa tarde, pessoal! A orientação que passei foi a seguinte: o healthcheck já está habilitado e a rota existe na aplicação. Em DES, o pod sihdg-jboss8-des-116 responde 200 em /sihdg-api/health/ready, com as mesmas probes de readiness e liveness.
 
+Em TQS (pod sihdg-jboss8-tqs-37, imagem 3.18.0.1), o deploy do sihdg-3.18.0.1.ear termina com erros: SecurityConfig e CacheConfig não sobem por Connect timed out em 10.116.29.201:31153. Com o sihdg-api.war fora do ar, o healthcheck responde 404/503, a liveness falha e o OKD reinicia o container em loop. Ou seja, o 404 é consequência de a aplicação não conseguir conectar no banco, não da ausência da rota.
 
-eles montram uma sala com o fabio me ajuda aqui a reponder ele
+Sobre a conectividade: a regra de firewall (CRQ000001499711, já concluída) foi validada pela Redes por captura com o egress IP 10.116.221.46, mas os testes feitos de dentro dos pods do sihdg-tqs continuam dando timeout para o banco. Ou seja, o problema não está na rota do healthcheck, e sim no caminho de rede entre o pod e o banco, que precisa ser analisado pela Infra/Plataforma OKD.
