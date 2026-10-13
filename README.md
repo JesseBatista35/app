@@ -1,6 +1,1 @@
-o fabio disse
-
-troquei o node responsável pelo ip de saída do projeto 
-
-
-<img width="1609" height="881" alt="image" src="https://github.com/user-attachments/assets/84c1ab45-923c-4651-b4da-40c94239bac2" />
+Fábio, obrigado! Testei do pod sihdg-jboss8-tqs-28 às 14:50 e a conexão com 10.116.29.201:31153 agora conecta. Pode me dizer qual node passou a ser o responsável pelo egress e o que estava errado no anterior (084)? Vou refazer o deploy do TQS para validar o healthcheck e atualizo a WO com o resultado.
