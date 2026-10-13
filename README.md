@@ -1,6 +1,6 @@
-  nmcli con mod "VMware customization ens224" ipv4.addresses 10.188.6.225/16
-  nmcli con up "VMware customization ens224"
+o fabio disse
 
-  arping -c3 -I ens224 10.188.0.16
-ip neigh show dev ens224
+troquei o node responsável pelo ip de saída do projeto 
 
+
+<img width="1609" height="881" alt="image" src="https://github.com/user-attachments/assets/84c1ab45-923c-4651-b4da-40c94239bac2" />
