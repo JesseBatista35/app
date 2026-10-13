@@ -1,37 +1,11 @@
+Oi, Figura! Tudo bem? Não localizei na REQ o anexo com a relação dos NFS novos, só o documento de montagem antigo (os 4 NFS do 10.116.88.160 que já estão montados). Já vou cadastrar na library de DES o que você mandou por escrito. Pode me mandar a lista completa dos NFS novos, com o endpoint e o mount point de cada um? Se puder, já indique se algum é o mesmo export em mais de um mount point.
 
-REQs das liberaçõe dos IPss:
-- REQ000144955097
-- REQ000144249814
+Vou rodar a release com a recriação da VM assim que cadastrar tudo.
 
+O que cadastrar agora na library SIEXC-web-aplicacao-des
 
-Montagem NFS nos servidores da esteira do SIEXC
-Servidor da aplicação SIEXC: 10.116.199.181 (DES)
-Servidor da aplicação SIEXC: 10.116.201.141 (TQS)
-MONTAR TAMBÉM NOS IPs DE BACKUP!
-NFS: 10.116.88.160
-OS SEGUINTES DIRETÓRIOS DEVEM SER MONTADOS NOS SERVIDORES DA ESTEIRA:
-SICQL
-SITEC
-Path do NFS: /export/sigdb/sicql
-Ponto de montagem nos servidores da esteira: /opt/sigdb
-Path do NFS: /export/sigdb/sitec
-Ponto de montagem nos servidores da esteira: /opt/sigdb/sitec
-BOVESPA
-Path do NFS: /export/sicql_bovespa
-Ponto de montagem nos servidores da esteira: /opt/jboss/bovespa
-ARQUIVOS
-Path do NFS: /export/upload_prd
-Ponto de montagem nos servidores da esteira: /upload
-OBSERVAÇÕES IMPORTANTES
-ATENÇÃO: Os NFS acima, diretórios e subdiretórios já existem. O que solicitamos é a liberação de
-leitura e escrita nos NFS para os IPs dos servidores da esteira do SIEXC, para que o acesso seja
-permitido e montagem seja efetiva.
-Comunicação com Mainframe
-Os NFS acima se comunicam com o mainframe, por isso seguem as informações sobre as partições que serão
-compartilhadas e a necessidade de transformação de caracteres (EBCDIC para ASCII):
-VAI COMUNICAR COM MAINFRAME: SIM
-Transformação de Caracteres? (EBC/DIC para ASCII)E: SIM
-VERSÃO DO NFS: 3
-PARTIÇÕES MAINFRAME A COMPARTILHAR:
-| D1DF - IPS: 192.168.231.41 |
-| RJD1 - IPS: 192.168.235.108 , 192.168.235.109 , 192.168.235.110 |
+Variável	Valor
+NFS_ENDPOINT_VM_5	192.168.227.59:/export/sicql_bovespa
+NFS_MOUNT_POINT_VM_5	/SIEXC_SWIFT
+NFS_ENDPOINT_ISILON_5	nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC
+NFS_MOUNT_POINT_ISILON_5	/siexc_incoming
