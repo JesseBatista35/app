@@ -1,13 +1,3 @@
-ADICIONAR (os 2 exemplos que ela mandou)
-
-Variável	Valor
-NFS_ENDPOINT_ISILON	nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC
-NFS_MOUNT_POINT_ISILON	/siexc_incoming
-NFS_ENDPOINT_VM	192.168.227.59:/export/sicql_bovespa
-NFS_MOUNT_POINT_VM	/SIEXC_SWIFT
-
-
-
 Skip to main content
 Azure DevOps
 projetos
@@ -16,7 +6,11 @@ Caixa
 /
 Pipelines
 /
-Library
+Releases
+/
+SICCV-batch
+/
+SICCV-batch-108
 Search
 
 
@@ -41,124 +35,214 @@ Test Plans
 
 Artifacts
 Project settings
-
-Library
+SICCV-batch
 
-SIEXC-web-aplicacao-des
+SICCV-batch-108
+
 
-Variable group
-Properties
-Variable group name
-SIEXC-web-aplicacao-des
-Description
+EC TQS
+
+Succeeded
 
+
+Pipeline
 
+Tasks
 
 Variables
-DB_HOST
-10.116.92.41
-DB_HOST_ORA
-jdbc:oracle:thin:@cnpexdadvm01-scan4.extra.caixa.gov.br:1521/ORAD71NG
-DB_NAME
-excdb002
-DB_PASS
-${VAULT::SIEXC-web-aplicacao-des::DB_PASS::1}
-DB_PASS_ORA
-${VAULT::SIEXC-web-aplicacao-des::DB_PASS_ORA::1}
-DB_PORT
-5104
-DB_USER
-${VAULT::SIEXC-web-aplicacao-des::DB_USER::1}
-DB_USER_ORA
-${VAULT::SIEXC-web-aplicacao-des::DB_USER_ORA::1}
-JVM_HEAP_MAX
-2548m
-JVM_HEAP_MIN
-1024m
-JVM_METASPACE_MAX
-1024m
-JVM_METASPACE_MIN
-256m
-MQ_CONNECTION_FACTORY_POOL_CHANNEL
-BRD1.SVRCONN
-MQ_CONNECTION_FACTORY_POOL_HOSTNAME
-10.192.228.145
-MQ_CONNECTION_FACTORY_POOL_PORT
-1414
-MQ_CONNECTION_FACTORY_POOL_QUEUE_MANAGER
-BRD1
-MQ_CONNECTION_FACTORY_POOL_USERNAME
-SEXCS01D
-MQ_NSGD_CHANNEL
-SIEXC.SRVCONN
-MQ_NSGD_HOSTNAME
-10.192.224.63
-MQ_NSGD_PASSWORD
-undefined
-MQ_NSGD_PORT
-1420
-MQ_NSGD_QUEUE_MANAGER
-QSQA
-MQ_NSGD_USERNAME
-SEXCMQQ1
-MQ_SICLI_CHANNEL
-SIEXC.SVRCONN
-MQ_SICLI_HOSTNAME
-10.192.224.66
-MQ_SICLI_PORT
-1420
-MQ_SICLI_QUEUE_MANAGER
-QSDA
-MQ_SICLI_USERNAME
-SEXCS01D
-MQ_SIINT_CHANNEL
-SIEXC.SVRCONN
-MQ_SIINT_HOSTNAME
-10.192.224.66
-MQ_SIINT_PORT
-1420
-MQ_SIINT_QUEUE_MANAGER
-QSDA
-MQ_SIINT_RESPOSTA_CHANNEL
-SIEXC.SVRCONN
-MQ_SIINT_RESPOSTA_HOSTNAME
-10.192.224.66
-MQ_SIINT_RESPOSTA_PORT
-1420
-MQ_SIINT_RESPOSTA_QUEUE_MANAGER
-QSDA
-MQ_SIINT_RESPOSTA_USERNAME
-SEXCS01D
-MQ_SIINT_USERNAME
-SEXCS01D
-MQ_SIRIC_CHANNEL
-SIEXC.SVRCONN
-MQ_SIRIC_HOSTNAME
-10.192.224.66
-MQ_SIRIC_PORT
-1420
-MQ_SIRIC_QUEUE_MANAGER
-QSDA
-MQ_SIRIC_USERNAME
-SEXCS01D
-NFS_ENDPOINT_ISILON
-nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC
-NFS_ENDPOINT_VM
-192.168.227.59:/export/sicql_bovespa
-NFS_MOUNT_POINT_ISILON
-/siexc_incoming
-NFS_MOUNT_POINT_VM
-/SIEXC_SWIFT
-SISTEMA_AMBIENTE
-des
-URL_GESTOR
-https://siexc-web-aplicacao.esteiras.des.caixa/swifter-webapp
-USER_ID
-${VAULT::SIEXC-web-aplicacao-des::USER-ID::1}
-USER_SECRET
-${VAULT::SIEXC-web-aplicacao-des::SECRET::1}
+
+Logs
+
+Tests
+Agent job
+Started: 13/10/2026, 16:27:04
+Pool:
+Release-Linux
+·
+Agent: cadsvaprlx068.intra.caixa.gov.br
+
+15m 42s
+
+Initialize job
+·
+succeeded
+<1s
+
+Download Artifacts
+·
+succeeded
+1 warning
+1s
+
+Recupera VEC
+·
+succeeded
+<1s
+
+VEC - Aferição
+·
+succeeded
+<1s
+
+Exportar variáveis NFS
+·
+succeeded
+<1s
+
+Exportar variáveis Infrafácil
+·
+succeeded
+<1s
+
+Alocando o IP (AlocaIP e Infradevops)
+·
+succeeded
+51s
+
+Exporta as variáveis para o Terraform
+·
+succeeded
+<1s
+
+Replace tokens in **/*.tfvars.json **/*.tf
+·
+succeeded
+
+<1s
+
+Remove caracteres
+·
+succeeded
+<1s
+
+Install Terraform 1.3.5
+·
+succeeded
+<1s
+
+Terraform init
+·
+succeeded
+8s
+
+Terraform validate
+·
+succeeded
+<1s
+
+Terraform workspace
+·
+succeeded
+<1s
+
+Terraform destroy
+·
+succeeded
+<1s
+
+Terraform apply
+·
+succeeded
+9m 31s
+
+Definir size como executado
+·
+succeeded
+19s
+
+Cadastrar Servidor no Satellite
+·
+succeeded
+14s
+
+Valida Variáveis Obrigatórias
+·
+succeeded
+<1s
+
+Recuperando URL Pacote Nexus
+·
+succeeded
+1s
+
+Recupera Pacote
+·
+succeeded
+<1s
+
+Recuperando nome do repositório
+·
+succeeded
+<1s
+
+Convertendo Minúsculo e Definindo nome do Projeto/Repositório
+·
+succeeded
+<1s
+
+Corrigindo Codificação Arquivos dos2unix
+·
+succeeded
+<1s
+
+Alterando Valores placeholders nos arquivos de config
+·
+succeeded
+<1s
+
+Configura Control-M
+·
+succeeded
+3m 38s
+
+Arquivos de Configuração
+·
+succeeded
+32s
+
+Deploy Pacote
+·
+succeeded
+9s
+
+Secure Files
+·
+succeeded
+7s
+
+Finalize Job
+·
+succeeded
+<1s
+Collapsed
+
+Expanded
+
+Collapsed
+
+Collapsed
+
+Expanded
+
+Collapsed
+
+Expanded
+
+Collapsed
+
+121 pipelines found
+
+Select a release pipeline to view its releases
+
+3 pipelines found
+
+Row 2
+
+Row 2
 
 
 
 
-FEITO MAIS O RESTANTE TEM NAS REQS QUE JA FORMA ATENDINTAS E ISSO JA TE MANDEI AQUI TAMBEM ACHO QUE NAO PRECSA PEDIR NADA PRA ELA
+
+RESOLVIDO
+
