@@ -1,4 +1,1 @@
-<img width="998" height="731" alt="image" src="https://github.com/user-attachments/assets/a8577685-e99f-42fc-8555-1d98fc08df54" />
-
-
-TEM DUAS
+<img width="795" height="721" alt="image" src="https://github.com/user-attachments/assets/7e70e72e-cf47-4d33-afd3-e0a5b043e2eb" />
