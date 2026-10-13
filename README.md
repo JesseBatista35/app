@@ -1,12 +1,1 @@
- 
-10.116.29.201	 CBRTQDADNT002	SQL - CONSOLIDADO PROINFO	CTC	 	 	 	 	 	 	 	 	 	 	 
- 
- 
-10.116.28.0/23 - TQS DADOS -  TQS Dados Ba.
- 
-não poderia ser pedido a regra dessa rede 10.11.28.0/23 para os objetos OKD?
- 
-na porta do banco?
- 
-
-
+A rede 10.116.28.0/23 é o destino (TQS Dados, onde está o banco 10.116.29.201), não a origem. O pedido seria: origem = objeto OKD, destino = 10.116.29.201, porta TCP 31153. Restringir à porta e ao IP do banco, e não à rede toda, é o correto. O ponto é a origem: o objeto VIPS_OKD_OCP_CENTRALIZADOS_NPRD é de entrada do cluster, não de saída dos pods, e um objeto genérico de nodes abriria o banco para todos os projetos. Hoje a regra já existe para o egress IP do projeto (10.116.221.46) e foi validada pela Redes. Se o grupo quiser seguir com origem nos nodes OKD como contorno temporário, a decisão é da Redes e do dono do banco. Minha recomendação continua sendo corrigir o egress na Plataforma OKD.
