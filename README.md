@@ -1,1 +1,55 @@
-A causa do erro de healthcheck foi o IP de saída (egress) do namespace sihdg-tqs, que não estava sendo aplicado pelo node anterior, impedindo a conexão com o banco 10.116.29.201:31153 e a inicialização do sihdg-api.war. Após o Fábio trocar o node responsável pelo IP de saída do projeto, a conexão passou a funcionar. Validação: release SIHDG-jboss8-3.19.1.0(3) em TQS concluída com sucesso, pod sihdg-jboss8-tqs-40 iniciado sem erros e com consultas ao banco executadas. A rota de healthcheck existe e responde normalmente na aplicação.
+
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$ getent hosts hypernprd12.ad.caixa
+10.188.0.16     hypernprd12.ad.caixa
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$ ip -br link
+lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP>
+ens192           UP             00:50:56:82:3b:cf <BROADCAST,MULTICAST,UP,LOWER_UP>
+ens224           UP             00:50:56:82:a5:1d <BROADCAST,MULTICAST,UP,LOWER_UP>
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$ ip -br addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128
+ens192           UP             10.116.202.23/19 fe80::250:56ff:fe82:3bcf/64
+ens224           UP             10.188.6.225/19 fe80::250:56ff:fe82:a51d/64
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$ nmcli -f NAME,DEVICE,TYPE con show
+NAME                         DEVICE  TYPE
+VMware customization ens192  ens192  ethernet
+lo                           lo      loopback
+VMware customization ens224  ens224  ethernet
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$
+[p585600@caddeapllx2821 ~]$ sudo tcpdump -i ens256 -n -c 20 arp
+[sudo] senha para p585600:
+tcpdump: ens256: No such device exists
+(SIOCGIFHWADDR: No such device)
+[p585600@caddeapllx2821 ~]$ sudo su
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]# tcpdump -i ens256 -n -c 20 arp
+tcpdump: ens256: No such device exists
+(SIOCGIFHWADDR: No such device)
+[root@caddeapllx2821 p585600]# nmcli con mod "VMware customization ens224" ipv4.addresses 10.188.6.225/16
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]# nmcli con up "VMware customization ens224"
+Conexão ativada com sucesso (caminho D-Bus ativo: /org/freedesktop/NetworkManager/ActiveConnection/4)
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]#
+[root@caddeapllx2821 p585600]# arping -c3 -I ens224 10.188.0.16
+ARPING 10.188.0.16 de 10.188.6.225 ens224
+Enviadas 3 sondas (3 broadcast(s))
+Recebida(s) 0 resposta(s)
+[root@caddeapllx2821 p585600]# ip neigh show dev ens224
+[root@caddeapllx2821 p585600]#
