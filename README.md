@@ -1,1 +1,14 @@
-A rede 10.116.28.0/23 é o destino (TQS Dados, onde está o banco 10.116.29.201), não a origem. O pedido seria: origem = objeto OKD, destino = 10.116.29.201, porta TCP 31153. Restringir à porta e ao IP do banco, e não à rede toda, é o correto. O ponto é a origem: o objeto VIPS_OKD_OCP_CENTRALIZADOS_NPRD é de entrada do cluster, não de saída dos pods, e um objeto genérico de nodes abriria o banco para todos os projetos. Hoje a regra já existe para o egress IP do projeto (10.116.221.46) e foi validada pela Redes. Se o grupo quiser seguir com origem nos nodes OKD como contorno temporário, a decisão é da Redes e do dono do banco. Minha recomendação continua sendo corrigir o egress na Plataforma OKD.
+Robson, boa tarde. Obrigado por trazer os objetos, ajudou bastante a entender como a ferramenta funciona.
+
+O que dá para fazer agora (solução temporária)
+Pedir a regra com origem nos objetos OKD e destino só o banco (10.116.29.201, porta TCP 31153). Isso resolve o problema rápido, porque o tráfego do pod passa a ser aceito mesmo saindo com o IP do node. Mas é um contorno: libera o banco para todos os projetos que usam esses objetos, e não só para o SIHDG.
+
+O que seria o correto (solução definitiva)
+Corrigir o IP de saída (egress) do projeto. O desenho do OKD é cada projeto sair com o seu IP (10.116.221.46 no caso do sihdg-tqs), e a regra de firewall liberar só esse IP. Isso já está feito e foi validado pela Redes por captura. O que falha é o pod não estar saindo com esse IP, e isso só a Plataforma OKD consegue ajustar.
+
+Proposta
+
+Abrir a demanda para a Plataforma OKD corrigir o egress do namespace sihdg-tqs (definitivo).
+Se o prazo apertar, avaliar com a Redes e o dono do banco a liberação pelos objetos OKD, com prazo para ser removida depois que o egress for corrigido (temporário).
+
+Uma dúvida: na lista, o objeto genérico de OKD que vi foi o VIPS_OKD_OCP_CENTRALIZADOS_NPRD, que parece ser de entrada do cluster. Existe algum objeto que represente os nodes do OKD NPRD (faixa 10.116.208.x)? Se não existir, o contorno exigiria criar um.
