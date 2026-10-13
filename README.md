@@ -1,1 +1,97 @@
-a montagem precisa ser com todos aqueles mounts descritos, Jesse Mouta Pereira Batista. Mesmo que se repitam os NFS de origem, os mounts são diferentes. Só esses dois não é suficiente para nossa "operação", ahuhau
+DES
+
+NFS_ENDPOINT_VM_4 = 192.168.227.59:/export/sicql_bovespa	
+
+NFS_MOUNT_POINT_VM_4 = /producao
+
+
+DES
+
+NFS_ENDPOINT_VM_3 = 192.168.227.59:/export/sicql_bovespa	
+
+NFS_MOUNT_POINT_VM_3 = /producao/SWIFT
+
+
+DES
+
+NFS_ENDPOINT_VM_2 = 192.168.227.59:/export/sicql_bovespa	
+
+NFS_MOUNT_POINT_VM_2 = /SIEXC
+
+
+DES
+
+NFS_ENDPOINT_VM = 192.168.227.59:/export/sicql_bovespa
+
+NFS_MOUNT_POINT_VM = /opt/sigdb
+
+
+DES
+
+NFS_ENDPOINT_VM_5 = 192.168.227.59:/export/sicql_bovespa
+
+NFS_MOUNT_POINT_VM_5 = /SIEXC_SWIFT
+
+
+DES
+
+NFS_ENDPOINT_ISILON = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC	
+
+NFS_MOUNT_POINT_ISILON = /siexc_incoming
+
+
+DES
+
+NFS_ENDPOINT_ISILON_2 = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTISP/SIISF
+
+NFS_MOUNT_POINT_ISILON_2 = /integracoes/SIISF
+
+
+DES
+
+NFS_ENDPOINT_ISILON_3 = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CETAD/SIAPC
+
+NFS_ENDPOINT_ISILON_3 = /SIAPC
+
+
+DES
+
+NFS_ENDPOINT_ISILON_4 = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC	
+
+NFS_MOUNT_POINT_ISILON_4 = /SIGPL
+
+
+DES
+
+NFS_ENDPOINT_ISILON_5 = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC
+
+NFS_MOUNT_POINT_ISILON_5 = /legado
+
+
+DES
+
+NFS_ENDPOINT_ISILON_6 = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC
+
+NFS_MOUNT_POINT_ISILON_6 = /eFinanceira_ctc/siexc
+
+DES
+
+NFS_ENDPOINT_ISILON_7 = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC
+
+NFS_MOUNT_POINT_ISILON_7 = /eFinanceira/siexc/entrada
+
+
+DES/TQS
+
+NFS_ENDPOINT_ISILON_8 = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC
+
+NFS_MOUNT_POINT_ISILON_8 = /suporte
+
+DES
+
+NFS_ENDPOINT_ISILON_9 = nfsctcnprd.ctc.caixa:/ifs/CADSVISISD4/SERVIDORES/CEPTIBR/SIEXC
+
+NFS_MOUNT_POINT_ISILON_9 = /siexc
+ 
+São 14, no total
+ 
