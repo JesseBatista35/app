@@ -4835,109 +4835,970 @@ Permissions
 Datastores
 Networks
 Snapshots
-Guest OS
 
-Launch Remote Console 
-Launch Web Console
-Virtual Machine Details
-Actions
-Power Status	
- Powered On
-Guest OS	 Red Hat Enterprise Linux 9 (64-bit)
-VMware Tools	Running, version:12357 (Guest Managed) 
-DNS Name (1)	
-caddeapllx2821.agil.nprd.caixa.gov.br
-IP Addresses (4)	
-10.116.202.23
-10.188.6.225
-and 2 more
-Encryption	Not encrypted
-Usage
-Last updated: 10/13/26, 4:17 PM
+Issues and Alarms
+All Issues
+Triggered Alarms
 
-CPU
- 24 MHz used
-Memory
- 122 MB used
-Storage
- 42.08 GB used
-View Stats
-VM Hardware
-CPU	2 CPU(s), 24 MHz used
-Memory	4 GB, 0 GB memory active
-Hard disk 1 (of 2)	
-37 GB | Thick Provision Lazy Zeroed 
-CTCHWNPRDC011_0001
-See All Disks
-Network adapter 1 (of 2)	
-tn-NPRD+NPRD_AUTO_DES_BSB-ap+VL3676-ep+10.116.192.0 (connected) | 00:50:56:82:3b:cf
-Compatibility	ESXi 8.0 U2 and later (VM version 21)
-Edit
-PCI Devices
-No PCI devices
-Edit
-Related Objects
-Cluster
- CTC_NPRDXF2488HV7_NPRD
-Host
- cadsvgersh595.intra.caixa.gov.br
-Resource pool
- RP_TERRAFORM_NPRD
-Networks
- tn-NPRD+NPRD_AUTO_DES_BSB-ap+VL3676-ep+10.116.192.0
- tn-NPRD|NPRD_BKP-ap|VL3697-ep
-Storage
- DSC_CTCHWNPRDC011_NPRD
-Tags
-No tags assigned
-Assign
-Notes
+Performance
+Overview
+Advanced
 
-Provisionado via automação : Terraform/Packer - Esteiras Ageis - SICCV-BATCH-TQS - Template: controlm-21.200-AG-DATA-oracli-openjdk17-rhel93-v057 - caddeapllx2821.agil.nprd.caixa.gov.br
-Edit
-Storage Policies
-Check Compliance
-Custom Attributes
-Centro de CUSTO	
-DATA CRIACAO	
-Dell EMC PPDM Upgrade Rollback Type	
-Dell VM Direct Engine Cleanup Descriptor	
-Dell VM Direct Engine Session	
-Funcao	
-Last Dell PowerProtect Backup	
-Responsavel	
-SO	
-Sistema	
-Edit
-Snapshots
-No snapshot taken
-Manage
- PowerProtect
+Tasks and Events
+Tasks
+Events
+Utilization
 
-Compute Policies
-View all policies
-CPU Topology
-CPU topology 
-Manual
-vCPUs
-2
-Cores per socket 
-1 (Sockets: 2)
-Threads per core
+PowerProtect
+Protection Copies
+Events
+Open in new tab
+ExportCopy to clipboard
+Filter
+
+Select all
+Description
+
+Use left or right key to resize the column
+Type
+
+Use left or right key to resize the column
+Date Time
+
+Use left or right key to resize the column
+Task
+
+Use left or right key to resize the column
+Target
+
+Use left or right key to resize the column
+User
+
+Use left or right key to resize the column
+Event Type ID
+
+
+Reconfigured virtual machine. Modified: config.hardware.device(4001).backing.port.portgroupKey: "dvportgroup-1065714" -> "dvportgroup-72342"; config.hardware.device(4001).backing.port.portKey: "4568" -> "4328"; config.hardware.device(4001).backing.port.connectionCookie: 1553646087 -> 1883516155; Added: config.extraConfig("time.synchronize.allow"): (key = "time.synchronize.allow", value = "TRUE"); Deleted:
+
+Reconfigured virtual machine. Modified: config.hardware.device(4001).backing.port.portgroupKey: "dvportgroup-1065714" -> "dvportgroup-72342"; config.hardware.device(4001).backing.port.portKey: "4568" -> "4328"; config.hardware.device(4001).backing.port.connectionCookie: 1553646087 -> 1883516155; Added: config.extraConfig("time.synchronize.allow"): (key = "time.synchronize.allow", value = "TRUE"); Deleted:
+ Information
+13/10/2026, 15:25:26
+ CADDEAPLLX2821
+CORPCAIXA\s736660
+vim.event.VmReconfiguredEvent
+
+Task: Reconfigure virtual machine
+
+Task: Reconfigure virtual machine
+ Information
+13/10/2026, 15:25:26
+Reconfigure virtual machine
+ CADDEAPLLX2821
+CORPCAIXA\s736660
+vim.event.TaskEvent
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-13T00:12:00Z, EndTime=2026-10-13T00:13:16Z' to ''
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-13T00:12:00Z, EndTime=2026-10-13T00:13:16Z' to ''
+ Information
+13/10/2026, 15:25:26
+ CADDEAPLLX2821
+CORPCAIXA\s736660
+vim.event.CustomFieldValueChangedEvent
+
+Reconfigured virtual machine. Modified: config.hardware.device(4001).backing.port.portgroupKey: "dvportgroup-72342" -> "dvportgroup-1065714"; config.hardware.device(4001).backing.port.portKey: "4328" -> "4568"; config.hardware.device(4001).backing.port.connectionCookie: 819129701 -> 1553646087; Added: Deleted:
+
+Reconfigured virtual machine. Modified: config.hardware.device(4001).backing.port.portgroupKey: "dvportgroup-72342" -> "dvportgroup-1065714"; config.hardware.device(4001).backing.port.portKey: "4328" -> "4568"; config.hardware.device(4001).backing.port.connectionCookie: 819129701 -> 1553646087; Added: Deleted:
+ Information
+13/10/2026, 15:19:56
+ CADDEAPLLX2821
+CORPCAIXA\p585600
+vim.event.VmReconfiguredEvent
+
+Task: Reconfigure virtual machine
+
+Task: Reconfigure virtual machine
+ Information
+13/10/2026, 15:19:56
+Reconfigure virtual machine
+ CADDEAPLLX2821
+CORPCAIXA\p585600
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+ Information
+12/10/2026, 21:13:25
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-13T00:12:00Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=69a00903-e770-4198-ba44-641a4be4eb1c' to ''
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-13T00:12:00Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=69a00903-e770-4198-ba44-641a4be4eb1c' to ''
+ Information
+12/10/2026, 21:13:25
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-12T00:55:20Z, EndTime=2026-10-12T00:56:27Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-13T00:12:00Z, EndTime=2026-10-13T00:13:16Z'
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-12T00:55:20Z, EndTime=2026-10-12T00:56:27Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-13T00:12:00Z, EndTime=2026-10-13T00:13:16Z'
+ Information
+12/10/2026, 21:13:16
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+ Information
+12/10/2026, 21:13:13
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot is retired
+
+LWD snapshot is retired
+ Information
+12/10/2026, 21:13:13
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshotdone
+
+Retiring LWD snapshot
+
+Retiring LWD snapshot
+ Information
+12/10/2026, 21:13:10
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshot
+
+Task: Retire LWD-based snapshot
+
+Task: Retire LWD-based snapshot
+ Information
+12/10/2026, 21:13:10
+Retire LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-5033089","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-5033089","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}'
+ Information
+12/10/2026, 21:12:30
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot sync is completed
+
+LWD snapshot sync is completed
+ Information
+12/10/2026, 21:12:30
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.syncdone
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-5033089","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-5033089","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}'
+ Information
+12/10/2026, 21:12:14
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Performing LWD snapshot sync
+
+Performing LWD snapshot sync
+ Information
+12/10/2026, 21:12:14
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.sync
+
+Task: Perform LWD-based snapshot sync
+
+Task: Perform LWD-based snapshot sync
+ Information
+12/10/2026, 21:12:14
+Perform LWD-based snapshot sync
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"69a00903-e770-4198-ba44-641a4be4eb1c","SessionStartTime":"2026-10-13T00:12:00Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"eb0282ca-f63d-4c76-9099-dd39cde02e20"}'
+ Information
+12/10/2026, 21:12:13
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD crash-consistent snapshot taken
+
+LWD crash-consistent snapshot taken
+ Information
+12/10/2026, 21:12:13
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshotdone.crashconsistent
+
+Taking LWD crash-consistent snapshot
+
+Taking LWD crash-consistent snapshot
+ Information
+12/10/2026, 21:12:09
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshot.crashconsistent
+
+Task: Take LWD-based snapshot
+
+Task: Take LWD-based snapshot
+ Information
+12/10/2026, 21:12:09
+Take LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-13T00:12:00Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=69a00903-e770-4198-ba44-641a4be4eb1c'
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-13T00:12:00Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=69a00903-e770-4198-ba44-641a4be4eb1c'
+ Information
+12/10/2026, 21:12:02
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+ Information
+11/10/2026, 21:57:09
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-12T00:55:20Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=2102a3ec-0c4d-444d-8da9-e4d2128f7b50' to ''
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-12T00:55:20Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=2102a3ec-0c4d-444d-8da9-e4d2128f7b50' to ''
+ Information
+11/10/2026, 21:57:09
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-11T00:32:55Z, EndTime=2026-10-11T00:34:22Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-12T00:55:20Z, EndTime=2026-10-12T00:56:27Z'
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-11T00:32:55Z, EndTime=2026-10-11T00:34:22Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-12T00:55:20Z, EndTime=2026-10-12T00:56:27Z'
+ Information
+11/10/2026, 21:56:27
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+ Information
+11/10/2026, 21:56:26
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot is retired
+
+LWD snapshot is retired
+ Information
+11/10/2026, 21:56:26
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshotdone
+
+Retiring LWD snapshot
+
+Retiring LWD snapshot
+ Information
+11/10/2026, 21:56:24
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshot
+
+Task: Retire LWD-based snapshot
+
+Task: Retire LWD-based snapshot
+ Information
+11/10/2026, 21:56:24
+Retire LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-5017667","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-5017667","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}'
+ Information
+11/10/2026, 21:56:04
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot sync is completed
+
+LWD snapshot sync is completed
+ Information
+11/10/2026, 21:56:04
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.syncdone
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-5017667","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-5017667","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}'
+ Information
+11/10/2026, 21:55:54
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Performing LWD snapshot sync
+
+Performing LWD snapshot sync
+ Information
+11/10/2026, 21:55:54
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.sync
+
+Task: Perform LWD-based snapshot sync
+
+Task: Perform LWD-based snapshot sync
+ Information
+11/10/2026, 21:55:54
+Perform LWD-based snapshot sync
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"2102a3ec-0c4d-444d-8da9-e4d2128f7b50","SessionStartTime":"2026-10-12T00:55:20Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"be28ba74-b305-4637-91f6-2fbb4728bcd0"}'
+ Information
+11/10/2026, 21:55:54
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD crash-consistent snapshot taken
+
+LWD crash-consistent snapshot taken
+ Information
+11/10/2026, 21:55:53
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshotdone.crashconsistent
+
+Taking LWD crash-consistent snapshot
+
+Taking LWD crash-consistent snapshot
+ Information
+11/10/2026, 21:55:51
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshot.crashconsistent
+
+Task: Take LWD-based snapshot
+
+Task: Take LWD-based snapshot
+ Information
+11/10/2026, 21:55:51
+Take LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-12T00:55:20Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=2102a3ec-0c4d-444d-8da9-e4d2128f7b50'
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-12T00:55:20Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=2102a3ec-0c4d-444d-8da9-e4d2128f7b50'
+ Information
+11/10/2026, 21:55:25
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+ Information
+10/10/2026, 21:35:20
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-11T00:32:55Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=87e87688-a4f8-470f-877b-9cc0677e7513' to ''
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-11T00:32:55Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=87e87688-a4f8-470f-877b-9cc0677e7513' to ''
+ Information
+10/10/2026, 21:35:20
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-10T00:51:31Z, EndTime=2026-10-10T00:52:36Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-11T00:32:55Z, EndTime=2026-10-11T00:34:22Z'
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-10T00:51:31Z, EndTime=2026-10-10T00:52:36Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-11T00:32:55Z, EndTime=2026-10-11T00:34:22Z'
+ Information
+10/10/2026, 21:34:22
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+ Information
+10/10/2026, 21:34:22
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot is retired
+
+LWD snapshot is retired
+ Information
+10/10/2026, 21:34:22
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshotdone
+
+Retiring LWD snapshot
+
+Retiring LWD snapshot
+ Information
+10/10/2026, 21:34:19
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshot
+
+Task: Retire LWD-based snapshot
+
+Task: Retire LWD-based snapshot
+ Information
+10/10/2026, 21:34:19
+Retire LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4996484","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4996484","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}'
+ Information
+10/10/2026, 21:33:50
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot sync is completed
+
+LWD snapshot sync is completed
+ Information
+10/10/2026, 21:33:50
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.syncdone
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4996484","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4996484","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}'
+ Information
+10/10/2026, 21:33:12
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Performing LWD snapshot sync
+
+Performing LWD snapshot sync
+ Information
+10/10/2026, 21:33:11
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.sync
+
+Task: Perform LWD-based snapshot sync
+
+Task: Perform LWD-based snapshot sync
+ Information
+10/10/2026, 21:33:11
+Perform LWD-based snapshot sync
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"87e87688-a4f8-470f-877b-9cc0677e7513","SessionStartTime":"2026-10-11T00:32:55Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"bd4e7615-1d8f-4d34-9305-ddb9ca3ee277"}'
+ Information
+10/10/2026, 21:33:09
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD crash-consistent snapshot taken
+
+LWD crash-consistent snapshot taken
+ Information
+10/10/2026, 21:33:09
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshotdone.crashconsistent
+
+Taking LWD crash-consistent snapshot
+
+Taking LWD crash-consistent snapshot
+ Information
+10/10/2026, 21:33:05
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshot.crashconsistent
+
+Task: Take LWD-based snapshot
+
+Task: Take LWD-based snapshot
+ Information
+10/10/2026, 21:33:05
+Take LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-11T00:32:55Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=87e87688-a4f8-470f-877b-9cc0677e7513'
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-11T00:32:55Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=87e87688-a4f8-470f-877b-9cc0677e7513'
+ Information
+10/10/2026, 21:32:56
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+This virtual machine is vSphere HA Protected and HA will attempt to restart it after a failure.
+
+This virtual machine is vSphere HA Protected and HA will attempt to restart it after a failure.
+ Information
+10/10/2026, 02:45:04
+ CADDEAPLLX2821
+com.vmware.vc.HA.VmProtectedEvent
+
+Virtual machine was migrated from host cadsvgersh595.intra.caixa.gov.br, CTCHWNPRDC011_0259 in NPRD to cadsvgersh595.intra.caixa.gov.br, CTCHWNPRDC011_0001 in NPRD
+
+Virtual machine was migrated from host cadsvgersh595.intra.caixa.gov.br, CTCHWNPRDC011_0259 in NPRD to cadsvgersh595.intra.caixa.gov.br, CTCHWNPRDC011_0001 in NPRD
+ Information
+10/10/2026, 02:44:22
+ CADDEAPLLX2821
+vim.event.VmMigratedEvent
+
+This virtual machine is not vSphere HA Protected.
+
+This virtual machine is not vSphere HA Protected.
+ Information
+10/10/2026, 02:44:22
+ CADDEAPLLX2821
+com.vmware.vc.HA.VmUnprotectedEvent
+
+Migrating off host cadsvgersh595.intra.caixa.gov.br
+
+Migrating off host cadsvgersh595.intra.caixa.gov.br
+ Information
+10/10/2026, 02:44:10
+ CADDEAPLLX2821
+vim.event.VmEmigratingEvent
+
+Migrating VM from cadsvgersh595.intra.caixa.gov.br, CTCHWNPRDC011_0259 to cadsvgersh595.intra.caixa.gov.br, CTCHWNPRDC011_0001
+
+Migrating VM from cadsvgersh595.intra.caixa.gov.br, CTCHWNPRDC011_0259 to cadsvgersh595.intra.caixa.gov.br, CTCHWNPRDC011_0001
+ Information
+10/10/2026, 02:44:07
+ CADDEAPLLX2821
+vim.event.VmBeingHotMigratedEvent
+
+Task: Execute Storage vMotion for Storage DRS
+
+Task: Execute Storage vMotion for Storage DRS
+ Information
+10/10/2026, 01:53:01
+Execute Storage vMotion for Storage DRS
+ CADDEAPLLX2821
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+ Information
+09/10/2026, 21:52:59
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-10T00:51:31Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=d4faac01-bc3c-45ff-8eb7-3b58783df8c6' to ''
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-10T00:51:31Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=d4faac01-bc3c-45ff-8eb7-3b58783df8c6' to ''
+ Information
+09/10/2026, 21:52:59
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-09T00:39:30Z, EndTime=2026-10-09T00:40:22Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-10T00:51:31Z, EndTime=2026-10-10T00:52:36Z'
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-09T00:39:30Z, EndTime=2026-10-09T00:40:22Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-10T00:51:31Z, EndTime=2026-10-10T00:52:36Z'
+ Information
+09/10/2026, 21:52:36
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+ Information
+09/10/2026, 21:52:35
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot is retired
+
+LWD snapshot is retired
+ Information
+09/10/2026, 21:52:35
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshotdone
+
+Retiring LWD snapshot
+
+Retiring LWD snapshot
+ Information
+09/10/2026, 21:52:33
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshot
+
+Task: Retire LWD-based snapshot
+
+Task: Retire LWD-based snapshot
+ Information
+09/10/2026, 21:52:33
+Retire LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4973252","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4973252","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}'
+ Information
+09/10/2026, 21:52:06
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot sync is completed
+
+LWD snapshot sync is completed
+ Information
+09/10/2026, 21:52:06
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.syncdone
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4973252","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4973252","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}'
+ Information
+09/10/2026, 21:51:50
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Performing LWD snapshot sync
+
+Performing LWD snapshot sync
+ Information
+09/10/2026, 21:51:50
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.sync
+
+Task: Perform LWD-based snapshot sync
+
+Task: Perform LWD-based snapshot sync
+ Information
+09/10/2026, 21:51:50
+Perform LWD-based snapshot sync
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"d4faac01-bc3c-45ff-8eb7-3b58783df8c6","SessionStartTime":"2026-10-10T00:51:31Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"d68cc6e5-53c5-4514-9684-b10ac59571d3"}'
+ Information
+09/10/2026, 21:51:50
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD crash-consistent snapshot taken
+
+LWD crash-consistent snapshot taken
+ Information
+09/10/2026, 21:51:50
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshotdone.crashconsistent
+
+Taking LWD crash-consistent snapshot
+
+Taking LWD crash-consistent snapshot
+ Information
+09/10/2026, 21:51:46
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshot.crashconsistent
+
+Task: Take LWD-based snapshot
+
+Task: Take LWD-based snapshot
+ Information
+09/10/2026, 21:51:46
+Take LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-10T00:51:31Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=d4faac01-bc3c-45ff-8eb7-3b58783df8c6'
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-10T00:51:31Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=d4faac01-bc3c-45ff-8eb7-3b58783df8c6'
+ Information
+09/10/2026, 21:51:33
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+ Information
+08/10/2026, 21:40:22
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-09T00:39:30Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=4087f8ea-c175-480e-b5c6-b69ff58cdf2c' to ''
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-09T00:39:30Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=4087f8ea-c175-480e-b5c6-b69ff58cdf2c' to ''
+ Information
+08/10/2026, 21:40:22
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-08T01:35:59Z, EndTime=2026-10-08T01:36:44Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-09T00:39:30Z, EndTime=2026-10-09T00:40:22Z'
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-08T01:35:59Z, EndTime=2026-10-08T01:36:44Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-09T00:39:30Z, EndTime=2026-10-09T00:40:22Z'
+ Information
+08/10/2026, 21:40:22
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+ Information
+08/10/2026, 21:40:19
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot is retired
+
+LWD snapshot is retired
+ Information
+08/10/2026, 21:40:19
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshotdone
+
+Retiring LWD snapshot
+
+Retiring LWD snapshot
+ Information
+08/10/2026, 21:40:17
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.retiresnapshot
+
+Task: Retire LWD-based snapshot
+
+Task: Retire LWD-based snapshot
+ Information
+08/10/2026, 21:40:17
+Retire LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4957082","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4957082","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}'
+ Information
+08/10/2026, 21:40:10
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD snapshot sync is completed
+
+LWD snapshot sync is completed
+ Information
+08/10/2026, 21:40:10
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.syncdone
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4957082","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"task-4957082","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}'
+ Information
+08/10/2026, 21:39:56
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Performing LWD snapshot sync
+
+Performing LWD snapshot sync
+ Information
+08/10/2026, 21:39:56
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.sync
+
+Task: Perform LWD-based snapshot sync
+
+Task: Perform LWD-based snapshot sync
+ Information
+08/10/2026, 21:39:56
+Perform LWD-based snapshot sync
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"4087f8ea-c175-480e-b5c6-b69ff58cdf2c","SessionStartTime":"2026-10-09T00:39:30Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"74c2edd6-533b-4d22-9f29-02c20d8c074a"}'
+ Information
+08/10/2026, 21:39:54
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+LWD crash-consistent snapshot taken
+
+LWD crash-consistent snapshot taken
+ Information
+08/10/2026, 21:39:54
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshotdone.crashconsistent
+
+Taking LWD crash-consistent snapshot
+
+Taking LWD crash-consistent snapshot
+ Information
+08/10/2026, 21:39:52
+ CADDEAPLLX2821
+com.vmware.dp
+com.vmware.dp.events.snapshot.crashconsistent
+
+Task: Take LWD-based snapshot
+
+Task: Take LWD-based snapshot
+ Information
+08/10/2026, 21:39:52
+Take LWD-based snapshot
+ CADDEAPLLX2821
+com.vmware.dp
+vim.event.TaskEvent
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-09T00:39:30Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=4087f8ea-c175-480e-b5c6-b69ff58cdf2c'
+
+Changed custom field Dell VM Direct Engine Session from '' to 'Operation=Backup, StartTime=2026-10-09T00:39:30Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=4087f8ea-c175-480e-b5c6-b69ff58cdf2c'
+ Information
+08/10/2026, 21:39:32
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"c09a1f00-0f38-4579-aa46-e08b0accb04e","SessionStartTime":"2026-10-08T01:35:59Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"c09a1f00-0f38-4579-aa46-e08b0accb04e","SessionStartTime":"2026-10-08T01:35:59Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}' to ''
+ Information
+07/10/2026, 22:36:45
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-08T01:35:59Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=c09a1f00-0f38-4579-aa46-e08b0accb04e' to ''
+
+Changed custom field Dell VM Direct Engine Session from 'Operation=Backup, StartTime=2026-10-08T01:35:59Z, vProxy=cadsvaprap003.intra.caixa.gov.br, SessionId=c09a1f00-0f38-4579-aa46-e08b0accb04e' to ''
+ Information
+07/10/2026, 22:36:45
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-07T00:38:57Z, EndTime=2026-10-07T00:40:59Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-08T01:35:59Z, EndTime=2026-10-08T01:36:44Z'
+
+Changed custom field Last Dell PowerProtect Backup from 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-07T00:38:57Z, EndTime=2026-10-07T00:40:59Z' to 'Backup Server=cadsvaprap003.intra.caixa.gov.br, Policy=721e04a9-f8b0-4a9d-a22f-f4886b2437e5, Stage=cdc0c151-07d2-e027-39ab-1387356c4ed6, StartTime=2026-10-08T01:35:59Z, EndTime=2026-10-08T01:36:44Z'
+ Information
+07/10/2026, 22:36:44
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"c09a1f00-0f38-4579-aa46-e08b0accb04e","SessionStartTime":"2026-10-08T01:35:59Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"37fa02ea-8b15-47aa-a0a5-6af8bca93f5e"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"c09a1f00-0f38-4579-aa46-e08b0accb04e","SessionStartTime":"2026-10-08T01:35:59Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+
+Changed custom field Dell VM Direct Engine Cleanup Descriptor from '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"c09a1f00-0f38-4579-aa46-e08b0accb04e","SessionStartTime":"2026-10-08T01:35:59Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":[2002,2000],"DpdTaskMORef":"","LwdSnapshotUuid":"37fa02ea-8b15-47aa-a0a5-6af8bca93f5e"}' to '{"DataMover":"SDM","SessionType":"Backup","SessionUuid":"c09a1f00-0f38-4579-aa46-e08b0accb04e","SessionStartTime":"2026-10-08T01:35:59Z","VmMORef":"vm-1267423","VmName":"CADDEAPLLX2821","VProxyMORef":"","SnapshotMORef":"","VmdkBaseFileNames":null,"DpdVendorId":"Dell EMC PowerProtect","LwdDiskIds":null,"DpdTaskMORef":"","LwdSnapshotUuid":""}'
+ Information
+07/10/2026, 22:36:44
+ CADDEAPLLX2821
+CORPCAIXA\S7366004
+vim.event.CustomFieldValueChangedEvent
+Manage Columns
+Deselect All
+Events per page 
+100
+100 events
+
 1
-NUMA nodes 
-1 (Cores per NUMA node: 2)
-Edit
-vSphere HA
-vSphere HA Protection		Protected 
-Proactive HA		Manual
-Host failure		Restart VMs
-Host Isolation		Disabled
-Datastore with Permanent Device Loss		Power off and restart VMs
-Datastore with All Paths Down		Power off and restart VMs
-Guest not heartbeating		Disabled
+ / 
+--
 
-Settings
 Splitter collapsed
 
 Recent Tasks
@@ -4954,77 +5815,3 @@ First Page
 Previous Page
 Next Page
 Last Page
-Beginning of Modal Content
-Edit Settings
-CADDEAPLLX2821
-
-Virtual Hardware
-VM Options
-Advanced Parameters
-Add New Device
-
-CPU
-
-2
- 
-
-Memory
-4
- 
-
-GB
-
-Hard disk 1
-37
-
-GB
-
-
-Hard disk 2
-1
-
-GB
-
-
-SCSI controller 0
-VMware Paravirtual
-
-
-Network adapter 1
-
-tn-NPRD+NPRD_AUTO_DES_BSB-ap+VL3676-ep+10.116.192.0
-
-Connected
-
-
-Network adapter 2
-
-tn-NPRD|NPRD_BKP-ap|VL3697-ep
-
-Connected
-
-Status
-
-Connect At Power On
-Port ID
-4328
-Adapter Type
-
-VMXNET 3
-MAC Address
-00:50:56:82:a5:1d
-
-Automatic
-
-Video card
-
-Specify custom settings
-
-Security Devices
-Not Configured
-
-Other
-Additional Hardware
-Cancel
-OK
-End of Modal Content
