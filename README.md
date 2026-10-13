@@ -1,28 +1,17 @@
-
--sh-4.2$ oc get pod sihdg-jboss8-tqs-37-6llp9 -n sihdg-tqs
-NAME                        READY     STATUS    RESTARTS     AGE
-sihdg-jboss8-tqs-37-6llp9   0/1       Running   4 (9s ago)   8m10s
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get events -n sihdg-tqs --field-selector involvedObject.name=sihdg-jboss8-tqs-37-6llp9 | tail
-8m8s        Normal    Pulled           pod/sihdg-jboss8-tqs-37-6llp9   Successfully pulled image "default-route-openshift-image-registry.apps.produtos4.caixa/build-images-ads/sihdg-jboss8:3.18.0.1" in 6.153239157s (6.153252227s including waiting)
-6m16s       Normal    Created          pod/sihdg-jboss8-tqs-37-6llp9   Created container sihdg-jboss8-tqs
-6m16s       Normal    Started          pod/sihdg-jboss8-tqs-37-6llp9   Started container sihdg-jboss8-tqs
-5m32s       Warning   Unhealthy        pod/sihdg-jboss8-tqs-37-6llp9   Readiness probe failed: Get "http://25.3.44.25:8080/sihdg-api/health/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
-6m47s       Warning   Unhealthy        pod/sihdg-jboss8-tqs-37-6llp9   Liveness probe failed: HTTP probe failed with statuscode: 404
-3m7s        Warning   Unhealthy        pod/sihdg-jboss8-tqs-37-6llp9   Readiness probe failed: HTTP probe failed with statuscode: 404
-6m47s       Normal    Killing          pod/sihdg-jboss8-tqs-37-6llp9   Container sihdg-jboss8-tqs failed liveness probe, will be restarted
-6m17s       Warning   Unhealthy        pod/sihdg-jboss8-tqs-37-6llp9   Readiness probe failed: HTTP probe failed with statuscode: 503
-6m16s       Normal    Pulled           pod/sihdg-jboss8-tqs-37-6llp9   Successfully pulled image "default-route-openshift-image-registry.apps.produtos4.caixa/build-images-ads/sihdg-jboss8:3.18.0.1" in 80.118901ms (80.127844ms including waiting)
-6m16s       Warning   Unhealthy        pod/sihdg-jboss8-tqs-37-6llp9   Readiness probe failed: Get "http://25.3.44.25:8080/sihdg-api/health/ready": dial tcp 25.3.44.25:8080: connect: connection refused
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc rsh -n sihdg-des -c sihdg-jboss8-des sihdg-jboss8-des-116-mq4ct curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8080/sihdg-api/health/ready
-200
--sh-4.2$
+Sandra, o healthcheck já está habilitado e funcionando: em DES o pod sihdg-jboss8-des-116 responde 200 em /sihdg-api/health/ready, com a mesma aplicação e as mesmas probes. Em TQS (pod sihdg-jboss8-tqs-37-6llp9, imagem 3.18.0.1) as probes dão 404/503 porque o sihdg-api.war não inicializa: SecurityConfig e CacheConfig falham com Connect timed out em 10.116.29.201:31153, e o OKD reinicia o container a cada falha de liveness. A rota existe no projeto. A causa é a conectividade com o banco, que está em tratamento com a Infra/Plataforma OKD (egress do namespace sihdg-tqs, CRQ000001499711). Pedimos manter a WO aberta até a conectividade ser corrigida.
 
 
-a sandatra ta falndo isso Poderia habilitar o atributo <healthcheck> para vermos se isso resolve o problema ou não
+Fábio, boa tarde. Pedimos a reabertura da WO0000081857473. O fechamento indicou que a rota de healthcheck não existe na aplicação, mas a análise mostra que a causa é outra.
 
-mais acho que ela esta perdida tambem igual ao fabio
+Evidências
+
+Em DES, o pod sihdg-jboss8-des-116-mq4ct responde 200 em /sihdg-api/health/ready. A rota existe no projeto e as probes de readiness e liveness já estão habilitadas, com o mesmo path em TQS.
+Em TQS, no pod sihdg-jboss8-tqs-37-6llp9 (imagem 3.18.0.1), o log mostra o sihdg-3.18.0.1.ear finalizado com erros (started (with errors)). Os componentes SecurityConfig e CacheConfig não sobem por Connect timed out em 10.116.29.201:31153.
+Com o sihdg-api.war fora do ar, /sihdg-api/ e o healthcheck do servidor (:9990/health/ready) respondem 503, e /sihdg-api/health/ready responde 404.
+A liveness probe falha, o OKD mata o container e ele reinicia em loop (4 restarts em 8 minutos).
+
+Causa
+O 404 do healthcheck é consequência da aplicação não conseguir conexão com o banco. A falha de conectividade está em tratamento com a Infra/Plataforma OKD: o tráfego dos pods do namespace sihdg-tqs não sai com o egress IP 10.116.221.46, que é o IP liberado na regra de firewall da CRQ000001499711. A Redes validou por captura que a regra funciona quando o tráfego sai com esse IP.
+
+Pedido
+Manter a WO aberta, sem nova tentativa de deploy, até a conectividade com o banco ser corrigida. Quando houver retorno da Infra, o teste será repetido e a WO atualizada.
