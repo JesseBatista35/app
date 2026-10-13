@@ -1,3 +1,12 @@
-Boa tarde, Fábio. Isso mesmo: a regra foi criada só para o IP de saída do projeto (10.116.221.46), que é o desenho correto do OKD, onde cada namespace sai com seu egress IP. A Redes validou por captura que a conexão com o banco funciona quando o tráfego sai com esse IP.
-
-O problema é que, nos testes de dentro dos pods do sihdg-tqs, a conexão dá timeout, o que indica que o tráfego não está saindo com o egress IP (provavelmente sai com o IP do node, que não tem regra). Não recomendo liberar a rede de todos os nodes, porque abriria o banco para todos os projetos do cluster. O ajuste correto é na Plataforma OKD, para o namespace usar o egress IP. Vou levar com as evidências para a Infra/Plataforma OKD.
+era isso q eu estava tentando entender na verdade 
+ 
+pq eu não sei como funciona os pedidos de regra e eu não sabia se era pedido realmente só pra o ip de saída ou pra rede toda 
+ 
+um ajuste na plataforma para o namespace usar o egress IP
+ 
+pessoal não seria possível pedir a regra de rede pra rede?
+ 
+Fabio Augusto Nunes Goncalves
+pq eu não sei como funciona os pedidos de regra e eu não sabia se era pedido realmente só pra o ip de saída ou pra rede toda
+ele é só saída. acho que para a rede toda ele abre o banco para todos os projetos do cluster, ai acho que isso não seria viavel.  
+ 
