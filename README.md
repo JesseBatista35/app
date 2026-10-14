@@ -1,5 +1,66 @@
-oc exec -n simcn-des $POD -- id
-oc exec -n simcn-des $POD -- sh -c 'touch /simcn/conciliacao/.teste_cesti && ls -l /simcn/conciliacao/.teste_cesti && rm /simcn/conciliacao/.teste_cesti && echo ESCRITA_OK'
-oc exec -n simcn-des $POD -- env | grep -iE 'path|storage|nfs|simcn'
-oc exec -n simcn-des $POD -- ls -la /upload/des/simcn 2>&1
-oc exec -n simcn-des $POD -- ls -lt /simcn/conciliacao | head
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$ oc exec -n simcn-des $POD -- id
+uid=185 gid=0(root) groups=0(root)
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$ oc exec -n simcn-des $POD -- sh -c 'touch /simcn/conciliacao/.teste_cesti && ls -l /simcn/conciliacao/.teste_cesti && rm /simcn/conciliacao/.teste_cesti && echo ESCRITA_OK'
+touch: cannot touch '/simcn/conciliacao/.teste_cesti': Permission denied
+command terminated with exit code 1
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$ oc exec -n simcn-des $POD -- env | grep -iE 'path|storage|nfs|simcn'
+PATH=/opt/apache-maven-3.6.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=simcn-backend-des-277-fh2hg
+SIMCN_BACKEND_DES_PORT_8009_TCP=tcp://25.128.181.35:8009
+SIMCN_BACKEND_DES_SERVICE_PORT=8080
+SIMCN_BACKEND_DES_PORT_8080_TCP=tcp://25.128.181.35:8080
+SIMCN_BACKEND_DES_PORT_8080_TCP_ADDR=25.128.181.35
+SIMCN_FRONTEND_DES_SERVICE_HOST=25.128.99.132
+SIMCN_BACKEND_DES_PORT_8009_TCP_PORT=8009
+SIMCN_FRONTEND_DES_SERVICE_PORT_WEB=8080
+SIMCN_FRONTEND_DES_PORT_9113_TCP=tcp://25.128.99.132:9113
+SIMCN_FRONTEND_DES_PORT_9113_TCP_PROTO=tcp
+SIMCN_FRONTEND_DES_PORT_9113_TCP_PORT=9113
+SIMCN_BACKEND_DES_SERVICE_HOST=25.128.181.35
+SIMCN_BACKEND_DES_PORT_8778_TCP_ADDR=25.128.181.35
+SIMCN_FRONTEND_DES_PORT_8080_TCP=tcp://25.128.99.132:8080
+SIMCN_BACKEND_DES_SERVICE_PORT_AJP=8009
+SIMCN_BACKEND_DES_PORT=tcp://25.128.181.35:8080
+SIMCN_BACKEND_DES_PORT_8778_TCP_PORT=8778
+SIMCN_FRONTEND_DES_PORT_8080_TCP_ADDR=25.128.99.132
+SIMCN_BACKEND_DES_SERVICE_PORT_JMX=8778
+SIMCN_BACKEND_DES_PORT_8080_TCP_PORT=8080
+SIMCN_BACKEND_DES_PORT_8778_TCP_PROTO=tcp
+SIMCN_BACKEND_DES_PORT_8009_TCP_PROTO=tcp
+SIMCN_BACKEND_DES_PORT_8009_TCP_ADDR=25.128.181.35
+SIMCN_FRONTEND_DES_PORT=tcp://25.128.99.132:8080
+SIMCN_BACKEND_DES_PORT_8080_TCP_PROTO=tcp
+SIMCN_FRONTEND_DES_SERVICE_PORT=8080
+SIMCN_FRONTEND_DES_PORT_9113_TCP_ADDR=25.128.99.132
+SIMCN_BACKEND_DES_SERVICE_PORT_WEB=8080
+SIMCN_BACKEND_DES_PORT_8778_TCP=tcp://25.128.181.35:8778
+SIMCN_FRONTEND_DES_SERVICE_PORT_ANGULAR=9113
+SIMCN_FRONTEND_DES_PORT_8080_TCP_PROTO=tcp
+SIMCN_FRONTEND_DES_PORT_8080_TCP_PORT=8080
+OPENSHIFT_BUILD_NAME=simcn-backend-161
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$ oc exec -n simcn-des $POD -- ls -la /upload/des/simcn 2>&1
+ls: cannot access /upload/des/simcn: No such file or directory
+command terminated with exit code 2
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$ oc exec -n simcn-des $POD -- ls -lt /simcn/conciliacao | head
+total 2902
+-rw-r--r--. 1 10612194 20000957   161 Sep 18 17:14 357.csv
+-rw-r--r--. 1 10612194 20000957   206 Sep 18 14:37 365.csv
+-rw-r--r--. 1 10612194 20000957   144 Sep 18 11:08 363.csv
+-rw-r--r--. 1 10612194 20000957   200 Sep 18 11:07 361.csv
+-rw-r--r--. 1 10612194 20000957   172 Sep 17 17:49 364.csv
+-rw-r--r--. 1 10612194 20000957   144 Sep 17 17:49 362.csv
+-rw-r--r--. 1 10612194 20000957   205 Sep 17 17:47 360.csv
+-rw-r--r--. 1 10612194 20000957   200 Sep 17 17:47 359.csv
+-rw-r--r--. 1 10612194 20000957   228 Sep 17 17:46 358.csv
+-sh-4.2$
