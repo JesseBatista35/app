@@ -1,19 +1,11 @@
- syntax error near unexpected token `('
-[root@sbrdeapllx069 p585600]# /opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=10.116.89.0:9999
-[domain@10.116.89.0:9999 /]
-[domain@10.116.89.0:9999 /]
-[domain@10.116.89.0:9999 /]
-[domain@10.116.89.0:9999 /] ls /host
-DC_LX069                   sbrdeapllx103_financeiro   sbrdeapllx105_corporativo  sbrdeapllx111_orcamento    sbrdeapllx114_risco
-sbrdeapllx099_habitacao    sbrdeapllx104_credito      sbrdeapllx110_servico      sbrdeapllx112
+ls /host=sbrdeapllx105_corporativo/server-config
+/host=sbrdeapllx112:read-attribute(name=host-state)
+/host=sbrdeapllx105_corporativo/server-config=simcn_node1_lx103:stop(blocking=true)
+undeploy SIMCN --server-groups=simcn
+/host=sbrdeapllx105_corporativo/server-config=simcn_node1_lx103:start(blocking=true)
 
-[domain@10.116.89.0:9999 /]
-[domain@10.116.89.0:9999 /]
-[domain@10.116.89.0:9999 /] /host=<nome-do-host-105>/server-config=simcn_node1_lx103:stop(blocking=true)
-Failed to get the list of the operation properties: "WFLYCTL0030: No resource definition is registered for address [
-    ("host" => "<nome-do-host-105>"),
-    ("server-config" => "simcn_node1_lx103")
-]"
-[domain@10.116.89.0:9999 /]
-[domain@10.116.89.0:9999 /]
-[domain@10.116.89.0:9999 /]
+/opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=10.116.89.0:9999 --command='ls /host=sbrdeapllx105_corporativo/server-config'
+/opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=10.116.89.0:9999 --command='/host=sbrdeapllx112:read-attribute(name=host-state)'
+/opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=10.116.89.0:9999 --command='/host=sbrdeapllx105_corporativo/server-config=simcn_node1_lx103:stop(blocking=true)'
+/opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=10.116.89.0:9999 --command='undeploy SIMCN --server-groups=simcn'
+/opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=10.116.89.0:9999 --command='/host=sbrdeapllx105_corporativo/server-config=simcn_node1_lx103:start(blocking=true)'
