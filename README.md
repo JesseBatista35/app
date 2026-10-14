@@ -57,14 +57,14 @@ caixa-base-chart:
         hosts:
         - "sidvi-backend-spring-desenvolve-ai.apl.tqs.private.azure"
       - port:
-         number: 443
-         name: https-custom
-         protocol: HTTPS
-       tls:
-         mode: SIMPLE
-         credentialName: akvs-sidvi-backend-spring-desenvolve-ai # Nome do secret do certificado
-       hosts:
-         - sidvi-backend-spring-desenvolve-ai.tqs.caixa
+          number: 443
+          name: https-custom
+          protocol: HTTPS
+        tls:
+          mode: SIMPLE
+          credentialName: akvs-sidvi-backend-spring-desenvolve-ai # Nome do secret do certificado
+        hosts:
+          - sidvi-backend-spring-desenvolve-ai.tqs.caixa
       prefix:
         - /
       targetPort: 80 
@@ -150,10 +150,3 @@ caixa-base-chart:
       value: akvs-spring-datasource-password@azurekeyvault
     - name: MCP_GITHUB_PAT
       value: akvs-mcp-github-pat@azurekeyvault
-
-
-
-
-
-
-corrige ai o que tem que corrigri
