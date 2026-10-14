@@ -1,9 +1,4 @@
-<img width="974" height="241" alt="image" src="https://github.com/user-attachments/assets/394289e5-aae0-4888-b749-532770572486" />
+<img width="441" height="579" alt="image" src="https://github.com/user-attachments/assets/57d62767-6f0b-4d75-919a-55081050ef5a" />
 
 
-ele me madou o pacote
-
-<img width="1273" height="844" alt="image" src="https://github.com/user-attachments/assets/aa00908b-0405-4d2f-9f2f-8b9d4c60a791" />
-
-
-me ajuda aqui a fazer aqui depois testar
+ele que me mandou esse pacoe entao é essa vessao que ele quer
