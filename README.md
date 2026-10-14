@@ -54,3 +54,32 @@ status:
       type: Issuing
   failedIssuanceAttempts: 5
   lastFailureTime: '2026-10-14T07:50:25Z'
+
+
+
+
+
+
+Desired Manifest
+
+  apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    app.kubernetes.io/instance: sipgs-backend-bff-simulacao-des
+  name: sipgs-backend-bff-simulacao-des-internal-srv0-cert
+  namespace: istio-ingress
+spec:
+  dnsNames:
+    - sipgs-backend-bff-simulacao.apl.des.private.aws
+  duration: 4320h
+  issuerRef:
+    group: awspca.cert-manager.io
+    kind: AWSPCAClusterIssuer
+    name: aws-privateca-cluster-issuer
+  renewBefore: 360h
+  secretName: sipgs-backend-bff-simulacao-des-nprd
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
