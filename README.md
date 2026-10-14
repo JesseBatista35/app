@@ -1,15 +1,15 @@
 
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc logs siifx-caixinhas-api-aplicacao-des-70-t2rc5 -c secrets-agent-sidecar | grep -E 'secret path|ERROR|UserName'
-Error from server (NotFound): pods "siifx-caixinhas-api-aplicacao-des-70-t2rc5" not found
--sh-4.2$ oc get pod siifx-caixinhas-api-aplicacao-des-70-t2rc5 \
->   -o jsonpath='{.spec.initContainers[?(@.name=="secrets-agent-sidecar")].env}' | tr ',' '\n'
-Error from server (NotFound): pods "siifx-caixinhas-api-aplicacao-des-70-t2rc5" not found
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get secret <nome-da-secret> -o jsonpath='{.data.<chave>}' | base64 -d; echo
--sh: nome-da-secret: Arquivo ou diretório não encontrado
+# pod mais recente do SIIFX-api-aplicacao
+POD=$(oc get pod -l name=siifx-api-aplicacao-des --sort-by=.metadata.creationTimestamp -o name | tail -1); echo $POD
 
--sh-4.2$
+# log do agente BeyondTrust nesse pod
+oc logs $POD -c secrets-agent-sidecar | grep -E 'secret path|ERROR|UserName|sign_app'
+
+# variáveis do agente, lidas do DC (não depende de pod)
+oc get dc siifx-api-aplicacao-des -o jsonpath='{range .spec.template.spec.initContainers[?(@.name=="secrets-agent-sidecar")].env[*]}{.name}={.value}{.valueFrom}{"\n"}{end}'
+
+# mesma coisa do caixinhas, para comparar usuário e lista de segredos
+oc get dc siifx-caixinhas-api-aplicacao-des -o jsonpath='{range .spec.template.spec.initContainers[?(@.name=="secrets-agent-sidecar")].env[*]}{.name}={.value}{.valueFrom}{"\n"}{end}'
+
+
+oc logs $POD -c secrets-agent-sidecar --previous | grep -E 'secret path|ERROR|UserName|sign_app'
