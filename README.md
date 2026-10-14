@@ -1,21 +1,10 @@
+# quando a secret foi alterada por último
+oc get secret $S -o jsonpath='{range .metadata.managedFields[*]}{.manager}{"  "}{.time}{"\n"}{end}'
 
--sh-4.2$
--sh-4.2$ S=bt-client-secret-siifx-api-aplicacao-des
--sh-4.2$ oc get secret $S -o jsonpath='{.metadata.creationTimestamp}{"  "}{.metadata.resourceVersion}{"\n"}'
-2025-07-30T22:17:52Z  2260597766
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get secret $S -o jsonpath='{.data.BT_CLIENT_ID}' | base64 -d; echo
-639dc38f-1006-4e3f-abab-836500019823
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get secret $S -o jsonpath='{.data.BT_CLIENT_SECRET}' | base64 -d | wc -c
-44
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get secret $S -o jsonpath='{.data.BT_CLIENT_SECRET}' | base64 -d | grep -E '\$\(|#\{|__' && echo ">>> PLACEHOLDER NAO SUBSTITUIDO"
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$
+# testar o token com o valor atual
+BT=https://sicsn.caixa/BeyondTrust/api/public/v3
+CID=$(oc get secret $S -o jsonpath='{.data.BT_CLIENT_ID}' | base64 -d)
+CSEC=$(oc get secret $S -o jsonpath='{.data.BT_CLIENT_SECRET}' | base64 -d)
+curl -sk -m 30 -X POST "$BT/Auth/connect/token" \
+  -d "grant_type=client_credentials&client_id=$CID&client_secret=$CSEC" \
+  -w "\ntoken HTTP %{http_code}\n" | grep -v access_token; unset CID CSEC
