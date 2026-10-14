@@ -1,10 +1,9 @@
+<img width="974" height="241" alt="image" src="https://github.com/user-attachments/assets/394289e5-aae0-4888-b749-532770572486" />
 
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc logs $POD -c secrets-agent-sidecar | head -1
-2026-10-14 16:47:58,504 INFO Getting secrets just once, POLLING_WAIT_BETWEEN_REQUESTS_MINUTES was not configured
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$
+
+ele me madou o pacote
+
+<img width="1273" height="844" alt="image" src="https://github.com/user-attachments/assets/aa00908b-0405-4d2f-9f2f-8b9d4c60a791" />
+
+
+me ajuda aqui a fazer aqui depois testar
