@@ -1,10 +1,9 @@
-# quando a secret foi alterada por último
-oc get secret $S -o jsonpath='{range .metadata.managedFields[*]}{.manager}{"  "}{.time}{"\n"}{end}'
+# 1. OpenShift SDN (mais comum no OKD da Caixa)
+oc get netnamespace siifx-des -o jsonpath='{.egressIPs}{"\n"}'
 
-# testar o token com o valor atual
-BT=https://sicsn.caixa/BeyondTrust/api/public/v3
-CID=$(oc get secret $S -o jsonpath='{.data.BT_CLIENT_ID}' | base64 -d)
-CSEC=$(oc get secret $S -o jsonpath='{.data.BT_CLIENT_SECRET}' | base64 -d)
-curl -sk -m 30 -X POST "$BT/Auth/connect/token" \
-  -d "grant_type=client_credentials&client_id=$CID&client_secret=$CSEC" \
-  -w "\ntoken HTTP %{http_code}\n" | grep -v access_token; unset CID CSEC
+# 2. OVN-Kubernetes
+oc get egressip -o wide 2>/dev/null | grep -i siifx
+
+# 3. Se os dois vierem vazios: não há egress IP fixo, e o pod sai pelo IP do nó onde está rodando
+POD=$(oc get pod -l name=siifx-api-aplicacao-des --sort-by=.metadata.creationTimestamp -o name | tail -1)
+oc get $POD -o jsonpath='{.spec.nodeName}{"  "}{.status.hostIP}{"\n"}'
