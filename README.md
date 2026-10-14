@@ -1,38 +1,28 @@
+BT=https://sicsn.caixa/BeyondTrust/api/public/v3
+S=bt-client-secret-siifx-api-aplicacao-des
+CID=$(oc get secret $S -n siifx-des -o jsonpath='{.data.BT_CLIENT_ID}' | base64 -d)
+CSEC=$(oc get secret $S -n siifx-des -o jsonpath='{.data.BT_CLIENT_SECRET}' | base64 -d)
 
--sh-4.2$ POD=$(oc get pod -l name=siifx-api-aplicacao-des --sort-by=.metadata.creationTimestamp -o name | tail -1); echo $POD
-pod/siifx-api-aplicacao-des-2899-9xk6r
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc logs $POD -c secrets-agent-sidecar | grep -E 'secret path|ERROR|UserName|sign_app'
-2026-10-14 13:50:29,505 INFO (3792b7b0-c7d6-11f1-b7e6-0a5819011f6d) Calling sign_app_in endpoint: https://sicsn.caixa/BeyondTrust/api/public/v3
-2026-10-14 13:50:29,546 INFO (3792b7b0-c7d6-11f1-b7e6-0a5819011f6d) **************** secret path: SIIFX_DES/apikey_siifx_intranet *****************
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get dc siifx-api-aplicacao-des -o jsonpath='{range .spec.template.spec.initContainers[?(@.name=="secrets-agent-sidecar")].env[*]}{.name}={.value}{.valueFrom}{"\n"}{end}'
-SECRETS_PATH=/usr/src/app/secrets_files
-BT_API_URL=https://sicsn.caixa/BeyondTrust/api/public/v3
-CLIENT_ID=map[secretKeyRef:map[key:BT_CLIENT_ID name:bt-client-secret-siifx-api-aplicacao-des]]
-CLIENT_SECRET=map[secretKeyRef:map[name:bt-client-secret-siifx-api-aplicacao-des key:BT_CLIENT_SECRET]]
-BT_API_VERSION=3.1
-SECRETS_LIST=SIIFX_DES/apikey_siifx_intranet,SIIFX_DES/sifxds01_oracle,SIIFX_DES/cli-ser-ifx_sso_intra,SIIFX_DES/siifx_api,SIIFX_DES/SIFXDS04_DATAGRID
-BT_VERIFY_CA=False
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get dc siifx-caixinhas-api-aplicacao-des -o jsonpath='{range .spec.template.spec.initContainers[?(@.name=="secrets-agent-sidecar")].env[*]}{.name}={.value}{.valueFrom}{"\n"}{end}'
-SECRETS_PATH=/usr/src/app/secrets_files
-BT_API_URL=https://sicsn.caixa/BeyondTrust/api/public/v3
-CLIENT_ID=map[secretKeyRef:map[name:bt-client-secret-siifx-caixinhas-api-aplicacao-des key:BT_CLIENT_ID]]
-CLIENT_SECRET=map[secretKeyRef:map[key:BT_CLIENT_SECRET name:bt-client-secret-siifx-caixinhas-api-aplicacao-des]]
-BT_API_VERSION=3.1
-SECRETS_LIST=SIIFX_DES/apikey_siifx_intranet,SIIFX_DES/sifxds01_oracle,SIIFX_DES/cli-ser-ifx_sso_intra,SIIFX_DES/siifx_api,SIIFX_DES/SIFXDS04_DATAGRID
-BT_VERIFY_CA=False
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc logs $POD -c secrets-agent-sidecar --previous | grep -E 'secret path|ERROR|UserName|sign_app'
-Error from server (BadRequest): previous terminated container "secrets-agent-sidecar" in pod "siifx-api-aplicacao-des-2899-9xk6r" not found
--sh-4.2$
+# 1. token OAuth
+TOKEN=$(curl -sk -m 30 -X POST "$BT/Auth/connect/token" \
+  -d "grant_type=client_credentials&client_id=$CID&client_secret=$CSEC" \
+  | sed -E 's/.*"access_token":"([^"]+)".*/\1/'); echo "token: ${TOKEN:0:15}..."
+
+# 2. sign in
+curl -sk -m 30 -c /tmp/bt -X POST "$BT/Auth/SignAppIn" -H "Authorization: Bearer $TOKEN"; echo
+
+# 3. cada segredo, com tempo (retorna metadados, não o valor)
+for t in apikey_siifx_intranet sifxds01_oracle cli-ser-ifx_sso_intra siifx_api SIFXDS04_DATAGRID; do
+  echo "== $t"
+  curl -sk -m 60 -b /tmp/bt -H "Authorization: Bearer $TOKEN" \
+    -o /dev/null -w "HTTP %{http_code} em %{time_total}s\n" \
+    "$BT/Secrets-Safe/Secrets?path=SIIFX_DES&separator=/&title=$t"
+done
+
+# 4. pasta inteira
+curl -sk -m 60 -b /tmp/bt -H "Authorization: Bearer $TOKEN" \
+  -w "\nHTTP %{http_code} em %{time_total}s\n" \
+  "$BT/Secrets-Safe/Secrets?path=SIIFX_DES&separator=/"
+
+# 5. sign out e limpeza
+curl -sk -b /tmp/bt -X POST "$BT/Auth/Signout" -H "Authorization: Bearer $TOKEN"; rm -f /tmp/bt; unset CID CSEC TOKEN
