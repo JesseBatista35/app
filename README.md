@@ -1,16 +1,19 @@
 À CAIXA
 
-Prezados, 
+Prezados,
 
-Conforme solicitado em demanda, foi realizada a análise da falha na esteira do projeto siarx-frontend-autoridade-registro-x. 
+Conforme solicitado em demanda, foi realizada a análise da falha na esteira do projeto siarx-frontend-autoridade-registro-x.
 
-O build e a publicação da imagem foram concluídos com sucesso. 
+O build e a publicação da imagem foram concluídos com sucesso.
 
-A falha ocorre na etapa de deploy via ArgoCD (DES), pois o repositório de infraestrutura siarx-frontend-autoridade-registro-x-infranprd contém apenas o README.md, sem a estrutura de deploy (des/values.yaml) que deveria ter sido gerada pela jornada de criação de aplicação no Fusion X. 
+A falha ocorre na etapa de deploy via ArgoCD (DES), pois o repositório de infraestrutura siarx-frontend-autoridade-registro-x-infranprd contém apenas o README.md. A estrutura de deploy (des/values.yaml), que deveria ter sido gerada pela jornada de criação de aplicação no Fusion X, não está presente.
 
+Identificamos que a jornada não foi executada corretamente, uma vez que o merge da branch de inclusão de arquivos não trouxe os artefatos esperados.
 
-Identificamos que a jornada não foi executada corretamente, já que o merge da branch de inclusão de arquivos não trouxe os artefatos esperados. 
+Para regularização, orientamos os seguintes passos:
 
-Orientamos que os repositórios criados pela jornada sejam sanitizados e que a jornada seja executada novamente. Recomendamos que a equipe de desenvolvimento faça o backup prévio de eventuais alterações já realizadas no repositório da aplicação. 
+A equipe de desenvolvimento deve realizar o backup de eventuais alterações já feitas no repositório da aplicação.
+Após o backup, deve ser aberta uma nova requisição solicitando a sanitização do projeto siarx-frontend-autoridade-registro-x, incluindo os repositórios gerados pela jornada.
+Concluído o atendimento dessa requisição, a equipe poderá executar novamente a jornada de criação do projeto via Fusion X.
 
-Apos o backu solicitamos que seja abeto uma nova req para que seja sanitizado o projeto siarx-frontend-autoridade-registro-x. e apos atedminto dessa req a comunidade podera criar o proeto novamente via fusionx
+Atenciosamente,
