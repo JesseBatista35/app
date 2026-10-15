@@ -1,11 +1,45 @@
-local-variables:
-  ci-cd-workflow:
-    - name: REPOSITORY_ARTIFACTS_APP
-      value: "NEXUS"
-    - name: LANGUAGES
-      value: '["java"]'
-    - name: "Informe o nome da variavel usada no projeto"
-      value: "Informe o valor referente a esta variavel"
+app:
+  name: siarx-backend-autoridade-registro-des
+project:
+  name: des
+labels:
+  appName: siarx-backend-autoridade-registro
+  environment: des
+source:
+  repo: "https://github.com/caixagithub/siarx-backend-autoridade-registro-infranprd"
+  path: des
+sourcevar:
+  repo: "https://github.com/caixagithub/siarx-globalnprd"
+  path: des
+  values: global.yaml  
+cluster:
+  destination:  
+    name: aks-siarx-nprd
+    namespace: siarx-backend-autoridade-registro
 
 
-      <img width="1900" height="871" alt="image" src="https://github.com/user-attachments/assets/e36f9927-9c23-410b-a4ec-9f76443031ee" />
+    esse  acima foi o que eu ajusteri
+
+
+gitops/apps/siarx-backend-certificados/des
+/config.yaml
+
+
+    app:
+  name: siarx-backend-certificados-hmp
+project:
+  name: hmp
+labels:
+  appName: siarx-backend-certificados
+  environment: hmp
+source:
+  repo: "https://github.com/caixagithub/siarx-backend-certificados-infranprd"
+  path: hmp
+sourcevar:
+  repo: "https://github.com/caixagithub/siarx-globalnprd"
+  path: hmp
+  values: global.yaml  
+cluster:
+  destination:  
+    name: aks-siarx-nprd
+    namespace: siarx-backend-certificados
