@@ -1,22 +1,21 @@
-Prezados,
+Realizar a inclusão dos 2 certificados em anexo no truststore do ambiente de Desenvolvimento do SISEI (nas pipelines SISEI-mgi e SISEI-mgi-sip).
 
-Foi configurado o permissionamento dos grupos G_AZ_GITHUB_SIPER_DESENVOLVEDOR e G_AZ_GITHUB_SIPER_INTEGRADOR nos repositórios solicitados, por meio dos times correspondentes na organização caixagithub:
+IMPORTANTE: A aplicação do SISEI é em PHP, portanto não fica no jks o truststore, ele fica em um arquivo chamado sisei_nprd_082026.crt na esteira devops, conforme imagem "Captura de Tela (2).png", portanto estes certificados em anexo devem ser importados neste arquivo sisei_nprd_082026.crt.
 
-caixagithub/siper-lib-listar-contas
+OBS: Mais informações detalhadas na REQ.
 
-SIPER_Desenvolvedor (G_AZ_GITHUB_SIPER_DESENVOLVEDOR): Write
-SIPER_Integrador (G_AZ_GITHUB_SIPER_INTEGRADOR): Maintain
 
-caixagithub/siper-lib-listar-contas-infranprd
 
-SIPER_Desenvolvedor (G_AZ_GITHUB_SIPER_DESENVOLVEDOR): Write
-SIPER_Integrador (G_AZ_GITHUB_SIPER_INTEGRADOR): Maintain
 
-Observação: no momento o time SIPER_Integrador está sem membros sincronizados. A permissão já está aplicada aos repositórios, mas só terá efeito quando houver usuários no grupo G_AZ_GITHUB_SIPER_INTEGRADOR do AD. Para isso, os usuários devem solicitar inclusão no grupo pelo fluxo padrão de acesso. Após a sincronização, o acesso é concedido automaticamente, sem nova configuração nos repositórios.
+<img width="1128" height="313" alt="Captura+de+tela+(2)" src="https://github.com/user-attachments/assets/6ebaafd4-9fd0-42e5-b093-1eef62db74b5" />
 
-Se algum usuário não conseguir acessar, é preciso verificar se ele pertence ao grupo do AD correspondente e se a conta GitHub dele está vinculada ao SSO corporativo. Basta abrir nova demanda informando a matrícula do usuário afetado.
 
-Demanda atendida.
+<img width="922" height="412" alt="image" src="https://github.com/user-attachments/assets/6af43701-e10e-4b17-b735-7b0916c18e1e" />
 
-Atenciosamente,
-Jessé Batista – CESTI / Esteiras DevOps DES/TQS NPRD
+
+<img width="1627" height="925" alt="image" src="https://github.com/user-attachments/assets/bcfff412-75e6-42d9-8ba7-317f59579a6d" />
+
+
+<img width="1831" height="898" alt="image" src="https://github.com/user-attachments/assets/00194346-69f7-45c8-b8e7-2a97a9c06d60" />
+
+
