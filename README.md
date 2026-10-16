@@ -1,184 +1,22 @@
-Skip to content
-GitHub Enterprise
-Users managed by Caixa Economica Federal
-caixagithub
-siper-lib-listar-contas
-Repository navigation
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
+Prezados,
 
-caixagithub/siper_integrador has been granted maintain on the repository. 
-Settings: caixagithub/siper-lib-listar-contas
-Access
-Code, planning, and automation
-Security and quality
-Integrations
-Collaborators and teams
-Private repository
-Only those with access to this repository can view it
-Base role
-None
-No base role set. Only Owners and those with direct access can access this repository.
+Foi configurado o permissionamento dos grupos G_AZ_GITHUB_SIPER_DESENVOLVEDOR e G_AZ_GITHUB_SIPER_INTEGRADOR nos repositórios solicitados, por meio dos times correspondentes na organização caixagithub:
 
-Direct access
-9 entities have access to this repository. 9 teams.
+caixagithub/siper-lib-listar-contas
 
-Organization access
-2 users and 11 teams can access this repository through the organization.
+SIPER_Desenvolvedor (G_AZ_GITHUB_SIPER_DESENVOLVEDOR): Write
+SIPER_Integrador (G_AZ_GITHUB_SIPER_INTEGRADOR): Maintain
 
-Manage access
+caixagithub/siper-lib-listar-contas-infranprd
 
-Direct access
+SIPER_Desenvolvedor (G_AZ_GITHUB_SIPER_DESENVOLVEDOR): Write
+SIPER_Integrador (G_AZ_GITHUB_SIPER_INTEGRADOR): Maintain
 
-Organization access
+Observação: no momento o time SIPER_Integrador está sem membros sincronizados. A permissão já está aplicada aos repositórios, mas só terá efeito quando houver usuários no grupo G_AZ_GITHUB_SIPER_INTEGRADOR do AD. Para isso, os usuários devem solicitar inclusão no grupo pelo fluxo padrão de acesso. Após a sincronização, o acesso é concedido automaticamente, sem nova configuração nos repositórios.
 
-Enterprise access
+Se algum usuário não conseguir acessar, é preciso verificar se ele pertence ao grupo do AD correspondente e se a conta GitHub dele está vinculada ao SSO corporativo. Basta abrir nova demanda informando a matrícula do usuário afetado.
 
-Select all
-Find people or a team…
-Loading
-9 results loaded
+Demanda atendida.
 
-@caixagithub/boxesteiradigitalseguranca
-BoxEsteiraDigitalSeguranca
-@caixagithub/boxesteiradigitalseguranca • 102 members
-
-@caixagithub/boxesteiradigitalseguranca_agente_operacoes
-BoxEsteiraDigitalSeguranca_Agente_Operacoes
-@caixagithub/boxesteiradigitalseguranca_agente_operacoes • 5 members
-
-@caixagithub/boxesteiradigitalseguranca_arquiteto
-BoxEsteiraDigitalSegurança_Arquiteto
-@caixagithub/boxesteiradigitalseguranca_arquiteto • 17 members
-
-@caixagithub/boxesteiradigitalseguranca_desenvolvedorcaixa
-BoxEsteiraDigitalSegurança_DesenvolvedorCaixa
-@caixagithub/boxesteiradigitalseguranca_desenvolvedorcaixa • 45 members
-
-@caixagithub/boxesteiradigitalseguranca_desenvolvedorfabrica
-BoxEsteiraDigitalSeguranca_DesenvolvedorFabrica
-@caixagithub/boxesteiradigitalseguranca_desenvolvedorfabrica • 38 members
-
-@caixagithub/boxesteiradigitalseguranca_gestor
-BoxEsteiraDigitalSeguranca_Gestor
-@caixagithub/boxesteiradigitalseguranca_gestor • 0 members
-
-@caixagithub/producao
-Producao
-@caixagithub/producao • 272 members
-
-@caixagithub/siper_desenvolvedor
-SIPER_Desenvolvedor
-@caixagithub/siper_desenvolvedor • 13 members
-
-@caixagithub/siper_integrador
-SIPER_Integrador
-@caixagithub/siper_integrador • 0 members
- 
-Footer
-© 2026 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Community
-Docs
-Contact
-Manage cookies
-Do not share my personal information
-
-
-
-
-Skip to content
-GitHub Enterprise
-Users managed by Caixa Economica Federal
-caixagithub
-siper-lib-listar-contas-infranprd
-Repository navigation
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-
-caixagithub/siper_integrador has been granted maintain on the repository. 
-Settings: caixagithub/siper-lib-listar-contas-infranprd
-Access
-Code, planning, and automation
-Security and quality
-Integrations
-Collaborators and teams
-Private repository
-Only those with access to this repository can view it
-Base role
-None
-No base role set. Only Owners and those with direct access can access this repository.
-
-Direct access
-5 entities have access to this repository. 5 teams.
-
-Organization access
-2 users and 11 teams can access this repository through the organization.
-
-Manage access
-
-Direct access
-
-Organization access
-
-Enterprise access
-
-Select all
-Find people or a team…
-Loading
-5 results loaded
-
-@caixagithub/boxesteiradigitalseguranca_arquiteto
-BoxEsteiraDigitalSegurança_Arquiteto
-@caixagithub/boxesteiradigitalseguranca_arquiteto • 17 members
-
-@caixagithub/boxesteiradigitalseguranca_desenvolvedorcaixa
-BoxEsteiraDigitalSegurança_DesenvolvedorCaixa
-@caixagithub/boxesteiradigitalseguranca_desenvolvedorcaixa • 45 members
-
-@caixagithub/boxesteiradigitalseguranca_desenvolvedorfabrica
-BoxEsteiraDigitalSeguranca_DesenvolvedorFabrica
-@caixagithub/boxesteiradigitalseguranca_desenvolvedorfabrica • 38 members
-
-@caixagithub/siper_desenvolvedor
-SIPER_Desenvolvedor
-@caixagithub/siper_desenvolvedor • 13 members
-
-@caixagithub/siper_integrador
-SIPER_Integrador
-@caixagithub/siper_integrador • 0 members
- 
-Footer
-© 2026 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Community
-Docs
-Contact
-Manage cookies
-Do not share my personal information
-
-
-
-PROINTO ME AJUDA COM A NOTA PARA ENCERRAR
+Atenciosamente,
+Jessé Batista – CESTI / Esteiras DevOps DES/TQS NPRD
