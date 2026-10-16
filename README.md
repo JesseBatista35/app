@@ -1,60 +1,19 @@
+Prezados,
 
-<img width="1879" height="502" alt="image" src="https://github.com/user-attachments/assets/f15ece15-f45e-4b87-9051-6dea4d1a18e4" />
+Após análise, verificamos que a demanda não pertence ao escopo de atendimento da Esteira DevOps NPRD, pois o servidor envolvido é de ambiente de PRODUÇÃO.
 
+Evidências:
+- Servidor: PR0000SR400 (VM PR0000SR400_new) – FTP do SICOW
+- vCenter: cluster CTC_PRDXF2488HV7_DESCENTRALIZADO, datacenter CETEC
+- IPs: 10.123.10.111 e 10.184.17.95 (GestióIP: rede REDE_BACKUP_PRO…)
+- SO: Debian GNU/Linux 6 (64-bit)
 
-rede backup de produção
+Observação para apoio à análise: conforme as notas da VM, o PR0000SR400_new é um clone criado para o novo servidor pr0000sr400 (via InfraSimples). Sugerimos verificar se, na substituição do servidor, foram mantidos:
+- o agendamento da shell sicow_conres_entrada.sh na CRON;
+- os pontos de montagem /var/sigdb/PUB e /var/home/ftp/sicor;
+- o destino de envio dos arquivos do SIGDB (se ainda aponta para o servidor antigo).
 
+Dessa forma, encaminhamos a demanda à equipe de INFRA responsável pelo ambiente de Produção para o devido tratamento.
 
-Ir para Conteúdo Principal
-SINCC
-#INTERNO.TODOS
-VMs
-Pesquisar
-Linhas
-
-50
-1 - 1 de 1
-VCenter
-Cluster
-VM Name
-DNS Name
-VM Host
-Serial Number
-Datacenter
-Datastores
-Resource Pool
-Folder
-Status
-IPs
-Subnets
-Tipos
-Nr. de CPUs
-Sistema Operacional
-Tamanho de Disco (GB)
-Notas
-Data da Coleta
-VCenter
-Cluster
-VM Name
-DNS Name
-VM Host
-Serial Number
-Datacenter
-Datastores
-Resource Pool
-Folder
-Status
-IPs
-Subnets
-Tipos
-Nr. de CPUs
-Sistema Operacional
-Tamanho de Disco (GB)
-Notas
-Data da Coleta
-cadsvgerap029-1.intra.caixa.gov.br	CTC_PRDXF2488HV7_DESCENTRALIZADO	PR0000SR400_new	pr0000sr400	cadsvgersh486.intra.caixa.gov.br	PI00988800000135	CETEC	CTCHW6037_0013,CTCHW6037_0074	RP_PROINFO\RP_DL580G8	APLICAÇÃO	Ligado	10.123.10.111, 10.184.17.95	10.123.10.0/23, 10.184.0.0/14	Vmxnet3, E1000, Vmxnet3, E1000	1	Debian GNU/Linux 6 (64-bit)	254,08	
-Sistema: FTP do SICOW - Descrição: Clone para a criação do novo servidor pr0000sr400 (Criado por P645610 pelo infrasimples)
-
-16/10/2026 14:06:24
-1 - 1 de 1
-v1.2.0 - 12/08/2024 :: v2.0.4 - 05/10/2026
+Atenciosamente,
+Esteira DevOps NPRD
