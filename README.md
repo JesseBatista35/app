@@ -1,32 +1,50 @@
-Encaminhamento à CETEL – Liberação de regra de firewall (SIMPF DES → SIGCT)
 
-Solicitação: criar regra de firewall de rede permitindo:
 
-Origem	Destino	Porta
-10.116.220.37 (egress IP do namespace simpf-des, cluster OKD NPRD)	10.116.83.19 (sctdeapllx0018.df.caixa)	8443/TCP
 
-Sugere-se espelhar a regra já existente para a origem 10.116.220.90 (egress IP do namespace simpf-tqs), que acessa o mesmo destino normalmente.
+Inclusão de Regras
+Não são mais emitidos tokens; a autorização poderá ser concedida na própria regra, desde que as justificativas estejam preenchidas e sejam válidas.
+As regras podem ser registradas sem PTR, o que não dispensa sua apresentação, caso seja necessária.
+Solicitante: P585600 - Jesse Mouta Pereira BatistaSigla do setor/unidade do responsável CAIXA: CESTI
+Matrícula do responsável CAIXA pela abertura da mudança (cXXXXXX)
+Matrícula do responsável CAIXA pela solicitação da regra (cXXXXXX)
+A justificativa deve ser clara e objetiva, contendo:
+a descrição do pedido; telefones para eventuais esclarecimentos; outras informações pertinentes; indicação dos sistemas e/ou serviços envolvidos.
+Evite o uso de siglas ou termos locais.
+Informar a caixa postal da unidade CAIXA.
+Selecione
+Para maior agilidade no atendimento das solicitações de regras de firewall, favor observar:
+No momento da criação da mudança, designar a equipe responsável pela validação das regras, indicando o nome do responsável na aba “Designação” da tarefa de validação. Caso contrário, a tarefa permanecerá com o status “Pendente”.
+Antes de iniciar a validação, garantir que o serviço no destino esteja em execução.
+Caso a validação não ocorra nas primeiras 24 horas após a execução da regra, a CETEL encerrará a tarefa por decurso de prazo.
+Em caso de falha, redesignar a tarefa de validação para o grupo
+“TELEDATA TECNOLOGIA EM CONECTIVIDADE LTDA / CETEL / Rede Data Center”, anexando:
+as evidências das regras que não funcionaram;
+evidências da disponibilidade do serviço no destino;
+a tabela de rotas da origem.
 
-Contexto: o backend do SIMPF em DES não consegue se comunicar com o SIGCT. A conexão termina em HttpHostConnectException: Connection timed out, falha registrada desde 23/09/2026 e ainda ativa em 16/10/2026. O mesmo recurso funciona no ambiente TQS.
+(*) Campo Porta – Separar, por vírgula, os números das portas e/ou intervalos de portas a serem liberadas. Exemplo: 80,443,10050-10058,5529
 
-Evidências coletadas em 16/10/2026:
+Precisando de ajuda? Consulte a FAQ ou entre em contato por meio da CPE cetel02@caixa.gov.br.
+ Limite de Linhas AlgoSec: 0 / 100000 linhas 100000 disponíveis
+ Regras com objetos geram matriz N×N (máximo de 100000 linhas aceitas pelo AlgoSec).
+Origem	Destino
+ID	Tipo	Hostname	IP	Máscara	Tipo	Hostname	IP	Máscara	Protocolo	Porta(*)	
+1	
 
-Origem efetiva confirmada: o namespace simpf-des possui egress IP fixo 10.116.220.37 (oc get netnamespace), e o simpf-tqs usa 10.116.220.90.
-Testes de conectividade TCP:
-Origem	Destino	Resultado
-Pod simpf-backend-des (10.116.220.37)	10.116.83.19:8443	Timeout (sem resposta)
-Pod simpf-backend-des (10.116.220.37)	10.116.83.19:22	OK
-Pod simpf-backend-tqs (10.116.220.90)	10.116.83.19:8443	OK
-Estação do analista	10.116.83.19:8443	OK
-DNS: de dentro do pod DES, sctdeapllx0018.df.caixa resolve corretamente para 10.116.83.19.
-Servidor de destino (sctdeapllx0018):
-Porta 8443 em escuta em todas as interfaces (netstat: :::8443 LISTEN), atendida pelo JBoss EAP 6.4.
-Sem firewall local: iptables com chain INPUT vazia e policy ACCEPT.
-Captura de pacotes no destino (tcpdump -ni any host 10.116.220.37), feita durante os testes:
-Porta 22: o handshake completo chega ao servidor.
-     10.116.220.37.42722 > 10.116.83.19.ssh: Flags [S]
-     10.116.83.19.ssh > 10.116.220.37.42722: Flags [S.]
-     10.116.220.37.42722 > 10.116.83.19.ssh: Flags [.]
-Porta 8443: nenhum pacote da origem 10.116.220.37 chegou ao servidor.
 
-Conclusão: a origem 10.116.220.37 alcança o servidor (porta 22 OK), o serviço na 8443 está ativo e sem filtro local, e a mesma porta é acessível pela origem do TQS. O descarte dos pacotes 10.116.220.37 → 10.116.83.19:8443 ocorre no firewall de rede, por ausência de regra para essa origem.
+
+
+TCP
+© 2019 Caixa Econômica FederalSistema: Atividades técnicas
+
+
++Solicitação
++Listar
+#INTERNO.TODOS
+FAQ
+
+
+
+
+
+me ajuda a preencher aqui
