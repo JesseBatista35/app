@@ -1,4 +1,7 @@
-<img width="1901" height="919" alt="image" src="https://github.com/user-attachments/assets/e73f0ba7-250e-4860-b92e-d5f0d59d202a" />
+<img width="469" height="602" alt="image" src="https://github.com/user-attachments/assets/2ed1c2b7-790a-42e7-9209-404228496fce" />
 
 
-entenid ja vi alguem baixar por aqui voce sabe como
+<img width="1033" height="958" alt="image" src="https://github.com/user-attachments/assets/1f274ad2-97a0-4fef-b41d-1204b20ea7b4" />
+
+
+nao consigo abrir por aqui
