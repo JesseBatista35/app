@@ -1,15 +1,61 @@
-Realizada a análise da falha de comunicação entre o backend do SIMPF em DES (namespace simpf-des) e o serviço SIGCT (sctdeapllx0018.df.caixa – 10.116.83.19:8443).
+Verificar na CRON se a referida shell perdeu o agendamento ou motivo da falha.
 
-Causa identificada: ausência de regra no firewall de rede para a origem 10.116.220.37 (egress IP do namespace simpf-des) com destino 10.116.83.19:8443/TCP. O ambiente TQS funciona porque sua origem (10.116.220.90) já possui regra equivalente.
+OBS: Mais informações detalhadas na REQ.
 
-Evidências:
+1. Informamos que os arquivos oriundos do SIGDB (servidor FTP do SICOW - PR0000SR400) não estão sendo transferidos da pasta de origem /var/sigdb/PUB, para a pasta de destino /var/home/ftp/sicor.
 
-O teste TCP do pod simpf-backend-des para 10.116.83.19:8443 expira sem resposta. A mesma origem acessa a porta 22 do destino normalmente.
-O pod simpf-backend-tqs acessa 10.116.83.19:8443 normalmente.
-De dentro do pod DES, o DNS resolve sctdeapllx0018.df.caixa corretamente para 10.116.83.19.
-No servidor de destino, a porta 8443 está em escuta (JBoss EAP 6.4) e não há firewall local (iptables sem regras, policy ACCEPT).
-A captura de pacotes (tcpdump) no destino mostra as conexões da origem 10.116.220.37 chegando na porta 22 e nenhum pacote chegando na 8443, o que comprova o bloqueio no firewall de rede.
+2. Esses arquivos são transferidos entre as pastas por meio da shell sicow_conres_entrada.sh.
 
-Ação: registrada a solicitação de regra de firewall à CETEL (ID 98314) para liberar 10.116.220.37 → 10.116.83.19:8443/TCP, espelhando a regra existente para o ambiente TQS. Após a aplicação, a conectividade será validada a partir do pod simpf-backend-des.
+3. Dessa forma, solicitamos verificar na CRON se a referida shell perdeu o agendamento ou motivo da falha.
 
-Justificativa do prazo: o prazo de atendimento foi excedido devido à complexidade da análise, que exigiu investigação em múltiplas camadas (aplicação, cluster de contêineres, rede e servidor de destino) para isolar a causa. Foram necessários testes comparativos entre os ambientes DES e TQS, a identificação do IP de saída do namespace e a captura de pacotes no servidor de destino até confirmar o bloqueio no firewall de rede. A resolução definitiva depende da aplicação da regra pela CETEL (ID 98314), equipe externa ao escopo deste atendimento.
+Att,
+CESOA
+
+
+Histórico de Informações de Trabalho da Ordem de Trabalho
+ID da Ordem de Trabalho	 WO0000081971597
+Criado em	 16/10/2026 11:33:25
+Criado por	 P730708
+Origem de Comunicação	 
+Exibir Acesso	 Público
+Notas	 Campo "Notas" ajustado pelo Operação Datacenter conforme abaixo:
+
+Verificar na CRON se a referida shell perdeu o agendamento ou motivo da falha.
+
+OBS: Mais informações detalhadas na REQ.
+ID da Ordem de Trabalho	 WO0000081971597
+Criado em	 16/10/2026 11:33:10
+Criado por	 P730708
+Origem de Comunicação	 
+Exibir Acesso	 Público
+Notas	 Demanda inicial com viés de falha, erro, degradação ou esgotamento de infraestrutura, serviço, máquina, armazenamento, rotina ou situação que esteja na iminência de tornar-se incidente. Previsto atendimento em até 4 horas.
+[CENTRAL-SID]
+ID da Ordem de Trabalho	 WO0000081971597
+Criado em	 16/10/2026 10:22:01
+Criado por	 P768728
+Origem de Comunicação	 
+Exibir Acesso	 Público
+Notas	 Prezado(a),
+
+Informamos que sua solicitação de FALHA DE AMBIENTE foi recebida .
+
+Conforme definição da Coordenação NPRD (CESTI36) e em conformidade com o fluxo de atendimento estabelecido para a Esteira DevOps NPRD, os atendimentos realizados por esta equipe seguem SLAs específicos, distintos dos praticados pelas demais macrocélulas.
+
+Dessa forma, o SLA desta solicitação foi ajustado para até 4 horas úteis, prazo aplicável à sua classificação.
+
+Nesse período, a demanda será analisada para validação do escopo de atuação da equipe e definição do tratamento adequado.
+
+Caso seja identificado que a solicitação não pertence ao escopo de atendimento da Esteira DevOps NPRD, a demanda será direcionada à equipe responsável, observando os fluxos e processos vigentes.
+
+Novas informações e atualizações serão registradas diretamente nesta WO.
+
+Atenciosamente,
+
+Esteira DevOps NPRD
+ID da Ordem de Trabalho	 WO0000081971597
+Criado em	 16/10/2026 10:20:06
+Criado por	 Remedy Application Service
+Origem de Comunicação	 E-mail
+Exibir Acesso	 Interno
+Notas	 Este ticket foi criado a partir do sistema de solicitação de serviço.
+Impresso por P585600 em Sexta-feira, 16/10/2026 14:22:29
