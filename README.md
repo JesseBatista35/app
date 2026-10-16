@@ -1,1 +1,7 @@
-Solicitamos liberação TCP 8443 da origem 10.116.220.37 (endereço de saída do sistema SIMPF no ambiente de Desenvolvimento) para o destino 10.116.83.19 (sctdeapllx0018.df.caixa, servidor do sistema SIGCT), espelhando a regra já existente para a origem de Testes 10.116.220.90, pois a comunicação está bloqueada no firewall de rede, conforme testes e captura de pacotes no destino; contato: Jessé Batista (P585600), CESTI, telefone [seu ramal], caixa postal [caixa da CESTI].
+Dados inseridos com sucesso! ID:98314
+
+
+solicitei. me ajuda com o fechamento da req, me aqjuda a justificar tambem o rpazo do SLA TER QUEBRANDO ESSA DEMANDA TAVA NA FILA DE OUTRO ANALISTA ENTAO ME AJUDA COIM UMA JUSTIFICA PARA A REQ
+
+E ME AJUDA COM UMA MENSSEGAM PARA TEAMS O FLAVIO GALGIARDI APROVAR ESSA SOLICITAO DE REGRA DE FIREWAL 
+
