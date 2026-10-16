@@ -1,128 +1,3 @@
-Skip to main content
-Azure DevOps
-projetos
-/
-Caixa
-/
-Repos
-/
-Files
-/
-
-SIHDG-jboss8
-Search
-
-
-Caixa
-
-Overview
-
-Boards
-
-Repos
-Files
-Commits
-Pushes
-Branches
-Tags
-Pull requests
-
-Pipelines
-
-Test Plans
-
-Artifacts
-Project settings
-SIHDG-jboss8
-
-api
-src
-main
-java
-br
-gov
-caixa
-arquitetura
-javaee
-api
-cadastrobasico
-comum
-config
-dto
-seguranca
-keycloak
-KeycloakHelper.java
-KeycloakPrincipalHelper.java
-OidcConfigurationProvider.java
-OidcPrincipalHelper.java
-AuditoriaWebHelper.java
-UsuarioAutenticadoHelper.java
-web
-mapper
-seguranca
-sobre
-javaee7
-bsb
-META-INF
-resources
-webapp
-test
-WebContent
-nb-configuration.xml
-pom.xml
-core
-
-3.22.0.2
-
-
-/
-javaee
-/
-api
-/
-comum
-/
-seguranca
-/
-keycloak
-/
-OidcConfigurationProvider.java
-OidcConfigurationProvider.java
-
-Edit
-
-Contents
-History
-Compare
-Blame
-
-1234567891011121314151617181920212223242526272829303132333435363738394041424344
-package br.gov.caixa.arquitetura.javaee.api.comum.seguranca.keycloak;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.wildfly.security.http.oidc.OidcSecurityContext;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.servlet.ServletContext;
-
-/**
-…        Object attr = servletContext.getAttribute(OidcSecurityContext.class.getName());
-
-        if (attr instanceof OidcSecurityContext) {
-            return (OidcSecurityContext) attr;
-        }
-
-        return null;
-    }
-}
-Expanded
-
-Collapsed
-
-
-
-
 package br.gov.caixa.arquitetura.javaee.api.comum.seguranca.keycloak;
 
 import org.slf4j.Logger;
@@ -134,8 +9,11 @@ import jakarta.servlet.ServletContext;
 
 /**
  * Provider para obter configurações OIDC do WildFly
- * 
- * Centraliza a lógica de leitura de configurações Keycloak
+ *
+ * Centraliza a lógica de leitura de configurações Keycloak.
+ * A URL do servidor de autorização é lida por ambiente via system property
+ * (standalone.xml) ou variável de ambiente, mantendo o valor de DES apenas
+ * como fallback.
  */
 @ApplicationScoped
 public class OidcConfigurationProvider {
@@ -144,9 +22,12 @@ public class OidcConfigurationProvider {
 
     private static final String REALM = "intranet";
     private static final String CLIENT_ID = "cli-web-hdg";
-    private static final String AUTH_SERVER_URL = "https://login.des.caixa/auth";
     private static final int TOKEN_LIFESPAN = 300;      // 5 min
     private static final int MAX_IDLE_TIME = -1;         // Sem limite
+
+    private static final String PROP_AUTH_SERVER_URL = "SIHDG-SEC_URL_SERV_AUTH";
+    private static final String ENV_AUTH_SERVER_URL = "SEC_URL_SERV_AUTH";
+    private static final String AUTH_SERVER_URL_PADRAO = "https://login.des.caixa/auth";
 
     public String getRealm() {
         return REALM;
@@ -157,7 +38,15 @@ public class OidcConfigurationProvider {
     }
 
     public String getAuthServerUrl() {
-        return AUTH_SERVER_URL;
+        String url = System.getProperty(PROP_AUTH_SERVER_URL);
+        if (url == null || url.isBlank()) {
+            url = System.getenv(ENV_AUTH_SERVER_URL);
+        }
+        if (url == null || url.isBlank()) {
+            LOG.warn("Propriedade {} não definida; usando padrão {}", PROP_AUTH_SERVER_URL, AUTH_SERVER_URL_PADRAO);
+            return AUTH_SERVER_URL_PADRAO;
+        }
+        return url.trim();
     }
 
     public Integer getTokenLifespan() {
