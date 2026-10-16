@@ -1,27 +1,32 @@
+Encaminhamento à CETEL – Liberação de regra de firewall (SIMPF DES → SIGCT)
 
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc exec -n simpf-des simpf-backend-des-447-gzfdw -- timeout 5 bash -c 'cat < /dev/null > /dev/tcp/10.116.83.19/22' && echo OK22
-OK22
--sh-4.2$ oc exec -n simpf-des simpf-backend-des-447-gzfdw -- timeout 10 bash -c 'cat < /dev/null > /dev/tcp/10.116.83.19/8443' && echo OK8443 || echo FALHA8443
-command terminated with exit code 124
-FALHA8443
--sh-4.2$
+Solicitação: criar regra de firewall de rede permitindo:
 
+Origem	Destino	Porta
+10.116.220.37 (egress IP do namespace simpf-des, cluster OKD NPRD)	10.116.83.19 (sctdeapllx0018.df.caixa)	8443/TCP
 
+Sugere-se espelhar a regra já existente para a origem 10.116.220.90 (egress IP do namespace simpf-tqs), que acessa o mesmo destino normalmente.
 
+Contexto: o backend do SIMPF em DES não consegue se comunicar com o SIGCT. A conexão termina em HttpHostConnectException: Connection timed out, falha registrada desde 23/09/2026 e ainda ativa em 16/10/2026. O mesmo recurso funciona no ambiente TQS.
 
--sh-4.1$ sudo tcpdump -ni any host 10.116.220.37
-tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-listening on any, link-type LINUX_SLL (Linux cooked), capture size 65535 bytes
-13:13:13.315863 IP 10.116.220.37.42722 > 10.116.83.19.ssh: Flags [S], seq 2582279065, win 64860, options [mss 1380,sackOK,TS val 268895636 ecr 0,nop,wscale 7], length 0
-13:13:13.315908 IP 10.116.83.19.ssh > 10.116.220.37.42722: Flags [S.], seq 2052772758, ack 2582279066, win 14480, options [mss 1460,sackOK,TS val 176533861 ecr 268895636,nop,wscale 7], length 0
-13:13:13.316490 IP 10.116.220.37.42722 > 10.116.83.19.ssh: Flags [.], ack 1, win 507, options [nop,nop,TS val 268895637 ecr 176533861], length 0
-13:13:13.317583 IP 10.116.220.37.42722 > 10.116.83.19.ssh: Flags [F.], seq 1, ack 1, win 507, options [nop,nop,TS val 268895639 ecr 176533861], length 0
-13:13:13.318069 IP 10.116.83.19.ssh > 10.116.220.37.42722: Flags [.], ack 2, win 114, options [nop,nop,TS val 176533863 ecr 268895639], length 0
-13:13:13.320637 IP 10.116.83.19.ssh > 10.116.220.37.42722: Flags [P.], seq 1:22, ack 2, win 114, options [nop,nop,TS val 176533866 ecr 268895639], length 21
-13:13:13.321005 IP 10.116.83.19.ssh > 10.116.220.37.42722: Flags [F.], seq 22, ack 2, win 114, options [nop,nop,TS val 176533866 ecr 268895639], length 0
-13:13:13.321278 IP 10.116.220.37.42722 > 10.116.83.19.ssh: Flags [R], seq 2582279067, win 0, length 0
+Evidências coletadas em 16/10/2026:
 
+Origem efetiva confirmada: o namespace simpf-des possui egress IP fixo 10.116.220.37 (oc get netnamespace), e o simpf-tqs usa 10.116.220.90.
+Testes de conectividade TCP:
+Origem	Destino	Resultado
+Pod simpf-backend-des (10.116.220.37)	10.116.83.19:8443	Timeout (sem resposta)
+Pod simpf-backend-des (10.116.220.37)	10.116.83.19:22	OK
+Pod simpf-backend-tqs (10.116.220.90)	10.116.83.19:8443	OK
+Estação do analista	10.116.83.19:8443	OK
+DNS: de dentro do pod DES, sctdeapllx0018.df.caixa resolve corretamente para 10.116.83.19.
+Servidor de destino (sctdeapllx0018):
+Porta 8443 em escuta em todas as interfaces (netstat: :::8443 LISTEN), atendida pelo JBoss EAP 6.4.
+Sem firewall local: iptables com chain INPUT vazia e policy ACCEPT.
+Captura de pacotes no destino (tcpdump -ni any host 10.116.220.37), feita durante os testes:
+Porta 22: o handshake completo chega ao servidor.
+     10.116.220.37.42722 > 10.116.83.19.ssh: Flags [S]
+     10.116.83.19.ssh > 10.116.220.37.42722: Flags [S.]
+     10.116.220.37.42722 > 10.116.83.19.ssh: Flags [.]
+Porta 8443: nenhum pacote da origem 10.116.220.37 chegou ao servidor.
+
+Conclusão: a origem 10.116.220.37 alcança o servidor (porta 22 OK), o serviço na 8443 está ativo e sem filtro local, e a mesma porta é acessível pela origem do TQS. O descarte dos pacotes 10.116.220.37 → 10.116.83.19:8443 ocorre no firewall de rede, por ausência de regra para essa origem.
