@@ -1,7 +1,9 @@
-oc logs sihdg-jboss8-tqs-45-lcc2c | grep -i "SEC_URL_SERV_AUTH"
+
+-sh-4.2$ oc logs sihdg-jboss8-tqs-45-lcc2c | grep -i "SEC_URL_SERV_AUTH"
+11:05:31,324 WARN  [br.gov.caixa.arquitetura.javaee.api.comum.seguranca.keycloak.OidcConfigurationProvider] (default task-1) Propriedade SIHDG-SEC_URL_SERV_AUTH não definida; usando padrão https://login.des.caixa/auth
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$
 
 
-oc set env dc/sihdg-jboss8-tqs SEC_URL_SERV_AUTH=https://login.tqs.caixa/auth -n sihdg-tqs
-# isso gera um novo pod; aguarde ficar 1/1 Running
-oc get pods -n sihdg-tqs | grep jboss8
-curl -sk https://sihdg-jboss8-tqs.apps.nprd.caixa/sihdg-api/api/seguranca/configuracao-seguranca; echo
+agora e so rodar a do angula18 ne a relesase de tqs
