@@ -1,61 +1,60 @@
-Verificar na CRON se a referida shell perdeu o agendamento ou motivo da falha.
 
-OBS: Mais informações detalhadas na REQ.
-
-1. Informamos que os arquivos oriundos do SIGDB (servidor FTP do SICOW - PR0000SR400) não estão sendo transferidos da pasta de origem /var/sigdb/PUB, para a pasta de destino /var/home/ftp/sicor.
-
-2. Esses arquivos são transferidos entre as pastas por meio da shell sicow_conres_entrada.sh.
-
-3. Dessa forma, solicitamos verificar na CRON se a referida shell perdeu o agendamento ou motivo da falha.
-
-Att,
-CESOA
+<img width="1879" height="502" alt="image" src="https://github.com/user-attachments/assets/f15ece15-f45e-4b87-9051-6dea4d1a18e4" />
 
 
-Histórico de Informações de Trabalho da Ordem de Trabalho
-ID da Ordem de Trabalho	 WO0000081971597
-Criado em	 16/10/2026 11:33:25
-Criado por	 P730708
-Origem de Comunicação	 
-Exibir Acesso	 Público
-Notas	 Campo "Notas" ajustado pelo Operação Datacenter conforme abaixo:
+rede backup de produção
 
-Verificar na CRON se a referida shell perdeu o agendamento ou motivo da falha.
 
-OBS: Mais informações detalhadas na REQ.
-ID da Ordem de Trabalho	 WO0000081971597
-Criado em	 16/10/2026 11:33:10
-Criado por	 P730708
-Origem de Comunicação	 
-Exibir Acesso	 Público
-Notas	 Demanda inicial com viés de falha, erro, degradação ou esgotamento de infraestrutura, serviço, máquina, armazenamento, rotina ou situação que esteja na iminência de tornar-se incidente. Previsto atendimento em até 4 horas.
-[CENTRAL-SID]
-ID da Ordem de Trabalho	 WO0000081971597
-Criado em	 16/10/2026 10:22:01
-Criado por	 P768728
-Origem de Comunicação	 
-Exibir Acesso	 Público
-Notas	 Prezado(a),
+Ir para Conteúdo Principal
+SINCC
+#INTERNO.TODOS
+VMs
+Pesquisar
+Linhas
 
-Informamos que sua solicitação de FALHA DE AMBIENTE foi recebida .
+50
+1 - 1 de 1
+VCenter
+Cluster
+VM Name
+DNS Name
+VM Host
+Serial Number
+Datacenter
+Datastores
+Resource Pool
+Folder
+Status
+IPs
+Subnets
+Tipos
+Nr. de CPUs
+Sistema Operacional
+Tamanho de Disco (GB)
+Notas
+Data da Coleta
+VCenter
+Cluster
+VM Name
+DNS Name
+VM Host
+Serial Number
+Datacenter
+Datastores
+Resource Pool
+Folder
+Status
+IPs
+Subnets
+Tipos
+Nr. de CPUs
+Sistema Operacional
+Tamanho de Disco (GB)
+Notas
+Data da Coleta
+cadsvgerap029-1.intra.caixa.gov.br	CTC_PRDXF2488HV7_DESCENTRALIZADO	PR0000SR400_new	pr0000sr400	cadsvgersh486.intra.caixa.gov.br	PI00988800000135	CETEC	CTCHW6037_0013,CTCHW6037_0074	RP_PROINFO\RP_DL580G8	APLICAÇÃO	Ligado	10.123.10.111, 10.184.17.95	10.123.10.0/23, 10.184.0.0/14	Vmxnet3, E1000, Vmxnet3, E1000	1	Debian GNU/Linux 6 (64-bit)	254,08	
+Sistema: FTP do SICOW - Descrição: Clone para a criação do novo servidor pr0000sr400 (Criado por P645610 pelo infrasimples)
 
-Conforme definição da Coordenação NPRD (CESTI36) e em conformidade com o fluxo de atendimento estabelecido para a Esteira DevOps NPRD, os atendimentos realizados por esta equipe seguem SLAs específicos, distintos dos praticados pelas demais macrocélulas.
-
-Dessa forma, o SLA desta solicitação foi ajustado para até 4 horas úteis, prazo aplicável à sua classificação.
-
-Nesse período, a demanda será analisada para validação do escopo de atuação da equipe e definição do tratamento adequado.
-
-Caso seja identificado que a solicitação não pertence ao escopo de atendimento da Esteira DevOps NPRD, a demanda será direcionada à equipe responsável, observando os fluxos e processos vigentes.
-
-Novas informações e atualizações serão registradas diretamente nesta WO.
-
-Atenciosamente,
-
-Esteira DevOps NPRD
-ID da Ordem de Trabalho	 WO0000081971597
-Criado em	 16/10/2026 10:20:06
-Criado por	 Remedy Application Service
-Origem de Comunicação	 E-mail
-Exibir Acesso	 Interno
-Notas	 Este ticket foi criado a partir do sistema de solicitação de serviço.
-Impresso por P585600 em Sexta-feira, 16/10/2026 14:22:29
+16/10/2026 14:06:24
+1 - 1 de 1
+v1.2.0 - 12/08/2024 :: v2.0.4 - 05/10/2026
