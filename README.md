@@ -1,1 +1,1 @@
-<img width="1900" height="1040" alt="image" src="https://github.com/user-attachments/assets/4637b349-64f1-4df0-8dfe-062bc635a0d0" />
+https://sihdg-jboss8-tqs.apps.nprd.caixa/sihdg-api/api/seguranca/configuracao-seguranca
