@@ -92,3 +92,9 @@ Origem de Comunicação	 E-mail
 Exibir Acesso	 Interno
 Notas	 Este ticket foi criado a partir do sistema de solicitação de serviço.
 Impresso por P585600 em Sexta-feira, 16/10/2026 17:01:45
+
+
+<img width="1641" height="900" alt="image" src="https://github.com/user-attachments/assets/5ee3b537-2ebe-4e94-8d5a-ff231a608366" />
+
+
+eu consigo fazer isso?
