@@ -1,19 +1,13 @@
-Prezados,
+Solicito configuração de permissionamento para os grupos G_AZ_GITHUB_SIAAF_DESENVOLVEDOR e G_AZ_GITHUB_SIAAF_INTEGRADOR nos repositórios abaixo:
 
-Após análise, verificamos que a demanda não pertence ao escopo de atendimento da Esteira DevOps NPRD, pois o servidor envolvido é de ambiente de PRODUÇÃO.
+https://github.com/caixagithub/siaaf-backend-boss e
+https://github.com/caixagithub/siaaf-backend-boss-infranprd
 
-Evidências:
-- Servidor: PR0000SR400 (VM PR0000SR400_new) – FTP do SICOW
-- vCenter: cluster CTC_PRDXF2488HV7_DESCENTRALIZADO, datacenter CETEC
-- IPs: 10.123.10.111 e 10.184.17.95 (GestióIP: rede REDE_BACKUP_PRO…)
-- SO: Debian GNU/Linux 6 (64-bit)
 
-Observação para apoio à análise: conforme as notas da VM, o PR0000SR400_new é um clone criado para o novo servidor pr0000sr400 (via InfraSimples). Sugerimos verificar se, na substituição do servidor, foram mantidos:
-- o agendamento da shell sicow_conres_entrada.sh na CRON;
-- os pontos de montagem /var/sigdb/PUB e /var/home/ftp/sicor;
-- o destino de envio dos arquivos do SIGDB (se ainda aponta para o servidor antigo).
+<img width="1780" height="873" alt="image" src="https://github.com/user-attachments/assets/7e2017af-7371-400f-963e-71def3977059" />
 
-Dessa forma, encaminhamos a demanda à equipe de INFRA responsável pelo ambiente de Produção para o devido tratamento.
 
-Atenciosamente,
-Esteira DevOps NPRD
+<img width="1605" height="811" alt="image" src="https://github.com/user-attachments/assets/a18f7399-437e-4cd2-ad2b-89674a9a31b0" />
+
+
+EMABOS BLOQUEADO NAO CONSIGO ADICIONAR
