@@ -1,4 +1,4 @@
-cd /tmp && python3 - <<'EOF'
+**cd /tmp && python3 - <<'EOF'
 import zipfile, io, re
 def scan(z, path):
     for n in z.namelist():
@@ -12,3 +12,4 @@ def scan(z, path):
             if hits: print(path+'!/'+n, sorted(h.decode(errors="ignore") for h in hits))
 scan(zipfile.ZipFile('/opt/server/standalone/deployments/sihdg-3.22.0.1.ear'), 'ear')
 EOF
+**
