@@ -1,580 +1,1028 @@
-<?xml version='1.0' encoding='UTF-8'?>
+2026-10-20T20:33:48.2074856Z ##[section]Starting: Alterando Valores placeholders nos arquivos de config
+2026-10-20T20:33:48.2078673Z ==============================================================================
+2026-10-20T20:33:48.2078750Z Task         : Replace Tokens
+2026-10-20T20:33:48.2078798Z Description  : Replace tokens in files
+2026-10-20T20:33:48.2078865Z Version      : 3.3.1
+2026-10-20T20:33:48.2078908Z Author       : Guillaume Rouchon
+2026-10-20T20:33:48.2078962Z Help         : v3.3.1 - [More Information](https://github.com/qetza/vsts-replacetokens-task#readme)
+2026-10-20T20:33:48.2079055Z ==============================================================================
+2026-10-20T20:33:48.4270489Z replacing tokens in: /opt/ads-agent/_work/r19317/a/_SIGSJ-intranet-config/jboss/standalone-full-ha.xml
+2026-10-20T20:33:48.4493113Z replacing tokens in: /opt/ads-agent/_work/r19317/a/_SIGSJ-intranet-config/httpd/httpd.conf
+2026-10-20T20:33:48.4501131Z replacing tokens in: /opt/ads-agent/_work/r19317/a/_SIGSJ-intranet-config/httpd/vhost.conf
+2026-10-20T20:33:48.4508642Z ##[error]  variable not found: URL_CUSTOMIZADA
+2026-10-20T20:33:48.4510444Z ##[error]  variable not found: URL_ALIAS
+2026-10-20T20:33:48.4511484Z ##[error]  variable not found: URL_REWRITE
+2026-10-20T20:33:48.4512537Z ##[error]  variable not found: URL_REDIRECT
+2026-10-20T20:33:48.4514198Z replacing tokens in: /opt/ads-agent/_work/r19317/a/_SIGSJ-intranet-config/jboss/standalone.conf
+2026-10-20T20:33:48.5192958Z ##[section]Finishing: Alterando Valores placeholders nos arquivos de config
 
-<server xmlns="urn:jboss:domain:16.0">
-    <extensions>
-        <extension module="org.jboss.as.modcluster"/>
-        <extension module="org.jboss.as.clustering.infinispan"/>
-        <extension module="org.jboss.as.connector"/>
-        <extension module="org.jboss.as.deployment-scanner"/>
-        <extension module="org.jboss.as.ee"/>
-        <extension module="org.jboss.as.ejb3"/>
-        <extension module="org.jboss.as.jaxrs"/>
-        <extension module="org.jboss.as.jdr"/>
-        <extension module="org.jboss.as.jmx"/>
-        <extension module="org.jboss.as.jpa"/>
-        <extension module="org.jboss.as.jsf"/>
-        <extension module="org.jboss.as.jsr77"/>
-        <extension module="org.jboss.as.logging"/>
-        <extension module="org.jboss.as.mail"/>
-        <extension module="org.jboss.as.naming"/>
-        <extension module="org.jboss.as.pojo"/>
-        <extension module="org.jboss.as.remoting"/>
-        <extension module="org.jboss.as.sar"/>
-        <extension module="org.jboss.as.transactions"/>
-        <extension module="org.jboss.as.webservices"/>
-        <extension module="org.jboss.as.weld"/>
-        <extension module="org.wildfly.extension.batch.jberet"/>
-        <extension module="org.wildfly.extension.bean-validation"/>
-        <extension module="org.wildfly.extension.clustering.web"/>
-        <extension module="org.wildfly.extension.core-management"/>
-        <extension module="org.wildfly.extension.discovery"/>
-        <extension module="org.wildfly.extension.ee-security"/>
-        <extension module="org.wildfly.extension.elytron"/>
-        <extension module="org.wildfly.extension.health"/>
-        <extension module="org.wildfly.extension.io"/>
-        <extension module="org.wildfly.extension.messaging-activemq"/>
-        <extension module="org.wildfly.extension.metrics"/>
-        <extension module="org.wildfly.extension.request-controller"/>
-        <extension module="org.wildfly.extension.security.manager"/>
-        <extension module="org.wildfly.extension.undertow"/>
-        <extension module="org.wildfly.iiop-openjdk"/>
-    </extensions>
-    <management>
-        <audit-log>
-            <formatters>
-                <json-formatter name="json-formatter"/>
-            </formatters>
-            <handlers>
-                <file-handler name="file" formatter="json-formatter" path="audit-log.log" relative-to="jboss.server.data.dir"/>
-            </handlers>
-            <logger log-boot="true" log-read-only="false" enabled="false">
-                <handlers>
-                    <handler name="file"/>
-                </handlers>
-            </logger>
-        </audit-log>
-        <management-interfaces>
-            <http-interface http-authentication-factory="management-http-authentication">
-                <http-upgrade enabled="true" sasl-authentication-factory="management-sasl-authentication"/>
-                <socket-binding http="management-http"/>
-            </http-interface>
-        </management-interfaces>
-        <access-control provider="simple">
-            <role-mapping>
-                <role name="SuperUser">
-                    <include>
-                        <user name="$local"/>
-                    </include>
-                </role>
-            </role-mapping>
-        </access-control>
-    </management>
-    <profile>
-        <subsystem xmlns="urn:jboss:domain:logging:8.0">
-            <console-handler name="CONSOLE">
-                <level name="INFO"/>
-                <formatter>
-                    <named-formatter name="COLOR-PATTERN"/>
-                </formatter>
-            </console-handler>
-            <periodic-rotating-file-handler name="FILE" autoflush="true">
-                <formatter>
-                    <named-formatter name="PATTERN"/>
-                </formatter>
-                <file relative-to="jboss.server.log.dir" path="server.log"/>
-                <suffix value=".yyyy-MM-dd"/>
-                <append value="true"/>
-            </periodic-rotating-file-handler>
-            <periodic-rotating-file-handler name="sirot" autoflush="true">
-                <formatter>
-                    <named-formatter name="PATTERN"/>
-                </formatter>
-                <file relative-to="jboss.server.log.dir" path="sirot.log"/>
-                <suffix value=".yyyy-MM-dd"/>
-                <append value="true"/>
-            </periodic-rotating-file-handler>
-            <periodic-rotating-file-handler name="ceflib" autoflush="true">
-                <formatter>
-                    <named-formatter name="PATTERN"/>
-                </formatter>
-                <file relative-to="jboss.server.log.dir" path="ceflib.log"/>
-                <suffix value=".yyyy-MM-dd"/>
-                <append value="true"/>
-            </periodic-rotating-file-handler>
-            <logger category="com.arjuna">
-                <level name="WARN"/>
-            </logger>
-            <logger category="org.jboss.as.config">
-                <level name="DEBUG"/>
-            </logger>
-            <logger category="sun.rmi">
-                <level name="WARN"/>
-            </logger>
-            <logger category="io.prometheus">
-                <level name="FATAL"/>
-            </logger>
-            <logger category="io.undertow">
-                <level name="ERROR"/>
-            </logger>
-            <logger category="stdout">
-                <level name="OFF"/>
-            </logger>
-            <logger category="br.gov.caixa.sirot" use-parent-handlers="false">
-                <level name="DEBUG"/>
-                <handlers>
-                    <handler name="sirot"/>
-                </handlers>
-            </logger>
-            <logger category="br.gov.caixa.libsp" use-parent-handlers="false">
-                <level name="DEBUG"/>
-                <handlers>
-                    <handler name="ceflib"/>
-                </handlers>
-            </logger>
-            <root-logger>
-                <level name="INFO"/>
-                <handlers>
-                    <handler name="CONSOLE"/>
-                    <handler name="FILE"/>
-                </handlers>
-            </root-logger>
-            <formatter name="PATTERN">
-                <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
-            </formatter>
-            <formatter name="COLOR-PATTERN">
-                <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
-            </formatter>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:batch-jberet:2.0">
-            <default-job-repository name="in-memory"/>
-            <default-thread-pool name="batch"/>
-            <security-domain name="ApplicationDomain"/>
-            <job-repository name="in-memory">
-                <in-memory/>
-            </job-repository>
-            <thread-pool name="batch">
-                <max-threads count="10"/>
-                <keepalive-time time="30" unit="seconds"/>
-            </thread-pool>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:bean-validation:1.0"/>
-        <subsystem xmlns="urn:jboss:domain:core-management:1.0"/>
-        <subsystem xmlns="urn:jboss:domain:datasources:6.0">
-            <datasources>
-                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true" statistics-enabled="true">
-                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
-                    <driver>h2</driver>
-                    <security>
-                        <user-name>sa</user-name>
-                        <password>sa</password>
-                    </security>
-                </datasource>
-                <drivers>
-                    <driver name="h2" module="com.h2database.h2">
-                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
-                    </driver>
-                </drivers>
-            </datasources>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:deployment-scanner:2.0">
-            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:ee:6.0">
-            <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
-            <concurrent>
-                <context-services>
-                    <context-service name="default" jndi-name="java:jboss/ee/concurrency/context/default" use-transaction-setup-provider="true"/>
-                </context-services>
-                <managed-thread-factories>
-                    <managed-thread-factory name="default" jndi-name="java:jboss/ee/concurrency/factory/default" context-service="default"/>
-                </managed-thread-factories>
-                <managed-executor-services>
-                    <managed-executor-service name="default" jndi-name="java:jboss/ee/concurrency/executor/default" context-service="default" hung-task-termination-period="0" hung-task-threshold="60000" keepalive-time="5000"/>
-                </managed-executor-services>
-                <managed-scheduled-executor-services>
-                    <managed-scheduled-executor-service name="default" jndi-name="java:jboss/ee/concurrency/scheduler/default" context-service="default" hung-task-termination-period="0" hung-task-threshold="60000" keepalive-time="3000"/>
-                </managed-scheduled-executor-services>
-            </concurrent>
-            <default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/ExampleDS" jms-connection-factory="java:jboss/DefaultJMSConnectionFactory" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default"/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:ee-security:1.0"/>
-        <subsystem xmlns="urn:jboss:domain:ejb3:9.0">
-            <session-bean>
-                <stateless>
-                    <bean-instance-pool-ref pool-name="slsb-strict-max-pool"/>
-                </stateless>
-                <stateful default-access-timeout="5000" cache-ref="simple" passivation-disabled-cache-ref="simple"/>
-                <singleton default-access-timeout="5000"/>
-            </session-bean>
-            <mdb>
-                <resource-adapter-ref resource-adapter-name="${ejb.resource-adapter-name:activemq-ra.rar}"/>
-                <bean-instance-pool-ref pool-name="mdb-strict-max-pool"/>
-            </mdb>
-            <pools>
-                <bean-instance-pools>
-                    <strict-max-pool name="mdb-strict-max-pool" derive-size="from-cpu-count" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
-                    <strict-max-pool name="slsb-strict-max-pool" derive-size="from-worker-pools" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
-                </bean-instance-pools>
-            </pools>
-            <caches>
-                <cache name="simple"/>
-                <cache name="distributable" passivation-store-ref="infinispan" aliases="passivating clustered"/>
-            </caches>
-            <passivation-stores>
-                <passivation-store name="infinispan" cache-container="ejb" max-size="10000"/>
-            </passivation-stores>
-            <async thread-pool-name="default"/>
-            <timer-service thread-pool-name="default" default-data-store="default-file-store">
-                <data-stores>
-                    <file-data-store name="default-file-store" path="timer-service-data" relative-to="jboss.server.data.dir"/>
-                </data-stores>
-            </timer-service>
-            <remote cluster="ejb" connectors="http-remoting-connector" thread-pool-name="default">
-                <channel-creation-options>
-                    <option name="MAX_OUTBOUND_MESSAGES" value="1234" type="remoting"/>
-                </channel-creation-options>
-            </remote>
-            <thread-pools>
-                <thread-pool name="default">
-                    <max-threads count="48"/>
-                    <keepalive-time time="60" unit="seconds"/>
-                </thread-pool>
-            </thread-pools>
-            <iiop enable-by-default="false" use-qualified-name="false"/>
-            <default-security-domain value="other"/>
-            <application-security-domains>
-                <application-security-domain name="other" security-domain="ApplicationDomain"/>
-            </application-security-domains>
-            <default-missing-method-permissions-deny-access value="true"/>
-            <statistics enabled="${wildfly.ejb3.statistics-enabled:${wildfly.statistics-enabled:false}}"/>
-            <log-system-exceptions value="true"/>
-        </subsystem>
-        <subsystem xmlns="urn:wildfly:elytron:13.0" final-providers="combined-providers" disallowed-providers="OracleUcrypto">
-            <providers>
-                <aggregate-providers name="combined-providers">
-                    <providers name="elytron"/>
-                    <providers name="openssl"/>
-                </aggregate-providers>
-                <provider-loader name="elytron" module="org.wildfly.security.elytron"/>
-                <provider-loader name="openssl" module="org.wildfly.openssl"/>
-            </providers>
-            <audit-logging>
-                <file-audit-log name="local-audit" path="audit.log" relative-to="jboss.server.log.dir" format="JSON"/>
-            </audit-logging>
-            <security-domains>
-                <security-domain name="ApplicationDomain" default-realm="ApplicationRealm" permission-mapper="default-permission-mapper">
-                    <realm name="ApplicationRealm" role-decoder="groups-to-roles"/>
-                    <realm name="local"/>
-                </security-domain>
-                <security-domain name="ManagementDomain" default-realm="ManagementRealm" permission-mapper="default-permission-mapper">
-                    <realm name="ManagementRealm" role-decoder="groups-to-roles"/>
-                    <realm name="local" role-mapper="super-user-mapper"/>
-                </security-domain>
-            </security-domains>
-            <security-realms>
-                <identity-realm name="local" identity="$local"/>
-                <properties-realm name="ApplicationRealm">
-                    <users-properties path="application-users.properties" relative-to="jboss.server.config.dir" digest-realm-name="ApplicationRealm"/>
-                    <groups-properties path="application-roles.properties" relative-to="jboss.server.config.dir"/>
-                </properties-realm>
-                <properties-realm name="ManagementRealm">
-                    <users-properties path="mgmt-users.properties" relative-to="jboss.server.config.dir" digest-realm-name="ManagementRealm"/>
-                    <groups-properties path="mgmt-groups.properties" relative-to="jboss.server.config.dir"/>
-                </properties-realm>
-            </security-realms>
-            <mappers>
-                <simple-permission-mapper name="default-permission-mapper" mapping-mode="first">
-                    <permission-mapping>
-                        <principal name="anonymous"/>
-                        <permission-set name="default-permissions"/>
-                    </permission-mapping>
-                    <permission-mapping match-all="true">
-                        <permission-set name="login-permission"/>
-                        <permission-set name="default-permissions"/>
-                    </permission-mapping>
-                </simple-permission-mapper>
-                <constant-realm-mapper name="local" realm-name="local"/>
-                <simple-role-decoder name="groups-to-roles" attribute="groups"/>
-                <constant-role-mapper name="super-user-mapper">
-                    <role name="SuperUser"/>
-                </constant-role-mapper>
-            </mappers>
-            <permission-sets>
-                <permission-set name="login-permission">
-                    <permission class-name="org.wildfly.security.auth.permission.LoginPermission"/>
-                </permission-set>
-                <permission-set name="default-permissions">
-                    <permission class-name="org.wildfly.extension.batch.jberet.deployment.BatchPermission" module="org.wildfly.extension.batch.jberet" target-name="*"/>
-                    <permission class-name="org.wildfly.transaction.client.RemoteTransactionPermission" module="org.wildfly.transaction.client"/>
-                    <permission class-name="org.jboss.ejb.client.RemoteEJBPermission" module="org.jboss.ejb-client"/>
-                </permission-set>
-            </permission-sets>
-            <http>
-                <http-authentication-factory name="management-http-authentication" security-domain="ManagementDomain" http-server-mechanism-factory="global">
-                    <mechanism-configuration>
-                        <mechanism mechanism-name="DIGEST">
-                            <mechanism-realm realm-name="ManagementRealm"/>
-                        </mechanism>
-                    </mechanism-configuration>
-                </http-authentication-factory>
-                <http-authentication-factory name="application-http-authentication" security-domain="ApplicationDomain" http-server-mechanism-factory="global">
-                    <mechanism-configuration>
-                        <mechanism mechanism-name="BASIC">
-                            <mechanism-realm realm-name="ApplicationRealm"/>
-                        </mechanism>
-                    </mechanism-configuration>
-                </http-authentication-factory>
-                <provider-http-server-mechanism-factory name="global"/>
-            </http>
-            <sasl>
-                <sasl-authentication-factory name="application-sasl-authentication" sasl-server-factory="configured" security-domain="ApplicationDomain">
-                    <mechanism-configuration>
-                        <mechanism mechanism-name="JBOSS-LOCAL-USER" realm-mapper="local"/>
-                        <mechanism mechanism-name="DIGEST-MD5">
-                            <mechanism-realm realm-name="ApplicationRealm"/>
-                        </mechanism>
-                    </mechanism-configuration>
-                </sasl-authentication-factory>
-                <sasl-authentication-factory name="management-sasl-authentication" sasl-server-factory="configured" security-domain="ManagementDomain">
-                    <mechanism-configuration>
-                        <mechanism mechanism-name="JBOSS-LOCAL-USER" realm-mapper="local"/>
-                        <mechanism mechanism-name="DIGEST-MD5">
-                            <mechanism-realm realm-name="ManagementRealm"/>
-                        </mechanism>
-                    </mechanism-configuration>
-                </sasl-authentication-factory>
-                <configurable-sasl-server-factory name="configured" sasl-server-factory="elytron">
-                    <properties>
-                        <property name="wildfly.sasl.local-user.default-user" value="$local"/>
-                    </properties>
-                </configurable-sasl-server-factory>
-                <mechanism-provider-filtering-sasl-server-factory name="elytron" sasl-server-factory="global">
-                    <filters>
-                        <filter provider-name="WildFlyElytron"/>
-                    </filters>
-                </mechanism-provider-filtering-sasl-server-factory>
-                <provider-sasl-server-factory name="global"/>
-            </sasl>
-            <tls>
-                <key-stores>
-                    <key-store name="applicationKS">
-                        <credential-reference clear-text="password"/>
-                        <implementation type="JKS"/>
-                        <file path="application.keystore" relative-to="jboss.server.config.dir"/>
-                    </key-store>
-                </key-stores>
-                <key-managers>
-                    <key-manager name="applicationKM" key-store="applicationKS" generate-self-signed-certificate-host="localhost">
-                        <credential-reference clear-text="password"/>
-                    </key-manager>
-                </key-managers>
-                <server-ssl-contexts>
-                    <server-ssl-context name="applicationSSC" key-manager="applicationKM"/>
-                </server-ssl-contexts>
-            </tls>
-        </subsystem>
-        <subsystem xmlns="urn:wildfly:health:1.0" security-enabled="false"/>
-        <subsystem xmlns="urn:jboss:domain:iiop-openjdk:2.1">
-            <orb socket-binding="iiop"/>
-            <initializers security="elytron" transactions="spec"/>
-            <security server-requires-ssl="false" client-requires-ssl="false"/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:infinispan:12.0">
-            <cache-container name="ejb" default-cache="passivation" aliases="sfsb" modules="org.wildfly.clustering.ejb.infinispan">
-                <local-cache name="passivation">
-                    <file-store passivation="true" purge="false"/>
-                </local-cache>
-            </cache-container>
-            <cache-container name="web" default-cache="passivation" modules="org.wildfly.clustering.web.infinispan">
-                <local-cache name="passivation">
-                    <file-store passivation="true" purge="false"/>
-                </local-cache>
-                <local-cache name="sso"/>
-            </cache-container>
-            <cache-container name="server" default-cache="default" modules="org.wildfly.clustering.server">
-                <local-cache name="default"/>
-            </cache-container>
-            <cache-container name="hibernate" modules="org.infinispan.hibernate-cache">
-                <local-cache name="entity">
-                    <heap-memory size="10000"/>
-                    <expiration max-idle="100000"/>
-                </local-cache>
-                <local-cache name="local-query">
-                    <heap-memory size="10000"/>
-                    <expiration max-idle="100000"/>
-                </local-cache>
-                <local-cache name="timestamps"/>
-                <local-cache name="pending-puts">
-                    <expiration max-idle="60000"/>
-                </local-cache>
-            </cache-container>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:io:3.0">
-            <worker name="default"/>
-            <buffer-pool name="default"/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:jaxrs:2.0"/>
-        <subsystem xmlns="urn:jboss:domain:jca:5.0">
-            <archive-validation enabled="true" fail-on-error="true" fail-on-warn="false"/>
-            <bean-validation enabled="true"/>
-            <default-workmanager>
-                <short-running-threads>
-                    <core-threads count="50"/>
-                    <queue-length count="50"/>
-                    <max-threads count="50"/>
-                    <keepalive-time time="10" unit="seconds"/>
-                </short-running-threads>
-                <long-running-threads>
-                    <core-threads count="50"/>
-                    <queue-length count="50"/>
-                    <max-threads count="50"/>
-                    <keepalive-time time="10" unit="seconds"/>
-                </long-running-threads>
-            </default-workmanager>
-            <cached-connection-manager/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:jdr:1.0"/>
-        <subsystem xmlns="urn:jboss:domain:jmx:1.3">
-            <expose-resolved-model/>
-            <expose-expression-model/>
-            <remoting-connector/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:jpa:1.1">
-            <jpa default-extended-persistence-inheritance="DEEP"/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:jsf:1.1"/>
-        <subsystem xmlns="urn:jboss:domain:jsr77:1.0"/>
-        <subsystem xmlns="urn:jboss:domain:mail:4.0">
-            <mail-session name="default" jndi-name="java:jboss/mail/Default">
-                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
-            </mail-session>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:messaging-activemq:13.0">
-            <server name="default">
-                <security elytron-domain="ApplicationDomain"/>
-                <statistics enabled="${wildfly.messaging-activemq.statistics-enabled:${wildfly.statistics-enabled:false}}"/>
-                <security-setting name="#">
-                    <role name="guest" send="true" consume="true" create-non-durable-queue="true" delete-non-durable-queue="true"/>
-                </security-setting>
-                <address-setting name="#" dead-letter-address="jms.queue.DLQ" expiry-address="jms.queue.ExpiryQueue" max-size-bytes="10485760" page-size-bytes="2097152" message-counter-history-day-limit="10"/>
-                <http-connector name="http-connector" socket-binding="http" endpoint="http-acceptor"/>
-                <http-connector name="http-connector-throughput" socket-binding="http" endpoint="http-acceptor-throughput">
-                    <param name="batch-delay" value="50"/>
-                </http-connector>
-                <in-vm-connector name="in-vm" server-id="0">
-                    <param name="buffer-pooling" value="false"/>
-                </in-vm-connector>
-                <http-acceptor name="http-acceptor" http-listener="default"/>
-                <http-acceptor name="http-acceptor-throughput" http-listener="default">
-                    <param name="batch-delay" value="50"/>
-                    <param name="direct-deliver" value="false"/>
-                </http-acceptor>
-                <in-vm-acceptor name="in-vm" server-id="0">
-                    <param name="buffer-pooling" value="false"/>
-                </in-vm-acceptor>
-                <jms-queue name="ExpiryQueue" entries="java:/jms/queue/ExpiryQueue"/>
-                <jms-queue name="DLQ" entries="java:/jms/queue/DLQ"/>
-                <connection-factory name="InVmConnectionFactory" entries="java:/ConnectionFactory" connectors="in-vm"/>
-                <connection-factory name="RemoteConnectionFactory" entries="java:jboss/exported/jms/RemoteConnectionFactory" connectors="http-connector"/>
-                <pooled-connection-factory name="activemq-ra" entries="java:/JmsXA java:jboss/DefaultJMSConnectionFactory" connectors="in-vm" transaction="xa"/>
-            </server>
-        </subsystem>
-        <subsystem xmlns="urn:wildfly:metrics:1.0" security-enabled="false" exposed-subsystems="*" prefix="${wildfly.metrics.prefix:jboss}"/>
-        <subsystem xmlns="urn:jboss:domain:modcluster:5.0">
-            <proxy name="default" advertise-socket="modcluster" listener="ajp">
-                <dynamic-load-provider>
-                    <load-metric type="cpu"/>
-                </dynamic-load-provider>
-            </proxy>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:naming:2.0">
-            <bindings>
-                <lookup name="java:global/sirotcon-ejb-2.3.0.1-farm/SIROTConBean!br.gov.caixa.sirot.ejb.SIROTCon" lookup="java:global/sirotcon-ejb/SIROTConBean!br.gov.caixa.sirot.ejb.SIROTCon"/>
-            </bindings>
-            <remote-naming/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:pojo:1.0"/>
-        <subsystem xmlns="urn:jboss:domain:remoting:4.0">
-            <http-connector name="http-remoting-connector" connector-ref="default" sasl-authentication-factory="application-sasl-authentication"/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:request-controller:1.0"/>
-        <subsystem xmlns="urn:jboss:domain:resource-adapters:6.0"/>
-        <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
-        <subsystem xmlns="urn:jboss:domain:security-manager:1.0">
-            <deployment-permissions>
-                <maximum-set>
-                    <permission class="java.security.AllPermission"/>
-                </maximum-set>
-            </deployment-permissions>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:transactions:6.0">
-            <core-environment node-identifier="${jboss.tx.node.id:1}">
-                <process-id>
-                    <uuid/>
-                </process-id>
-            </core-environment>
-            <recovery-environment socket-binding="txn-recovery-environment" status-socket-binding="txn-status-manager"/>
-            <coordinator-environment statistics-enabled="${wildfly.transactions.statistics-enabled:${wildfly.statistics-enabled:false}}"/>
-            <object-store path="tx-object-store" relative-to="jboss.server.data.dir"/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:undertow:12.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">
-            <buffer-cache name="default"/>
-            <server name="default-server">
-                <ajp-listener name="ajp" socket-binding="ajp" max-parameters="30000" max-post-size="52428800"/>
-                <http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true"/>
-                <https-listener name="https" socket-binding="https" ssl-context="applicationSSC" enable-http2="true"/>
-                <host name="default-host" alias="localhost">
-                    <location name="/" handler="welcome-content"/>
-                    <http-invoker http-authentication-factory="application-http-authentication"/>
-                </host>
-            </server>
-            <servlet-container name="default">
-                <jsp-config/>
-                <websockets/>
-            </servlet-container>
-            <handlers>
-                <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
-            </handlers>
-            <application-security-domains>
-                <application-security-domain name="other" security-domain="ApplicationDomain"/>
-            </application-security-domains>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:webservices:2.0" statistics-enabled="${wildfly.webservices.statistics-enabled:${wildfly.statistics-enabled:false}}">
-            <wsdl-host>${jboss.bind.address:127.0.0.1}</wsdl-host>
-            <endpoint-config name="Standard-Endpoint-Config"/>
-            <endpoint-config name="Recording-Endpoint-Config">
-                <pre-handler-chain name="recording-handlers" protocol-bindings="##SOAP11_HTTP ##SOAP11_HTTP_MTOM ##SOAP12_HTTP ##SOAP12_HTTP_MTOM">
-                    <handler name="RecordingHandler" class="org.jboss.ws.common.invocation.RecordingServerHandler"/>
-                </pre-handler-chain>
-            </endpoint-config>
-            <client-config name="Standard-Client-Config"/>
-        </subsystem>
-        <subsystem xmlns="urn:jboss:domain:weld:4.0"/>
-    </profile>
-    <interfaces>
-        <interface name="management">
-            <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
-        </interface>
-        <interface name="public">
-            <inet-address value="${jboss.bind.address:127.0.0.1}"/>
-        </interface>
-        <interface name="unsecure">
-            <inet-address value="${jboss.bind.address.unsecure:127.0.0.1}"/>
-        </interface>
-    </interfaces>
-    <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
-        <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
-        <socket-binding name="modcluster" multicast-address="${jboss.modcluster.multicast.address:224.0.1.105}" multicast-port="23364"/>
-        <socket-binding name="http" port="${jboss.http.port:8080}"/>
-        <socket-binding name="https" port="${jboss.https.port:8443}"/>
-        <socket-binding name="iiop" interface="unsecure" port="3528"/>
-        <socket-binding name="iiop-ssl" interface="unsecure" port="3529"/>
-        <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
-        <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9993}"/>
-        <socket-binding name="txn-recovery-environment" port="4712"/>
-        <socket-binding name="txn-status-manager" port="4713"/>
-        <outbound-socket-binding name="mail-smtp">
-            <remote-destination host="${jboss.mail.server.host:localhost}" port="${jboss.mail.server.port:25}"/>
-        </outbound-socket-binding>
-    </socket-binding-group>
-</server>
+
+
+#
+# This is the main Apache HTTP server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://httpd.apache.org/docs/2.4/> for detailed information.
+# In particular, see
+# <URL:http://httpd.apache.org/docs/2.4/mod/directives.html>
+# for a discussion of each configuration directive.
+#
+# Do NOT simply read the instructions in here without understanding
+# what they do.  They're here only as hints or reminders.  If you are unsure
+# consult the online docs. You have been warned.  
+#
+# The configuration directives are grouped into three basic sections:
+#  1. Directives that control the operation of the Apache server process as a
+#     whole (the 'global environment').
+#  2. Directives that define the parameters of the 'main' or 'default' server,
+#     which responds to requests that aren't handled by a virtual host.
+#     These directives also provide default values for the settings
+#     of all virtual hosts.
+#  3. Settings for virtual hosts, which allow Web requests to be sent to
+#     different IP addresses or hostnames and have them handled by the
+#     same Apache server process.
+#
+# Configuration and logfile names: If the filenames you specify for many
+# of the server's control files begin with "/" (or "drive:/" for Win32), the
+# server will use that explicit path.  If the filenames do *not* begin
+# with "/", the value of ServerRoot is prepended -- so "logs/foo.log"
+# with ServerRoot set to "" will be interpreted by the
+# server as "/logs/foo.log".
+#
+
+### Section 1: Global Environment
+#
+# The directives in this section affect the overall operation of Apache,
+# such as the number of concurrent requests it can handle or where it
+# can find its configuration files.
+#
+
+#
+# Don't give away too much information about all the subcomponents
+# we are running.  Comment out this line if you don't mind remote sites
+# finding out what major optional modules you are running
+ServerTokens OS
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+#
+# NOTE!  If you intend to place this on an NFS (or otherwise network)
+# mounted filesystem then please read the LockFile documentation
+# (available at <URL:http://httpd.apache.org/docs/2.4/mod/mpm_common.html#lockfile>);
+# you will save yourself a lot of trouble.
+#
+# Do NOT add a slash at the end of the directory path.
+#
+ServerRoot "/opt/httpd"
+
+#
+# PidFile /opt/httpd/run/httpd.pid
+# identification number when it starts.
+#
+PidFile /opt/httpd/run/httpd.pid
+
+#
+# Timeout: The number of seconds before receives and sends time out.
+#
+Timeout 240
+
+#
+# KeepAlive: Whether or not to allow persistent connections (more than
+# one request per connection). Set to "Off" to deactivate.
+#
+KeepAlive On
+
+#
+# MaxKeepAliveRequests: The maximum number of requests to allow
+# during a persistent connection. Set to 0 to allow an unlimited amount.
+# We recommend you leave this number high, for maximum performance.
+#
+MaxKeepAliveRequests 100
+
+#
+# KeepAliveTimeout: Number of seconds to wait for the next request from the
+# same client on the same connection.
+#
+KeepAliveTimeout 30
+
+##
+## Server-Pool Size Regulation (MPM specific)
+## 
+
+#
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, in addition to the default. See also the <VirtualHost>
+# directive.
+#
+# Change this to Listen on specific IP addresses as shown below to 
+# prevent Apache from glomming onto all bound IP addresses (0.0.0.0)
+#
+Listen 80
+Listen 443
+
+#
+# Dynamic Shared Object (DSO) Support
+#
+# To be able to use the functionality of a module which was built as a DSO you
+# have to place corresponding `LoadModule' lines at this location so the
+# directives contained in it are actually available _before_ they are used.
+# Statically compiled modules (those listed by `httpd -l') do not need
+# to be loaded here.
+#
+# Example:
+# LoadModule foo_module /opt/httpd/modules/mod_foo.so
+#
+Include conf.modules.d/*.conf
+
+#
+# ExtendedStatus controls whether Apache will generate "full" status
+# information (ExtendedStatus On) or just basic information (ExtendedStatus
+# Off) when the "server-status" handler is called. The default is Off.
+#
+#ExtendedStatus On
+ProxyPass /status !
+
+#
+# If you wish httpd to run as a different user or group, you must run
+# httpd as root initially and it will switch.  
+#
+# User/Group: The name (or #number) of the user/group to run httpd as.
+# It is usually good practice to create a dedicated user and group for
+# running httpd, as with most system services.
+#
+User apache
+Group apache
+
+### Section 2: 'Main' server configuration
+#
+# The directives in this section set up the values used by the 'main'
+# server, which responds to any requests that aren't handled by a
+# <VirtualHost> definition.  These values also provide defaults for
+# any <VirtualHost> containers you may define later in the file.
+#
+# All of these directives may appear inside <VirtualHost> containers,
+# in which case these default settings will be overridden for the
+# virtual host being defined.
+#
+
+#
+# ServerAdmin: Your address, where problems with the server should be
+# e-mailed.  This address appears on some server-generated pages, such
+# as error documents.  e.g. admin@your-domain.com
+#
+ServerAdmin root@localhost
+
+#
+# ServerName gives the name and port that the server uses to identify itself.
+# This can often be determined automatically, but we recommend you specify
+# it explicitly to prevent problems during startup.
+#
+# If this is not set to valid DNS name for your host, server-generated
+# redirections will not work.  See also the UseCanonicalName directive.
+#
+# If your host doesn't have a registered DNS name, enter its IP address here.
+# You will have to access it by its address anyway, and this will make 
+# redirections work in a sensible way.
+#
+#ServerName localhost:80
+
+#
+# UseCanonicalName: Determines how Apache constructs self-referencing 
+# URLs and the SERVER_NAME and SERVER_PORT variables.
+# When set "Off", Apache will use the Hostname and Port supplied
+# by the client.  When set "On", Apache will use the value of the
+# ServerName directive.
+#
+#UseCanonicalName Off
+
+#
+# DocumentRoot: The directory out of which you will serve your
+# documents. By default, all requests are taken from this directory, but
+# symbolic links and aliases may be used to point to other locations.
+#
+DocumentRoot "/opt/httpd/www/html"
+
+#
+# Each directory to which Apache has access can be configured with respect
+# to which services and features are allowed and/or disabled in that
+# directory (and its subdirectories). 
+#
+# First, we configure the "default" to be a very restrictive set of 
+# features.  
+#
+<Directory />
+    AllowOverride none
+    Require all granted
+</Directory>
+
+#
+# Note that from this point forward you must specifically allow
+# particular features to be enabled - so if something's not working as
+# you might expect, make sure that you have specifically enabled it
+# below.
+#
+
+#
+# This should be changed to whatever you set DocumentRoot to.
+#
+<Directory "/opt/httpd/www/html">
+
+#
+# Possible values for the Options directive are "None", "All",
+# or any combination of:
+#   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+#
+# Note that "MultiViews" must be named *explicitly* --- "Options All"
+# doesn't give it to you.
+#
+# The Options directive is both complicated and important.  Please see
+# http://httpd.apache.org/docs/2.4/mod/core.html#options
+# for more information.
+#
+    Options Indexes FollowSymLinks
+
+#
+# AllowOverride controls what directives may be placed in .htaccess files.
+# It can be "All", "None", or any combination of the keywords:
+#   Options FileInfo AuthConfig Limit
+#
+    AllowOverride None
+
+#
+# Controls who can get stuff from this server.
+#
+    Require all granted
+
+</Directory>
+
+#
+# DirectoryIndex: sets the file that Apache will serve if a directory
+# is requested.
+#
+# The index.html.var file (a type-map) is used to deliver content-
+# negotiated documents.  The MultiViews Option can be used for the 
+# same purpose, but it is much slower.
+#
+DirectoryIndex index.html index.html.var
+
+#
+# AccessFileName: The name of the file to look for in each directory
+# for additional configuration directives.  See also the AllowOverride
+# directive.
+#
+AccessFileName .htaccess
+
+#
+# The following lines prevent .htaccess and .htpasswd files from being 
+# viewed by Web clients. 
+#
+<Files ~ "^\.ht">
+    Require all denied
+</Files>
+
+#
+# TypesConfig describes where the mime.types file (or equivalent) is
+# to be found.
+#
+TypesConfig "/etc/mime.types"
+
+#
+# The mod_mime_magic module allows the server to use various hints from the
+# contents of the file itself to determine its type.  The MIMEMagicFile
+# directive tells the module where the hint definitions are located.
+#
+<IfModule mod_mime_magic.c>
+    MIMEMagicFile conf/magic
+</IfModule>
+
+#
+# HostnameLookups: Log the names of clients or just their IP addresses
+# e.g., www.apache.org (on) or 204.62.129.132 (off).
+# The default is off because it'd be overall better for the net if people
+# had to knowingly turn this feature on, since enabling it means that
+# each client request will result in AT LEAST one lookup request to the
+# nameserver.
+#
+#HostnameLookups Off
+
+#
+# Set a timeout for how long the client may take to send the request header
+# and body.
+# The default for the headers is header=20-40,MinRate=500, which means wait
+# for the first byte of headers for 20 seconds. If some data arrives,
+# increase the timeout corresponding to a data rate of 500 bytes/s, but not
+# above 40 seconds.
+# The default for the request body is body=20,MinRate=500, which is the same
+# but has no upper limit for the timeout.
+# To disable, set to header=0 body=0
+#
+#<IfModule reqtimeout_module>
+#  RequestReadTimeout header=20-40,MinRate=500 body=20,MinRate=500
+#</IfModule>
+
+#
+# EnableMMAP: Control whether memory-mapping is used to deliver
+# files (assuming that the underlying OS supports it).
+# The default is on; turn this off if you serve from NFS-mounted 
+# filesystems.  On some systems, turning it off (regardless of
+# filesystem) can improve performance; for details, please see
+# http://httpd.apache.org/docs/2.4/mod/core.html#enablemmap
+#
+#EnableMMAP off
+
+#
+# EnableSendfile: Control whether the sendfile kernel support is 
+# used to deliver files (assuming that the OS supports it). 
+# The default is on; turn this off if you serve from NFS-mounted 
+# filesystems.  Please see
+# http://httpd.apache.org/docs/2.4/mod/core.html#enablesendfile
+#
+#EnableSendfile off
+
+#
+# ErrorLog: The location of the error log file.
+# If you do not specify an ErrorLog directive within a <VirtualHost>
+# container, error messages relating to that virtual host will be
+# logged here.  If you *do* define an error logfile for a <VirtualHost>
+# container, that host's errors will be logged there and not here.
+#
+ErrorLog /logs/httpd/error_log
+
+#
+# LogLevel: Control the number of messages logged to the error_log.
+# Possible values include: debug, info, notice, warn, error, crit,
+# alert, emerg.
+#
+LogLevel warn
+
+#
+# The following directives define some format nicknames for use with
+# a CustomLog directive (see below).
+#
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+
+# "combinedio" includes actual counts of actual bytes received (%I) and sent (%O); this
+# requires the mod_logio module to be loaded.
+#LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+
+#
+# The location and format of the access logfile (Common Logfile Format).
+# If you do not define any access logfiles within a <VirtualHost>
+# container, they will be logged here.  Contrariwise, if you *do*
+# define per-<VirtualHost> access logfiles, transactions will be
+# logged therein and *not* in this file.
+#
+#CustomLog logs/access_log common
+
+#
+# If you would like to have separate agent and referer logfiles, uncomment
+# the following directives.
+#
+#CustomLog logs/referer_log referer
+#CustomLog logs/agent_log agent
+
+#
+# For a single logfile with access, agent, and referer information
+# (Combined Logfile Format), use the following directive:
+#
+CustomLog /logs/httpd/access_log combined
+
+#
+# Optionally add a line containing the server version and virtual host
+# name to server-generated pages (internal error documents, FTP directory
+# listings, mod_status and mod_info output etc., but not CGI generated
+# documents or custom error documents).
+# Set to "EMail" to also include a mailto: link to the ServerAdmin.
+# Set to one of:  On | Off | EMail
+#
+#ServerSignature On
+
+#
+# Aliases: Add here as many aliases as you need (with no limit). The format is 
+# Alias fakename realname
+#
+# Note that if you include a trailing / on fakename then the server will
+# require it to be present in the URL.  So "/icons" isn't aliased in this
+# example, only "/icons/".  If the fakename is slash-terminated, then the 
+# realname must also be slash terminated, and if the fakename omits the 
+# trailing slash, the realname must also omit it.
+#
+# We include the /icons/ alias for FancyIndexed directory listings.  If you
+# do not use FancyIndexing, you may comment this out.
+#
+#Alias /icons/ "/opt/httpd/www/icons/"
+
+#<Directory "/opt/httpd/www/icons">
+#    Options Indexes MultiViews
+#    AllowOverride None
+#    Require all granted
+#</Directory>
+
+#
+# WebDAV module configuration section.
+# 
+#<IfModule mod_dav_fs.c>
+    # Location of the WebDAV lock database.
+#    DAVLockDB /var/lib/dav/lockdb
+#</IfModule>
+
+#
+# ScriptAlias: This controls which directories contain server scripts.
+# ScriptAliases are essentially the same as Aliases, except that
+# documents in the realname directory are treated as applications and
+# run by the server when requested rather than as documents sent to the client.
+# The same rules about trailing "/" apply to ScriptAlias directives as to
+# Alias.
+#
+ScriptAlias /cgi-bin/ "/opt/httpd/www/cgi-bin/"
+
+#
+# "/opt/httpd/www/cgi-bin" should be changed to whatever your ScriptAliased
+# CGI directory exists, if you have that configured.
+#
+<Directory "/opt/httpd/www/cgi-bin">
+    AllowOverride None
+    Options None
+    Require all granted
+</Directory>
+
+#
+# Redirect allows you to tell clients about documents which used to exist in
+# your server's namespace, but do not anymore. This allows you to tell the
+# clients where to look for the relocated document.
+# Example:
+# Redirect permanent /foo http://www.example.com/bar
+
+#
+# Directives controlling the display of server-generated directory listings.
+#
+
+#
+# IndexOptions: Controls the appearance of server-generated directory
+# listings.
+#
+IndexOptions FancyIndexing VersionSort NameWidth=* HTMLTable
+
+#
+# AddIcon* directives tell the server which icon to show for different
+# files or filename extensions.  These are only displayed for
+# FancyIndexed directories.
+#
+AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
+
+AddIconByType (TXT,/icons/text.gif) text/*
+AddIconByType (IMG,/icons/image2.gif) image/*
+AddIconByType (SND,/icons/sound2.gif) audio/*
+AddIconByType (VID,/icons/movie.gif) video/*
+
+AddIcon /icons/binary.gif .bin .exe
+AddIcon /icons/binhex.gif .hqx
+AddIcon /icons/tar.gif .tar
+AddIcon /icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
+AddIcon /icons/compressed.gif .Z .z .tgz .gz .zip
+AddIcon /icons/a.gif .ps .ai .eps
+AddIcon /icons/layout.gif .html .shtml .htm .pdf
+AddIcon /icons/text.gif .txt
+AddIcon /icons/c.gif .c
+AddIcon /icons/p.gif .pl .py
+AddIcon /icons/f.gif .for
+AddIcon /icons/dvi.gif .dvi
+AddIcon /icons/uuencoded.gif .uu
+AddIcon /icons/script.gif .conf .sh .shar .csh .ksh .tcl
+AddIcon /icons/tex.gif .tex
+AddIcon /icons/bomb.gif core
+
+AddIcon /icons/back.gif ..
+AddIcon /icons/hand.right.gif README
+AddIcon /icons/folder.gif ^^DIRECTORY^^
+AddIcon /icons/blank.gif ^^BLANKICON^^
+
+#
+# DefaultIcon is which icon to show for files which do not have an icon
+# explicitly set.
+#
+DefaultIcon /icons/unknown.gif
+
+#
+# AddDescription allows you to place a short description after a file in
+# server-generated indexes.  These are only displayed for FancyIndexed
+# directories.
+# Format: AddDescription "description" filename
+#
+#AddDescription "GZIP compressed document" .gz
+#AddDescription "tar archive" .tar
+#AddDescription "GZIP compressed tar archive" .tgz
+
+#
+# ReadmeName is the name of the README file the server will look for by
+# default, and append to directory listings.
+#
+# HeaderName is the name of a file which should be prepended to
+# directory indexes. 
+#ReadmeName README.html
+#HeaderName HEADER.html
+
+#
+# IndexIgnore is a set of filenames which directory indexing should ignore
+# and not include in the listing.  Shell-style wildcarding is permitted.
+#
+#IndexIgnore .??* *~ *# HEADER* README* RCS CVS *,v *,t
+
+#
+# DefaultLanguage and AddLanguage allows you to specify the language of 
+# a document. You can then use content negotiation to give a browser a 
+# file in a language the user can understand.
+#
+# Specify a default language. This means that all data
+# going out without a specific language tag (see below) will 
+# be marked with this one. You probably do NOT want to set
+# this unless you are sure it is correct for all cases.
+#
+# * It is generally better to not mark a page as 
+# * being a certain language than marking it with the wrong
+# * language!
+#
+# DefaultLanguage nl
+#
+# Note 1: The suffix does not have to be the same as the language
+# keyword --- those with documents in Polish (whose net-standard
+# language code is pl) may wish to use "AddLanguage pl .po" to
+# avoid the ambiguity with the common suffix for perl scripts.
+#
+# Note 2: The example entries below illustrate that in some cases 
+# the two character 'Language' abbreviation is not identical to 
+# the two character 'Country' code for its country,
+# E.g. 'Danmark/dk' versus 'Danish/da'.
+#
+# Note 3: In the case of 'ltz' we violate the RFC by using a three char
+# specifier. There is 'work in progress' to fix this and get
+# the reference data for rfc1766 cleaned up.
+#
+# Catalan (ca) - Croatian (hr) - Czech (cs) - Danish (da) - Dutch (nl)
+# English (en) - Esperanto (eo) - Estonian (et) - French (fr) - German (de)
+# Greek-Modern (el) - Hebrew (he) - Italian (it) - Japanese (ja)
+# Korean (ko) - Luxembourgeois* (ltz) - Norwegian Nynorsk (nn)
+# Norwegian (no) - Polish (pl) - Portugese (pt)
+# Brazilian Portuguese (pt-BR) - Russian (ru) - Swedish (sv)
+# Simplified Chinese (zh-CN) - Spanish (es) - Traditional Chinese (zh-TW)
+#
+AddLanguage ca .ca
+AddLanguage cs .cz .cs
+AddLanguage da .dk
+AddLanguage de .de
+AddLanguage el .el
+AddLanguage en .en
+AddLanguage eo .eo
+AddLanguage es .es
+AddLanguage et .et
+AddLanguage fr .fr
+AddLanguage he .he
+AddLanguage hr .hr
+AddLanguage it .it
+AddLanguage ja .ja
+AddLanguage ko .ko
+AddLanguage ltz .ltz
+AddLanguage nl .nl
+AddLanguage nn .nn
+AddLanguage no .no
+AddLanguage pl .po
+AddLanguage pt .pt
+AddLanguage pt-BR .pt-br
+AddLanguage ru .ru
+AddLanguage sv .sv
+AddLanguage zh-CN .zh-cn
+AddLanguage zh-TW .zh-tw
+
+#
+# LanguagePriority allows you to give precedence to some languages
+# in case of a tie during content negotiation.
+#
+# Just list the languages in decreasing order of preference. We have
+# more or less alphabetized them here. You probably want to change this.
+#
+LanguagePriority en ca cs da de el eo es et fr he hr it ja ko ltz nl nn no pl pt pt-BR ru sv zh-CN zh-TW
+
+#
+# ForceLanguagePriority allows you to serve a result page rather than
+# MULTIPLE CHOICES (Prefer) [in case of a tie] or NOT ACCEPTABLE (Fallback)
+# [in case no accepted languages matched the available variants]
+#
+#ForceLanguagePriority Prefer Fallback
+
+#
+# Specify a default charset for all content served; this enables
+# interpretation of all content as UTF-8 by default.  To use the 
+# default browser choice (ISO-8859-1), or to allow the META tags
+# in HTML content to override this choice, comment out this
+# directive:
+#
+AddDefaultCharset UTF-8
+
+#
+# AddType allows you to add to or override the MIME configuration
+# file mime.types for specific file types.
+#
+#AddType application/x-tar .tgz
+
+#
+# AddEncoding allows you to have certain browsers uncompress
+# information on the fly. Note: Not all browsers support this.
+# Despite the name similarity, the following Add* directives have nothing
+# to do with the FancyIndexing customization directives above.
+#
+#AddEncoding x-compress .Z
+#AddEncoding x-gzip .gz .tgz
+
+# If the AddEncoding directives above are commented-out, then you
+# probably should define those extensions to indicate media types:
+#
+AddType application/x-compress .Z
+AddType application/x-gzip .gz .tgz
+
+#
+# AddHandler allows you to map certain file extensions to "handlers":
+# actions unrelated to filetype. These can be either built into the server
+# or added with the Action directive (see below)
+#
+# To use CGI scripts outside of ScriptAliased directories:
+# (You will also need to add "ExecCGI" to the "Options" directive.)
+#
+#AddHandler cgi-script .cgi
+
+#
+# For files that include their own HTTP headers:
+#
+#AddHandler send-as-is asis
+
+#
+# For type maps (negotiated resources):
+# (This is enabled by default to allow the Apache "It Worked" page
+#  to be distributed in multiple languages.)
+#
+AddHandler type-map var
+
+#
+# Filters allow you to process content before it is sent to the client.
+#
+# To parse .shtml files for server-side includes (SSI):
+# (You will also need to add "Includes" to the "Options" directive.)
+#
+AddType text/html .shtml
+AddOutputFilter INCLUDES .shtml
+
+#
+# Action lets you define media types that will execute a script whenever
+# a matching file is called. This eliminates the need for repeated URL
+# pathnames for oft-used CGI file processors.
+# Format: Action media/type /cgi-script/location
+# Format: Action handler-name /cgi-script/location
+#
+
+#
+# Customizable error responses come in three flavors:
+# 1) plain text 2) local redirects 3) external redirects
+#
+# Some examples:
+#ErrorDocument 500 "The server made a boo boo."
+#ErrorDocument 404 /missing.html
+#ErrorDocument 404 "/cgi-bin/missing_handler.pl"
+#ErrorDocument 402 http://www.example.com/subscription_info.html
+#
+
+#
+# Putting this all together, we can internationalize error responses.
+#
+# We use Alias to redirect any /error/HTTP_<error>.html.var response to
+# our collection of by-error message multi-language collections.  We use 
+# includes to substitute the appropriate text.
+#
+# You can modify the messages' appearance without changing any of the
+# default HTTP_<error>.html.var files by adding the line:
+#
+#   Alias /error/include/ "/your/include/path/"
+#
+# which allows you to create your own set of files by starting with the
+# /opt/httpd/www/error/include/ files and
+# copying them to /your/include/path/, even on a per-VirtualHost basis.
+#
+
+#Alias /error/ "/opt/httpd/www/error/"
+
+#<IfModule mod_negotiation.c>
+#<IfModule mod_include.c>
+#    <Directory "/opt/httpd/www/error">
+#        AllowOverride None
+#        Options IncludesNoExec
+#        AddOutputFilter Includes html
+#        AddHandler type-map var
+#        Require all granted
+#        LanguagePriority en es de fr
+#        ForceLanguagePriority Prefer Fallback
+#    </Directory>
+
+#    ErrorDocument 400 /error/HTTP_BAD_REQUEST.html.var
+#    ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var
+#    ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var
+#    ErrorDocument 404 /error/HTTP_NOT_FOUND.html.var
+#    ErrorDocument 405 /error/HTTP_METHOD_NOT_ALLOWED.html.var
+#    ErrorDocument 408 /error/HTTP_REQUEST_TIME_OUT.html.var
+#    ErrorDocument 410 /error/HTTP_GONE.html.var
+#    ErrorDocument 411 /error/HTTP_LENGTH_REQUIRED.html.var
+#    ErrorDocument 412 /error/HTTP_PRECONDITION_FAILED.html.var
+#    ErrorDocument 413 /error/HTTP_REQUEST_ENTITY_TOO_LARGE.html.var
+#    ErrorDocument 414 /error/HTTP_REQUEST_URI_TOO_LARGE.html.var
+#    ErrorDocument 415 /error/HTTP_UNSUPPORTED_MEDIA_TYPE.html.var
+#    ErrorDocument 500 /error/HTTP_INTERNAL_SERVER_ERROR.html.var
+#    ErrorDocument 501 /error/HTTP_NOT_IMPLEMENTED.html.var
+#    ErrorDocument 502 /error/HTTP_BAD_GATEWAY.html.var
+#    ErrorDocument 503 /error/HTTP_SERVICE_UNAVAILABLE.html.var
+#    ErrorDocument 506 /error/HTTP_VARIANT_ALSO_VARIES.html.var
+
+#</IfModule>
+#</IfModule>
+
+#
+# The following directives modify normal HTTP response behavior to
+# handle known problems with browser implementations.
+#
+BrowserMatch "Mozilla/2" nokeepalive
+BrowserMatch ".*MSIE [2-5]\..*" nokeepalive downgrade-1.0 force-response-1.0
+BrowserMatch "RealPlayer 4\.0" force-response-1.0
+BrowserMatch "Java/1\.0" force-response-1.0
+BrowserMatch "JDK/1\.0" force-response-1.0
+
+#
+# The following directive disables redirects on non-GET requests for
+# a directory that does not include the trailing slash.  This fixes a 
+# problem with Microsoft WebFolders which does not appropriately handle 
+# redirects for folders with DAV methods.
+# Same deal with Apple's DAV filesystem and Gnome VFS support for DAV.
+#
+BrowserMatch "Microsoft Data Access Internet Publishing Provider" redirect-carefully
+BrowserMatch "MS FrontPage" redirect-carefully
+BrowserMatch "^WebDrive" redirect-carefully
+BrowserMatch "^WebDAVFS/1.[0123]" redirect-carefully
+BrowserMatch "^gnome-vfs/1.0" redirect-carefully
+BrowserMatch "^XML Spy" redirect-carefully
+BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
+
+#
+# Allow server status reports generated by mod_status,
+# with the URL of http://servername/server-status
+# Change the ".example.com" to match your domain to enable.
+#
+#<Location /server-status>
+#    SetHandler server-status
+#    Require host example.org
+#</Location>
+
+#
+# Allow remote server configuration reports, with the URL of
+#  http://servername/server-info (requires that mod_info.c be loaded).
+# Change the ".example.com" to match your domain to enable.
+#
+#<Location /server-info>
+#    SetHandler server-info
+#    Require host example.org
+#</Location>
+
+#
+# Proxy Server directives. Uncomment the following lines to
+# enable the proxy server:
+#
+#<IfModule mod_proxy.c>
+#ProxyRequests On
+#
+#<Proxy *>
+#    Require host example.org
+#</Proxy>
+
+#
+# Enable/disable the handling of HTTP/1.1 "Via:" headers.
+# ("Full" adds the server version; "Block" removes all outgoing Via: headers)
+# Set to one of: Off | On | Full | Block
+#
+#ProxyVia On
+
+#
+# To enable a cache of proxied content, uncomment the following lines.
+# See http://httpd.apache.org/docs/2.4/mod/mod_cache.html for more details.
+#
+#<IfModule mod_disk_cache.c>
+#   CacheEnable disk /
+#   CacheRoot "var/cache/httpd"
+#</IfModule>
+#
+
+#</IfModule>
+# End of proxy directives.
+
+### Section 3: Virtual Hosts
+#
+# VirtualHost: If you want to maintain multiple domains/hostnames on your
+# machine you can setup VirtualHost containers for them. Most configurations
+# use only name-based virtual hosts so the server doesn't need to worry about
+# IP addresses. This is indicated by the asterisks in the directives below.
+#
+# Please see the documentation at 
+# <URL:http://httpd.apache.org/docs/2.4/vhosts/>
+# for further details before you try to setup virtual hosts.
+#
+# You may use the command line option '-S' to verify your virtual host
+# configuration.
+
+#
+# Use name-based virtual hosting.
+#
+#NameVirtualHost *:80
+#
+# NOTE: NameVirtualHost cannot be used without a port specifier 
+# (e.g. :80) if mod_ssl is being used, due to the nature of the
+# SSL protocol.
+#
+
+#
+# VirtualHost example:
+# Almost any Apache directive may go into a VirtualHost container.
+# The first VirtualHost section is used for requests without a known
+# server name.
+#
+#<VirtualHost *:80>
+#    ServerAdmin webmaster@dummy-host.example.com
+#    DocumentRoot var/www/docs/dummy-host.example.com
+#    ServerName dummy-host.example.com
+#    ErrorLog logs/dummy-host.example.com-error_log
+#    CustomLog logs/dummy-host.example.com-access_log common
+#</VirtualHost>
+
+#
+# Load config files from the config directory "/etc/httpd/conf.d".
+#
+IncludeOptional conf.d/*.conf
+
+
+
+<VirtualHost *:80>
+
+        ServerName __URL_CUSTOMIZADA__
+        ServerAlias __URL_ALIAS__
+
+        DocumentRoot /opt/httpd/htdocs/httpd_eap_esteiraagil
+        <Directory /opt/httpd/htdocs/httpd_eap_esteiraagil/errors/>
+           Require all granted
+        </Directory>
+
+	ProxyStatus On
+        ProxyRequests Off
+        ProxyPreserveHost On
+        ProxyTimeout 30	
+
+        RewriteEngine On
+        #RewriteCond "%{HTTP_HOST}"   "!^__URL_REWRITE__" [NC]
+        #RewriteCond "%{HTTP_HOST}"   "!^$"
+        #RewriteRule "^/?(.*)"        "http://__URL_REDIRECT__/$1" [L,R,NE]
+
+        RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+        RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+        RewriteRule ^ - [L]
+
+        RewriteRule ^/$ /__http_context_default__/ [R]
+
+        RequestHeader set X-Forwarded-Proto "https"
+
+        ProxyPass /errors/ !
+
+        ProxyPass / ajp://localhost:8009/
+        ProxyPassReverse / ajp://localhost:8009/
+
+        Alias "/errors" "/opt/httpd/htdocs/httpd_eap_esteiraagil/errors/"
+        ErrorDocument 400 /errors/400.html
+        ErrorDocument 401 /errors/401.html
+        ErrorDocument 403 /errors/403.html
+        ErrorDocument 404 /errors/404.html
+        ErrorDocument 408 /errors/408.html
+        ErrorDocument 500 /errors/500.html
+        ErrorDocument 502 /errors/502.html
+        ErrorDocument 503 /errors/503.html
+        
+        <Location "/status">
+           SetHandler server-status
+           Require all granted
+        </Location>
+
+        LogLevel INFO
+        #LogLevel debug
+        CustomLog /logs/httpd/__sistema_nome__.caixa-access.log combined
+        ErrorLog /logs/httpd/__sistema_nome__.caixa-error.log
+
+</VirtualHost>
+
+
+
+projetos
+/
+Caixa
+/
+Repos
+/
+Files
+/
+
+SIGSJ-intranet-config
+Search
+
+
+
+
+
+
+
+
+SIGSJ-intranet-config
+
+httpd
+httpd.conf
+vhost.conf
+jboss
+jboss-custom.cli
+jboss-deployments
+jboss-modules-custom
+standalone-full-ha.xml
+standalone.conf
+README.md
+
+master
+
+/
+httpd
+/
+vhost.conf
+vhost.conf
+
+
+o evaod fez esse ajuste ai 
+
+Reunião de alinhamento ADDR SIGSJ | Pendências JBOSS 
+Status Geral 
+Em andamento 
+A reunião esclareceu a estratégia de implantação do SIGSJ na esteira DevOps, eliminando 
+a necessidade de uma segunda pipeline para o Apache.  
+Foram definidos os ajustes necessários no repositório e os próximos passos para 
+viabilizar a publicação completa da aplicação.  
+Concluído 
+Definições Técnicas 
+ Confirmado que não será necessária uma segunda pipeline para publicação dos 
+conteúdos estáticos.  
+ A mesma solução atenderá Apache e JBoss.  
+ Esclarecida a arquitetura da esteira, que já contempla Apache e JBoss na 
+infraestrutura disponibilizada.  
+ Definido que será utilizada inicialmente a URL padrão da esteira, evitando 
+tratativas adicionais com certificados e URLs customizadas.  
+ Analisados exemplos de implementações de outros sistemas para servirem como 
+referência para o SIGSJ.  
+Em Andamento 
+Adequação da Solução 
+ Avaliação de modelos de configuração Apache mais aderentes ao cenário do 
+SIGSJ.  
+ Estruturação da solução para publicação conjunta dos artefatos da aplicação e 
+conteúdos estáticos.  
+ Evolução das atividades de migração e adequação do repositório.  
+Responsáveis: 
+ Vitor Mendes Guedes 
+ Suporte CESTI 
+Pontos de Atenção 
+Estrutura do Repositório 
+ O repositório ainda não possui a estrutura necessária para configuração do 
+Apache (pasta HTTPD). 
+Publicação dos Conteúdos Estáticos 
+ A configuração do Apache precisa ser implementada e validada antes da 
+execução dos testes completos. 
+Validação Final da Migração 
+ A equipe ainda não avançou para a etapa de homologação completa do processo 
+de Deploy integrado. 
+Pendências 
+Pendência 
+Disponibilizar modelo de configuração Apache para 
+referência 
+Criar estrutura HTTPD no repositório 
+Implementar configuração Apache no projeto 
+Executar testes completos de implantação 
+Validar publicação dos conteúdos estáticos 
+Responsável 
+Suporte CESTI 
+Suporte CESTI 
+Equipe SIGSJ 
+Equipe SIGSJ / Suporte 
+CESTI 
+Equipe SIGSJ 
+Próximos Passos 
+Alta Prioridade 
+1. Criar a estrutura HTTPD no repositório. 
+2. Disponibilizar e adaptar o modelo de configuração Apache. 
+3. Concluir os ajustes necessários para a publicação da aplicação. 
+Média Prioridade 
+4. Executar testes integrados envolvendo JBoss e Apache. 
+5. Validar o funcionamento dos conteúdos estáticos após o Deploy. 
