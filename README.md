@@ -1,14 +1,15 @@
-~ $ 
-~ $ 
-~ $ 
-~ $ 
-~ $ aws ec2 describe-instances --region sa-east-1 \
->   --filters "Name=tag:eks:cluster-name,Values=eks-arc-nprd" "Name=instance-state-name,Values=running" \
->   --query 'Reservations[].Instances[].[InstanceId,PrivateDnsName]' --output table
-------------------------------------------------------------------------
-|                           DescribeInstances                          |
-+----------------------+-----------------------------------------------+
-|  i-039ba2dcec5242374 |  ip-10-249-30-191.sa-east-1.compute.internal  |
-|  i-0774bdd776f027699 |  ip-10-249-28-123.sa-east-1.compute.internal  |
-+----------------------+-----------------------------------------------+
-~ $ 
+CMD=$(aws ssm send-command --region sa-east-1 \
+  --instance-ids i-039ba2dcec5242374 i-0774bdd776f027699 \
+  --document-name AWS-RunShellScript \
+  --parameters 'commands=["ls -d /var/log/pods/*4drtx* 2>/dev/null || echo NAO_ENCONTRADO"]' \
+  --query 'Command.CommandId' --output text)
+sleep 5
+for i in i-039ba2dcec5242374 i-0774bdd776f027699; do
+  echo "== $i"
+  aws ssm get-command-invocation --region sa-east-1 --command-id "$CMD" --instance-id $i \
+    --query 'StandardOutputContent' --output text
+done
+
+
+
+aws ssm start-session --region sa-east-1 --target i-XXXXXXXXXXXXX
