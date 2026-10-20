@@ -1,7 +1,1 @@
-
-~ $ aws rosa list-clusters --region sa-east-1 2>/dev/null
-~ $ aws ec2 describe-instances --region sa-east-1 --filters "Name=instance-state-name,Values=running" \
->   --query 'Reservations[].Instances[].Tags[?Key==`Name`].Value[]' --output text | tr '\t' '\n' | sort -u
-eks-arc-runners
-jumper-devops-instance
-~ $ 
+Cledson, a conta 027574771582 (sa-east-1) não tem o eks-pix-nprd. Nela só existe o eks-arc-nprd (runners arc-runner-set-default-aws-nprod e imgcustom-v1-aws-nprod) e uma jumper. O pod arc-runner-set-default-nprod-nqlwl-runner-4drtx é de outro scale set, então está em outro cluster/conta. Consegue confirmar o account ID do eks-pix-nprd? Se for uma conta em que eu tenha acesso, pego o log via SSM nos nós.
