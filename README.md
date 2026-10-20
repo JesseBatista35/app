@@ -85,6 +85,22 @@
                 <suffix value=".yyyy-MM-dd"/>
                 <append value="true"/>
             </periodic-rotating-file-handler>
+            <periodic-rotating-file-handler name="sirot" autoflush="true">
+                <formatter>
+                    <named-formatter name="PATTERN"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="sirot.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
+            <periodic-rotating-file-handler name="ceflib" autoflush="true">
+                <formatter>
+                    <named-formatter name="PATTERN"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="ceflib.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
             <logger category="com.arjuna">
                 <level name="WARN"/>
             </logger>
@@ -102,6 +118,18 @@
             </logger>
             <logger category="stdout">
                 <level name="OFF"/>
+            </logger>
+            <logger category="br.gov.caixa.sirot" use-parent-handlers="false">
+                <level name="DEBUG"/>
+                <handlers>
+                    <handler name="sirot"/>
+                </handlers>
+            </logger>
+            <logger category="br.gov.caixa.libsp" use-parent-handlers="false">
+                <level name="DEBUG"/>
+                <handlers>
+                    <handler name="ceflib"/>
+                </handlers>
             </logger>
             <root-logger>
                 <level name="INFO"/>
