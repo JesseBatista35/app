@@ -9,7 +9,3 @@ for i in i-039ba2dcec5242374 i-0774bdd776f027699; do
   aws ssm get-command-invocation --region sa-east-1 --command-id "$CMD" --instance-id $i \
     --query 'StandardOutputContent' --output text
 done
-
-
-
-aws ssm start-session --region sa-east-1 --target i-XXXXXXXXXXXXX
