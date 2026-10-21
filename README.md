@@ -1,27 +1,23 @@
-85600@caddeapllx2557 ~]$
-[p585600@caddeapllx2557 ~]$
-[p585600@caddeapllx2557 ~]$ cd /tmp && rm -rf bolchk && mkdir bolchk && cd bolchk
-[p585600@caddeapllx2557 bolchk]$
-[p585600@caddeapllx2557 bolchk]$
-[p585600@caddeapllx2557 bolchk]$ unzip -p /opt/jboss-eap/standalone/deployments/boletoService-ear.ear META-INF/jboss-deployment-structure.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+Pessoal, atualização do SIGSJ-boleto (DES):
 
-    <ear-subdeployments-isolated>false</ear-subdeployments-isolated>
+Situação atual (caddeapllx2557):
 
-    <deployment>
-        <dependencies>
-            <module name="deployment.sirotcon-ejb-2.3.0.1-farm.jar" export="true"/>
-        </dependencies>
-    </deployment>
+JBoss no ar.
+sirotcon-ejb.jar implantado pela esteira com status OK.
+boletoService-ear.ear com status FAILED.
 
-</jboss-deployment-structure>
-[p585600@caddeapllx2557 bolchk]$
-[p585600@caddeapllx2557 bolchk]$
-[p585600@caddeapllx2557 bolchk]$ unzip -o -q /opt/jboss-eap/standalone/deployments/boletoService-ear.ear 'boletoService-war-*.war'
-[p585600@caddeapllx2557 bolchk]$
-[p585600@caddeapllx2557 bolchk]$
-[p585600@caddeapllx2557 bolchk]$ unzip -o -q boletoService-war-*.war 'WEB-INF/*.xml'
-[p585600@caddeapllx2557 bolchk]$ grep -rn "sirotcon" WEB-INF/ 2>/dev/null
-[p585600@caddeapllx2557 bolchk]$
+Causa:
+O EAR declara no META-INF/jboss-deployment-structure.xml uma dependência explícita com o nome versionado do SIROTCon:
 
+xml
+<module name="deployment.sirotcon-ejb-2.3.0.1-farm.jar" export="true"/>
+
+A esteira publica o EJB como sirotcon-ejb.jar, então o JBoss não encontra o módulo com esse nome e o deploy falha. O jar é o mesmo; só o nome não bate.
+
+Ajuste necessário na aplicação:
+@Vitor, consegue alterar essa linha no jboss-deployment-structure.xml do EAR do boleto para:
+
+xml
+<module name="deployment.sirotcon-ejb.jar" export="true"/>
+
+e gerar uma nova build? Assim a dependência deixa de depender da versão do SIROTCon no nome do arquivo.
