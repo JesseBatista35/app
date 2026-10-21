@@ -1,16 +1,16 @@
-Windows PowerShell
-Copyright (C) Microsoft Corporation. All rights reserved.
+PS C:\Users\p585600> Test-NetConnection 10.116.100.127 -Port 1433
+AVISO: TCP connect to (10.116.100.127 : 1433) failed
 
-PS C:\Users\p585600> timeout 5 bash -c 'cat < /dev/null > /dev/tcp/10.116.100.127/1433' && echo OK || echo FALHA
-No linha:1 caractere:68
-+ ... 5 bash -c 'cat < /dev/null > /dev/tcp/10.116.100.127/1433' && echo OK ...
-+                                                                ~~
-O token '&&' não é um separador de instruções válido nesta versão.
-No linha:1 caractere:79
-+ ... cat < /dev/null > /dev/tcp/10.116.100.127/1433' && echo OK || echo FA ...
-+                                                                ~~
-O token '||' não é um separador de instruções válido nesta versão.
-    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : InvalidEndOfLine
+
+ComputerName           : 10.116.100.127
+RemoteAddress          : 10.116.100.127
+RemotePort             : 1433
+InterfaceAlias         : Ethernet 2
+SourceAddress          : 10.211.14.49
+PingSucceeded          : True
+PingReplyDetails (RTT) : 22 ms
+TcpTestSucceeded       : False
+
+
 
 PS C:\Users\p585600>
