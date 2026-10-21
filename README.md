@@ -1,1 +1,1 @@
-<img width="1044" height="883" alt="image" src="https://github.com/user-attachments/assets/5b0be8e2-23f2-4e72-858f-0909d393be2b" />
+grep -n "WFLYUT0021" /logs/jboss/jboss-eap/standalone/sigsj-intranet/server.log | tail -3
