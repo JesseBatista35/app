@@ -353,3 +353,129 @@ Showing filters 1 through 2
 
 Showing filters 1 through 2
 
+
+
+o jeferson disse isso aqui
+
+
+Foi identificado que o boletoService-ear.ear possui dependência explícita do módulo deployment.sirotcon-ejb-2.3.0.1-farm.jar, configurada no arquivo META-INF/jboss-deployment-structure.xml. Entretanto, o deployment disponibilizado no ambiente ocorre com o nome sirotcon-ejb.jar. Embora o JAR implantado possua a versão 2.3.0.1, o nome lógico do módulo esperado pela aplicação não corresponde ao nome efetivamente publicado no JBoss, impedindo a resolução da dependência durante o deploy. O JBoss encontra-se operacional e o deploy falha exclusivamente por inconsistência entre a dependência declarada no EAR e o artefato disponibilizado no ambiente.
+
+
+Skip to main content
+Azure DevOps
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIGSJ-boleto
+Search
+
+
+Caixa
+
+Overview
+
+Boards
+
+Repos
+
+Pipelines
+Pipelines
+Environments
+Releases
+Library
+Task groups
+Deployment groups
+Portal Infra
+
+Test Plans
+
+Artifacts
+Project settings
+All pipelines
+
+SIGSJ
+
+SIGSJ-boleto
+Predefined variables
+Filter by keywords
+Scope
+
+
+CGC_UNIDADE_DES
+7390
+CGC_UNIDADE_OPS
+7259
+http_context_additional
+http_context_default
+http_sso
+no
+produto_nome_vm
+Jboss
+produto_versao_vm
+7.4
+
+sistema_ambiente
+des
+sistema_ambiente
+tqs
+sistema_ambiente
+hmp
+sistema_ambiente
+prd
+sistema_ambiente
+prd
+sistema_nome
+sigsj-boleto
+SITE
+ctc_nprd
+SITE
+ctc_npcn
+SITE
+dtc_pcn
+tf_var_template_name
+eap74-openjdk8-apache24-rhel93-v015
+UNIDADE
+BR
+URL_ALIAS
+sigsj-boleto.des.caixa
+URL_CUSTOMIZADA
+sigsj-boleto.des.caixa
+URL_REDIRECT
+sigsj-boleto.des.caixa
+URL_REWRITE
+sigsj-boleto\.des\.caixa
+vm_destroy_before_create
+
+vm_servers_recreate
+
+60 pipelines found
+
+Select a release pipeline to view its releases
+
+60 pipelines found
+
+Select a release pipeline to view its releases
+
+1 pipelines found
+
+Row 2
+
+Row 2
+
+Showing filters 1 through 2
+
+Row 2
+
+Showing filters 1 through 2
+
+Showing filters 1 through 2
+
+Showing filters 1 through 2
+
+Showing filters 1 through 2
+
