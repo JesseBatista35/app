@@ -1,114 +1,33 @@
-Skip to content
-GitHub Enterprise
-Users managed by Caixa Economica Federal
-caixagithub
-sidpn-api-intra-credito-emprestimos
-Repository navigation
-Code
-Issues
-1
- (1)
-Pull requests
-Actions
-Projects
-Wiki
-Security and quality
-15
- (15)
-Insights
-Settings
-CI/CD Workflow
-CI/CD_caixagithub/sidpn-api-intra-credito-emprestimos_develop_39493089284.9 #9
-All jobs
-Run details
-Annotations
-1 error and 1 warning
-CI_DES / ArgoCD_Deploy / ArgoCD_Deploy (DES)
-failed 16 hours ago in 2m 12s
-Search logs
-12s
-1s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-1m 40s
-0s
-6s
-0s
-0s
-0s
-5s
-  Adding debian:TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.pem
-  Adding debian:TWCA_CYBER_Root_CA.pem
-  Adding debian:TWCA_Global_Root_CA.pem
-  Adding debian:TWCA_Root_Certification_Authority.pem
-  Adding debian:Telekom_Security_TLS_ECC_Root_2020.pem
-  Adding debian:Telekom_Security_TLS_RSA_Root_2023.pem
-  Adding debian:Telia_EC_TLS_Root_CA_v3.pem
-  Adding debian:Telia_RSA_TLS_Root_CA_v3.pem
-  Adding debian:Telia_Root_CA_v2.pem
-  Adding debian:TrustAsia_Global_Root_CA_G3.pem
-  Adding debian:TrustAsia_Global_Root_CA_G4.pem
-  Adding debian:TrustAsia_TLS_ECC_Root_CA.pem
-  Adding debian:TrustAsia_TLS_RSA_Root_CA.pem
-  Adding debian:TunTrust_Root_CA.pem
-  Adding debian:UCA_Extended_Validation_Root.pem
-  Adding debian:UCA_Global_G2_Root.pem
-  Adding debian:USERTrust_ECC_Certification_Authority.pem
-  Adding debian:USERTrust_RSA_Certification_Authority.pem
-  Adding debian:certSIGN_Root_CA_G2.pem
-  Adding debian:e-Szigno_Root_CA_2017.pem
-  Adding debian:e-Szigno_TLS_Root_CA_2023.pem
-  Adding debian:emSign_ECC_Root_CA_-_C3.pem
-  Adding debian:emSign_Root_CA_-_C1.pem
-  Adding debian:emSign_Root_CA_-_G1.pem
-  Adding debian:vTrus_ECC_Root_CA.pem
-  Adding debian:vTrus_Root_CA.pem
-  org.debian.security.UnableToSaveKeystoreException: There was a problem saving the new Java keystore.
-  	at org.debian.security.KeyStoreHandler.save(KeyStoreHandler.java:86)
-  	at org.debian.security.UpdateCertificates.finish(UpdateCertificates.java:108)
-  	at org.debian.security.UpdateCertificates.main(UpdateCertificates.java:54)
-  Caused by: java.io.FileNotFoundException: /etc/ssl/certs/java/cacerts (No such file or directory)
-  	at java.base/java.io.FileOutputStream.open0(Native Method)
-  	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-  	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-  	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:118)
-  	at org.debian.security.KeyStoreHandler.save(KeyStoreHandler.java:82)
-  	... 2 more
-  dpkg: error processing package ca-certificates-java (--configure):
-   installed ca-certificates-java package post-installation script subprocess returned error exit status 1
-  Errors were encountered while processing:
-   ca-certificates-java
-  E: Sub-process /usr/bin/dpkg returned an error code (1)
-  Error: Process completed with exit code 100.
-0s
-1s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-1s
-0s
-0s
+Prezados,
+
+Encaminhamos para análise a falha nas pipelines do repositório caixagithub/sidpn-api-intra-credito-emprestimos, no job CI_DES / ArgoCD_Deploy, na action caixagithub/DevSecOps-Actions/.github/util/install_jq_curl@main.
+
+Erro:
+O apt-get install -y curl jq falha porque o pacote ca-certificates-java já está pendente no runner (“1 not fully installed or removed”). Ao tentar configurá-lo, o postinst não consegue salvar o keystore porque o diretório /etc/ssl/certs/java/ não existe:
+
+org.debian.security.UnableToSaveKeystoreException: There was a problem saving the new Java keystore.
+Caused by: java.io.FileNotFoundException: /etc/ssl/certs/java/cacerts (No such file or directory)
+dpkg: error processing package ca-certificates-java (--configure)
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+Evidências de que a causa está no ambiente do runner, não no repositório:
+
+Run	Resultado	Runner
+39451810492 (#7)	Sucesso	arc-runner-set-default-nprod-nqlwl-runner-kg27f
+39474461093 (#8)	Falha	arc-runner-set-default-nprod
+39493089284 (#9)	Falha	arc-runner-set-default-nprod-nqlwl-runner-qmnl2
+As três execuções usaram exatamente os mesmos SHAs: DevSecOps-Actions (a79e586), DevSecOps-Workflow-Jobs (ade4066) e runner 2.336.0.
+Com o mesmo código, a #7 passou e as seguintes falharam no mesmo ponto.
+O pacote já está pendente antes da execução da action, o que indica alteração na imagem ou no ambiente do runner-set ARC default-nprod, ou em algum step anterior do job.
+
+Solicitação:
+
+Verificar a imagem do runner-set arc-runner-set-default-nprod e se houve atualização entre as execuções acima.
+Corrigir a imagem (garantir o ca-certificates-java configurado e o diretório /etc/ssl/certs/java/ existente) ou, como paliativo, ajustar a action install_jq_curl para executar antes do install:
+   sudo mkdir -p /etc/ssl/certs/java && sudo dpkg --configure -a
+Avaliar o impacto em outros repositórios que usam esse runner-set com instalação via apt (inclusive a instalação do AZ CLI no pipeline de APIM).
+
+A área demandante reporta que está sem conseguir realizar deploys, por isso solicitamos priorização.
+
+Atenciosamente,
+Jessé Batista – CTIS/CESTI
