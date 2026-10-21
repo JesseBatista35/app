@@ -1,10 +1,1 @@
-Prezados, estamos com problemas com um de nossos times onde apenas este time específico não está conseguindo enviar requisições via postman para um de nossos endpoints (o que está nas imagens), já foi realizado testes para verificar se é erro no token de acesso, api key com falha mas nada retornou o resultado esperado. Mais de um colega de diferentes times já testaram o dito endpoint e conseguiram obter sucesso na requisição, menos o time que relatou o problema. Nas imagens em anexo temos um requisição minha bem sucedida (Imagem(3)) e na outra temos a mesma requisição com falha (Imagem(2). Gostaria de um esclarecimento do o que pode estar acontecendo, com quem poderia tratar do assunto e se é um problema de   permissão ou proxy
-
-
-
-<img width="972" height="575" alt="imagem+(3) (1)" src="https://github.com/user-attachments/assets/3fb31f21-0a31-430b-adc9-e78947ce05b7" />
-
-
-<img width="420" height="146" alt="imagem+(2)" src="https://github.com/user-attachments/assets/638ff512-8a9d-4e61-9bad-9e906b5c87ed" />
-
-
+Pelo retorno apresentado (HTTP 500 com mensagem de negócio “Erro ao registrar”), a requisição está chegando ao backend e sendo autenticada no gateway; não se trata de proxy nem de permissão, que retornariam erro de conexão ou 401/403. Observamos também que a requisição de sucesso é uma consulta (GET) e a de falha é um registro, ou seja, operações diferentes. Sugerimos acionar o time responsável pela API de Notificações Digitais (Push v3) para análise do log da aplicação no horário da falha, enviando a requisição completa (método, URL, headers sem credenciais e body). O assunto não está no escopo da equipe de esteiras.
