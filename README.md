@@ -1,1 +1,3 @@
-Opa, tudo certo! Consigo sim. É para testar o quê: rota/firewall (IP), resolução DNS ou um endpoint HTTPS? Na conta 027574771582 (sa-east-1) tenho os nós do eks-arc-nprd (10.249.30.191 / 10.249.28.123) e o endpoint privado do EKS na 443; se for teste de rede, te passo o IP da jumper, que é fixo.
+<img width="1454" height="848" alt="image" src="https://github.com/user-attachments/assets/851c2f15-da01-4885-8be8-92b977283fc1" />
+
+
