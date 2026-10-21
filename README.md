@@ -1,16 +1,1 @@
-PS C:\Users\p585600> Test-NetConnection 10.116.100.127 -Port 1433
-AVISO: TCP connect to (10.116.100.127 : 1433) failed
-
-
-ComputerName           : 10.116.100.127
-RemoteAddress          : 10.116.100.127
-RemotePort             : 1433
-InterfaceAlias         : Ethernet 2
-SourceAddress          : 10.211.14.49
-PingSucceeded          : True
-PingReplyDetails (RTT) : 22 ms
-TcpTestSucceeded       : False
-
-
-
-PS C:\Users\p585600>
+A regra 10.116.221.183 → 10.116.100.127:1433/TCP (CRQ000001516018) foi validada no CNPRDFW001-1, porém o tráfego real da origem continua sem resposta. Teste TCP a partir do pod sipdm-api-estudante-des (namespace sipdm-des, egress IP 10.116.221.183 confirmado via netnamespace) para 10.116.100.127:1433 expira sem resposta (timeout). O serviço está disponível no destino: o teste a partir do pod sipdm-api-estudante-tqs (egress IP [IP do TQS]) para 10.116.100.127:1433 retorna sucesso. Solicitamos verificar o caminho efetivo da origem 10.116.221.183 até o destino, incluindo outros firewalls no trajeto, e, caso a rede esteja liberada, indicar se há filtro de origem no servidor de destino.
