@@ -1,9 +1,2 @@
-
-URL_APM_SERVER
-https://sigsj-frontend-des.apps.nprd.caixa/
-
-eu tinha torcado para
-
-http://localhost:8200
-
-sra se foi isso
+journalctl -u jboss* --since "16:25" --no-pager | tail -40
+grep -nE "ERROR|WFLYCTL|WFLYSRV0056|Exception" /opt/jboss-eap/standalone/log/server.log | tail -30
