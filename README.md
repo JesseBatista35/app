@@ -1,6 +1,1 @@
-e ai Jesse Mouta Pereira Batista
- 
-blz?
- 
-quando tiver um tempinho ai, me passa um endereço valido de qualquer recurso na nossa AWS
- 
+Opa, tudo certo! Consigo sim. É para testar o quê: rota/firewall (IP), resolução DNS ou um endpoint HTTPS? Na conta 027574771582 (sa-east-1) tenho os nós do eks-arc-nprd (10.249.30.191 / 10.249.28.123) e o endpoint privado do EKS na 443; se for teste de rede, te passo o IP da jumper, que é fixo.
