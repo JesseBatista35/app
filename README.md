@@ -1,65 +1,3 @@
-Verificar o CI quebrando no passo de deploy https://github.com/caixagithub/silce-gestao-operacional/actions/runs/39463354047.
-
-
-Skip to content
-GitHub Enterprise
-Users managed by Caixa Economica Federal
-caixagithub
-silce-gestao-operacional
-Repository navigation
-Code
-Issues
-Pull requests
-1
- (1)
-Actions
-Projects
-Wiki
-Security and quality
-3
- (3)
-Insights
-Settings
-CI/CD Workflow (develop)
-develop_caixagithub/silce-gestao-operacional_develop_39603505605.38 #38
-All jobs
-Run details
-Annotations
-1 error and 1 warning
-CI_DES / ArgoCD_Deploy / ArgoCD_Deploy (DES)
-failed 1 hour ago in 12m 17s
-Search logs
-10s
-0s
-1s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-1m 9s
-0s
-8s
-0s
-0s
-0s
-4s
-0s
-1s
-0s
-0s
-0s
-21s
-5s
-0s
-0s
-1s
-10m 8s
 1s
 Run caixagithub/DevSecOps-Actions/.github/integrations/argocd/logs@main
   with:
@@ -160,138 +98,77 @@ Run RESOURCE_TREE_URL="https://openshift-gitops-server-openshift-gitops.apps.aro
     echo "Script executado com sucesso!"
     echo "Pod utilizado: ${LATEST_POD}"
     
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-0s
-1s
-0s
-
-2026-10-21T13:12:53.372Z	info	service@v0.127.0/service.go:199	Setting up own telemetry...	{"resource": {}}
-2026-10-21T13:12:53.373Z	info	builders/builders.go:26	Development component. May change in the future.	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "traces"}
-2026-10-21T13:12:53.373Z	info	builders/builders.go:26	Development component. May change in the future.	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "logs"}
-2026-10-21T13:12:53.373Z	info	builders/builders.go:26	Development component. May change in the future.	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics"}
-2026-10-21T13:12:53.370Z	warn	envprovider@v1.33.0/provider.go:61	Configuration references unset environment variable	{"resource": {}, "name": "APP_INSIGHTS_CONNECTION_STRING"}
-2026-10-21T13:12:53.374Z	info	service@v0.127.0/service.go:266	Starting otelcol-contrib...	{"resource": {}, "Version": "0.127.0", "NumCPU": 4}
-2026-10-21T13:12:53.374Z	info	extensions/extensions.go:41	Starting extensions...	{"resource": {}}
-2026-10-21T13:12:53.374Z	info	extensions/extensions.go:45	Extension is starting...	{"resource": {}, "otelcol.component.id": "pprof", "otelcol.component.kind": "extension"}
-2026-10-21T13:12:53.374Z	info	pprofextension@v0.127.0/pprofextension.go:61	Starting net/http/pprof server	{"resource": {}, "otelcol.component.id": "pprof", "otelcol.component.kind": "extension", "config": {"TCPAddr":{"Endpoint":":1888","DialerConfig":{"Timeout":0}},"BlockProfileFraction":0,"MutexProfileFraction":0,"SaveToFile":""}}
-2026-10-21T13:12:53.374Z	info	extensions/extensions.go:62	Extension started.	{"resource": {}, "otelcol.component.id": "pprof", "otelcol.component.kind": "extension"}
-2026-10-21T13:12:53.374Z	info	extensions/extensions.go:45	Extension is starting...	{"resource": {}, "otelcol.component.id": "health_check", "otelcol.component.kind": "extension"}
-2026-10-21T13:12:53.374Z	info	healthcheckextension@v0.127.0/healthcheckextension.go:32	Starting health_check extension	{"resource": {}, "otelcol.component.id": "health_check", "otelcol.component.kind": "extension", "config": {"Endpoint":":13133","TLSSetting":null,"CORS":null,"Auth":null,"MaxRequestBodySize":0,"IncludeMetadata":false,"ResponseHeaders":null,"CompressionAlgorithms":null,"ReadTimeout":0,"ReadHeaderTimeout":0,"WriteTimeout":0,"IdleTimeout":0,"Middlewares":null,"Path":"/","ResponseBody":null,"CheckCollectorPipeline":{"Enabled":false,"Interval":"5m","ExporterFailureThreshold":5}}}
-2026-10-21T13:12:53.375Z	info	extensions/extensions.go:62	Extension started.	{"resource": {}, "otelcol.component.id": "health_check", "otelcol.component.kind": "extension"}
-2026-10-21T13:12:53.375Z	info	extensions/extensions.go:45	Extension is starting...	{"resource": {}, "otelcol.component.id": "zpages", "otelcol.component.kind": "extension"}
-2026-10-21T13:12:53.375Z	info	zpagesextension@v0.127.0/zpagesextension.go:56	Registered zPages span processor on tracer provider	{"resource": {}, "otelcol.component.id": "zpages", "otelcol.component.kind": "extension"}
-2026-10-21T13:12:53.375Z	info	zpagesextension@v0.127.0/zpagesextension.go:71	Registered Host's zPages	{"resource": {}, "otelcol.component.id": "zpages", "otelcol.component.kind": "extension"}
-2026-10-21T13:12:53.375Z	info	zpagesextension@v0.127.0/zpagesextension.go:83	Starting zPages extension	{"resource": {}, "otelcol.component.id": "zpages", "otelcol.component.kind": "extension", "config": {"Endpoint":":55679","TLSSetting":null,"CORS":null,"Auth":null,"MaxRequestBodySize":0,"IncludeMetadata":false,"ResponseHeaders":null,"CompressionAlgorithms":null,"ReadTimeout":0,"ReadHeaderTimeout":0,"WriteTimeout":0,"IdleTimeout":0,"Middlewares":null,"Expvar":{"Enabled":false}}}
-2026-10-21T13:12:53.375Z	info	extensions/extensions.go:62	Extension started.	{"resource": {}, "otelcol.component.id": "zpages", "otelcol.component.kind": "extension"}
-2026-10-21T13:12:53.375Z	info	otlpreceiver@v0.127.0/otlp.go:116	Starting GRPC server	{"resource": {}, "otelcol.component.id": "otlp", "otelcol.component.kind": "receiver", "endpoint": "0.0.0.0:4317"}
-2026-10-21T13:12:53.376Z	info	healthcheck/handler.go:132	Health Check state change	{"resource": {}, "otelcol.component.id": "health_check", "otelcol.component.kind": "extension", "status": "ready"}
-2026-10-21T13:12:53.376Z	info	service@v0.127.0/service.go:289	Everything is ready. Begin running and processing data.	{"resource": {}}
-2026-10-21T13:13:36.568Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:14:36.562Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:15:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:16:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:17:36.562Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:18:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:19:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:20:36.562Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:21:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:22:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:23:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:24:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:25:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:26:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:27:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:28:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:29:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:30:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:31:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:32:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:33:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:34:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:35:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:36:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 80}
-2026-10-21T13:37:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 84}
-2026-10-21T13:38:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:39:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:40:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:41:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:42:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:43:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:44:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:45:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:46:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 96}
-2026-10-21T13:47:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:48:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:49:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:50:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:51:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:52:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:53:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:54:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:55:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:56:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 100}
-2026-10-21T13:57:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T13:58:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T13:59:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T14:00:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T14:01:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T14:02:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T14:03:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T14:04:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T14:05:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T14:06:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 104}
-2026-10-21T14:07:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 108}
-2026-10-21T14:08:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 108}
-2026-10-21T14:09:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 108}
-2026-10-21T14:10:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 112}
-2026-10-21T14:11:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 116}
-2026-10-21T14:12:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:13:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:14:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:15:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:16:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:17:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:18:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:19:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:20:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:21:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:22:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:23:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:24:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:25:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:26:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:27:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:28:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:29:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:30:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:31:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:32:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:33:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:34:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:35:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:36:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:37:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:38:36.563Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:39:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:40:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:41:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:42:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:43:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:44:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:45:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:46:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:47:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:48:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:49:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:50:36.560Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:51:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
-2026-10-21T14:52:36.561Z	info	Metrics	{"resource": {}, "otelcol.component.id": "debug", "otelcol.component.kind": "exporter", "otelcol.signal": "metrics", "resource metrics": 1, "metrics": 21, "data points": 120}
+    if [ "false" = "false" ]; then
+      echo "Falha na sincronização"
+      exit 1
+    fi
+    shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+    env:
+      APIM_VERSIONAPI: 
+      APIM_displaynameAPI: 
+      APIM_PATH: 
+      APIM_SWAGGERPATH: 
+      APIM_TAGSAPI: 
+      APIM_POLICIESALLOPERATIONSPATH: 
+      AZ_INSTALL_STATUS: ms_repo_ok
+      AZ_VERSION: latest
+      INSTALL_PREREQUISITES: true
+      AZ_LATEST_VERSION: 2.91.0
+      environment: des
+      repository_suffix: infranprd
+      REPO: silce-gestao-operacional
+      JOB_ID: 166063
+      ARGOCD_AUTH_TOKEN: ***
+      REPO_NAME: silce-gestao-operacional
+      AMBIENTE_LOWER: des
+  Fazendo requisição para: https://openshift-gitops-server-openshift-gitops.apps.aroidpprd.brazilsouth.aroapp.io/api/v1/applications/silce-gestao-operacional-des/resource-tree?appNamespace=openshift-gitops
+  Resource-tree obtido com sucesso
+  Filtrando pods e encontrando o mais recente...
+  Pod mais recente encontrado: silce-gestao-operacional-des-b9bdbf96c-8f864
+  URL dos logs: https://openshift-gitops-server-openshift-gitops.apps.aroidpprd.brazilsouth.aroapp.io/api/v1/applications/silce-gestao-operacional-des/logs?appNamespace=openshift-gitops&container=silce-gestao-operacional-des&namespace=silce-gestao-operacional&follow=false&podName=silce-gestao-operacional-des-b9bdbf96c-8f864&tailLines=1000&sinceSeconds=0
+  Logs obtidos com sucesso
+  Logs do pod silce-gestao-operacional-des-b9bdbf96c-8f864:
+  ================================================
+  Exibindo os Logs:
+  I1021 13:06:24.844258       1 version.go:31] "version info" version="" commit="1e11cd2" buildDate="2024-10-04T10:20:06Z" component="vaultenv"
+  I1021 13:06:24.844367       1 main.go:184] "azure key vault env injector initializing"
+  I1021 13:06:24.844585       1 main.go:253] "found original container command" cmd="/usr/bin/java" args=["java","-jar","/opt/deploy/quarkus-run.jar"]
+  I1021 13:06:24.844642       1 authentication.go:110] "checking if current auth service credentials are stale" url="http://akv2k8s-envinjector.akv2k8s.svc:80/auth/silce-gestao-operacional/silce-gestao-operacional-des-b9bdbf96c-8f864?secret=akv2k8s-silce-gestao-operacional-des"
+  I1021 13:06:25.004514       1 authentication.go:123] "auth service credentials ok" url="http://akv2k8s-envinjector.akv2k8s.svc:80/auth/silce-gestao-operacional/silce-gestao-operacional-des-b9bdbf96c-8f864?secret=akv2k8s-silce-gestao-operacional-des"
+  I1021 13:06:25.005529       1 authentication.go:159] "requesting azure key vault oauth token" url="https://akv2k8s-envinjector.akv2k8s.svc:9443/auth/silce-gestao-operacional/silce-gestao-operacional-des-b9bdbf96c-8f864"
+  I1021 13:06:25.038798       1 authentication.go:179] "successfully received oauth token"
+  I1021 13:06:25.238902       1 main.go:338] "secret injected into env var" azurekeyvaultsecret="silce-gestao-operacional/akvs-env-gestao-datasource-password" env="DATABASE_PASSWORD"
+  I1021 13:06:25.301509       1 main.go:338] "secret injected into env var" azurekeyvaultsecret="silce-gestao-operacional/akvs-env-servicebus-password" env="SERVICE_BUS_PASSWORD"
+  I1021 13:06:25.374130       1 main.go:338] "secret injected into env var" azurekeyvaultsecret="silce-gestao-operacional/akvs-env-mkp-apikey" env="MKP_APIKEY"
+  I1021 13:06:25.436258       1 main.go:338] "secret injected into env var" azurekeyvaultsecret="silce-gestao-operacional/akvs-env-compra-datasource-password" env="QUARKUS_DATASOURCE__COMPRA__PASSWORD"
+  I1021 13:06:25.436288       1 main.go:343] "starting process with secrets in env vars" cmd="/usr/bin/java" args=["java","-jar","/opt/deploy/quarkus-run.jar"]
+  __  ____  __  _____   ___  __ ____  ______
+   --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
+   -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \
+  --\___\_\____/_/ |_/_/|_/_/|_|\____/___/
+  2026-10-21 10:06:32,860 WARN  [io.qua.config] (main) The "quarkus.hibernate-orm.database.generation" config property is deprecated and should not be used anymore.
+  2026-10-21 10:06:35,470 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. SpanKind: RPC; Request: io.vertx.core.http.impl.HttpRequestHead@7995f69b; Operation:GET.
+  2026-10-21 10:06:35,512 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. Response: io.vertx.core.http.impl.HttpResponseHead@d37ed65; Failure: null.
+  2026-10-21 10:06:35,805 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. SpanKind: RPC; Request: io.vertx.core.http.impl.HttpRequestHead@6f5a9cc7; Operation:GET.
+  2026-10-21 10:06:35,856 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. Response: io.vertx.core.http.impl.HttpResponseHead@179219ba; Failure: null.
+  2026-10-21 10:06:35,861 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. SpanKind: RPC; Request: io.vertx.core.http.impl.HttpRequestHead@596d451d; Operation:GET.
+  2026-10-21 10:06:35,953 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. Response: io.vertx.core.http.impl.HttpResponseHead@83e1720; Failure: null.
+  2026-10-21 10:06:36,155 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. SpanKind: RPC; Request: io.vertx.core.http.impl.HttpRequestHead@1cfedafc; Operation:GET.
+  2026-10-21 10:06:36,298 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. Response: io.vertx.core.http.impl.HttpResponseHead@4beb1a50; Failure: null.
+  2026-10-21 10:06:36,300 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. SpanKind: RPC; Request: io.vertx.core.http.impl.HttpRequestHead@15917c68; Operation:GET.
+  2026-10-21 10:06:36,424 WARN  [io.qua.ope.run.tra.int.ver.OpenTelemetryVertxTracingFactory$VertxDelegator] (vert.x-eventloop-thread-0) VertxTracer delegate not set. Will not submit this trace. Response: io.vertx.core.http.impl.HttpResponseHead@6ab8b9db; Failure: null.
+  2026-10-21 10:06:36,756 INFO  [io.qua.hib.orm.run.JPAConfig] (main) Hibernate ORM persistence unit 'compra' was deactivated through configuration properties
+  2026-10-21 10:06:39,684 WARN  [io.qua.run.log.LoggingSetupRecorder] (main) Log level TRACE for category 'org.hibernate.type.descriptor.sql.BasicBinder' set below minimum logging level DEBUG, promoting it to DEBUG. Set the build time configuration property 'quarkus.log.category."org.hibernate.type.descriptor.sql.BasicBinder".min-level' to 'TRACE' to avoid this warning
+  2026-10-21 10:06:39,882 WARN  [io.sma.rea.mes.jms] (main) Please add one of the additional mapping modules (-jsonb or -jackson) to be able to (de)serialize JSON messages.
+  2026-10-21 10:06:43,155 INFO  [io.quarkus] (main) silce-gestao 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.28.5) started in 17.662s. Listening on: http://0.0.0.0:8080
+  2026-10-21 10:06:43,156 INFO  [io.quarkus] (main) Profile prod activated.
+  2026-10-21 10:06:43,156 INFO  [io.quarkus] (main) Installed features: [agroal, cache, cdi, hibernate-orm, hibernate-orm-panache, hibernate-orm-rest-data-panache, hibernate-validator, jdbc-h2, jdbc-mssql, messaging, narayana-jta, oidc, oidc-client, opentelemetry, rest, rest-client, rest-client-jackson, rest-client-oidc-filter, rest-jackson, rest-links, security, smallrye-context-propagation, smallrye-health, smallrye-jwt, smallrye-openapi, vertx]
+  
+  ================================================
+  Script executado com sucesso!
+  Pod utilizado: silce-gestao-operacional-des-b9bdbf96c-8f864
+  Falha na sincronização
+  Error: Process completed with exit code 1.
 
 
+  <img width="1896" height="915" alt="image" src="https://github.com/user-attachments/assets/46a0c5b7-cd65-406b-af4d-b3f6b1c63728" />
