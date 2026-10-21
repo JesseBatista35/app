@@ -1,1 +1,6 @@
-A regra 10.116.221.183 → 10.116.100.127:1433/TCP (CRQ000001516018) foi validada no CNPRDFW001-1, porém o tráfego real da origem continua sem resposta. Teste TCP a partir do pod sipdm-api-estudante-des (namespace sipdm-des, egress IP 10.116.221.183 confirmado via netnamespace) para 10.116.100.127:1433 expira sem resposta (timeout). O serviço está disponível no destino: o teste a partir do pod sipdm-api-estudante-tqs (egress IP [IP do TQS]) para 10.116.100.127:1433 retorna sucesso. Solicitamos verificar o caminho efetivo da origem 10.116.221.183 até o destino, incluindo outros firewalls no trajeto, e, caso a rede esteja liberada, indicar se há filtro de origem no servidor de destino.
+e ai Jesse Mouta Pereira Batista
+ 
+blz?
+ 
+quando tiver um tempinho ai, me passa um endereço valido de qualquer recurso na nossa AWS
+ 
