@@ -1,18 +1,5 @@
-<img width="1637" height="926" alt="image" src="https://github.com/user-attachments/assets/52880983-a048-4107-a9d6-d85aacba98d0" />
-
-
-ele vai rodar um novo
-
-ele nao ta mais aqui
+<img width="1569" height="856" alt="image" src="https://github.com/user-attachments/assets/18752529-32fe-42c0-afd6-328ca2b945ca" />
 
 
 
-ele roudou um nov
-
-
-10.221.129.50
-
-o lucas recebeu isso la com esse ip
-
-10.116.201.173
- ![Uploading image.png…]()
+<img width="916" height="545" alt="image" src="https://github.com/user-attachments/assets/601701b3-eadf-4d47-9225-67cf56c0d5d8" />
