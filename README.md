@@ -1,1 +1,4 @@
-<img width="1259" height="682" alt="image" src="https://github.com/user-attachments/assets/64d4fdf9-dbe6-47aa-8d79-ac4927d659a6" />
+curl -s -X GET "https://sicsn.caixa/BeyondTrust/api/public/v3/Secrets-Safe/Secrets?FolderPath=SIIFX_BATCH_DES" \
+  -H "Authorization: Bearer COLE_O_TOKEN_AQUI" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json"
