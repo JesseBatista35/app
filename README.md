@@ -4,3 +4,15 @@
 ele vai rodar um novo
 
 ele nao ta mais aqui
+
+
+
+ele roudou um nov
+
+
+10.221.129.50
+
+o lucas recebeu isso la com esse ip
+
+10.116.201.173
+ ![Uploading image.png…]()
