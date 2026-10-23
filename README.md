@@ -1,1 +1,4 @@
-<img width="800" height="106" alt="image" src="https://github.com/user-attachments/assets/53d54f1b-660c-4503-963f-f4b9e230b69e" />
+<img width="1640" height="931" alt="image" src="https://github.com/user-attachments/assets/08a0741a-4b50-46bd-b730-2197ee96ee61" />
+
+
+o ainto esta nessa tela
