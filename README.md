@@ -1,5 +1,3 @@
-<img width="1381" height="790" alt="image" src="https://github.com/user-attachments/assets/894b87cb-7cb1-4aca-b470-9d53493f1eef" />
+<img width="643" height="529" alt="image" src="https://github.com/user-attachments/assets/153c94cc-9a07-4055-b385-4dd9e9634440" />
 
-
-ele disse que ta dentro do palication integratiin 
 
