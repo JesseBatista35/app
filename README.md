@@ -1,3 +1,4 @@
-<img width="800" height="427" alt="image" src="https://github.com/user-attachments/assets/42b9fa86-351e-44f0-9543-1f933e7482a8" />
+<img width="960" height="678" alt="image" src="https://github.com/user-attachments/assets/e914c032-4d36-402d-b38a-64e6329b0f9b" />
 
 
+ele disse que talvez o lucas consiga respodner isso ele ta vendo um maunal agora
