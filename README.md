@@ -1,5 +1,18 @@
-<img width="1631" height="578" alt="image" src="https://github.com/user-attachments/assets/b5a5bb11-38c6-4430-99ee-095d7f6b6b90" />
+REST request template:
+
+URL:https://sicsn.caixa , URLPath:/BeyondTrust/api/public/v3/auth/connect/token , method:POSTURLParams:
+
+headers:Content-Type=application/x-www-form-urlencoded   Accept=application/json   
+
+body:grant_type=client_credentials&client_id=&client_secret=
 
 
 
-esse conection profile ta certo?
+ REST request template:
+
+URL:https://sicsn.caixa , URLPath:/BeyondTrust/api/public/v3/auth/connect/token , method:POSTURLParams:
+
+headers:Content-Type=application/x-www-form-urlencoded   Accept=application/json   
+
+body:grant_type=client_credentials&client_id=&client_secret=
+ 
