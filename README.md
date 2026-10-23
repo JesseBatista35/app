@@ -1,1 +1,5 @@
-<img width="1629" height="769" alt="image" src="https://github.com/user-attachments/assets/cf80a741-fa09-4fac-a46a-b16db1f8ee20" />
+<img width="1631" height="578" alt="image" src="https://github.com/user-attachments/assets/b5a5bb11-38c6-4430-99ee-095d7f6b6b90" />
+
+
+
+esse conection profile ta certo?
