@@ -1,4 +1,6 @@
-<img width="1640" height="931" alt="image" src="https://github.com/user-attachments/assets/08a0741a-4b50-46bd-b730-2197ee96ee61" />
+<img width="1637" height="926" alt="image" src="https://github.com/user-attachments/assets/52880983-a048-4107-a9d6-d85aacba98d0" />
 
 
-o ainto esta nessa tela
+ele vai rodar um novo
+
+ele nao ta mais aqui
