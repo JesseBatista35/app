@@ -1,7 +1,1 @@
-10.116.201.173
-
-
-estou em sala e estão me pedindo, para repitir o rteste tentar locari o job para gente poder testar.
-
-
-eles quere tenatr novamente estou perdido me ajuda
+<img width="800" height="106" alt="image" src="https://github.com/user-attachments/assets/53d54f1b-660c-4503-963f-f4b9e230b69e" />
