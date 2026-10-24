@@ -1,35 +1,13 @@
-<img width="1907" height="1002" alt="image" src="https://github.com/user-attachments/assets/424accc3-45ce-4721-ad9e-5913892adf1b" />
+O 404 nas releases 1.0.17.9 e 1.0.18.9 acontece porque as tags foram geradas sem o ajuste do arquivo jboss-modules feito na branch Cesti-teste. O redeploy funcionou porque reaproveitou a imagem gerada a partir dessa branch.
 
+O script de build da imagem (S2I) descarta as duas primeiras linhas do jboss-modules. Com uma única linha do módulo, o br.gov.caixa.siusr não é instalado, o deploy do sicow-penhor-okd.war falha e o acesso ao /sicowpenhor/login retorna 404.
 
-<img width="1890" height="966" alt="image" src="https://github.com/user-attachments/assets/c5e13303-ccb4-4a94-a122-fa9dc35b1990" />
+Ajuste necessário: fazer o merge da Cesti-teste (PR) na branch de vocês, ou ajustar o jboss-modules para o mesmo formato do SICOW-portal-okd:
 
+group_id:artifact_id:version:extension
+br.gov.caixa.siusr:siusr-loginModule:1.11.0:jar
+br.gov.caixa.siusr:siusr-loginModule:1.11.0:jar
 
-quando acessa a consulta da 500. acredio que meu usuario nao tenha permissão  mais nao vi 400 aqui
+Depois, gerar uma nova tag e executar a release.
 
-menssagem dele no teams
-
-Salve Jesse Mouta Pereira Batista & Sandro Araujo Dantas
- 
-Realizamos dois testes de release com o penhor
-voltou o erro 404
- 
-redeploy da release
-funcionou
- 
-para novas release's a publicação ocorre com sucesso, porem ocorre erro 404 ao acessar o modulo penhor
-as novas releases destacado acima foram testes com usuário de banco .
-
-
-
- <img width="1426" height="553" alt="image" src="https://github.com/user-attachments/assets/fbafd59b-39df-4fa1-a410-ae4109fc18f7" />
-
-
-<img width="872" height="222" alt="image" src="https://github.com/user-attachments/assets/112958a0-50d0-4761-8327-af53259130a9" />
-
-
-<img width="711" height="684" alt="image" src="https://github.com/user-attachments/assets/5e7a1b8f-68c5-4081-8b0d-f13541a900cf" />
-
-
-<img width="1229" height="479" alt="image" src="https://github.com/user-attachments/assets/dac9bc10-a2b6-4fbe-8c69-c205271a08b7" />
-
-
+Ac Jessé Batista
