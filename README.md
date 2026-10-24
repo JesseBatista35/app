@@ -1,4 +1,10 @@
-src/main/java/br/gov/caixa/pr/sicow/conres/ws/OcorrenciaConresWS.java
+group_id:artifact_id:version:extension
+br.gov.caixa.siusr:siusr-loginModule:1.11.0:jar
+br.gov.caixa.siusr:siusr-loginModule:1.11.0:jar
+
+module add --name=br.gov.caixa.siusr --resource-delimiter=, --resources=/tmp/siusr-loginModule-1.11.0.jar --dependencies=javax.api,sun.jdk,org.apache.commons.lang,javaee.api,org.picketbox
+
+
 
 package br.gov.caixa.pr.sicow.conres.ws;
 
@@ -258,6 +264,7 @@ public class OcorrenciaConresWS extends ServicosWebService {
 		return servidorAtivo;
 	}
 
+	@WebMethod(exclude = true)
 	public void setSistemaDao(SistemaWSDAO sistemaDao) {
 		this.sistemaDao = sistemaDao;
 	}
