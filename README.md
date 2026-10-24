@@ -1,6 +1,3 @@
-oc exec sicow-portal-okd-des-197-nzdl5 -n sicow-des -- grep -n -iE "siico|secret|siiso.*key" /opt/jboss/standalone/configuration/standalone-okd.xml
-
-
 <?xml version='1.0' encoding='UTF-8'?>
 
 <server xmlns="urn:jboss:domain:16.0">
@@ -57,6 +54,16 @@ oc exec sicow-portal-okd-des-197-nzdl5 -n sicow-des -- grep -n -iE "siico|secret
         <property name="sicowconres_war" value="__SICOWCONRES_WAR__" />
         <property name="sicowimp_war" value="__SICOWIMP_WAR__" />
         <property name="sicowportalURL" value="__SICOWPORTALURL__" />
+        <property name="sicow.sicli.ws.token.url" value="__SICOW_SICLI_WS_TOKEN_URL__" />
+        <property name="sicow.sicli.ws.token.client.id" value="__SICOW_SICLI_WS_TOKEN_CLIENT_ID__" />
+        <property name="sicow.sicli.ws.token.grant.type" value="__SICOW_SICLI_WS_TOKEN_GRANT_TYPE__" />
+        <property name="sicow.sicli.ws.url" value="__SICOW_SICLI_WS_URL__" />
+        <property name="sicow.sicli.ws.sistema" value="__SICOW_SICLI_WS_SISTEMA__" />
+        <property name="sicow.sicli.ws.apikey" value="__SICOW_SICLI_WS_APIKEY__" />
+        <property name="sicow.siiso.ws.client.url" value="__SICOW_SIISO_WS_CLIENT_URL__" />
+        <property name="sicow.siiso.ws.token.url" value="__SICOW_SIISO_WS_TOKEN_URL__" />
+        <property name="sicow.siiso.ws.token.client.id" value="__SICOW_SIISO_WS_TOKEN_CLIENT_ID__" />
+        <property name="sicow.siiso.ws.token.client.grant_type" value="__SICOW_SIISO_WS_TOKEN_CLIENT_GRANT_TYPE__" />
         <property name="org.apache.el.parser.COERCE_TO_ZERO" value="false" />
         <property name="user.timezone" value="__USER_TIMEZONE__" />
         <property name="jboss.as.management.blocking.timeout" value="500" />
@@ -213,6 +220,23 @@ oc exec sicow-portal-okd-des-197-nzdl5 -n sicow-des -- grep -n -iE "siico|secret
                     <security>
                         <user-name>__SICOW_DS_USER__</user-name>
                         <password>__SICOW_DS_PASSWORD__</password>
+                    </security>
+                    <validation>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>false</background-validation>
+                    </validation>
+                </datasource>
+                <datasource jta="true" jndi-name="java:/jboss/datasources/siico-cow-ds" pool-name="siico-cow-ds" enabled="true" use-java-context="true" use-ccm="true">
+                    <connection-url>__SIICO_DS__</connection-url>
+                    <driver>postgresql</driver>
+                    <pool>
+                        <min-pool-size>__SIICO_DS_MIN_POLL_SIZE__</min-pool-size>
+                        <max-pool-size>__SIICO_DS_MAX_POLL_SIZE__</max-pool-size>
+                        <prefill>true</prefill>
+                    </pool>
+                    <security>
+                        <user-name>__SIICO_DS_USER__</user-name>
+                        <password>__SIICO_DS_PASSWORD__</password>
                     </security>
                     <validation>
                         <validate-on-match>false</validate-on-match>
