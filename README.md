@@ -1,353 +1,269 @@
-Skip to main content
-Azure DevOps
-projetos
-/
-Caixa
-/
-Pipelines
-/
-Releases
-/
-SICOW-conres-okd
-Search
+src/main/java/br/gov/caixa/pr/sicow/conres/ws/OcorrenciaConresWS.java
 
+package br.gov.caixa.pr.sicow.conres.ws;
 
-Caixa
+import java.net.InetAddress;
 
-Overview
+import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
 
-Boards
+import org.apache.commons.lang3.StringUtils;
+import org.jboss.ws.api.annotation.WebContext;
 
-Repos
+import br.gov.caixa.pr.sicow.conres.dao.SistemaWSDAO;
+import br.gov.caixa.pr.sicow.conres.entity.Servidor;
+import br.gov.caixa.pr.sicow.conres.entity.Sistema;
+import br.gov.caixa.pr.sicow.conres.entity.WsServicosSistema;
+import br.gov.caixa.pr.sicow.service.ws.ServicosWebService;
+import br.gov.caixa.pr.ws.HeaderConresWS;
+import br.gov.caixa.pr.ws.ObjectFactory;
+import br.gov.caixa.pr.ws.ObjectFactoryConres;
+import br.gov.caixa.pr.ws.ServicoEntradaDadosConresWS;
+import br.gov.caixa.pr.ws.ServicoSaidaDadosConresWS;
 
-Pipelines
-Pipelines
-Environments
-Releases
-Library
-Task groups
-Deployment groups
-Portal Infra
+@Stateless
+@WebService(name = "SicowconresWS", serviceName = "OcorrenciaConresWS")
+@SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+@WebContext(contextRoot = "/sicow-conres", urlPattern = "/OcorrenciaConresWS/SicowconresWS")
+@XmlSeeAlso({ ObjectFactory.class, ObjectFactoryConres.class })
+public class OcorrenciaConresWS extends ServicosWebService {
 
-Test Plans
+	private static final long serialVersionUID = 1L;
+	private static final String SISTEMA_PREFIXO = "Sistema: ";
+	@EJB
+	private SistemaWSDAO sistemaDao;
 
-Artifacts
-Project settings
-All pipelines
-
-sicow
-
-SICOW-conres-okd
-Predefined variables
-SonarQube Variables (1)
-Variáveis com dados do SonarQube
-Scopes: Release
-Usuario-Azure-DevOps (12)
-Scopes: Release
-EGRESS_IP_OKD (81)
-WO0000072264656 - Config Portal Infrafácil NO_PROXY
-Scopes: Release
-MONITORACAO_LOGS (4)
-REQ000143540550 - Conforme autorizado na req por FLAVIO ALMEIDA GAGLIARDI, removido as variáveis JAVA_OPTS_MONITORING e URL_APM_SERVER, por entrar em conflitos com releases que utilizam o Application Insights
-Scopes: Release
-MUDANCA_GSC (3)
-WO0000079495945
-Scopes: Release
-ADAPTER_VARIABLES (9)
-Variáveis disponíveis para todas os projetos do tipo ADAPTER.
-Scopes: Release
-OKD-REGISTRY-CENTRALIZADO (7)
-Credenciais para o Registry Centralizado - Produtos 4 (OKD)
-Scopes: Release
-Compartilhamentos (4)
-Scopes: Release
-OKD-4-NPRD (12)
-Credenciais para o Cluster OKD4 de NPRD (DES/TQS/HMP)
-Scopes: EC DES,EC TQS,EC HMP
-SICOW-CONRES-OKD-DES (54)
-Grupo de variáveis de SICOW-CONRES-OKD-DES
+	@Resource
+	private transient WebServiceContext context;
 
-Scopes: EC DES
-JKS_FILE
-caixa-truststore-acteste-nprd-sicow.jks
-JVM_HEAP_MAX
-1024m
-JVM_HEAP_MIN
-1024m
-JVM_METASPACE_MAX
-512m
-JVM_METASPACE_MIN
-96m
-JVM_PROXY_HOST
-proxydes.caixa
-JVM_PROXY_PORT
-80
-MAIL_EXPRESSO_HOST
-smtptest.correiolivre.caixa
-MAIL_EXPRESSO_PORT
-25
-PASTA_NFS
-/sicow
-PATH_DESTINO
-/sicow
-PATH_NFS
-/ifs/CADSVISISD4/SERVIDORES/CESTI/SICOW
-SERVER_NFS
-nfsctcnprd.ctc.caixa
-SICOWCONRES_WAR
-https://sicow-conres-okd-des.apps.nprd.caixa/sicow-conres
-SICOWIMP_WAR
-https://sicow-imp-okd-des.apps.nprd.caixa/sicow-imp-okd
-SICOWLG_WAR
-https://sicow-lg-okd-des.apps.nprd.caixa/sicowlg
-SICOWMTE_WAR
-https://sicow-mte-okd-des.apps.nprd.caixa/sicow-mte-okd
-SICOWNIA_WAR
-https://sicow-nia-okd-des.apps.nprd.caixa/sicow-nia-okd
-SICOWPENHOR_WAR
-https://sicow-penhor-okd-des.apps.nprd.caixa/sicowpenhor
-SICOWPORTALURL
-https://sicow-portal-okd-des.apps.nprd.caixa/sicow-portal-okd/pages/home.cef
-SICOWSEG_WAR
-https://sicow-seg-okd-des.apps.nprd.caixa/sicowseg
-SICOW_DS
-jdbc:postgresql://10.116.92.41:5116/cowdb001?autoReconnect=true
-SICOW_DS_MAX_POLL_SIZE
-10
-SICOW_DS_MIN_POLL_SIZE
-5
-SICOW_DS_PASSWORD
-${VAULT::SICOW::SCOWDB01::1}
-SICOW_DS_USER
-scowdb01
-SICOW_SICLI_WS_APIKEY
-l7415d496745d74a079735c47ef0f3b4be
-SICOW_SICLI_WS_SISTEMA
-SICOW
-SICOW_SICLI_WS_TOKEN_CLIENT_ID
-cli-ser-cow
-SICOW_SICLI_WS_TOKEN_CLIENT_SECRET
-57670b90-1378-49b7-94c9-c3d3c7d545bf
-SICOW_SICLI_WS_TOKEN_GRANT_TYPE
-client_credentials
-SICOW_SICLI_WS_TOKEN_URL
-https://login.des.caixa/auth/realms/intranet/protocol/openid-connect/token
-SICOW_SICLI_WS_URL
-https://api.des.caixa:8443/cadastro/v1/clientes
-SICOW_SIISO_WS_API_KEY
-l7415d496745d74a079735c47ef0f3b4be
-SICOW_SIISO_WS_CLIENT_URL
-https://api.des.caixa:8443/cadastro-receita/v4/pessoas-fisicas
-SICOW_SIISO_WS_TOKEN_CLIENT_GRANT_TYPE
-client_credentials
-SICOW_SIISO_WS_TOKEN_CLIENT_ID
-cli-ser-cow
-SICOW_SIISO_WS_TOKEN_CLIENT_SECRET
-57670b90-1378-49b7-94c9-c3d3c7d545bf
-SICOW_SIISO_WS_TOKEN_URL
-https://login.des.caixa/auth/realms/intranet/protocol/openid-connect/token
-SIICO_DS
-jdbc:postgresql://sctdedadlx0026.df.caixa:51491/posprd01?autoReconnect=true
-SIICO_DS_MAX_POLL_SIZE
-25
-SIICO_DS_MIN_POLL_SIZE
-5
-SIICO_DS_PASSWORD
-${VAULT::SICOW::SCOWDB01::1}
-SIICO_DS_USER
-scowdb01
-SIUSR_END_POINT
-http://hmp.autentica.proinfo.caixa/siusr-service/SiusrService/SiusrWS
-SIZE_VOLUME
-50Gi
-URL_PROXY
-proxydes.caixa
-USER_TIMEZONE
-America/Buenos_Aires
-VAULT_ITERATION_COUNT
-44
-VAULT_KEYSTORE_ALIAS
-SecurityKey
-VAULT_KEYSTORE_FILE
-vault-sicow-des.keystore
-VAULT_KEYSTORE_PASSWORD
-MASK-lHQotGsUSmQ5YQRzdtNLD361rwn0c0oJ
-VAULT_SALT
-87654321
-_ENV.APPLICATIONINSIGHTS_ROLE_NAME
-SICOW-CONRES-OKD-DES
-ADAPTER_VARIABLES - SIACM Cartões (7)
-Variáveis disponíveis para todas os projetos do tipo ADAPTER.
-Scopes: EC DES
-SICOW-APPLICATIONINSIGHTS-DES (5)
-Grupo de variáveis de APPLICATIONINSIGHTS-DES
-Scopes: EC DES
-SICOW-BT-VAULT-SECRET-DES (3)
-WO0000081288532
-Scopes: EC DES
-BT_CLIENT_ID
-BT_CLIENT_SECRET
-SCOWDB01
-********
-SICOW-CONRES-OKD-TQS (1)
-Grupo de variáveis de SICOW-CONRES-OKD-TQS
-Scopes: EC TQS
-SICOW-PORTAL-OKD-TQS (268)
-Grupo de variáveis de SICOW-PORTAL-OKD-TQS
-Scopes: EC TQS
-SICOW-CONRES-OKD-HMP (1)
-Grupo de variáveis de SICOW-CONRES-OKD-HMP
-Scopes: EC HMP
-OKD-4-APL (12)
-Scopes: EC PRD
-SICOW-CONRES-OKD-PRD (1)
-Grupo de variáveis de SICOW-CONRES-OKD-PRD
-Scopes: EC PRD
-|Manage variable groups
-52 pipelines found
+	private Sistema sistema = null;
 
-Select a release pipeline to view its releases
+	private transient ServicoSaidaDadosConresWS saidaConresWS = new ServicoSaidaDadosConresWS();
 
-5 pipelines found
+	@Override
+	public boolean equals(Object object) {
+		return super.equals(object);
+	}
 
-Row 5
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 
-Showing filters 1 through 2
+	@WebMethod(operationName = "OCORRENCIA")
+	@WebResult(name = "SERVICO_SAIDA", partName = "parameters")
+	public ServicoSaidaDadosConresWS consultaOCORRENCIA(
+			@WebParam(name = "SERVICO_ENTRADA", partName = "parameters") ServicoEntradaDadosConresWS parameters) {
+		try {
+			saidaConresWS = new ServicoSaidaDadosConresWS();
+			if (parameters == null || parameters.getHeader() == null || parameters.getDados() == null) {
+				return null;
+			}
+			if (parameters.getDados().getConsultaOcorrenciaCpf() != null) {
+				return processarServico(parameters, "consultarCpf");
+			}
+			if (parameters.getDados().getConsultaOcorrenciaCnpj() != null) {
+				return processarServico(parameters, "consultarCnpj");
+			}
+			if (parameters.getDados().getInsertMotivo17() != null) {
+				return processarServico(parameters, "incluirOcorrenciaMotivo17");
+			}
+			if (parameters.getDados().getInsertMotivo18() != null) {
+				return processarServico(parameters, "incluirOcorrenciaMotivo18");
+			}
 
+		} catch (Exception e) {
+			this.saidaConresWS
+					.setMsgretorno("Ocorreu um erro inesperado. Entre em contato com o administrador do sistema");
+			return saidaConresWS;
+		}
 
+		return null;
 
+	}
 
-feito. sobre o ajuste no repositroi vamos cirar a branch Cesti-teste e faze ro ajuste beleza?
+	private ServicoSaidaDadosConresWS processarServico(ServicoEntradaDadosConresWS parameters, String tipoServico) {
+		if (!validateHeader(parameters.getHeader(), tipoServico)) {
+			return saidaConresWS;
+		}
+		parameters.getDados().setIp(getIP());
+		parameters.getDados().setHost(getHost());
+		if ("consultarCpf".equals(tipoServico)) {
+			return geraConsultaOcorrenciaPorCPF(parameters);
+		}
+		if ("consultarCnpj".equals(tipoServico)) {
+			return geraConsultaOcorrenciaPorCNPJ(parameters);
+		}
+		return geraRetornoInsert(parameters);
+	}
 
+	private boolean validateHeader(HeaderConresWS header, String tipoServico) {
+		if (header.getSistemaorigem() == null) {
+			saidaConresWS.setMsgretorno("Campo SISTEMA_ORIGEM não pode estar vazio.");
+			return false;
+		}
+		if (!validaSistema(header.getSistemaorigem())) {
+			saidaConresWS.setMsgretorno("Sistema " + header.getSistemaorigem()
+					+ " sem permissão para realizar a consulta no SICOW.");
+			return false;
+		}
+		if (!validaWsServicoParaTipo(header.getSistemaorigem(), tipoServico)) {
+			return false;
+		}
+		if (!validaServidor(header.getSistemaorigem())) {
+			return false;
+		}
+		return validaSenha(header);
+	}
 
+	private boolean validaWsServicoParaTipo(String sistemaOrigem, String tipoServico) {
+		if (sistema.getVinculoWsServSistema().isEmpty() || validaWsServico(tipoServico)) {
+			return true;
+		}
+		saidaConresWS.setMsgretorno(SISTEMA_PREFIXO + sistemaOrigem + ", sem acesso ao serviço "
+				+ tipoServico + " do SICOW.");
+		return false;
+	}
 
+	private boolean validaServidor(String sistemaOrigem) {
+		if (!Boolean.TRUE.equals(sistema.getIcServidor()) || validaIp(false)) {
+			return true;
+		}
+		saidaConresWS.setMsgretorno(SISTEMA_PREFIXO + sistemaOrigem + ", IP:" + getIP()
+				+ " sem permissão para realizar a consulta no SICOW.");
+		return false;
+	}
 
+	private boolean validaSenha(HeaderConresWS header) {
+		if (!Boolean.TRUE.equals(sistema.getIcPassword())) {
+			return true;
+		}
+		if (StringUtils.isEmpty(header.getAutenticacao())) {
+			saidaConresWS.setMsgretorno(SISTEMA_PREFIXO + header.getSistemaorigem()
+					+ ", senha é obrigatória para realizar a consulta no SICOW.");
+			return false;
+		}
+		if (!validaPassword(header.getSistemaorigem(), header.getAutenticacao())) {
+			saidaConresWS.setMsgretorno(SISTEMA_PREFIXO + header.getSistemaorigem()
+					+ ", senha incorreta para realizar a consulta no SICOW.");
+			return false;
+		}
+		return true;
+	}
 
-Skip to main content
-Azure DevOps
-projetos
-/
-Caixa
-/
-Repos
-/
-Files
-/
+	private boolean validaPassword(final String sgSistema, final String passWord) {
+		if (saidaConresWS.getMsgretorno() == null) {
+			sistema = this.sistemaDao.findSistema(sgSistema);
+			if (sistema != null && sistema.getPassWordSistema().getDsPassword().equals(passWord)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-SICOW-conres-okd
-Search
+	private boolean validaSistema(final String sgSistema) {
+		if (saidaConresWS.getMsgretorno() == null) {
+			sistema = this.sistemaDao.findSistema(sgSistema);
+			if (sistema != null) {
+				return true;
+			}
+		}
+		return false;
+	}
 
+	private boolean validaWsServico(final String wsServico) {
+		if (saidaConresWS.getMsgretorno() == null) {
+			for (WsServicosSistema ws : sistema.getVinculoWsServSistema()) {
+				if (ws.getWsServico().getDsServico().equals(wsServico)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
-Caixa
+	private String getIP() {
+		try {
+			final HttpServletRequest request = (HttpServletRequest) context.getMessageContext()
+					.get(MessageContext.SERVLET_REQUEST);
+			if (request != null) {
+				String ipAddress = request.getHeader("X-Forwarded-for");
+				if (ipAddress != null) {
+					return ipAddress;
+				}
+				return request.getRemoteAddr();
+			}
+		} catch (Exception e) {
+			e.getCause();
+		}
+		return "";
+	}
 
-Overview
+	private String getHost() {
+		try {
+			final HttpServletRequest request = (HttpServletRequest) context.getMessageContext()
+					.get(MessageContext.SERVLET_REQUEST);
+			if (request != null) {
+				return getHost(request);
+			}
+		} catch (Exception e) {
+			e.getCause();
+		}
+		return "";
+	}
 
-Boards
+	private String getHost(final HttpServletRequest request) {
+		try {
+			String ipAddress = request.getHeader("X-Forwarded-for");
+			if (ipAddress == null) {
+				ipAddress = request.getRemoteAddr();
+			}
+			InetAddress inetAddress = InetAddress.getByName(ipAddress);
+			if (inetAddress != null) {
+				return inetAddress.getHostName();
+			}
+			return ipAddress;
+		} catch (Exception e) {
+			return "";
+		}
+	}
 
-Repos
-Files
-Commits
-Pushes
-Branches
-Tags
-Pull requests
+	private boolean validaIp(boolean servidorAtivo) {
 
-Pipelines
+		for (Servidor servidor : sistema.getServidor()) {
+			if (servidor.getNuIp().contains("*")) {
+				String[] splitServerIPAuthorized = servidor.getNuIp().split("[.]");
+				String[] splitRemoteIP = getIP().split("[.]");
+				if (splitServerIPAuthorized.length >= 3 && splitRemoteIP.length >= 3
+						&& splitServerIPAuthorized[0].equals(splitRemoteIP[0])
+						&& splitServerIPAuthorized[1].equals(splitRemoteIP[1])
+						&& splitServerIPAuthorized[2].equals(splitRemoteIP[2])) {
+					servidorAtivo = true;
+				}
+			} else if (servidor.getNuIp().equals(getIP()) && servidor.getIcAtivo().getBooleanValue()) {
+				servidorAtivo = true;
 
-Test Plans
+			}
+		}
+		return servidorAtivo;
+	}
 
-Artifacts
-Project settings
-SICOW-conres-okd
+	public void setSistemaDao(SistemaWSDAO sistemaDao) {
+		this.sistemaDao = sistemaDao;
+	}
 
-src
-main
-java
-br
-resources
-META-INF
-messages.properties
-webapp
+        void setContext(WebServiceContext context) {
+                this.context = context;
+        }
 
-META-INF
-pages
-resources
-templates
-WEB-INF
-access_denied.xhtml
-error.xhtml
-expired_session.xhtml
-index.html
-login.xhtml
-login2.xhtml
-login3.xhtml
-loginSicowConres.xhtml
-page_not_found.xhtml
-test
-.gitignore
-cli-offline.sh
-
-develop
-
-/
-Type to find a file or folder...
-Files
-Set up build
-
-Clone
-
-Contents
-History
-
-src
-14 de out.
-f6d68fcc
-Application Insights c161288
-.gitignore
-8 de set.
-9af12541
-Versão c161288
-cli-offline.sh
-13 de mar.
-a12799e5
-Added cli-offline.sh Higor Antonio Delsoto
-jboss-deployments
-14 de out.
-f6d68fcc
-Application Insights c161288
-jboss-modules
-16 de out.
-3ba393b5
-Updated jboss-modules Evandro Alves de Souza
-pom.xml
-14 de out.
-f6d68fcc
-Application Insights c161288
-README.md
-19 de mar. de 2024
-45559b40
-Added README.md Rafael Augusto Soares
-Introduction
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project.
-
-Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-
-Installation process
-Software dependencies
-Latest releases
-API references
-Build and Test
-TODO: Describe and show how to build your code and run the tests.
-
-Contribute
-TODO: Explain how other users and developers can contribute to make your code better.
-
-If you want to learn more about creating good readme files then refer the following guidelines . You can also seek inspiration from the below readme files:
-
-ASP.NET Core 
-Visual Studio Code 
-Chakra Core 
-
-
-
+}
