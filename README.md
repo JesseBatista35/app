@@ -1,28 +1,48 @@
-Configurar Módulo: SIIFX-caixinhas-batch na release, conforme detalhamento em REQ
+set -euo pipefail
 
-Módulo: SIIFX-caixinhas-batch
-Na release foi configurada uma etapa nova "Correção Artefato Final SIIFX-CAIXINHAS-BATCH", porem no seu código, o nome do artefato informado para URL_CORRETA está fixo. Esse favor pode ser alterado a cada release, devendo ser informado o artefato gerado pelo último Reactor Maven do processo de Build. 
+NEXUS="http://binario.caixa:8081/repository/snapshots"
+GROUP_PATH="br/gov/caixa/siifx/caixinhas"
+ARTIFACT="siifx-caixinhas-batch"
+BASE="$NEXUS/$GROUP_PATH/$ARTIFACT"
+DESTINO="$(System.DefaultWorkingDirectory)/binario"
 
-URL da Release: https://devops.caixa/projetos/Caixa/_releaseDefinition?definitionId=6461&_a=definition-tasks&environmentId=29609
+# 1) Versão: usa VERSAO_BATCH se informada na release; senão, a SNAPSHOT mais recente do Nexus
+VERSAO="${VERSAO_BATCH:-}"
+if [ -z "$VERSAO" ]; then
+  VERSAO=$(curl -sf "$BASE/maven-metadata.xml" \
+    | grep -o '<version>[^<]*-SNAPSHOT</version>' \
+    | sed 's/<[^>]*>//g' | sort -V | tail -1)
+fi
+[ -z "$VERSAO" ] && { echo "##vso[task.logissue type=error]Versão não encontrada no Nexus"; exit 1; }
+echo "Versão: $VERSAO"
 
+# 2) Último build (timestamp-buildNumber) do .jar principal dessa versão, sem classifier
+VALOR=$(curl -sf "$BASE/$VERSAO/maven-metadata.xml" \
+  | tr -d '\n\r\t ' \
+  | sed 's/<snapshotVersion>/\n/g' \
+  | grep '<extension>jar</extension>' | grep -v '<classifier>' \
+  | grep -o '<value>[^<]*</value>' | sed 's/<[^>]*>//g' | tail -1)
+[ -z "$VALOR" ] && { echo "##vso[task.logissue type=error]Snapshot do jar não encontrado para $VERSAO"; exit 1; }
 
-<img width="1770" height="925" alt="image" src="https://github.com/user-attachments/assets/782291b3-a9a4-4400-9c01-3b437e9fb4e3" />
+JAR="$ARTIFACT-$VALOR.jar"
+URL_CORRETA="$BASE/$VERSAO/$JAR"
+echo "Artefato: $URL_CORRETA"
 
-
-
-<img width="1103" height="711" alt="image" src="https://github.com/user-attachments/assets/ed1600a2-5b11-467c-a3db-b920ea5d0fe3" />
-
-
-
-
-
-URL_CORRETA="http://binario.caixa:8081/repository/snapshots/br/gov/caixa/siifx/caixinhas/siifx-caixinhas-batch/0.0.7-SNAPSHOT/siifx-caixinhas-batch-0.0.7-20260922.183950-1.jar"
-
-mkdir -p "$(System.DefaultWorkingDirectory)/binario"
-
-curl -f "$URL_CORRETA" \
--o "$(System.DefaultWorkingDirectory)/binario/siifx-caixinhas-batch-0.0.7-20260922.183950-1.jar"
-
-ls -l "$(System.DefaultWorkingDirectory)/binario"
+mkdir -p "$DESTINO"
+curl -f "$URL_CORRETA" -o "$DESTINO/$JAR"
+ls -l "$DESTINO"
 
 echo "##vso[task.setvariable variable=URL_DEPLOY]$URL_CORRETA"
+
+Como funciona:
+
+Por padrão, pega a maior versão -SNAPSHOT publicada (hoje seria a 0.0.10) e, dentro dela, o último deploy feito pelo build, que é o jar do último reactor.
+Se for preciso fixar uma versão, basta criar a variável VERSAO_BATCH (ex.: 0.0.10-SNAPSHOT) em Variables com “Settable at release time”. Assim o próprio dev a informa ao criar a release, sem pedir alteração da task, o que também atende o pedido do Geovane no Teams.
+A variável URL_DEPLOY continua sendo exportada para a task “Deploy Batch” do mesmo jeito.
+
+Antes de salvar, confira dois pontos:
+
+Ordenação por versão. sort -V coloca 0.0.10 acima de 0.0.9, mas se existir uma branch publicando com versão maior que não deveria ir para DES, o script vai pegá-la. Nesse caso, use a VERSAO_BATCH.
+Vínculo com o build. Se o artefato do build vinculado à release tiver o pom.xml, dá para ler a versão dele em vez de pegar a mais recente do Nexus. Isso amarra a release exatamente ao build que a gerou. Se quiser, me passa o alias e a estrutura do artefato (aba Pipeline → Artifacts) que eu ajusto a etapa 1 para isso.
+
+
