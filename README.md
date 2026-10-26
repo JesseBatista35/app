@@ -2,3 +2,7 @@
 
 
 o cokie na odevirei terminar no primeiro ;
+
+
+<img width="452" height="246" alt="image" src="https://github.com/user-attachments/assets/e3e5c5c3-1ee2-42f6-bde0-912c10076763" />
+
