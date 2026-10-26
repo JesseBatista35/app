@@ -46,3 +46,118 @@ Ordenação por versão. sort -V coloca 0.0.10 acima de 0.0.9, mas se existir um
 Vínculo com o build. Se o artefato do build vinculado à release tiver o pom.xml, dá para ler a versão dele em vez de pegar a mais recente do Nexus. Isso amarra a release exatamente ao build que a gerou. Se quiser, me passa o alias e a estrutura do artefato (aba Pipeline → Artifacts) que eu ajusto a etapa 1 para isso.
 
 
+
+mais nao tem isso aqui
+
+
+Skip to main content
+Azure DevOps
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-batch
+Search
+
+
+Caixa
+
+Overview
+
+Boards
+
+Repos
+
+Pipelines
+Pipelines
+Environments
+Releases
+Library
+Task groups
+Deployment groups
+Portal Infra
+
+Test Plans
+
+Artifacts
+Project settings
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-batch
+Predefined variables
+Filter by keywords
+Scope
+
+
+AG_JAVA_HOME
+/opt/ctmage/JRE
+AGCMNDATA
+18008
+ATCMNDATA
+18007
+CGC_UNIDADE_DES
+7390
+CGC_UNIDADE_OPS
+7259
+CM_64_LIST
+OS | AI | DATABASE
+CM_LIST_SENT2CTMS
+OS | AI | DATABASE
+CMLIST
+OS | AI | DATABASE
+CODE_VERSION
+9.0.21.200
+CTMPERMHOSTS
+ctm.caixa
+CTMPERMHOSTS
+sspdeaprlx0028
+CTMPERMHOSTS
+crjtqaprlx006,crjtqaprlx007
+CTMSHOST
+sspdeaprlx0028
+CTMSHOST
+crjtqaprlx006
+CTMSHOST
+ctm.caixa
+FD_NUMBER
+DRKAI.9.0.21.200
+http_context_additional
+http_context_default
+/siifx-caixinhas-batch
+http_sso
+no
+produto_nome_vm
+Jboss EAP
+produto_versao_vm
+7.1
+sistema_ambiente
+des
+sistema_ambiente
+tqs
+sistema_ambiente
+hmp
+sistema_ambiente
+prd
+sistema_ambiente
+prd
+sistema_nome
+siifx-caixinhas-batch
+SITE
+ctc_nprd
+SITE
+ctc_npcn
+SITE
+dtc_pcn
+
+tf_var_template_name
+controlm-21.300-AG-DATA-openjdk21-rhel93-v003
+vm_destroy_before_create
+
+Showing filters 1 through 2
+
