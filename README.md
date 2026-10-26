@@ -1,16 +1,28 @@
-Pessoal, bom dia!
+Configurar Módulo: SIIFX-caixinhas-batch na release, conforme detalhamento em REQ
 
-Complementando a análise sobre a falha de autenticação do usuário scowdb01 no banco cowdb001, que afeta todos os módulos:
+Módulo: SIIFX-caixinhas-batch
+Na release foi configurada uma etapa nova "Correção Artefato Final SIIFX-CAIXINHAS-BATCH", porem no seu código, o nome do artefato informado para URL_CORRETA está fixo. Esse favor pode ser alterado a cada release, devendo ser informado o artefato gerado pelo último Reactor Maven do processo de Build. 
 
-Origem da senha: a senha do datasource vem do vault do JBoss, a partir do arquivo configuration/vault-des/VAULT.dat de cada repositório de config, criptografado com o vault-sicow-des.keystore. A task VAULT_OKD apenas publica esse arquivo no pod, sem usar nenhuma variável da Library.
+URL da Release: https://devops.caixa/projetos/Caixa/_releaseDefinition?definitionId=6461&_a=definition-tasks&environmentId=29609
 
-Correção necessária: regenerar o VAULT.dat com a senha atual do scowdb01 (validada com o DBA) e atualizá-lo em configuration/vault-des/ nos repositórios de config de todos os módulos. Depois, basta executar novamente as releases.
 
-Library SICOW-BT-VAULT-SECRET-DES: o grupo e a variável SCOWDB01 não são utilizados por nenhuma task, e o SICOW não usa BeyondTrust hoje. O grupo também está fora do padrão, que prevê:
+<img width="1770" height="925" alt="image" src="https://github.com/user-attachments/assets/782291b3-a9a4-4400-9c01-3b437e9fb4e3" />
 
-SISTEMA-MODULO-BT-VAULT-AMBIENTE, com a variável BT_SECRETS_LIST;
-SISTEMA-BT-VAULT-SECRET-AMBIENTE, com as variáveis BT_CLIENT_ID e BT_CLIENT_SECRET.
 
-Recomendamos a remoção da variável SCOWDB01. Caso o SICOW opte por BeyondTrust, a configuração deve seguir o padrão completo, em demanda específica.
 
-Ac Jessé Batista
+<img width="1103" height="711" alt="image" src="https://github.com/user-attachments/assets/ed1600a2-5b11-467c-a3db-b920ea5d0fe3" />
+
+
+
+
+
+URL_CORRETA="http://binario.caixa:8081/repository/snapshots/br/gov/caixa/siifx/caixinhas/siifx-caixinhas-batch/0.0.7-SNAPSHOT/siifx-caixinhas-batch-0.0.7-20260922.183950-1.jar"
+
+mkdir -p "$(System.DefaultWorkingDirectory)/binario"
+
+curl -f "$URL_CORRETA" \
+-o "$(System.DefaultWorkingDirectory)/binario/siifx-caixinhas-batch-0.0.7-20260922.183950-1.jar"
+
+ls -l "$(System.DefaultWorkingDirectory)/binario"
+
+echo "##vso[task.setvariable variable=URL_DEPLOY]$URL_CORRETA"
