@@ -1,20 +1,5 @@
+grep -r -i "trustStorePassword\|keyStorePassword\|storepass" /opt/ctmage/ctm/cm/AI/ 2>/dev/null
 
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$ keytool -list -keystore /opt/ctmage/ctm/cm/AI/data/security/apcerts -storepass changeit | grep -c trustedCertEntry
-0
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$ keytool -list -keystore /opt/ctmage/ctm/cm/AI/data/security/apcerts.bkp.202610061641 -storepass changeit | grep -c trustedCertEntry
-0
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$ keytool -list -keystore /opt/ctmage/ctm/cm/AI/data/security/apcerts -storepass changeit
-erro de keytool: java.io.IOException: Keystore was tampered with, or password was incorrect
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
-[p585600@caddeapllx2695 ~]$
+cat /opt/ctmage/ctm/cm/AI/exe/cm_container 2>/dev/null
+
+find /opt/ctmage/ctm/cm/AI -iname "*.properties" -o -iname "*.conf" -o -iname "*.cfg" 2>/dev/null
