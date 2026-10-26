@@ -1,6 +1,7 @@
-Microsoft Windows [versão 10.0.26200.9711]
-(c) Microsoft Corporation. Todos os direitos reservados.
+Ailton, achei a causa do “invalid_client”: a troca dos caracteres especiais que você fez no Secret mudou o valor real dele. Testei a credencial original (sem nenhuma alteração) direto via curl, fora do Control-M, e o token veio certinho — então a credencial do Pedro está correta.
 
-C:\Users\p585600>curl -k -X POST "https://sicsn.caixa/BeyondTrust/api/public/v3/auth/connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=client_credentials&client_id=28b5d21f-2288-4f03-89cc-c5999fa85e26&client_secret=hOXSgaD1YECHSRVWAlT/Xt1l25N2HwTWYYMb2M/otHI="
-{"access_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwMTk3RTZCLThEMDEtNDg0Ny1CQThELTNCRDdDRDg4QUUxQSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3NpY3NuLmNhaXhhL3BzYXV0aCIsIm5iZiI6MTc5MzAzNDM2MywiaWF0IjoxNzkzMDM0MzYzLCJleHAiOjE3OTMwMzc5NjMsImF1ZCI6WyJwdWJsaWNhcGkiLCJtb2JpbGVhcHAiLCJodHRwczovL3NpY3NuLmNhaXhhL3BzYXV0aC9yZXNvdXJjZXMiXSwic2NvcGUiOlsicHVibGljYXBpIl0sImNsaWVudF9pZCI6IjI4YjVkMjFmLTIyODgtNGYwMy04OWNjLWM1OTk5ZmE4NWUyNiIsIl9jbGllbnRBY2Nlc3NQb2xpY3lJZCI6IjMzMiIsIl9jbGllbnRVc2VySWQiOiIxOTgzIiwianRpIjoiMzczMDZFQzhFNTM5QTc5OTY0MEM3RUM3QkIyNDJEMEMifQ.jxKP6OT9Ig1s9vFPIioRe-w0aJhH-ZBzFDlZRWErMX65NKrz8ls1OjHVAz8JZ3VkG0nvr2vG5CjJce_BQkTQ77GZmzcpiOtMugkw3S0xoI8VbLmLcIku2X1dkHXFL2tB4qgRI4Wmb4FxC0X67fswt_3djWFOIviW41iw4oS_sxQCuofwu-nG5r_jfyXjBuvtF2t9v0zTThV5n56h7x6SMzqKQns1j7VF3TXGG4qlPn7FdWXCYZBvxsUGu_4hfUd-Nb-m2hbRiP2G-0q4SICG_YIJI3l2VsRH5b5JCNVOolmO30LroAxRMjnnezmgLX5HPbfiWWpOsEj4lU3CUYzS_Q","expires_in":3600,"token_type":"Bearer","scope":"publicapi"}
-C:\Users\p585600>
+Pode reverter o campo Secret no Connection Profile pro valor original, exatamente como veio, sem trocar nenhum caractere:
+
+hOXSgaD1YECHSRVWAlT/Xt1l25N2HwTWYYMb2M/otHI=
+
+Salva, faz Publish & Deploy e roda de novo. Com isso o “Gerar token” deve passar — e aí finalmente vamos ver se o “Obter credencial” passa também com esse client novo.
