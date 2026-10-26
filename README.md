@@ -1,2 +1,4 @@
-<img width="1149" height="663" alt="image" src="https://github.com/user-attachments/assets/86c9e96f-28a1-4745-a4b7-ad645effabe0" />
+<img width="950" height="576" alt="image" src="https://github.com/user-attachments/assets/3a20aef6-9bff-4ea4-93c7-85655352eb7d" />
 
+
+ta o que fazer auqi eu nao entedi seu pasos a passo
