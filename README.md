@@ -1,95 +1,52 @@
 
-Pular para conteúdo principal
+Boa tarde, estamos com problema no servidor do SIDMF após tentar fazer o undeploy da Aplicação recebemos o erro:
+
+sudo -u sjsas8 /opt/SUNWas8/bin/asadmin undeploy --host localhost --port 14848 --user ASadmin --passwordfile /opt/SUNWas8/config/passwordfile.conf --target dsv01 sidmf
 
 
-Pesquisar
-
-Pergunte ao Amazon Q
-[Alt+S]
-
-
+Aug 28, 2026 4:05:20 PM com.sun.appserv.management.client.ProxyFactory getInstance
+SEVERE: ProxyFactory.getInstance: Failure trying to create a new ProxyFactory: java.io.IOException: Unable to connect to admin-server.  Please check if the server is up and running and that the host and port provided are correct.
+CLI175 The target dsv01 is invalid. Valid target types are cluster, domain, unclustered server instance, domain administration server.
+CLI137 Command undeploy failed.
 
 
-América do Sul (São Paulo)
+sudo -u sjsas8 /opt/SUNWas8/bin/asadmin undeploy --host localhost --port 14848 --user ASadmin --passwordfile /opt/SUNWas8/config/passwordfile.conf --target dsv01 sidmf
 
-ID da conta: 0275-7477-1582
-PermissionSetSupportWrite/p585600@corp.caixa.gov.br
-
-Amazon ECR
-Registro privado
-Repositórios
-siper/api-lista-contas/siper-api-lista-c…
-Amazon ECR
-Registro privado
-Repositórios
-siper/api-lista-contas/siper-api-lista-c…
+Aug 28, 2026 4:05:20 PM com.sun.appserv.management.client.ProxyFactory getInstance
+SEVERE: ProxyFactory.getInstance: Failure trying to create a new ProxyFactory: java.io.IOException: Unable to connect to admin-server.  Please check if the server is up and running and that the host and port provided are correct.
+CLI175 The target dsv01 is invalid. Valid target types are cluster, domain, unclustered server instance, domain administration server.
+CLI137 Command undeploy failed.
 
 
 
 
-
-Amazon Elastic Container Registry
-Registro privado
-Repositórios
-siper/api-lista-contas/siper-api-lista-contas
-Atributos e configurações
-Registro público
-Repositórios
-Configurações
-Galeria pública do ECR
-Amazon ECS
-Amazon EKS
-Conceitos básicos
-Documentação
-siper/api-lista-contas/siper-api-lista-contas
-
-Resumo
-
-Imagens
-
-Política de ciclo de vida
-
-Permissões
-
-Tags do repositório
-Detalhes do repositório
-
-Editar
-Nome do repositório
-siper/api-lista-contas/siper-api-lista-contas
-Criado em
-02 de outubro de 2026, 14:41:49 (UTC-03)
-ARN do repositório
-arn:aws:ecr:sa-east-1:027574771582:repository/siper/api-lista-contas/siper-api-lista-contas
-URI do repositório
-027574771582.dkr.ecr.sa-east-1.amazonaws.com/siper/api-lista-contas/siper-api-lista-contas
-Mutabilidade de etiquetas
-Mutável
-Exclusões de mutabilidade de etiquetas
--
-Tipo de criptografia
-{AWS} KMS
-Chave do KMS
-arn:aws:kms:sa-east-1:069301571276:key/60d837b0-33a4-4626-9e0e-6f1a7067b64b
-Frequência de verificação
-Verificar por push
-Configuração
-Política de ciclo de vida
-
-1 regra
-Permissões
-
-1 declaração
-AWS etiquetas
-
-Nenhuma etiqueta de repositório
-Contagens de solicitações pull Informações
-
-
-CloudShell
-Kit de ferramentas de agentes para a AWS
-Comentários
-© 2026, Amazon Web Services, Inc. ou suas afiliadas.
-Privacidade
-Termos
-Preferências de cookies
+**
+[p585600@cadsvitrlx100 ~]$ ssh 10.116.89.101
+#########################################################################
+#          Ambiente administrado e monitorado por Brasilia
+#########################################################################
+#
+# Site: CTC
+# Hostname: sspdeaplux0100.caixa
+# SO Release: Solaris 11.4.53.132.2
+# Serial Number: AK00289677
+# Memoria Total: 32.00 GB
+# VCPUs: 16 Modelo: SPARC M6-32
+# Control domain: cadcogerux031
+# Ambiente:
+# Descricao: SIGOV Aplicacao SJSAS8
+(p585600@10.116.89.101) Password: #######################################
+Last login: Tue Oct 27 16:17:04 2026 from 10.122.150.31
+Could not chdir to home directory /caixa/usr/p585600: No such file or directory
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$ hostname -i
+usage: hostname [[-t] system_name]
+       hostname [-D]
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$
+**
