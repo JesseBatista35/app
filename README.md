@@ -1,16 +1,55 @@
-Desde segunda-feira, 26/10/2026, ocorre o erro "503 Service Unavailable" e de "CORS" no https://sigcb-frontend-tqs.apps.nprd.caixa/ ao executar quaisquer tentativas de comunicação entre front e backend.
+2026-10-27T14:09:08.3629054Z ##[section]Starting: Verificando Status do Deployment
+2026-10-27T14:09:08.3632439Z ==============================================================================
+2026-10-27T14:09:08.3632529Z Task         : Bash
+2026-10-27T14:09:08.3632576Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-10-27T14:09:08.3632638Z Version      : 3.227.0
+2026-10-27T14:09:08.3632690Z Author       : Microsoft Corporation
+2026-10-27T14:09:08.3632836Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-10-27T14:09:08.3632922Z ==============================================================================
+2026-10-27T14:09:08.4771841Z Generating script.
+2026-10-27T14:09:08.4782087Z ========================== Starting Command Output ===========================
+2026-10-27T14:09:08.4789315Z [command]/bin/bash /opt/ads-agent/_work/_temp/3e6c229e-6674-4fc9-9ed5-60914bff5fc8.sh
+2026-10-27T14:09:08.7244960Z Waiting for rollout to finish: 0 out of 1 new replicas have been updated...
+2026-10-27T14:09:10.3622292Z Waiting for rollout to finish: 0 out of 1 new replicas have been updated...
+2026-10-27T14:09:10.5589312Z Waiting for rollout to finish: 1 old replicas are pending termination...
+2026-10-27T14:14:08.7248491Z E1027 11:14:08.724172   44290 streamwatcher.go:109] Unable to decode an event from the watch stream: net/http: request canceled (Client.Timeout exceeded while reading body)
+2026-10-27T14:14:08.7250418Z error: watch closed before Until timeout
+2026-10-27T14:14:08.7284325Z A aplicação não foi iniciada com sucesso!
+2026-10-27T14:14:08.7285447Z Os logs da aplicação estão disponíveis na próxima task: Logs da Aplicação
+2026-10-27T14:14:08.7328192Z ##[error]Bash exited with code '1'.
+2026-10-27T14:14:08.7337066Z ##[section]Finishing: Verificando Status do Deployment
 
-Prints compilados em arquivo PDF anexo. Testes realizados em conexão Remota (VPN) e local, tal como em 3 navegadores distintos (Edge, Firefox, Chrome).
+
+2026-10-27T14:09:08.3629054Z ##[section]Starting: Verificando Status do Deployment
+2026-10-27T14:09:08.3632439Z ==============================================================================
+2026-10-27T14:09:08.3632529Z Task         : Bash
+2026-10-27T14:09:08.3632576Z Description  : Run a Bash script on macOS, Linux, or Windows
+2026-10-27T14:09:08.3632638Z Version      : 3.227.0
+2026-10-27T14:09:08.3632690Z Author       : Microsoft Corporation
+2026-10-27T14:09:08.3632836Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+2026-10-27T14:09:08.3632922Z ==============================================================================
+2026-10-27T14:09:08.4771841Z Generating script.
+2026-10-27T14:09:08.4782087Z ========================== Starting Command Output ===========================
+2026-10-27T14:09:08.4789315Z [command]/bin/bash /opt/ads-agent/_work/_temp/3e6c229e-6674-4fc9-9ed5-60914bff5fc8.sh
+2026-10-27T14:09:08.7244960Z Waiting for rollout to finish: 0 out of 1 new replicas have been updated...
+2026-10-27T14:09:10.3622292Z Waiting for rollout to finish: 0 out of 1 new replicas have been updated...
+2026-10-27T14:09:10.5589312Z Waiting for rollout to finish: 1 old replicas are pending termination...
+2026-10-27T14:14:08.7248491Z E1027 11:14:08.724172   44290 streamwatcher.go:109] Unable to decode an event from the watch stream: net/http: request canceled (Client.Timeout exceeded while reading body)
+2026-10-27T14:14:08.7250418Z error: watch closed before Until timeout
+2026-10-27T14:14:08.7284325Z A aplicação não foi iniciada com sucesso!
+2026-10-27T14:14:08.7285447Z Os logs da aplicação estão disponíveis na próxima task: Logs da Aplicação
+2026-10-27T14:14:08.7328192Z ##[error]Bash exited with code '1'.
+2026-10-27T14:14:08.7337066Z ##[section]Finishing: Verificando Status do Deployment
 
 
 
-<img width="1378" height="689" alt="image" src="https://github.com/user-attachments/assets/3149ff6d-9b7a-4b3e-9924-83088766c06d" />
+exec java -Dquarkus.http.host=0.0.0.0 -Dquarkus.http.port=8080 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djavax.net.ssl.trustStore=/deployments/caixa-truststore-cedesbr_azurepush_atualizado.jks -javaagent:/opt/apm_agent/elastic-apm-agent.jar -Delastic.apm.config_file=/opt/apm_agent/elasticapm.properties -Delastic.apm.service_name=sispi -Delastic.apm.environment=des -Delastic.apm.application_packages=br.gov.caixa -Delastic.apm.server_urls=http://apm-server-devops.apps.produtos4.caixa -Delastic.apm.global_labels=deployment=sispi-qrcode-api-validador -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:+ExitOnOutOfMemoryError -cp . -jar /deployments/quarkus-run.jar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8 -javaagent:/otel-auto-instrumentation-java-sispi-qrcode-api-validador-des/javaagent.jar
+[otel.javaagent 2026-10-27 11:48:10:721 -0300] [main] INFO io.opentelemetry.javaagent.tooling.VersionLogger - opentelemetry-javaagent - version: 2.12.0
+
+<img width="1633" height="792" alt="image" src="https://github.com/user-attachments/assets/9789acfa-5d62-4019-9471-f13db2108f85" />
 
 
-<img width="1388" height="585" alt="image" src="https://github.com/user-attachments/assets/3cf2ac17-7ff6-4dc6-9257-7422dbcf1665" />
 
 
-<img width="1386" height="587" alt="image" src="https://github.com/user-attachments/assets/ad02c4c3-79a1-465f-9d1c-be0f7ed00360" />
 
-
-<img width="452" height="791" alt="image" src="https://github.com/user-attachments/assets/8da9233a-3340-48c4-a5ef-e20a3db9b817" />
