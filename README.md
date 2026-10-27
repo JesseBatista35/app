@@ -12,3 +12,4 @@ O DAS também não alcança as instâncias dsv01 a dsv11 (EEADM0302).
 Situação atual: DAS das01 em execução. Os arquivos NSS do domínio permanecem como estavam, com backup em ~sjsas8/bkp_nss_20261027/. O undeploy não foi realizado.
 
 Pendência / encaminhamento: regerar o certificado s1as no NSS do domínio (/opt/SUNWas8/domains/das01/config) com o certutil, remover o ~sjsas8/.asadmintruststore, reiniciar o DAS e sincronizar os node agents. O procedimento exige a master password do domínio das01, que não está disponível para a equipe CESTI. A demanda deve ser direcionada à equipe responsável pela administração do SJSAS8/SIGOV que detém essa senha. Concluída a troca do certificado, o undeploy pode ser executado normalmente.
+
