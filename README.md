@@ -1,86 +1,303 @@
-
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ POD=sispi-qrcode-api-validador-des-312-mthvm
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc exec $POD -n sispi-des -c sispi-qrcode-api-validador-des -- jcmd 1 Thread.print > /tmp/td-312.txt 2>&1
--sh-4.2$ head -5 /tmp/td-312.txt; grep -A 30 '"main"' /tmp/td-312.txt
-time="2026-10-27T12:10:38-03:00" level=error msg="exec failed: unable to start container process: exec: \"jcmd\": executable file not found in $PATH"
-command terminated with exit code 255
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc exec $POD -n sispi-des -c sispi-qrcode-api-validador-des -- env | grep -E 'LD_PRELOAD|DT_'
-DT_NETWORK_ZONE=pix-ocp-onprem-nprd
-LD_PRELOAD=/opt/dynatrace/oneagent-paas/agent/lib64/liboneagentproc.so
-SISPI_QRCODE_QDT_RETRY=3
-DT_STORAGE=/var/lib/dynatrace/oneagent
-DT_DEPLOYMENT_METADATA=orchestration_tech=Operator-cloud_native_fullstack;script_version=v1.11.0;orchestrator_id=0b09fe8a-b6d6-4067-90f7-931fcb8fd5b7
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get pod $POD -n sispi-des -o jsonpath='{.metadata.annotations}' | tr ',' '\n' | grep -i dynatrace
-map[istio.io/rev:pix-mesh k8s.v1.cni.cncf.io/networks:v2-5-istio-cni metadata-enrichment.dynatrace.com/injected:true prometheus.io/scrape:true traffic.sidecar.istio.io/includeInboundPorts:* traffic.sidecar.istio.io/includeOutboundIPRanges:* openshift.io/deployment-config.name:sispi-qrcode-api-validador-des openshift.io/deployment.name:sispi-qrcode-api-validador-des-312 openshift.io/generated-by:OpenShiftNewApp prometheus.io/port:15020 dynakube.dynatrace.com/injected:true kubectl.kubernetes.io/default-container:sispi-qrcode-api-validador-des kubectl.kubernetes.io/default-logs-container:sispi-qrcode-api-validador-des oneagent.dynatrace.com/injected:true sidecar.istio.io/inject:true sidecar.istio.io/interceptionMode:REDIRECT traffic.sidecar.istio.io/excludeInboundPorts:15090
-}] metadata.dynatrace.com:{"k8s.workload.kind":"deploymentconfig"
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get pod sispi-api-fabrica-ids-des-37-cv5d8 -n sispi-des -o jsonpath='{range .spec.initContainers[*]}{.name}{"\n"}{end}'
-secrets-agent-sidecar
-secrets-check
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc patch dc/sispi-qrcode-api-validador-des -n sispi-des --type=merge \
->   -p '{"spec":{"template":{"metadata":{"annotations":{"oneagent.dynatrace.com/inject":"false"}}}}}'
-deploymentconfig.apps.openshift.io/sispi-qrcode-api-validador-des patched
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc set env dc/sispi-qrcode-api-validador-des -n sispi-des -c sispi-qrcode-api-validador-des JAVA_OPTS_MONITORING-
-deploymentconfig.apps.openshift.io/sispi-qrcode-api-validador-des updated
--sh-4.2$
--sh-4.2$
--sh-4.2$
+A regra 10.116.221.183 -> 10.116.100.127:1433/TCP (CRQ000001516018) foi validada no CNPRDFW001-1, porém o tráfego real da origem continua sem resposta. 
+ 
+Realizado o teste TCP a partir do pod sipdm-api-estudante-des (namespace sipdm-des, egress IP 10.116.221.183 confirmado via netnamespace) para 10.116.100.127:1433 expira sem resposta (timeout). 
+ 
+O serviço está disponível no destino: o teste a partir do pod sipdm-api-estudante-tqs (egress IP [IP do TQS]) para 10.116.100.127:1433 retorna sucesso. 
+ 
+Solicitamos verificar o caminho efetivo da origem 10.116.221.183 até o destino, incluindo outros firewalls no trajeto, e, caso a rede esteja liberada, indicar se há filtro de origem no servidor de destino.
 
 
 
-exec java -Dquarkus.http.host=0.0.0.0 -Dquarkus.http.port=8080 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djavax.net.ssl.trustStore=/deployments/caixa-truststore-cedesbr_azurepush_atualizado.jks -javaagent:/opt/apm_agent/elastic-apm-agent.jar -Delastic.apm.config_file=/opt/apm_agent/elasticapm.properties -Delastic.apm.service_name=sispi -Delastic.apm.environment=des -Delastic.apm.application_packages=br.gov.caixa -Delastic.apm.server_urls=http://apm-server-devops.apps.produtos4.caixa -Delastic.apm.global_labels=deployment=sispi-qrcode-api-validador -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:+ExitOnOutOfMemoryError -cp . -jar /deployments/quarkus-run.jar
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
-WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
-__  ____  __  _____   ___  __ ____  ______ 
- --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
- -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
---\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
-2026-10-27 12:07:34,032 WARN  [] [io.qua.config] (main) Unrecognized configuration key "quarkus.http.auth.permission.paths" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
-2026-10-27 12:07:34,033 WARN  [] [io.qua.config] (main) Unrecognized configuration key "quarkus.http.auth.permission.policy" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
-2026-10-27 12:09:58,234 WARN  [] [br.gov.cai.sis.dao.CacheCertificados] (main) [CacheCertificados] Cache Caffeine iniciado: maxSize=10000 em: 27/10/2026 12:09:58
-2026-10-27 12:09:58,931 WARN  [] [br.gov.cai.sis.dao.CacheCertificados] (main) [CacheCertificados] Carga de Certificados concluido: 1184 certificados carregados em: 27/10/2026 12:09:58
-2026-10-27 12:09:59,050 WARN  [] [br.gov.cai.sis.ser.QRCodeChavesAssinatura] (executor-thread-0) [QRCodeChavesAssinatura] Cache JKU inicializado: maxSize=10000 em: 27/10/2026 12:09:59
-2026-10-27 12:09:59,051 WARN  [] [br.gov.cai.sis.ser.QRCodeChavesAssinatura] (executor-thread-0) [QRCodeChavesAssinatura] Reinicializando cache JKU por agendamento em: 27/10/2026 12:09:59
-2026-10-27 12:09:59,052 WARN  [] [br.gov.cai.sis.ser.QRCodeChavesAssinatura] (executor-thread-0) [QRCodeChavesAssinatura] Cache JKU reinicializado: maxSize=10000 em: 27/10/2026 12:09:59
-2026-10-27 12:09:59,053 WARN  [] [br.gov.cai.sis.dao.CacheCertificados] (executor-thread-1) [CacheCertificados] Reinicializando cache por agendamento em: 27/10/2026 12:09:59
-2026-10-27 12:09:59,168 INFO  [] [io.quarkus] (main) sispi-qrcode-api-validador 0.0.1 on JVM (powered by Quarkus 2.6.2.Final) started in 146.108s. Listening on: http://0.0.0.0:8080
-2026-10-27 12:09:59,168 INFO  [] [io.quarkus] (main) Profile prod activated. 
-2026-10-27 12:09:59,169 INFO  [] [io.quarkus] (main) Installed features: [agroal, cache, cdi, hibernate-orm, jdbc-oracle, narayana-jta, oidc, rest-client, rest-client-jackson, resteasy, resteasy-jackson, scheduler, security, servlet, smallrye-context-propagation, smallrye-fault-tolerance, smallrye-health, smallrye-metrics, smallrye-openapi, swagger-ui, vertx]
-2026-10-27 12:09:59,420 WARN  [] [br.gov.cai.sis.dao.CacheCertificados] (executor-thread-1) [CacheCertificados] Carga de Certificados concluido: 1184 certificados carregados em: 27/10/2026 12:09:59
-2026-10-27 12:10:29,533 INFO  [01bdc0ac-1332-4326-860d-d38a86a1c060] [br.gov.cai.sis.fil.RequestLoggingFilter] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=05ff2cab62eb7a91486a4b7fa0c3db8c, dt.span_id=d9aaa40a24a060ec] [REQUEST][INICIO] id=01bdc0ac-1332-4326-860d-d38a86a1c060 endToEndId=E00360305202610271510b079caf6372 path=/v5/validar-dinamico copiaeCola=00020101021226920014br.gov.bcb.pix2570pix-qrcode-h.caixa.gov.br/api/v2/cobv/721b99516b5847bfa45825f35d66821f5204000053039865802BR5920MARILIAN SANTY - ATC6009PARINTINS62070503***6304B180 dataPagamento=2026-10-27
-2026-10-27 12:10:30,146 INFO  [01bdc0ac-1332-4326-860d-d38a86a1c060] [br.gov.cai.sis.ser.PayloadService] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=05ff2cab62eb7a91486a4b7fa0c3db8c, dt.span_id=d9aaa40a24a060ec] [MONITORAMENTO] [DURACAO: 373] [DOMINIO: sispi-qrcode-api-externo-des:8080] [STATUSCODE: 200]
-2026-10-27 12:10:30,329 WARN  [01bdc0ac-1332-4326-860d-d38a86a1c060] [br.gov.cai.sis.ser.QRCodeChavesAssinatura] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=05ff2cab62eb7a91486a4b7fa0c3db8c, dt.span_id=d9aaa40a24a060ec] [QRCodeChavesAssinatura] Cache JKU atualizado: thumbprint=http://sispi-qrcode-api-externo-des:8080/api/v2/spi/chaves em: 27/10/2026 12:10:30
-2026-10-27 12:10:30,535 WARN  [01bdc0ac-1332-4326-860d-d38a86a1c060] [br.gov.cai.sis.ser.DictService] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=05ff2cab62eb7a91486a4b7fa0c3db8c, dt.span_id=d9aaa40a24a060ec] [VALIDADORV4DICT] Cpf:60652686311 EndToEndId: E00360305202610271510b079caf6372 Chave 81763286000169
-2026-10-27 12:10:31,358 INFO  [01bdc0ac-1332-4326-860d-d38a86a1c060] [br.gov.cai.sis.fil.RequestLoggingFilter] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=05ff2cab62eb7a91486a4b7fa0c3db8c, dt.span_id=25c6150cf37cd198] [REQUEST][FIM] id=01bdc0ac-1332-4326-860d-d38a86a1c060 endToEndId=E00360305202610271510b079caf6372 path=/v5/validar-dinamico copiaeCola=00020101021226920014br.gov.bcb.pix2570pix-qrcode-h.caixa.gov.br/api/v2/cobv/721b99516b5847bfa45825f35d66821f5204000053039865802BR5920MARILIAN SANTY - ATC6009PARINTINS62070503***6304B180 status=200 duracao=1825ms
-2026-10-27 12:10:31,373 WARN  [01bdc0ac-1332-4326-860d-d38a86a1c060] [br.gov.cai.sis.ser.ValidacaoService] (pool-12-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=05ff2cab62eb7a91486a4b7fa0c3db8c, dt.span_id=1d2a57e4228b31a8] Salvando log da validacao :: QRCodeValidacao(id=null, solicitacao=4558323, inclusao=Tue Oct 27 12:10:31 BRT 2026, endereco=pix-qrcode-h.caixa.gov.br/api/v2/cobv/721b99516b5847bfa45825f35d66821f, jws=eyJhbGciOiJSUzI1NiIsIng1dCNTMjU2IjoiVTV0YW1WVE1aOUN6VlA4c2ZvNE5SZkRPRjlNWC1MZnl3ei1fbGFtR1VRQSIsIng1dCI6ImdoMkJiZk1QeDdnS3g1Y3BsUlMzQzhEckd3byIsImtpZCI6IjEiLCJqa3UiOiJodHRwczovL3BpeC1xcmNvZGUtaC5jYWl4YS5nb3YuYnIvYXBpL3YyL3NwaS9jaGF2ZXMifQ.ewogICJjYWxlbmRhcmlvIjogewogICAgImNyaWFjYW8iOiAiMjAyNi0xMC0yN1QxMjowOToyMy43MDgtMDM6MDAiLAogICAgImFwcmVzZW50YWNhbyI6ICIyMDI2LTEwLTI3VDEyOjEwOjMwLjExMC0wMzowMCIsCiAgICAiZGF0YURlVmVuY2ltZW50byI6ICIyMDI2LTEwLTMwIiwKICAgICJ2YWxpZGFkZUFwb3NWZW5jaW1lbnRvIjogMzAKICB9LAogICJ0eGlkIjogIlFEMjAyNjEwMjcxMjA5MjMxMDIzMGRjOGFhZTY0ZDk4IiwKICAiZGV2ZWRvciI6IHsKICAgICJjbnBqIjogIjgxNzYzMjg2MDAwMTY5IiwKICAgICJub21lIjogIlRlc3RlMSIKICB9LAogICJyZWNlYmVkb3IiOiB7CiAgICAibG9ncmFkb3VybyI6ICJBTlRPTklPIE1FSVJFTEVTIiwKICAgICJjaWRhZGUiOiAiUEFSSU5USU5TIiwKICAgICJ1ZiI6ICJBTSIsCiAgICAiY2VwIjogIjY5MTUyMDA2IiwKICAgICJjbnBqIjogIjgxNzYzMjg2MDAwMTY5IiwKICAgICJub21lIjogIk1BUklMSUFOIFNBTlRZIC0gQVRDIiwKICAgICJub21lRmFudGFzaWEiOiAiQU5JTUFJUyBQRVJESURPUyBCIgogIH0sCiAgInJldmlzYW8iOiAwLAogICJzdGF0dXMiOiAiQVRJVkEiLAogICJ2YWxvciI6IHsKICAgICJvcmlnaW5hbCI6ICIyMzQuNTYiLAogICAgImZpbmFsIjogIjIzNC41NiIKICB9LAogICJjaGF2ZSI6ICI4MTc2MzI4NjAwMDE2OSIsCiAgImluZm9BZGljaW9uYWlzIjogW10KfQ.bl_2PKb38f4D4QARrBw-reqLp1UUZmhJNx3vJrZuCOEL1c-sx1MEmqi3y9DlnUMx1w6yT3HYbR_LY5HZ-fgJ33y_rj5hP-hdYgvV7FBs4RHSNawdK3K4DRwXuuhdwP4jYdnopAXA_6ivzAHtK2HunTnlDeJJFHcnnihrgCM4LBphkGRlgKIKi8HAEIQdmGaZzfivFmls4H5WFLfbB_s6LcTICkaJ3uFL-bH5_uKA6u-mJzCCKqzD6W4bYZyhIl_2fDqW47DqUSfC2N5annm_rlSKBgzDl3gDv8TsIicx2oJfZJG0mqa2nadZgFkXeGsWNIj9eFwEE5jzUDBvO2pZiA, resultado=1, mensagem=Validação concluída com sucesso, fimAFim=E00360305202610271510b079caf6372, duracaoValidacaoMs=1624)
-2026-10-27 12:11:20,725 INFO  [d309035f-319b-4d47-a33f-607591c7833c] [br.gov.cai.sis.fil.RequestLoggingFilter] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=5570d00a2e6b3a043e4c66dc89fbac84, dt.span_id=ad1091c8b168e9f2] [REQUEST][INICIO] id=d309035f-319b-4d47-a33f-607591c7833c endToEndId=E00360305202610271511795d4640c6d path=/v5/validar-dinamico copiaeCola=00020101021226870014br.gov.bcb.pix2565pix-qrcode-h.caixa.gov.br/api/v2/a2193e12a5524a3f8c6b24ed1193228b5204000053039865802BR5916ROBERTA ALVESLIM6009SAO PAULO62070503***630446F4 dataPagamento=2026-10-27
-2026-10-27 12:11:20,778 INFO  [d309035f-319b-4d47-a33f-607591c7833c] [br.gov.cai.sis.ser.PayloadService] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=5570d00a2e6b3a043e4c66dc89fbac84, dt.span_id=ad1091c8b168e9f2] [MONITORAMENTO] [DURACAO: 51] [DOMINIO: sispi-qrcode-api-externo-des:8080] [STATUSCODE: 200]
-2026-10-27 12:11:20,829 WARN  [d309035f-319b-4d47-a33f-607591c7833c] [br.gov.cai.sis.ser.DictService] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=5570d00a2e6b3a043e4c66dc89fbac84, dt.span_id=ad1091c8b168e9f2] [VALIDADORV4DICT] Cpf:45645608674 EndToEndId: E00360305202610271511795d4640c6d Chave 45645608674
-2026-10-27 12:11:21,002 INFO  [d309035f-319b-4d47-a33f-607591c7833c] [br.gov.cai.sis.fil.RequestLoggingFilter] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=5570d00a2e6b3a043e4c66dc89fbac84, dt.span_id=8d32dde0f6380337] [REQUEST][FIM] id=d309035f-319b-4d47-a33f-607591c7833c endToEndId=E00360305202610271511795d4640c6d path=/v5/validar-dinamico copiaeCola=00020101021226870014br.gov.bcb.pix2565pix-qrcode-h.caixa.gov.br/api/v2/a2193e12a5524a3f8c6b24ed1193228b5204000053039865802BR5916ROBERTA ALVESLIM6009SAO PAULO62070503***630446F4 status=200 duracao=277ms
-2026-10-27 12:11:21,002 WARN  [01bdc0ac-1332-4326-860d-d38a86a1c060] [br.gov.cai.sis.ser.ValidacaoService] (pool-12-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=5570d00a2e6b3a043e4c66dc89fbac84, dt.span_id=efa3e013d6b2a323] Salvando log da validacao :: QRCodeValidacao(id=null, solicitacao=4558324, inclusao=Tue Oct 27 12:11:21 BRT 2026, endereco=pix-qrcode-h.caixa.gov.br/api/v2/a2193e12a5524a3f8c6b24ed1193228b, jws=eyJhbGciOiJSUzI1NiIsIng1dCNTMjU2IjoiVTV0YW1WVE1aOUN6VlA4c2ZvNE5SZkRPRjlNWC1MZnl3ei1fbGFtR1VRQSIsIng1dCI6ImdoMkJiZk1QeDdnS3g1Y3BsUlMzQzhEckd3byIsImtpZCI6IjEiLCJqa3UiOiJodHRwczovL3BpeC1xcmNvZGUtaC5jYWl4YS5nb3YuYnIvYXBpL3YyL3NwaS9jaGF2ZXMifQ.ewogICJjYWxlbmRhcmlvIjogewogICAgImNyaWFjYW8iOiAiMjAyNi0xMC0yN1QxMjoxMDo1NC41OTgtMDM6MDAiLAogICAgImFwcmVzZW50YWNhbyI6ICIyMDI2LTEwLTI3VDEyOjExOjIwLjc2MC0wMzowMCIsCiAgICAiZXhwaXJhY2FvIjogMzYwMAogIH0sCiAgInR4aWQiOiAiMTc5MzExMzg1NDYxQTA5NzNGRUYxQzRCN0U1MjNCODMiLAogICJyZXZpc2FvIjogMCwKICAiZGV2ZWRvciI6IHsKICAgICJjbnBqIjogIjEyMzQ1Njc4MDAwMTk1IiwKICAgICJub21lIjogIkVtcHJlc2EgZGUgU2VydmnDp29zIFNBIgogIH0sCiAgInN0YXR1cyI6ICJBVElWQSIsCiAgInZhbG9yIjogewogICAgIm9yaWdpbmFsIjogIjM3LjAwIiwKICAgICJtb2RhbGlkYWRlQWx0ZXJhY2FvIjogMQogIH0sCiAgImNoYXZlIjogIjQ1NjQ1NjA4Njc0IiwKICAic29saWNpdGFjYW9QYWdhZG9yIjogIlNlcnZpw6dvIHJlYWxpemFkby4iLAogICJpbmZvQWRpY2lvbmFpcyI6IFtdCn0.Xx_YeH28UcHisP_P1VjiRKQhg5DoGfNlZk_NnROAO9h7c25ozLEQA904ACN6cqJla9qStl9aKdLSXkpbv_tgYkNojcboSr_YQZbJdFNCd-e0Wr91Mofb7wJqRMJUvFxAISF8P4DTnpilL864yVYbr9Ikxnc0rzqr8AzqcffvaVxmQ_aeEjHJo_iRoZN1mVFoAU9rKELYSDkswHvXGQa_wL3N6vI62tE0y6ijkr8J3cbraa-QKECOlXv3gHQa48Yqayc5XPGsRjvEr-Nkxtxk5-pFpI0LYdA87srzTOJ_fhqDvf3tnoL-d9gvt2aFq42K7Fsev82XwO-i0B3wJ5jdeQ, resultado=1, mensagem=Validação concluída com sucesso, fimAFim=E00360305202610271511795d4640c6d, duracaoValidacaoMs=275)
-2026-10-27 12:11:43,124 INFO  [82a26abf-47ef-49f5-88d6-88e24dfd531b] [br.gov.cai.sis.fil.RequestLoggingFilter] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=a002245d1f7e15c65ae21737cec61ca6, dt.span_id=5634d45ddb7d6492] [REQUEST][INICIO] id=82a26abf-47ef-49f5-88d6-88e24dfd531b endToEndId=E003603052026102715115b773c5fe2a path=/v5/validar-dinamico copiaeCola=00020101021226920014br.gov.bcb.pix2570pix-qrcode-h.caixa.gov.br/api/v2/cobv/721b99516b5847bfa45825f35d66821f5204000053039865802BR5920MARILIAN SANTY - ATC6009PARINTINS62070503***6304B180 dataPagamento=2026-10-27
-2026-10-27 12:11:43,225 INFO  [82a26abf-47ef-49f5-88d6-88e24dfd531b] [br.gov.cai.sis.ser.PayloadService] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=a002245d1f7e15c65ae21737cec61ca6, dt.span_id=5634d45ddb7d6492] [MONITORAMENTO] [DURACAO: 58] [DOMINIO: sispi-qrcode-api-externo-des:8080] [STATUSCODE: 200]
-2026-10-27 12:11:43,602 WARN  [82a26abf-47ef-49f5-88d6-88e24dfd531b] [br.gov.cai.sis.ser.DictService] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=a002245d1f7e15c65ae21737cec61ca6, dt.span_id=5634d45ddb7d6492] [VALIDADORV4DICT] Cpf:60652686311 EndToEndId: E003603052026102715115b773c5fe2a Chave 81763286000169
-2026-10-27 12:11:43,743 INFO  [82a26abf-47ef-49f5-88d6-88e24dfd531b] [br.gov.cai.sis.fil.RequestLoggingFilter] (executor-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=a002245d1f7e15c65ae21737cec61ca6, dt.span_id=08a7228e478cc044] [REQUEST][FIM] id=82a26abf-47ef-49f5-88d6-88e24dfd531b endToEndId=E003603052026102715115b773c5fe2a path=/v5/validar-dinamico copiaeCola=00020101021226920014br.gov.bcb.pix2570pix-qrcode-h.caixa.gov.br/api/v2/cobv/721b99516b5847bfa45825f35d66821f5204000053039865802BR5920MARILIAN SANTY - ATC6009PARINTINS62070503***6304B180 status=200 duracao=619ms
-2026-10-27 12:11:43,743 WARN  [01bdc0ac-1332-4326-860d-d38a86a1c060] [br.gov.cai.sis.ser.ValidacaoService] (pool-12-thread-1) [!dt dt.trace_sampled=true, dt.trace_id=a002245d1f7e15c65ae21737cec61ca6, dt.span_id=1f9c03df3b561931] Salvando log da validacao :: QRCodeValidacao(id=null, solicitacao=4558323, inclusao=Tue Oct 27 12:11:43 BRT 2026, endereco=pix-qrcode-h.caixa.gov.br/api/v2/cobv/721b99516b5847bfa45825f35d66821f, jws=eyJhbGciOiJSUzI1NiIsIng1dCNTMjU2IjoiVTV0YW1WVE1aOUN6VlA4c2ZvNE5SZkRPRjlNWC1MZnl3ei1fbGFtR1VRQSIsIng1dCI6ImdoMkJiZk1QeDdnS3g1Y3BsUlMzQzhEckd3byIsImtpZCI6IjEiLCJqa3UiOiJodHRwczovL3BpeC1xcmNvZGUtaC5jYWl4YS5nb3YuYnIvYXBpL3YyL3NwaS9jaGF2ZXMifQ.ewogICJjYWxlbmRhcmlvIjogewogICAgImNyaWFjYW8iOiAiMjAyNi0xMC0yN1QxMjowOToyMy43MDgtMDM6MDAiLAogICAgImFwcmVzZW50YWNhbyI6ICIyMDI2LTEwLTI3VDEyOjExOjQzLjIxNy0wMzowMCIsCiAgICAiZGF0YURlVmVuY2ltZW50byI6ICIyMDI2LTEwLTMwIiwKICAgICJ2YWxpZGFkZUFwb3NWZW5jaW1lbnRvIjogMzAKICB9LAogICJ0eGlkIjogIlFEMjAyNjEwMjcxMjA5MjMxMDIzMGRjOGFhZTY0ZDk4IiwKICAiZGV2ZWRvciI6IHsKICAgICJjbnBqIjogIjgxNzYzMjg2MDAwMTY5IiwKICAgICJub21lIjogIlRlc3RlMSIKICB9LAogICJyZWNlYmVkb3IiOiB7CiAgICAibG9ncmFkb3VybyI6ICJBTlRPTklPIE1FSVJFTEVTIiwKICAgICJjaWRhZGUiOiAiUEFSSU5USU5TIiwKICAgICJ1ZiI6ICJBTSIsCiAgICAiY2VwIjogIjY5MTUyMDA2IiwKICAgICJjbnBqIjogIjgxNzYzMjg2MDAwMTY5IiwKICAgICJub21lIjogIk1BUklMSUFOIFNBTlRZIC0gQVRDIiwKICAgICJub21lRmFudGFzaWEiOiAiQU5JTUFJUyBQRVJESURPUyBCIgogIH0sCiAgInJldmlzYW8iOiAwLAogICJzdGF0dXMiOiAiQVRJVkEiLAogICJ2YWxvciI6IHsKICAgICJvcmlnaW5hbCI6ICIyMzQuNTYiLAogICAgImZpbmFsIjogIjIzNC41NiIKICB9LAogICJjaGF2ZSI6ICI4MTc2MzI4NjAwMDE2OSIsCiAgImluZm9BZGljaW9uYWlzIjogW10KfQ.md-aTGeO0FcSaO7gJDxqIil0uUnHB_u5iejnZx0woLP-ZTUjiNQBfjKeZMNOvQQT-c1W_CvNELEiLCgL-cmVvIzhO2kaJYwLOagUD4RspamIyp43ioTsFh4VRUNFf7sHH6SAjl-KbU6hzpL1FlAcLbL3i8uGRO-x6j-Z8FQ461pr7qITHhkzcHnyXwMd9v9EwrQW8GI37KewZXLB5HsIxal3pdIsAiee4QLh3RpfQELPQDFSBlps5LgLs2TPaZ8BpMV9lZ3M_pyYdd_JAPcR7d3kB4rSZjUAlWQjkh4hBoQ4sTU7J20tBbb4ejGHCxrvV2rz5tDvStQPJAqKnQdxXg, resultado=1, mensagem=Validação concluída com sucesso, fimAFim=E003603052026102715115b773c5fe2a, duracaoValidacaoMs=618)
+1 nova atividade
+9 novas notificações
+Há menu de contexto
+Chat
 
+
+
+
+Não lido
+Canais
+Chats
+Chats de reunião
+Mensagem não lidaÚltima mensagemChats em grupoChat de reuniãoChatFuncionários mencionadosMencionar todosImportanteUrgenteRascunhoRascunhoMudo ativadoReunião em andamentoReunião agora em andamentoVocê não pode enviar mensagens porque não é membro do chat.Não é possível enviar mensagens a este botPrivadoCompartilhadoTem um menu de contextoCanal mencionadoEquipe mencionadaFuncionários mencionadosNão lidoNão lidoReunião em andamentoNão lidoCanalEquipeTem mensagens fixadasVer maisComunidadeMostrar temporariamenteTem um menu de contextoChat com emblemaChats com emblema
+Tem um menu de contexto
+
+Equipes e canais
+
+SIPDM-api-estudante- REGRA DE FW
+
+
+Chat
+
+Compartilhado
+
+Notas
+
+Recapitular
+
+Há menu de contexto
+
+Reunir agora
+
+
+6
+
+
+
+Lista de Mensagens
+imagem por Bruno Kingma Clemente
+Bruno Kingma Clemente
+quinta-feira 15:54
+
+imagem
+
+Bruno Kingma Clemente adicionou Cleomar Barros de Oliveira Junior ao chat.
+Jesse , pode entra aqui por favor, o Adrian... por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+quinta-feira 16:02
+
+Jesse, pode entra aqui por favor, o Adriano da CETEL identificou alguns problemas de configuração na esteira.
+
+Bruno Kingma Clemente   e   Cleomar Barros ... por Jesse Mouta Pereira Batista
+quinta-feira 16:06
+Jesse Mouta Pereira Batista
+
+Bruno Kingma Clemente  e  Cleomar Barros de Oliveira Junior me desculpem eu estou em uma sala de ADDR no momento não consigo entrar, se o Adriano da Silva Fernandes puder identificar aqui os problemas na esteira. eu faço o ajuste. Agradeço
+
+então, Jesse, o Adriano identificou possíve... por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+quinta-feira 16:08
+
+então, Jesse, o Adriano identificou possíveis problemas, mas precisamos conversar com vc junto para ver se esse é o diagnostico mesmo.
+
+que horas vc pode hoje ainda por favor? por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+quinta-feira 16:08
+
+que horas vc pode hoje ainda por favor?
+
+Chamada encerrada às quinta-feira 16:09 após 45 minutos 50 segundos
+Cleomar Barros de Oliveira Junior por Jesse Mouta Pereira Batista
+quinta-feira 16:55
+Jesse Mouta Pereira Batista
+
+Cleomar Barros de Oliveira Junior
+
+boa tarde por Jesse Mouta Pereira Batista
+quinta-feira 16:55
+Jesse Mouta Pereira Batista
+
+boa tarde
+
+surgiu uma janela agora por Jesse Mouta Pereira Batista
+quinta-feira 16:55
+Jesse Mouta Pereira Batista
+
+surgiu uma janela agora
+
+opa, então bora por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+quinta-feira 16:55
+
+opa, então bora
+
+Reunião encerrada quinta-feira 17:12 após 16 minutos 35 segundos, SIPDM-api-estudante- REGRA DE FW, quinta-feira, 22 de outubro de 2026 17:08 - 17:12, link para exibir a recapitulação, 1 arquivo, Pressione Enter para exibir mais
+Notas foram criadas nesse chat.
+Notas
+Jesse Mouta Pereira Batista alterou o nome do grupo para SIPDM-api-estudante- REGRA DE FW.
+Adriano da Silva Fernandes , só para confi... por Jesse Mouta Pereira Batista
+quinta-feira 17:17
+Jesse Mouta Pereira Batista
+
+Adriano da Silva Fernandes, só para confirmar: o teste que falha é do pod (origem 10.116.221.183) para 10.116.100.127:1433, sem VPN de usuário no meio. A nova regra é no túnel/firewall entre CTC e o site do Rio, para essa mesma origem e destino?”
+
+Adriano da Silva Fernandes por Jesse Mouta Pereira Batista
+quinta-feira 17:29
+Jesse Mouta Pereira Batista
+
+Adriano da Silva Fernandes
+
+Todos , bom dia por Jesse Mouta Pereira Batista
+09:21
+Jesse Mouta Pereira Batista
+
+Todos, bom dia
+
+Jesse Mouta Pereira Batista adicionou Thiago Rafael Cavalcante Pereira ao chat e compartilhou todo o histórico de chats.
+Jesse Mouta Pereira Batista adicionou Flavio de Almeida Gagliardi ao chat e compartilhou todo o histórico de chats.
+Cleomar Barros de Oliveira Junior , estou n... por Jesse Mouta Pereira Batista
+09:22
+Jesse Mouta Pereira Batista
+
+Cleomar Barros de Oliveira Junior, estou no aguardo da confirmação acima para podermos prosseguir com a solicitação da regra. 
+
+Bom dia pessoal,  Adriano , pode ajudar a g... por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+09:23
+
+Bom dia pessoal, Adriano, pode ajudar a gente com essa informação, estamos bem atrasado pessoal, peço o apoio e cerelidade de vcs.
+
+BOM DIA !!! por Adriano da Silva Fernandes
+Adriano da Silva Fernandes
+09:31
+
+BOM DIA !!!
+
+podemos testa se esta funcionando?? por Adriano da Silva Fernandes
+Adriano da Silva Fernandes
+09:38
+
+podemos testa se esta funcionando??
+
+Adriano da Silva Fernandes , bom dia tudo b... por Jesse Mouta Pereira Batista
+09:40
+Jesse Mouta Pereira Batista
+
+Adriano da Silva Fernandes, bom dia tudo bem? ainda não foi solicitada a regra de FW, precisamos da confirmação:
+
+ 
+
+o teste que falha é do pod (origem 10.116.221.183) para 10.116.100.127:1433, sem VPN de usuário no meio. A nova regra é no túnel/firewall entre CTC e o site do Rio, para essa mesma origem e destino?”
+
+sim  por Adriano da Silva Fernandes
+Adriano da Silva Fernandes
+09:42
+
+sim 
+
+vc lembra o ID dessa regra ??? por Adriano da Silva Fernandes
+Adriano da Silva Fernandes
+09:43
+
+vc lembra o ID dessa regra ???
+
+imagem por Jesse Mouta Pereira Batista
+09:51
+Jesse Mouta Pereira Batista
+
+imagem
+
+da primeira que foi solicitada é essa acima por Jesse Mouta Pereira Batista
+09:51
+Jesse Mouta Pereira Batista
+
+da primeira que foi solicitada é essa acima.
+
+Adriano , conseguiu avaliar? por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+11:25
+
+Adriano, conseguiu avaliar?
+
+na verdade não entendi o que vc está avalia... por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+11:27
+
+na verdade não entendi o que vc está avaliando da solicitação anterior, nós já não identificamos que a regra estava errada? Entendi que só precisava dessa confirmação de origem e destino para o Jesse criar outra solicitação
+
+Início da citação, Jesse Mouta Pereira Bati... por Adriano da Silva Fernandes
+Adriano da Silva Fernandes
+11:40
+
+Jesse Mouta Pereira Batista
+27/10/2026 09:40
+Adriano da Silva Fernandes, bom dia tudo bem? ainda não foi solicitada a regra de FW, precisamos da confirmação: o teste que falha é do pod (origem 10.116.221.183) para 10.116.100.127:1433, sem VPN…
+isso aqui mesmo 
+
+Jesse , pode dar prosseguimento na abertura... por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+11:46
+
+Jesse, pode dar prosseguimento na abertura do novo item por favor?
+
+
+👍
+1 Curtir reação.
+
+quem seria o responsável pela aprovação e a... por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+11:46
+
+quem seria o responsável pela aprovação e autorização da CRQ?
+
+Cleomar Barros de Oliveira Junior , posso s... por Jesse Mouta Pereira Batista
+12:19
+Jesse Mouta Pereira Batista
+
+Cleomar Barros de Oliveira Junior, posso sim. preciso que seja aberto uma nova REQ para que seja atrelado ao nova solicitação de regra de fw. pode colocar no campo da nota que é aos meus cuidados, que jÁ vou providenciar a solicitação; 
+
+Início da citação, Cleomar Barros de Olivei... por Jesse Mouta Pereira Batista
+12:19
+Jesse Mouta Pereira Batista
+
+Cleomar Barros de Oliveira Junior
+27/10/2026 11:46
+quem seria o responsável pela aprovação e autorização da CRQ?
+quando eu abro coloco o Flavio Gagliardi e o Reinaldo Barboza
+
+Início da citação, Jesse Mouta Pereira Bati... por Flavio de Almeida Gagliardi
+Flavio de Almeida Gagliardi
+12:20
+
+Jesse Mouta Pereira Batista
+27/10/2026 12:19
+quando eu abro coloco o Flavio Gagliardi e o Reinaldo Barboza
+pode nos colocar Jesse Mouta Pereira Batista, eu peço aqui pro Reinaldo aprovar e gero a mudança na sequencia
+
+
+👍
+1 Curtir reação.
+
+Início da citação, Flavio de Almeida Gaglia... por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+12:52
+
+Flavio de Almeida Gagliardi
+27/10/2026 12:20
+pode nos colocar Jesse Mouta Pereira Batista, eu peço aqui pro Reinaldo aprovar e gero a mudança na sequencia
+obrigado Flavio
+
+
+👍
+1 Curtir reação.
+
+Bruno , pode abrir uma nova REQ por favor? por Cleomar Barros de Oliveira Junior
+Cleomar Barros de Oliveira Junior
+12:53
+
+Bruno, pode abrir uma nova REQ por favor?
+
+Última lida
+REQ000146876335 por Bruno Kingma Clemente
+Bruno Kingma Clemente
+13:04
+
+REQ000146876335
+
+Início da citação, Bruno Kingma Clemente, 2... por Thiago Rafael Cavalcante Pereira
+Thiago Rafael Cavalcante Pereira
+13:22
+
+Bruno Kingma Clemente
+27/10/2026 13:04
+REQ000146876335
+Jesse Mouta Pereira Batista já coloquei a demanda na sua fila, obg
+
+tem menu de contexto
+
+
+
+👍
+
+❤️
+
+😆
+
+😮
+
+
+
+
+
+entao o correto é abrimos uma nova regra de firal npe o adriano confimou me ajuda a abrir a regra
