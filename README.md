@@ -1,13 +1,24 @@
-netstat -an -f inet | grep 14848
 
-sudo -u sjsas8 /opt/SUNWas8/bin/asadmin list-domains
+-bash-5.1$ netstat -an -f inet | grep 14848
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$ sudo -u sjsas8 /opt/SUNWas8/bin/asadmin list-domains
 
-grep -n 'admin-listener' <dir_dominio>/config/domain.xml
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
 
-sudo -u sjsas8 /opt/SUNWas8/bin/asadmin start-domain --user ASadmin --passwordfile /opt/SUNWas8/config/passwordfile.conf <nome_dominio>
-tail -200 <dir_dominio>/logs/server.log
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
 
-sudo -u sjsas8 /opt/SUNWas8/bin/asadmin list-instances --host localhost --port 14848 --user ASadmin --passwordfile /opt/SUNWas8/config/passwordfile.conf
-sudo -u sjsas8 /opt/SUNWas8/bin/asadmin list-clusters   --host localhost --port 14848 --user ASadmin --passwordfile /opt/SUNWas8/config/passwordfile.conf
-sudo -u sjsas8 /opt/SUNWas8/bin/asadmin list-components --target dsv01 --host localhost --port 14848 --user ASadmin --passwordfile /opt/SUNWas8/config/passwordfile.conf
-
+Senha SUDO:
+das01 starting
+Command list-domains executed successfully.
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$ grep -n 'admin-listener' <dir_dominio>/config/domain.xml
+-bash: dir_dominio: No such file or directory
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$
+-bash-5.1$
