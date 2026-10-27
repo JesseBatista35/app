@@ -1,5 +1,4 @@
-<img width="1545" height="689" alt="image" src="https://github.com/user-attachments/assets/10c4ba66-741b-4f5e-843d-b1a66c8eb052" />
+<img width="1902" height="925" alt="image" src="https://github.com/user-attachments/assets/0637df8a-58b0-4cd2-bdf9-c6ce0cd49e93" />
 
 
-
-Como ta? Estou com uns chamados de AWS e queria saber se ja pegou esse erro antes de investigar
+ele nao exite posso criar
