@@ -162,4 +162,7 @@ root@sspdeaplux0100:/# sudo -u sjsas8 kill -9 7248
 Sinto muito, usu▒rio root n▒o tem permiss▒o para executar "/bin/kill -9 7248" como sjsas8 em sspdeaplux0100.
 root@sspdeaplux0100:/#
 root@sspdeaplux0100:/#
+root@sspdeaplux0100:/# kill -9 7248
+root@sspdeaplux0100:/#
+root@sspdeaplux0100:/#
 root@sspdeaplux0100:/#
