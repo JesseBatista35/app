@@ -1,16 +1,24 @@
-<img width="1588" height="835" alt="image" src="https://github.com/user-attachments/assets/8bce0f6c-6979-4729-b481-e4401df7911b" />
+oc rollout history dc/sispi-qrcode-api-validador-des -n sispi-des --revision=312 | grep -E 'Image|inject|cpu|Liveness|JAVA_'
 
 
-tem outra pessoam mechendo na aplicação rodam um novo deploy
+POD=sispi-qrcode-api-validador-des-312-mthvm
 
+# 1. Onde a main está presa
+oc exec $POD -n sispi-des -c sispi-qrcode-api-validador-des -- jcmd 1 Thread.print > /tmp/td-312.txt 2>&1
+head -5 /tmp/td-312.txt; grep -A 30 '"main"' /tmp/td-312.txt
 
-sispi-qrcode-api-validador-des-312-mthvm
-Running
+# 2. O Dynatrace está injetado?
+oc exec $POD -n sispi-des -c sispi-qrcode-api-validador-des -- env | grep -E 'LD_PRELOAD|DT_'
+oc get pod $POD -n sispi-des -o jsonpath='{.metadata.annotations}' | tr ',' '\n' | grep -i dynatrace
 
+# 3. O Dynatrace já existia num pod antigo que está saudável?
+oc get pod sispi-api-fabrica-ids-des-37-cv5d8 -n sispi-des -o jsonpath='{range .spec.initContainers[*]}{.name}{"\n"}{end}'
 
-3 lines
-exec java -Dquarkus.http.host=0.0.0.0 -Dquarkus.http.port=8080 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djavax.net.ssl.trustStore=/deployments/caixa-truststore-cedesbr_azurepush_atualizado.jks -javaagent:/opt/apm_agent/elastic-apm-agent.jar -Delastic.apm.config_file=/opt/apm_agent/elasticapm.properties -Delastic.apm.service_name=sispi -Delastic.apm.environment=des -Delastic.apm.application_packages=br.gov.caixa -Delastic.apm.server_urls=http://apm-server-devops.apps.produtos4.caixa -Delastic.apm.global_labels=deployment=sispi-qrcode-api-validador -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:+ExitOnOutOfMemoryError -cp . -jar /deployments/quarkus-run.jar
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
-WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+# A) sem Dynatrace
+oc patch dc/sispi-qrcode-api-validador-des -n sispi-des --type=merge \
+  -p '{"spec":{"template":{"metadata":{"annotations":{"oneagent.dynatrace.com/inject":"false"}}}}}'
+
+# B) sem Elastic APM (só se o A não resolver)
+oc set env dc/sispi-qrcode-api-validador-des -n sispi-des -c sispi-qrcode-api-validador-des JAVA_OPTS_MONITORING-
 
 
