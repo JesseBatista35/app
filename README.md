@@ -1,24 +1,12 @@
+ls -d /var/opt/SUNWappserver*/domains/das01 /opt/SUNWas8/domains/das01 2>/dev/null
 
--bash-5.1$ netstat -an -f inet | grep 14848
--bash-5.1$
--bash-5.1$
--bash-5.1$ sudo -u sjsas8 /opt/SUNWas8/bin/asadmin list-domains
+grep -i 'AS_DEF_DOMAINS_PATH' /opt/SUNWas8/config/asenv.conf
 
-We trust you have received the usual lecture from the local System
-Administrator. It usually boils down to these three things:
+ps -ef | grep -i das01 | grep -v grep
+ps -ef | grep -i appservDAS | grep -v grep
 
-    #1) Respect the privacy of others.
-    #2) Think before you type.
-    #3) With great power comes great responsibility.
+tail -200 $DOM/logs/server.log
+ls -l $DOM/config/ | grep -i -E 'lock|pid'
+grep -n 'admin-listener' $DOM/config/domain.xml
+df -h $DOM /tmp /var
 
-Senha SUDO:
-das01 starting
-Command list-domains executed successfully.
--bash-5.1$
--bash-5.1$
--bash-5.1$ grep -n 'admin-listener' <dir_dominio>/config/domain.xml
--bash: dir_dominio: No such file or directory
--bash-5.1$
--bash-5.1$
--bash-5.1$
--bash-5.1$
