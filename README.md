@@ -1,15 +1,11 @@
-tendimento referente à falha de deploy da aplicação SIPGC-api-seguranca no ambiente TQS, com pod preso em Init:CrashLoopBackOff e, anteriormente, falha de criação do DeploymentConfig.
+O pipeline SINCH-web-angular20-intra (6710) não executava os testes unitários, por isso a cobertura do código novo chegava como 0% no Sonar da esteira e o Quality Gate reprovava (TE102). A branch Cesti-test001 passava apenas por ter poucas linhas alteradas.
 
-Causa raiz 1 — DeploymentConfig inválido (mountPath duplicado):
-Identificado erro spec.template.spec.containers[0].volumeMounts[1].mountPath: Invalid value: must be unique na task de criação de volumes. Causa: coexistência de duas variáveis de senha de banco no grupo de variáveis SIPGC-API-SEGURANCA-TQS — a variável legada _SECRET.DB_PASSWORD_001 (padrão antigo de token) e a variável atual _SECRET.DB_PASSWORD_0010 (padrão vigente, igual ao ambiente DES). Cada variável com prefixo _SECRET. gera um volume/mount automático, e a duplicidade de senha de banco gerava conflito de path.
+Ajustes realizados no pipeline:
 
-Ação 1: Removida a variável legada _SECRET.DB_PASSWORD_001 da library SIPGC-API-SEGURANCA-TQS, mantendo apenas _SECRET.DB_PASSWORD_0010. Resolveu o erro de criação do DeploymentConfig.
+Inclusão de etapa para instalar o Chromium no agente de build, necessário para o Karma (o agente não possui navegador).
+Alteração do NG_GOAL para executar npm test -- --watch=false --code-coverage --browsers=ChromeHeadlessCI antes do build.
+Criação da variável SONAR_PROPERTIES no pipeline com sonar.javascript.lcov.reportPaths, para o Sonar ler a cobertura.
 
-Causa raiz 2 — Falha de autenticação no BeyondTrust:
-Após a correção do mount, o pod passou a ser criado, porém ficava preso em Init:CrashLoopBackOff devido à falha do init container secrets-agent-sidecar em autenticar no BeyondTrust (Failed to authenticate due to one or more authentication rules), impedindo o download dos secrets. Identificado que a regra de autenticação do client BeyondTrust (97f8f98c-9ce6-4a2f-bdf0-be70af3218ee, app TQS) não reconhecia o IP de origem real das chamadas partindo do cluster (10.116.222.238).
+Resultado: análise na branch atualizacao-angular com Quality Gate aprovado (97,5% de cobertura em 659 linhas novas) e build concluído.
 
-Ação 2: Escalado para o time de Segurança (BeyondTrust/vault). Lucas Vinicius de Almeida Santos ajustou a regra de IP de origem no cofre, liberando o IP correto.
-
-Resultado: Novo deploy disparado em TQS, pod íntegro/saudável, aplicação funcionando normalmente.
-
-Atendimento encerrado com sucesso.
+Observação para o time de desenvolvimento: dos 703 testes, 207 falham, quase todos por No provider for HttpClient / ActivatedRoute nos specs. Eles não bloqueiam o pipeline, mas convém corrigir incluindo provideHttpClient(), provideHttpClientTesting() e provideRouter([]) nos providers do TestBed.
