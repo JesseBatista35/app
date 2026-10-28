@@ -1,12 +1,6 @@
+sudo grep -E "Accepted|session opened|Disconnected|Connection closed" /var/log/secure | grep "Oct 28" | tail -30
 
-[p585600@caddeapllx2651 ~]$ ps -ef --forest | grep -iE "Agent\.(Listener|Worker)|ads-agent" | grep -v grep
-[p585600@caddeapllx2651 ~]$
-[p585600@caddeapllx2651 ~]$
-[p585600@caddeapllx2651 ~]$ sudo systemctl list-units --all | grep -i vsts
-[p585600@caddeapllx2651 ~]$ ls -lt /opt/ads-agent/_diag | head -5
-ls: não foi possível acessar '/opt/ads-agent/_diag': Arquivo ou diretório inexistente
-[p585600@caddeapllx2651 ~]$
-[p585600@caddeapllx2651 ~]$
-[p585600@caddeapllx2651 ~]$ tail -50 $(ls -t /opt/ads-agent/_diag/Worker_*.log | head -1)
-ls: não foi possível acessar '/opt/ads-agent/_diag/Worker_*.log': Arquivo ou diretório inexistente
+ps -ef --forest | grep -E "Agent\.(Listener|Worker)|ansible-playbook|ssh .*caddeapllx2651" | grep -v grep
+df -h /opt/ads-agent
+ls -la ~/.ansible/cp/ 2>/dev/null      # socket ControlPersist travado do usuário do agente
 
