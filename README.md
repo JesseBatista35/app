@@ -1,7 +1,4 @@
-Bash Script
-
-View raw log
-Starting: Bash Script
+Starting: Build Application
 ==============================================================================
 Task         : Bash
 Description  : Run a Bash script on macOS, Linux, or Windows
@@ -11,26 +8,33 @@ Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/b
 ==============================================================================
 Generating script.
 ========================== Starting Command Output ===========================
-/usr/bin/bash /opt/ads-agent/_work/_temp/fbdd4417-0f0b-42cf-a6f1-642c7ba250c9.sh
-=== Firefox no agente? ===
-/usr/bin/firefox
-Mozilla Firefox 140.17.0esr
-=== Instalando Chromium via EPEL ===
-  samba-client-libs-4.23.5-12.el9_8.x86_64                                      
-  samba-common-4.23.5-12.el9_8.noarch                                           
-  samba-common-libs-4.23.5-12.el9_8.x86_64                                      
-  snappy-1.1.8-8.el9.0.1.x86_64                                                 
-  soxr-0.1.3-11.el9.x86_64                                                      
-  speex-1.2.0-11.el9.x86_64                                                     
-  srt-libs-1.4.4-1.el9.x86_64                                                   
-  svt-av1-libs-2.3.0-3.el9.x86_64                                               
-  twolame-libs-0.3.13-19.el9.x86_64                                             
-  vo-amrwbenc-0.1.3-18.el9.x86_64                                               
-  xvidcore-1.3.7-9.el9.x86_64                                                   
-  zeromq-4.3.4-2.el9.x86_64                                                     
-  zvbi-0.2.35-15.el9.x86_64                                                     
+/usr/bin/bash /opt/ads-agent/_work/_temp/521825f4-2852-49d5-8bb6-a0512d8c6f8b.sh
+npm test -- --watch=false --code-coverage --browsers=ChromeHeadlessCI ; ng build --configuration production --aot --output-path=dist
+<----ANGULAR---->
 
-Complete!
-Chrome encontrado: /usr/bin/chromium-browser
-Chromium 156.0.8078.47 Built from source for Red Hat Enterprise Linux release 9.8 (Plow)
-Finishing: Bash Script
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+    
+
+Angular CLI: 19.2.27
+Node: 22.13.1
+Package Manager: npm 10.9.2
+OS: linux x64
+
+Angular: 19.2.25
+... animations, common, compiler, compiler-cli, core, forms
+... language-service, localize, platform-browser
+... platform-browser-dynamic, router
+
+Package                         Version
+---------------------------------------------------------
+@angular-devkit/architect       0.1902.27
+@angular-devkit/build-angular   19.2.27
+@angular-devkit/core            19.2.27 (cli-only)
+@angular-devkit/schematics      19.2.27
+@angular/cli                    19.2.27
+@schematics/angular             19.2.27
