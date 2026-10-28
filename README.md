@@ -2,3 +2,6 @@
 
 
 coloquei ele aqui, nao tem como colocar ele dentra da task group
+
+   find / -maxdepth 5 -iname "*chrom*" -type f 2>/dev/null | grep -v node_modules | head -20
+   exit 0
