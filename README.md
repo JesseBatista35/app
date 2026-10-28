@@ -1,18 +1,7 @@
-Boa tarde,
-Eu faço parte do time do SIPGC na esteira devops em .net 8 C#.
-Configuramos o VAULT em DES/TQS e para funcionar corretamente, você nos auxiliou na configuração de uma variável na esteira referente ao proxy.
- 
-Iremos fazer um teste de deploy em PRD e precisamos saber se na Mudança já passamos o valor dessa variável ou só solicitamos que seja configurado por eles o valor em PRD.
-Módulo: SIPGC-API-DES/TQS
-Jesse Mouta Pereira Batista
-03/09/2026 15:34
-_ENV.HTTP_PROXY
-http://proxydes.caixa:80
- 
-_ENV.HTTPS_PROXY
-http://proxydes.caixa:80
- 
-_ENV.NO_PROXY
-.caixa,localhost,127.0.0.1,10.116.92.247,.svc,.svc.cluster.local,10.0.0.0/8
+Livia, os valores de proxy de DES/TQS não valem para PRD. O HTTP_PROXY/HTTPS_PROXY de DES aponta para o proxy de DES, e o NO_PROXY tem o IP do banco de DES.
 
+Na Mudança, solicitem a inclusão das variáveis _ENV.HTTP_PROXY, _ENV.HTTPS_PROXY e _ENV.NO_PROXY na library de PRD (SIPGC-API-SEGURANCA-PRD), informando que os valores devem ser os de PRD: o proxy de produção, e no NO_PROXY o IP do SQL Server de PRD no lugar do de DES.
 
+Eu não tenho acesso a PRD, então não consigo conferir nem informar o valor do proxy de lá. Vale confirmar o endereço com a equipe de PRD ou de Infra e deixar na Mudança.
+
+Aproveitem para conferir se as libraries do vault de PRD (BT-VAULT e BT-VAULT-SECRET) já foram criadas via REQ TE191, e se a regra de IP de origem do client BeyondTrust de PRD está liberada. Em TQS o deploy ficou travado por isso.
