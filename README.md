@@ -1,4 +1,4 @@
-<img width="1338" height="596" alt="image" src="https://github.com/user-attachments/assets/e2d13f48-76d7-468c-bad7-bd512ba42409" />
+ps -ef --forest | grep -A15 "sshd: sansbp01" | grep -v grep
 
-
-mesmo problema
+tail -50 /logs/jboss/jboss-eap/standalone/siccp-intra/server.log
+ss -ltnp | grep -E "8080|8443|9990"
