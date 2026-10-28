@@ -1,7 +1,15 @@
-Livia, os valores de proxy de DES/TQS não valem para PRD. O HTTP_PROXY/HTTPS_PROXY de DES aponta para o proxy de DES, e o NO_PROXY tem o IP do banco de DES.
+tendimento referente à falha de deploy da aplicação SIPGC-api-seguranca no ambiente TQS, com pod preso em Init:CrashLoopBackOff e, anteriormente, falha de criação do DeploymentConfig.
 
-Na Mudança, solicitem a inclusão das variáveis _ENV.HTTP_PROXY, _ENV.HTTPS_PROXY e _ENV.NO_PROXY na library de PRD (SIPGC-API-SEGURANCA-PRD), informando que os valores devem ser os de PRD: o proxy de produção, e no NO_PROXY o IP do SQL Server de PRD no lugar do de DES.
+Causa raiz 1 — DeploymentConfig inválido (mountPath duplicado):
+Identificado erro spec.template.spec.containers[0].volumeMounts[1].mountPath: Invalid value: must be unique na task de criação de volumes. Causa: coexistência de duas variáveis de senha de banco no grupo de variáveis SIPGC-API-SEGURANCA-TQS — a variável legada _SECRET.DB_PASSWORD_001 (padrão antigo de token) e a variável atual _SECRET.DB_PASSWORD_0010 (padrão vigente, igual ao ambiente DES). Cada variável com prefixo _SECRET. gera um volume/mount automático, e a duplicidade de senha de banco gerava conflito de path.
 
-Eu não tenho acesso a PRD, então não consigo conferir nem informar o valor do proxy de lá. Vale confirmar o endereço com a equipe de PRD ou de Infra e deixar na Mudança.
+Ação 1: Removida a variável legada _SECRET.DB_PASSWORD_001 da library SIPGC-API-SEGURANCA-TQS, mantendo apenas _SECRET.DB_PASSWORD_0010. Resolveu o erro de criação do DeploymentConfig.
 
-Aproveitem para conferir se as libraries do vault de PRD (BT-VAULT e BT-VAULT-SECRET) já foram criadas via REQ TE191, e se a regra de IP de origem do client BeyondTrust de PRD está liberada. Em TQS o deploy ficou travado por isso.
+Causa raiz 2 — Falha de autenticação no BeyondTrust:
+Após a correção do mount, o pod passou a ser criado, porém ficava preso em Init:CrashLoopBackOff devido à falha do init container secrets-agent-sidecar em autenticar no BeyondTrust (Failed to authenticate due to one or more authentication rules), impedindo o download dos secrets. Identificado que a regra de autenticação do client BeyondTrust (97f8f98c-9ce6-4a2f-bdf0-be70af3218ee, app TQS) não reconhecia o IP de origem real das chamadas partindo do cluster (10.116.222.238).
+
+Ação 2: Escalado para o time de Segurança (BeyondTrust/vault). Lucas Vinicius de Almeida Santos ajustou a regra de IP de origem no cofre, liberando o IP correto.
+
+Resultado: Novo deploy disparado em TQS, pod íntegro/saudável, aplicação funcionando normalmente.
+
+Atendimento encerrado com sucesso.
