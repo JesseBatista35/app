@@ -14,3 +14,6 @@ touch /tmp/teste-sisib/teste_jesse && ls -l /tmp/teste-sisib
 rm /tmp/teste-sisib/teste_jesse
 umount /tmp/teste-sisib
 exit; exit
+
+
+<img width="1381" height="791" alt="image" src="https://github.com/user-attachments/assets/559b7bdb-3425-4f32-8a90-9a2007dee876" />
