@@ -1,27 +1,15 @@
- oc get pvc sisib-arquivos-de-quebra-data-des
-NAME                                STATUS    VOLUME                              CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-sisib-arquivos-de-quebra-data-des   Bound     sisib-arquivos-de-quebra-data-des   50Gi       RWX                           21m
-[p981778@cadsvaprlx067 ~]$ oc describe pvc sisib-arquivos-de-quebra-data-des
-Name:          sisib-arquivos-de-quebra-data-des
-Namespace:     sisib-des
-StorageClass:
-Status:        Bound
-Volume:        sisib-arquivos-de-quebra-data-des
-Labels:        <none>
-Annotations:   pv.kubernetes.io/bind-completed=yes
-Finalizers:    [kubernetes.io/pvc-protection]
-Capacity:      50Gi
-Access Modes:  RWX
-VolumeMode:    Filesystem
-[p981778@cadsvaprlx067 ~]$ oc get pv | grep sisib
-sisib-arquivos-de-quebra-data-des                       50Gi       RWX            Retain           Bound         sisib-des/sisib-arquivos-de-quebra-data-des                                                                             22m
-sisib-backend-data-des                                  5Gi        RWX            Retain           Bound         sisib-des/sisib-backend-data-des                                                                                        3y11d
-sisib-batch-bacen-data-des                              5Gi        RWX            Retain           Bound         sisib-des/sisib-batch-bacen-data-des                                                                                    372d
-sisib-oficio-data-des                                   1Gi        RWX            Retain           Bound         sisib-des/sisib-oficio-data-des                                                                                         363d
-sisib-quebra-sigilo-data-des                            5Gi        RWX            Retain           Bound         sisib-des/sisib-quebra-sigilo-data-des                                                                                  2y67d
-sisib-sisbajud-backend-data-des                         5Gi        RWX            Retain           Bound         sisib-des/sisib-sisbajud-backend-data-des                                                                               21d
-sisib-sisbajud-backend-data-tqs                         5Gi        RWX            Retain           Bound         sisib-tqs/sisib-sisbajud-backend-data-tqs                                                                               43h
-[p981778@cadsvaprlx067 ~]$
+Prezados(as),
 
+Informamos que o compartilhamento NFS fs_sisib (nprdnfs01.ad.caixa, 50 GB), criado pela equipe de Armazenamento nesta WO, foi configurado no ambiente DES (OKD, namespace sisib-des) para o módulo sisib-arquivos-de-quebra, conforme solicitado:
 
-me ajuda a fechar a nota foi motnado conforme solicitado, o pod ano sobe pois tem um erro, neessario abrir u ma req para que a euipe possar relaizar o ajuste
+PV: sisib-arquivos-de-quebra-data-des (50Gi, RWX, Retain)
+PVC: sisib-arquivos-de-quebra-data-des, status Bound
+
+O pod do módulo ainda não sobe por causa de um erro na inicialização da aplicação: [descrever o erro]. Esse ajuste não faz parte do escopo de montagem do NFS atendido nesta WO. Para tratá-lo, é necessário abrir uma nova requisição direcionada à equipe [equipe responsável], anexando o log do pod.
+
+Ponto de atenção: a equipe de Armazenamento informou que os IPs da partição mainframe DSP1 (192.168.231.11, .12 e .15) não foram incluídos no compartilhamento, por pertencerem à rede de backup antiga. Assim, a comunicação com o mainframe e a conversão EBCDIC→ASCII ainda não estão disponíveis. Caso essa integração seja necessária, a área solicitante deve obter os IPs da DSP1 na nova rede de backup NPRD (10.188.0.0/16) e solicitar a inclusão à equipe de Armazenamento.
+
+Diante do exposto, encerramos esta WO.
+
+Atenciosamente,
+Esteira DevOps NPRD
