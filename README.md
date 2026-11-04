@@ -1,11 +1,5 @@
-
-/usr/java/openjdk-1.8.0.482/sample/jmx/jmx-scandir/truststore
-/usr/java/openjdk-17.0.6/lib/security/cacerts
-[root@cbrdeapllx473 p585600]# /usr/java/openjdk-1.8.0.482/jre/bin/keytool -list -v -keystore /etc/pki/ca-trust/extracted/java/cacerts -storepass changeit | grep -iE "^(Alias|Owner).*(caixa|icp)"
-Alias name: cadsvitrlx271.intra.caixa.gov.br
-Owner: CN=cadsvitrlx271.intra.caixa.gov.br, OU=SomeOrgUnit, O=Katello, L=Raleigh, ST=North Carolina, C=US
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
+mkdir -p /tmp/certs && cd /tmp/certs
+echo | openssl s_client -showcerts -connect login.des.caixa:443 2>/dev/null | awk '/BEGIN CERT/,/END CERT/' > login_chain.pem
+echo | openssl s_client -showcerts -connect api.des.caixa:8443 2>/dev/null | awk '/BEGIN CERT/,/END CERT/' > api_chain.pem
+grep -c "BEGIN CERT" *.pem
 
