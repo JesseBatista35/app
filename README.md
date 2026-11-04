@@ -1,64 +1,856 @@
-Prezados,
-AMBIENTE TGE
-
-Após configurar/atualizar a library do projeto siifx-caixinhas-api-aplicacao e tentar efetuar release em TGE ocorre o erro abaixo: 
-Verificando Status do Deployment - The task has timed out.
-https://devops.caixa/projetos/Caixa/_releaseProgress?_a=release-environment-logs&releaseId=550368&environmentId=2557888
-
-Não foi possível conferir no OKD, pois não foi localizado pod para esteira TGE.
-
-Segue em anexo prints.
-
-2026-11-04T14:09:59.5685668Z ##[section]Starting: Verificando Status do Deployment
-2026-11-04T14:09:59.5689172Z ==============================================================================
-2026-11-04T14:09:59.5689257Z Task         : Bash
-2026-11-04T14:09:59.5689318Z Description  : Run a Bash script on macOS, Linux, or Windows
-2026-11-04T14:09:59.5689381Z Version      : 3.227.0
-2026-11-04T14:09:59.5689439Z Author       : Microsoft Corporation
-2026-11-04T14:09:59.5689586Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
-2026-11-04T14:09:59.5689662Z ==============================================================================
-2026-11-04T14:09:59.6933953Z Generating script.
-2026-11-04T14:09:59.6946688Z ========================== Starting Command Output ===========================
-2026-11-04T14:09:59.6953972Z [command]/usr/bin/bash /opt/ads-agent/_work/_temp/4c0ef59e-3e18-49b6-be6e-4b9860e51f14.sh
-2026-11-04T14:09:59.7797329Z Waiting for rollout to finish: 0 out of 1 new replicas have been updated...
-2026-11-04T14:10:01.1215595Z Waiting for rollout to finish: 0 out of 1 new replicas have been updated...
-2026-11-04T14:10:01.1982295Z Waiting for rollout to finish: 1 old replicas are pending termination...
-2026-11-04T14:14:08.5156954Z Waiting for rollout to finish: 0 out of 1 new replicas have been updated...
-2026-11-04T14:14:08.5375184Z Waiting for rollout to finish: 1 old replicas are pending termination...
-2026-11-04T14:16:07.0812180Z ##[error]The task has timed out.
-2026-11-04T14:16:07.0813200Z ##[section]Finishing: Verificando Status do Deployment
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
 
 
 
-2026-11-04T14:16:07.0831811Z ##[section]Starting: Logs da Aplicação
-2026-11-04T14:16:07.0834799Z ==============================================================================
-2026-11-04T14:16:07.0834878Z Task         : Bash
-2026-11-04T14:16:07.0834924Z Description  : Run a Bash script on macOS, Linux, or Windows
-2026-11-04T14:16:07.0834997Z Version      : 3.227.0
-2026-11-04T14:16:07.0835043Z Author       : Microsoft Corporation
-2026-11-04T14:16:07.0835097Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
-2026-11-04T14:16:07.0835193Z ==============================================================================
-2026-11-04T14:16:07.2527982Z Generating script.
-2026-11-04T14:16:07.2539903Z ========================== Starting Command Output ===========================
-2026-11-04T14:16:07.2546928Z [command]/usr/bin/bash /opt/ads-agent/_work/_temp/5fe2b2f4-8010-4cad-a1bc-8c406e6a82bd.sh
-2026-11-04T14:16:07.2606051Z + shopt -s expand_aliases
-2026-11-04T14:16:07.2607761Z + [[ -n okd4_nprd ]]
-2026-11-04T14:16:07.2607921Z + [[ okd4_nprd =~ ocp ]]
-2026-11-04T14:16:07.2608054Z + [[ -n okd4_nprd ]]
-2026-11-04T14:16:07.2608163Z + [[ okd4_nprd =~ (okd4|openshift) ]]
-2026-11-04T14:16:07.2608333Z + app=siifx-caixinhas-api-aplicacao-des
-2026-11-04T14:16:07.2608438Z + oc version
-2026-11-04T14:16:07.3336893Z Client Version: v4.2.0-alpha.0-1394-g45460a5
-2026-11-04T14:16:07.3337141Z Server Version: 4.12.0-0.okd-2023-04-16-041331
-2026-11-04T14:16:07.3337329Z Kubernetes Version: v1.25.0-2824+27e744f55d2e99-dirty
-2026-11-04T14:16:07.3364905Z ++ oc get pod -l name=siifx-caixinhas-api-aplicacao-des -n siifx-des -o 'jsonpath={range .items[*]}{.metadata.name}{"\n"}' --sort-by=.metadata.creationTimestamp
-2026-11-04T14:16:07.3366072Z ++ tac
-2026-11-04T14:16:07.3367148Z ++ grep -v '^$'
-2026-11-04T14:16:07.3367415Z ++ head -n1
-2026-11-04T14:16:07.4328220Z + last_pod=siifx-caixinhas-api-aplicacao-des-113-7bsd2
-2026-11-04T14:16:07.4328600Z + echo 'Logs do POD: siifx-caixinhas-api-aplicacao-des-113-7bsd2'
-2026-11-04T14:16:07.4328850Z + oc logs siifx-caixinhas-api-aplicacao-des-113-7bsd2 -c siifx-caixinhas-api-aplicacao-des -n siifx-des
-2026-11-04T14:16:07.4329100Z Logs do POD: siifx-caixinhas-api-aplicacao-des-113-7bsd2
-2026-11-04T14:16:07.5100158Z Error from server (BadRequest): container "siifx-caixinhas-api-aplicacao-des" in pod "siifx-caixinhas-api-aplicacao-des-113-7bsd2" is waiting to start: PodInitializing
-2026-11-04T14:16:07.5167204Z ##[error]Bash exited with code '1'.
-2026-11-04T14:16:07.5182321Z ##[section]Finishing: Logs da Aplicação
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+Cria_APP_OKD_ATUALIZA_VARIAVEIS
+Task version
+13.*
+Display name
+Cria_APP_OKD
+AMBIENTE
+$(AMBIENTE)
+CGC_UNIDADE_DES
+$(CGC_UNIDADE_DES)
+CGC_UNIDADE_OPS
+$(CGC_UNIDADE_OPS)
+Enviroment
+$(Enviroment)
+is_new_app
+$(is_new_app)
+ISTIO_INJECTION
+$(ISTIO_INJECTION)
+KIND_DEPLOY
+$(KIND_DEPLOY)
+OCP_LOTERIAS_URL_SUFFIX_PRD
+$(OCP_LOTERIAS_URL_SUFFIX_PRD)
+OCP_URL_SUFFIX
+$(OCP_URL_SUFFIX)
+OCP_URL_SUFFIX_PRD
+$(OCP_URL_SUFFIX_PRD)
+OKD_REGISTRY
+$(OKD_REGISTRY)
+OKD_TOKEN_REGISTRY
+$(OKD_TOKEN_REGISTRY)
+OKD_URL_SUFFIX
+$(OKD_URL_SUFFIX)
+OKD_URL_SUFFIX_APL
+$(OKD_URL_SUFFIX_APL)
+OKD_USER_SERVICE_REGISTRY
+$(OKD_USER_SERVICE_REGISTRY)
+OPENSHIFT_LOTERIAS_URL_SUFFIX_NPRD
+$(OPENSHIFT_LOTERIAS_URL_SUFFIX_NPRD)
+OPENSHIFT_LOTERIAS_URL_SUFFIX_PRD
+$(OPENSHIFT_LOTERIAS_URL_SUFFIX_PRD)
+PASSWORD_CGC
+$(PASSWORD_CGC)
+PORTALIF
+$(PORTALIF)
+PROJETO
+$(PROJETO)
+REPOSITORIO
+$(REPOSITORIO)
+resource_app
+$(resource_app)
+SITE
+$(SITE)
+TemplateRelease_OKD
+$(TemplateRelease_OKD)
+URL_CUSTOMIZADA
+$(URL_CUSTOMIZADA)
+USER_CGC
+$(USER_CGC)
+Control Options
+Output Variables
+Row 2
+
+
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+BeyondTrust - OpenShift
+Task version
+2.*
+Display name
+BeyondTrust - OpenShift 
+AMBIENTE
+$(AMBIENTE)
+AZPAT
+$(AZPAT)
+AZUSER
+$(AZUSER)
+BT_API_URL
+$(BT_API_URL)
+BT_CLIENT_ID
+$(BT_CLIENT_ID)
+BT_CLIENT_SECRET
+$(BT_CLIENT_SECRET)
+KIND_DEPLOY
+$(KIND_DEPLOY)
+PROJETO
+$(PROJETO)
+RESOURCE_APP
+$(RESOURCE_APP)
+Control Options
+Output Variables
+Row 2
+
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+ENVIROMENT_SECRETS_OKD
+Task version
+4.*
+Display name
+SECRETS_OKD
+AMBIENTE
+$(AMBIENTE)
+KIND_DEPLOY
+$(KIND_DEPLOY)
+PROJETO
+$(PROJETO)
+REPOSITORIO
+$(REPOSITORIO)
+SITE
+$(SITE)
+tem_secret
+$(tem_secret)
+Control Options
+Output Variables
+Row 2
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+SECRET_SECUREFILE_MULTIPLES
+Task version
+5.*
+Display name
+SECRET_CERT_JKS_QUARKUS_MULTIPLE
+AMBIENTE
+$(AMBIENTE)
+KIND_DEPLOY
+$(KIND_DEPLOY)
+PATH_CERTIFICADO
+/deployments
+PROJETO
+$(PROJETO)
+REPOSITORIO
+$(REPOSITORIO)
+SITE
+$(SITE)
+Control Options
+Output Variables
+Row 2
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+TAG_AMBIENTE_BUILD_OKD
+Task version
+12.*
+Display name
+TAG_AMBIENTE_BUILD_OKD
+AMBIENTE
+$(AMBIENTE)
+AMBIENTE_BUILD
+$(AMBIENTE_BUILD)
+BUILDNAME
+$(BUILDNAME)
+KIND_DEPLOY
+$(KIND_DEPLOY)
+OKD_API_REGISTRY
+$(OKD_API_REGISTRY)
+OKD_REGISTRY
+$(OKD_REGISTRY)
+OKD_TOKEN_REGISTRY
+$(OKD_TOKEN_REGISTRY)
+OKD_USER_SERVICE_REGISTRY
+$(OKD_USER_SERVICE_REGISTRY)
+PROJETO
+$(PROJETO)
+ProjetoBuild
+$(ProjetoBuild)
+REPOSITORIO
+$(REPOSITORIO)
+SITE
+$(SITE)
+TemplateRelease_OKD
+$(TemplateRelease_OKD)
+Control Options
+Output Variables
+Row 2
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+PERMISSIONAMENTO_OKD
+Task version
+5.*
+Display name
+PERMISSIONAMENTO_OKD 
+AMBIENTE
+$(AMBIENTE)
+CGC_UNIDADE_DES
+$(CGC_UNIDADE_DES)
+CGC_UNIDADE_OPS
+$(CGC_UNIDADE_OPS)
+PROJETO
+$(PROJETO)
+SITE
+$(SITE)
+Control Options
+Output Variables
+Row 2
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+EGRESS_IP_OKD
+Task version
+7.*
+Display name
+EGRESS_IP_OKD
+ALOCAIP_AMBIENTE_1
+$(ALOCAIP_AMBIENTE_1)
+ALOCAIP_AMBIENTE_OCP
+$(ALOCAIP_AMBIENTE_OCP)
+ALOCAIP_AMBIENTE_OCP_LOTERIAS_PRD
+$(ALOCAIP_AMBIENTE_OCP_LOTERIAS_PRD)
+ALOCAIP_AMBIENTE_OCP_PRD
+$(ALOCAIP_AMBIENTE_OCP_PRD)
+ALOCAIP_AMBIENTE_OKD4
+$(ALOCAIP_AMBIENTE_OKD4)
+ALOCAIP_AMBIENTE_OKD4_PRD_CTC
+$(ALOCAIP_AMBIENTE_OKD4_PRD_CTC)
+ALOCAIP_AMBIENTE_OPENSHIFT_LOTERIAS_NPRD
+$(ALOCAIP_AMBIENTE_OPENSHIFT_LOTERIAS_NPRD)
+ALOCAIP_AMBIENTE_OPENSHIFT_LOTERIAS_PRD
+$(ALOCAIP_AMBIENTE_OPENSHIFT_LOTERIAS_PRD)
+ALOCAIP_AMBIENTE_PRD_CANAIS
+$(ALOCAIP_AMBIENTE_PRD_CANAIS)
+ALOCAIP_CATEGORIA
+$(ALOCAIP_CATEGORIA)
+ALOCAIP_FIM_RANGE_1
+$(ALOCAIP_FIM_RANGE_1)
+ALOCAIP_FIM_RANGE_OCP
+$(ALOCAIP_FIM_RANGE_OCP)
+ALOCAIP_FIM_RANGE_OCP_LOTERIAS_PRD
+$(ALOCAIP_FIM_RANGE_OCP_LOTERIAS_PRD)
+ALOCAIP_FIM_RANGE_OCP_PRD
+$(ALOCAIP_FIM_RANGE_OCP_PRD)
+ALOCAIP_FIM_RANGE_OKD4
+$(ALOCAIP_FIM_RANGE_OKD4)
+ALOCAIP_FIM_RANGE_OKD4_PRD_CTC
+$(ALOCAIP_FIM_RANGE_OKD4_PRD_CTC)
+ALOCAIP_FIM_RANGE_OPENSHIFT_LOTERIAS_NPRD
+$(ALOCAIP_FIM_RANGE_OPENSHIFT_LOTERIAS_NPRD)
+ALOCAIP_FIM_RANGE_OPENSHIFT_LOTERIAS_PRD
+$(ALOCAIP_FIM_RANGE_OPENSHIFT_LOTERIAS_PRD)
+ALOCAIP_FIM_RANGE_PRD_CANAIS_CTC
+$(ALOCAIP_FIM_RANGE_PRD_CANAIS_CTC)
+ALOCAIP_FIM_RANGE_PRD_CANAIS_CTC_OB
+$(ALOCAIP_FIM_RANGE_PRD_CANAIS_CTC_OB)
+ALOCAIP_FIM_RANGE_PRD_CANAIS_DTC
+$(ALOCAIP_FIM_RANGE_PRD_CANAIS_DTC)
+ALOCAIP_ID
+$(ALOCAIP_ID)
+ALOCAIP_INICIO_RANGE_1
+$(ALOCAIP_INICIO_RANGE_1)
+ALOCAIP_INICIO_RANGE_OCP
+$(ALOCAIP_INICIO_RANGE_OCP)
+ALOCAIP_INICIO_RANGE_OCP_LOTERIAS_PRD
+$(ALOCAIP_INICIO_RANGE_OCP_LOTERIAS_PRD)
+ALOCAIP_INICIO_RANGE_OCP_PRD
+$(ALOCAIP_INICIO_RANGE_OCP_PRD)
+ALOCAIP_INICIO_RANGE_OKD4
+$(ALOCAIP_INICIO_RANGE_OKD4)
+ALOCAIP_INICIO_RANGE_OKD4_PRD_CTC
+$(ALOCAIP_INICIO_RANGE_OKD4_PRD_CTC)
+ALOCAIP_INICIO_RANGE_OPENSHIFT_LOTERIAS_NPRD
+$(ALOCAIP_INICIO_RANGE_OPENSHIFT_LOTERIAS_NPRD)
+ALOCAIP_INICIO_RANGE_OPENSHIFT_LOTERIAS_PRD
+$(ALOCAIP_INICIO_RANGE_OPENSHIFT_LOTERIAS_PRD)
+ALOCAIP_INICIO_RANGE_PRD_CANAIS_CTC
+$(ALOCAIP_INICIO_RANGE_PRD_CANAIS_CTC)
+ALOCAIP_INICIO_RANGE_PRD_CANAIS_CTC_OB
+$(ALOCAIP_INICIO_RANGE_PRD_CANAIS_CTC_OB)
+ALOCAIP_INICIO_RANGE_PRD_CANAIS_DTC
+$(ALOCAIP_INICIO_RANGE_PRD_CANAIS_DTC)
+ALOCAIP_RED_NUM_1
+$(ALOCAIP_RED_NUM_1)
+ALOCAIP_RED_NUM_OCP
+$(ALOCAIP_RED_NUM_OCP)
+ALOCAIP_RED_NUM_OCP_LOTERIAS_PRD
+$(ALOCAIP_RED_NUM_OCP_LOTERIAS_PRD)
+ALOCAIP_RED_NUM_OCP_PRD
+$(ALOCAIP_RED_NUM_OCP_PRD)
+ALOCAIP_RED_NUM_OKD4
+$(ALOCAIP_RED_NUM_OKD4)
+ALOCAIP_RED_NUM_OKD4_PRD_CTC
+$(ALOCAIP_RED_NUM_OKD4_PRD_CTC)
+ALOCAIP_RED_NUM_OPENSHIFT_LOTERIAS_NPRD
+$(ALOCAIP_RED_NUM_OPENSHIFT_LOTERIAS_NPRD)
+ALOCAIP_RED_NUM_OPENSHIFT_LOTERIAS_PRD
+$(ALOCAIP_RED_NUM_OPENSHIFT_LOTERIAS_PRD)
+ALOCAIP_RED_NUM_PRD_CANAIS_CTC
+$(ALOCAIP_RED_NUM_PRD_CANAIS_CTC)
+ALOCAIP_RED_NUM_PRD_CANAIS_DTC
+$(ALOCAIP_RED_NUM_PRD_CANAIS_DTC)
+ALOCAIP_SENHA
+$(ALOCAIP_SENHA)
+ALOCAIP_SITE
+$(ALOCAIP_SITE)
+ALOCAIP_SITE_1
+$(ALOCAIP_SITE_1)
+ALOCAIP_SITE_DTC
+$(ALOCAIP_SITE_DTC)
+ALOCAIP_SITE_OCP
+$(ALOCAIP_SITE_OCP)
+ALOCAIP_SITE_OCP_LOTERIAS_PRD
+$(ALOCAIP_SITE_OCP_LOTERIAS_PRD)
+ALOCAIP_SITE_OCP_PRD
+$(ALOCAIP_SITE_OCP_PRD)
+ALOCAIP_SITE_OKD4
+$(ALOCAIP_SITE_OKD4)
+ALOCAIP_SITE_OKD4_PRD_CTC
+$(ALOCAIP_SITE_OKD4_PRD_CTC)
+ALOCAIP_SITE_OPENSHIFT_LOTERIAS_NPRD
+$(ALOCAIP_SITE_OPENSHIFT_LOTERIAS_NPRD)
+ALOCAIP_SITE_OPENSHIFT_LOTERIAS_PRD
+$(ALOCAIP_SITE_OPENSHIFT_LOTERIAS_PRD)
+ALOCAIP_UNIDADE_1
+$(ALOCAIP_UNIDADE_1)
+ALOCAIP_UNIDADE_OCP
+$(ALOCAIP_UNIDADE_OCP)
+ALOCAIP_UNIDADE_OCP_LOTERIAS_PRD
+$(ALOCAIP_UNIDADE_OCP_LOTERIAS_PRD)
+ALOCAIP_UNIDADE_OCP_PRD
+$(ALOCAIP_UNIDADE_OCP_PRD)
+ALOCAIP_UNIDADE_OKD4
+$(ALOCAIP_UNIDADE_OKD4)
+ALOCAIP_UNIDADE_OKD4_PRD_CTC
+$(ALOCAIP_UNIDADE_OKD4_PRD_CTC)
+ALOCAIP_UNIDADE_OPENSHIFT_LOTERIAS_NPRD
+$(ALOCAIP_UNIDADE_OPENSHIFT_LOTERIAS_NPRD)
+ALOCAIP_UNIDADE_OPENSHIFT_LOTERIAS_PRD
+$(ALOCAIP_UNIDADE_OPENSHIFT_LOTERIAS_PRD)
+ALOCAIP_UNIDADE_PRD_CANAIS
+$(ALOCAIP_UNIDADE_PRD_CANAIS)
+ALOCAIP_VERTICAL_1
+$(ALOCAIP_VERTICAL_1)
+ALOCAIP_VERTICAL_OCP
+$(ALOCAIP_VERTICAL_OCP)
+ALOCAIP_VERTICAL_OCP_LOTERIAS_PRD
+$(ALOCAIP_VERTICAL_OCP_LOTERIAS_PRD)
+ALOCAIP_VERTICAL_OCP_PRD
+$(ALOCAIP_VERTICAL_OCP_PRD)
+ALOCAIP_VERTICAL_OKD4
+$(ALOCAIP_VERTICAL_OKD4)
+ALOCAIP_VERTICAL_OKD4_PRD_CTC
+$(ALOCAIP_VERTICAL_OKD4_PRD_CTC)
+ALOCAIP_VERTICAL_OPENSHIFT_LOTERIAS_NPRD
+$(ALOCAIP_VERTICAL_OPENSHIFT_LOTERIAS_NPRD)
+ALOCAIP_VERTICAL_OPENSHIFT_LOTERIAS_PRD
+$(ALOCAIP_VERTICAL_OPENSHIFT_LOTERIAS_PRD)
+ALOCAIP_VERTICAL_PRD_CANAIS
+$(ALOCAIP_VERTICAL_PRD_CANAIS)
+AMBIENTE
+$(AMBIENTE)
+APIALOCAIP
+$(APIALOCAIP)
+KIND_DEPLOY
+$(KIND_DEPLOY)
+PROJETO
+$(PROJETO)
+Control Options
+Output Variables
+Row 2
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+CADASTRAR_PORTALIF_OKD
+Task version
+2.*
+Display name
+CADASTRAR_PORTALIF_OKD
+PROJETO
+$(PROJETO)
+REPOSITORIO
+$(REPOSITORIO)
+Control Options
+Output Variables
+Row 2
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+Status_Deploy_Logout_OpenShift
+Task version
+7.*
+Display name
+Status_Deploy_Logout_OpenShift
+AMBIENTE
+$(AMBIENTE)
+AZPAT
+$(AZPAT)
+AZUSER
+$(AZUSER)
+CONTEXTO_JBOSS
+$(CONTEXTO_JBOSS)
+coProjeto
+$(coProjeto)
+coVersaoProjetoInspecao
+$(coVersaoProjetoInspecao)
+dhGeracaoPacote
+$(dhGeracaoPacote)
+ISTIO_INJECTION
+$(ISTIO_INJECTION)
+KIND_DEPLOY
+$(KIND_DEPLOY)
+NOME_IMAGEM
+$(NOME_IMAGEM)
+noPacoteImplantacao
+$(noPacoteImplantacao)
+noUrlPacoteImplantacao
+$(noUrlPacoteImplantacao)
+OCP_API
+$(OCP_API)
+OCP_API_IBMCLOUD
+$(OCP_API_IBMCLOUD)
+OCP_API_PRD
+$(OCP_API_PRD)
+OCP_LOTERIAS_API_PRD
+$(OCP_LOTERIAS_API_PRD)
+OKD_4_API
+$(OKD_4_API)
+OKD_4_API_APL
+$(OKD_4_API_APL)
+OKD_API
+$(OKD_API)
+OKD_API_APL
+$(OKD_API_APL)
+OKD_API_PRD_CANAIS_CTC
+$(OKD_API_PRD_CANAIS_CTC)
+OKD_API_PRD_CANAIS_DTC
+$(OKD_API_PRD_CANAIS_DTC)
+OKD_API_PRD_DTC
+$(OKD_API_PRD_DTC)
+OPENSHIFT_LOTERIAS_API_NPRD
+$(OPENSHIFT_LOTERIAS_API_NPRD)
+OPENSHIFT_LOTERIAS_API_PRD
+$(OPENSHIFT_LOTERIAS_API_PRD)
+PROJETO
+$(PROJETO)
+REPOSITORIO
+$(REPOSITORIO)
+SITE
+$(SITE)
+TIMEOUT_DEPLOY
+$(TIMEOUT_DEPLOY)
+VERSAO_IMAGEM
+$(VERSAO_IMAGEM)
+Control Options
+Output Variables
+Row 2
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+Predefined variables
+Filter by keywords
+Scope
+
+
+AMBIENTE
+des
+AMBIENTE
+tqs
+AMBIENTE
+des
+AMBIENTE
+des
+AMBIENTE
+hmp
+AMBIENTE
+prd
+AMBIENTE_BUILD
+build-images-ads
+CGC_UNIDADE_DES
+7390
+
+CGC_UNIDADE_OPS
+7259
+fortify_disable
+false
+PASSWORD_TRUSTSTORE
+changeit
+SITE
+okd4_nprd
+SITE
+okd4_prd
+TemplateRelease_OKD
+openshift/quarkus-caixa-release
+UNIDADE
+BR
+Row 2
+
+Showing filters 1 through 2
+
+
+Skip to main content
+projetos
+/
+Caixa
+/
+Pipelines
+/
+Releases
+/
+SIIFX-caixinhas-api-aplicacao
+Search
+
+
+
+
+
+
+
+
+All pipelines
+
+SIIFX
+
+SIIFX-caixinhas-api-aplicacao
+Predefined variables
+SonarQube Variables (1)
+Variáveis com dados do SonarQube
+Scopes: Release
+Usuario-Azure-DevOps (12)
+Scopes: Release
+MONITORACAO_LOGS (4)
+REQ000143540550 - Conforme autorizado na req por FLAVIO ALMEIDA GAGLIARDI, removido as variáveis JAVA_OPTS_MONITORING e URL_APM_SERVER, por entrar em conflitos com releases que utilizam o Application Insights
+Scopes: Release
+EGRESS_IP_OKD (81)
+WO0000072264656 - Config Portal Infrafácil NO_PROXY
+Scopes: Release
+OKD-REGISTRY-CENTRALIZADO (7)
+Credenciais para o Registry Centralizado - Produtos 4 (OKD)
+Scopes: Release
+OKD-4-NPRD (12)
+Credenciais para o Cluster OKD4 de NPRD (DES/TQS/HMP)
+Scopes: EC DES,EC TQS,EC TGE,EC TGS,EC HMP
+SIIFX-CAIXINHAS-API-APLICACAO-DES (28)
+Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-DES
+Scopes: EC DES
+SIIFX-BT-VAULT-DES (1)
+SIIFX-BT-VAULT-DES
+Scopes: EC DES
+SIIFX-BT-VAULT-SECRET-DES (2)
+Scopes: EC DES,EC TGE,EC TGS
+SIIFX-BT-VAULT-TQS (2)
+SIIFX-BT-VAULT-TQS
+Scopes: EC TQS
+SIIFX-BT-VAULT-SECRET-TQS (2)
+Scopes: EC TQS
+SIIFX-CAIXINHAS-API-APLICACAO-TQS (28)
+Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-TQS - WO0000081121281
+Scopes: EC TQS
+SIIFX-CAIXINHAS-API-APLICACAO-TGE (28)
+Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-TGE
+
+Scopes: EC TGE
+VAULT_LOCATION
+/usr/src/app/secrets_files/siifx_tge/
+_ENV.APIM_CONNECT_TIMEOUT
+5000
+_ENV.APIM_READ_TIMEOUT
+5000
+_ENV.APPLICATIONINSIGHTS_CONNECTION_STRING
+"InstrumentationKey=af499966-a437-4fed-9f90-b415f82a8004;IngestionEndpoint=https://brazilsouth-1.in.applicationinsights.azure.com/;LiveEndpoint=https://brazilsouth.livediagnostics.monitor.azure.com/;ApplicationId=a01e21cf-4bd6-4cc1-a2ae-ee472b949e35"
+_ENV.APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL
+INFO
+_ENV.APPLICATIONINSIGHTS_ROLE_NAME
+SIIFX-caixinhas-api-aplicacao-TGE
+_ENV.APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE
+100
+_ENV.APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL
+INFO
+_ENV.AUTH_SERVER_URL
+https://login.des.caixa/auth/realms/intranet
+_ENV.CLIENT_ID
+cli-ser-ifx
+_ENV.DB_KIND
+oracle
+_ENV.DB_PASS
+'${sifxgs01_oracle}'
+_ENV.DB_POOL_MAX
+10
+_ENV.DB_POOL_MIN
+2
+_ENV.DB_SCHEMA
+IFX
+_ENV.DB_URL
+"jdbc:oracle:thin:@cnpexdadvm01clu08.extra.caixa.gov.br:1521/CDBD02BCPDB002"
+_ENV.DB_USER
+SIFXGS01
+_ENV.HOST_API_MNG
+https://api.des.caixa:8443
+_ENV.HTTPS_PROXY
+"http://proxydes.caixa:80"
+_ENV.HTTP_PORT
+8080
+_ENV.JAVA_OPTIONS_APPEND
+"-Djavax.net.ssl.trustStore=/deployments/caixa-truststore-acteste-nprd.jks -javaagent:/deployments/lib/main/com.microsoft.azure.applicationinsights-agent-3.7.1.jar"
+_ENV.LOG_LEVEL
+INFO
+_ENV.QUARKUS_HIBERNATE_ORM_LOG_FORMAT_SQL
+false
+_ENV.QUARKUS_HIBERNATE_ORM_LOG_SQL
+false
+_ENV.SECRET_CLI_SER
+'${cli-ser-ifx_sso_intra}'
+_ENV.SIIFX_APIKEY
+'${apikey_siifx_intranet}'
+_ENV.TOKEN_URL
+https://login.des.caixa/auth/realms/intranet/protocol/openid-connect/token
+_SECRET.SMALLRYE.CONFIG.SOURCE.FILE.LOCATIONS
+#{VAULT_LOCATION}#
+SIIFX-BT-VAULT-TGE (2)
+SIIFX-BT-VAULT-TGE
+Scopes: EC TGE
+SIIFX-CAIXINHAS-API-APLICACAO-TGS (28)
+Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-TGS
+Scopes: EC TGS
+SIIFX-BT-VAULT-TGS (1)
+SIIFX-BT-VAULT-TGS
+Scopes: EC TGS
+SIIFX-CAIXINHAS-API-APLICACAO-HMP (28)
+Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-HMP
+Scopes: EC HMP
+SIIFX-BT-VAULT-SECRET-TGE (2)
+Scopes: EC HMP
+OKD-4-APL (12)
+Scopes: EC PRD
+SIIFX-CAIXINHAS-API-APLICACAO-PRD (28)
+Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-PRD
+Scopes: EC PRD
+SIIFX-BT-VAULT-SECRET-PRD (2)
+Grupo de variáveis SIIFX-BT-VAULT-SECRET-PRD
+Scopes: EC PRD
+|Manage variable groups
+Row 2
+
+Showing filters 1 through 2
+
