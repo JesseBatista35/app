@@ -25,3 +25,74 @@ ou testarmos o require-bean-descriptor=true no subsystem weld, que também exige
 Frase para a sala:
 
 “O RURAL falhou por configuração de ambiente: o JVM do SIFEC aponta a truststore para um caminho do Windows (C:/Desenvolvimento/...). Vou corrigir para a cacerts do servidor, o que precisa de um reload. O EMPRESAS falhou pelo mesmo padrão de CDI do EMP e do PJ (ParametrizacaoService). No mesmo reload, posso testar uma configuração do Weld compatível com o 6.4, que pode destravar os três. Podemos agendar esse reload?”
+
+
+
+[p585600@cbrdeapllx473 ~]$ ls -l /usr/java/openjdk-1.8.0.482/jre/lib/security/cacerts
+-r--r--r-- 1 root root 165797 Jan 18  2026 /usr/java/openjdk-1.8.0.482/jre/lib/security/cacerts
+[p585600@cbrdeapllx473 ~]$
+[p585600@cbrdeapllx473 ~]$
+[p585600@cbrdeapllx473 ~]$
+[p585600@cbrdeapllx473 ~]$
+
+
+
+
+
+
+[domain@localhost:9443 /] /server-group=sifec-intranet/system-property=javax.net.ssl.trustStore:read-resource
+{
+    "outcome" => "success",
+    "result" => {
+        "boot-time" => true,
+        "value" => "C:/Desenvolvimento/JDK/jdk1.8.0_231/jre/lib/security/cacerts"
+    }
+}
+
+[domain@localhost:9443 /]
+[domain@localhost:9443 /]
+[domain@localhost:9443 /] /server-group=sifec-intranet/jvm=*:read-resource
+{
+    "outcome" => "success",
+    "result" => [{
+        "address" => [
+            ("server-group" => "sifec-intranet"),
+            ("jvm" => "SIFEC-JVM")
+        ],
+        "outcome" => "success",
+        "result" => {
+            "agent-lib" => undefined,
+            "agent-path" => undefined,
+            "env-classpath-ignored" => undefined,
+            "environment-variables" => undefined,
+            "heap-size" => "8192m",
+            "java-agent" => undefined,
+            "java-home" => undefined,
+            "jvm-options" => [
+                "-Djava.awt.headless=true",
+                "-Dhttp.proxyHost=proxydes.caixa",
+                "-Dhttp.proxyPort=80",
+                "-Dhttps.proxyHost=proxydes.caixa",
+                "-Dhttps.proxyPort=80",
+                "-Dhttps.protocols=TLSv1.2",
+                "-Dhttp.nonProxyHosts=10.195.192.1|172.28.10.49|.caixa|*.intra.caixa.gov.br|*.extracaixa|*.siapenet.gov.br|*.caixa.gov.br",
+                "-Dhttp.proxySet=true",
+                "-Duser.language=pt",
+                "-Duser.country=BR",
+                "-Duser.timezone=GMT-3"
+            ],
+            "launch-command" => undefined,
+            "max-heap-size" => "8192m",
+            "max-permgen-size" => "2048m",
+            "module-options" => undefined,
+            "permgen-size" => "2048m",
+            "stack-size" => undefined,
+            "type" => undefined
+        }
+    }]
+}
+
+[domain@localhost:9443 /]
+[domain@localhost:9443 /]
+[domain@localhost:9443 /]
+[domain@localhost:9443 /]
