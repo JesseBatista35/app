@@ -1,71 +1,10 @@
-localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /] /profile=full-ha-sifec-intranet:read-children-names(child-type=subsystem)
-{
-    "outcome" => "success",
-    "result" => [
-        "batch-jberet",
-        "bean-validation",
-        "datasources",
-        "discovery",
-        "distributable-web",
-        "ee",
-        "ee-security",
-        "ejb3",
-        "elytron",
-        "infinispan",
-        "io",
-        "jaxrs",
-        "jca",
-        "jdr",
-        "jgroups",
-        "jmx",
-        "jpa",
-        "jsf",
-        "keycloak",
-        "logging",
-        "mail",
-        "modcluster",
-        "naming",
-        "pojo",
-        "remoting",
-        "request-controller",
-        "resource-adapters",
-        "sar",
-        "security",
-        "security-manager",
-        "transactions",
-        "undertow",
-        "webservices",
-        "weld"
-    ]
-}
+/host=hc_cbrdeapllx473/server=sifec-intranet_node1_lx473:read-attribute(name=server-state)
 
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /] /profile=full-ha-sifec-intranet/subsystem=ee:read-attribute(name=global-modules)
-{
-    "outcome" => "success",
-    "result" => undefined
-}
+ssh p585600@10.116.97.79
+sudo tail -f /opt/jboss/jboss-eap/hc/servers/sifec-intranet_node1_lx473/log/server.log | grep -iE --line-buffered "emp-|WFLYSRV0010|WFLYSRV0021|JMSException|faltam|Registered web context|WELD-001408|Caused by"
 
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /] /profile=full-ha-sifec-intranet/subsystem=ee:list-add(name=global-modules,value={name=javax.jms.api,slot=main})
-{
-    "outcome" => "success",
-    "result" => undefined,
-    "server-groups" => {"sifec-intranet" => {"host" => {"hc_cbrdeapllx473" => {"sifec-intranet_node1_lx473" => {"response" => {
-        "outcome" => "success",
-        "result" => undefined
-    }}}}}}
-}
+Com o log aberto, rode o deploy no 471:
 
-[domain@localhost:9443 /]
-
-
-
-me da p comando para ver o log no 473
+deploy --name=SIFEC-EMP --server-groups=sifec-intranet
+✅ Subiu se aparecer Registered web context: '/emp-web' e WFLYSRV0010: "SIFEC-EMP" foi implantado.
+❌ Se aparecer WFLYSRV0021, me cola as linhas.
