@@ -1,75 +1,17 @@
+deployment-info --server-group=sifec-intranet
 
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /] /profile=full-ha-sifec-intranet/subsystem=security:read-children-names(child-type=security-domain)
-{
-    "outcome" => "success",
-    "result" => [
-        "jaas-sifec",
-        "jaspitest",
-        "java:/jaas/jaas-sifec",
-        "jboss-ejb-policy",
-        "jboss-web-policy",
-        "keycloak",
-        "other"
-    ]
-}
+2. Abrir o log no 473, em outra sessão:
 
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /] /profile=full-ha-sifec-intranet/subsystem=security/security-domain="java:/jaas/jaas-sifec":read-resource(recursive=true)
-{
-    "outcome" => "success",
-    "result" => {
-        "cache-type" => "default",
-        "acl" => undefined,
-        "audit" => undefined,
-        "authentication" => {"classic" => {
-            "login-modules" => [
-                {
-                    "code" => "Remoting",
-                    "flag" => "optional",
-                    "module" => undefined,
-                    "module-options" => {"password-stacking" => "useFirstPass"}
-                },
-                {
-                    "code" => "RealmDirect",
-                    "flag" => "required",
-                    "module" => undefined,
-                    "module-options" => {"password-stacking" => "useFirstPass"}
-                }
-            ],
-            "login-module" => {
-                "Remoting" => {
-                    "code" => "Remoting",
-                    "flag" => "optional",
-                    "module" => undefined,
-                    "module-options" => {"password-stacking" => "useFirstPass"}
-                },
-                "RealmDirect" => {
-                    "code" => "RealmDirect",
-                    "flag" => "required",
-                    "module" => undefined,
-                    "module-options" => {"password-stacking" => "useFirstPass"}
-                }
-            }
-        }},
-        "authorization" => undefined,
-        "identity-trust" => undefined,
-        "jsse" => undefined,
-        "mapping" => undefined
-    }
-}
+bash
+sudo tail -f /opt/jboss/jboss-eap/hc/servers/sifec-intranet_node1_lx473/log/server.log | grep -iE --line-buffered "WFLYSRV0010|WFLYSRV0021|faltam|QuerySyntax|Registered web context"
 
-[domain@localhost:9443 /]
-[domain@localhost:9443 /]
-[domain@localhost:9443 /] /host=hc_cbrdeapllx473/server=sifec-intranet_node1_lx473:read-attribute(name=server-state)
-{
-    "outcome" => "success",
-    "result" => "running"
-}
+3. Ativar, no jboss-cli do 471:
 
-[domain@localhost:9443 /]
+deploy --name=<NOME-DA-PRIMEIRA-COLUNA> --server-groups=sifec-intranet
+
+Ou pela console: Deployments → Server Groups → sifec-intranet → (+) → Deploy Existing Content, e escolha o 8.40.1.
+
+Como ler o resultado:
+
+✅ Funcionou se aparecer Registered web context: '/workflow-credito-pj-web' e WFLYSRV0010 ... foi implantado. Peça para testarem o link do PJ no SIFEC.
+❌ Se aparecer WFLYSRV0021 ou faltam [...], me cola as linhas.
