@@ -1,38 +1,14 @@
-1. Desfazer o ajuste do Weld, já que não ajudou (no jboss-cli do 471):
+Paulo, resumo de hoje no JBoss 7.4 (DES, sifec-intranet):
 
-/profile=full-ha-sifec-intranet/subsystem=weld:write-attribute(name=require-bean-descriptor,value=false)
+✅ No ar: SIFEC 2.160.3.0 (Jackson corrigido), SIFEC-CCR, SICCR-BDCAIXA, HUB-FRONTEND e MINUTAS-FRONT. O SIEMP 14.37.0.6 também está no ar, no grupo siemp.
 
-Isso marca o servidor como reload-required, mas o SIFEC continua funcionando. O reload pode ficar para amanhã, junto com o restart da truststore do RURAL, numa parada só.
+🔧 Ambiente ajustado: security domains jaas-sifec e java:/jaas/jaas-sifec, mail session FECMail (smtp.correio.caixa:25) e API JMS liberada no profile.
 
-2. Confirmar que o SIFEC subiu no reload das 16:59. A linha dele não apareceu no trecho que você colou:
+⏳ Pendências de código (com os devs):
+• SICCR-PJ 8.40.1: CDI, @UsuarioContexto sem produtor (OperacaoIntegracaoMQAbstrata).
+• SIFEC-EMP (3.95 e 3.92): VeiculosTotalizadorBean não expõe a interface VeiculosTotalizadorService.
+• SIEMP-EMPRESAS 1.2.3-b15: ParametrizacaoBean não expõe a interface ParametrizacaoService.
+Nos três casos, a classe precisa declarar implements ou @Local da interface. Testamos no ambiente o modo de CDI compatível com o 6.4, sem efeito.
 
-bash
-sudo grep -E "WFLYSRV0010: \"SIFEC\"" /opt/jboss/jboss-eap/hc/servers/sifec-intranet_node1_lx473/log/server.log | tail -1
-
-O esperado é 16:59:xx ... "SIFEC" foi implantado (runtime-name: "sifec-2.160.3.0.ear").
-
-[domain@localhost:9999 /] /profile=full-ha-sifec-intranet/subsystem=weld:write-attribute(name=require-bean-descriptor,value=false)
-{
-    "outcome" => "success",
-    "result" => undefined,
-    "server-groups" => {"sifec-intranet" => {"host" => {"hc_cbrdeapllx473" => {"sifec-intranet_node1_lx473" => {"response" => {
-        "outcome" => "success",
-        "result" => undefined,
-        "response-headers" => {
-            "operation-requires-reload" => true,
-            "process-state" => "reload-required"
-        }
-    }}}}}}
-}
-
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-
-
-[p585600@cbrdeapllx473 ~]$
-[p585600@cbrdeapllx473 ~]$
-[p585600@cbrdeapllx473 ~]$ sudo grep -E "WFLYSRV0010: \"SIFEC\"" /opt/jboss/jboss-eap/hc/servers/sifec-intranet_node1_lx473/log/server.log | tail -1
-16:59:08,826 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0010: "SIFEC" foi implantado (runtime-name: "sifec-2.160.3.0.ear")
-[p585600@cbrdeapllx473 ~]$
+⏳ Pendência de ambiente (comigo):
+• SIFEC-RURAL 2.115.1.1: o JVM do SIFEC aponta a truststore para um caminho do Windows (C:/Desenvolvimento/...). A correção é criar uma truststore com as ACs da Caixa e aplicar com restart do sifec-intranet. O SIFEC fica fora do ar por alguns minutos. Aguardando a confirmação de vocês sobre o melhor horário para esse restart. Com o OK, eu aplico e faço o deploy do RURAL em seguida.
