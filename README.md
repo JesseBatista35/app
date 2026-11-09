@@ -1,8 +1,1 @@
-Opa, Blz!?
- 
-Pedimos VIP para deixar o certificado da URL no balanceador/VIP, do contrário teremos que instalar o certificado na VM na porta 443.
- 
-Estamos tentando deixar as VMs padronizadas para usar a porta 80. Mas creio que dá para instalar o certificado na 443 na própria VM
-
-
- evandor disse isso
+Paulo, confirmei com o Evandro: o padrão da esteira é usar o VIP, com o certificado instalado no balanceador e a VM atendendo na porta 80. Dá para instalar o certificado direto na VM na 443, mas foge do padrão que estão adotando para todas as VMs, e o certificado teria que ser reinstalado se a VM for recriada.
