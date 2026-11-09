@@ -1,35 +1,44 @@
-Paulo, corrigindo a referência que te passei: aquela REQ antiga não vale mais. O modelo atual é o que o Evandro abriu para o SIGSJ, que já foi atendido pela Rede: REQ000146953662 (VIP do sigsj-intranet.des.caixa). Pode usar como base.
+Boa tarde, Jesse, tudo bem? Sobre o chamado REQ000146916154, de configuração do agente do Control-M nas esteiras ágeis, poderia me informar como posso solicitar os ajustes que apontou na resolução do chamado?
+ 
+Iury Damasceno Mota, boa tarde, tudo bem e com voce? posso dar uma olhada, e te passar um retorno, porem hoje não consigo, se puder me chamar na segunda feira, pois eu encerrei meu turno mais cedo para ir a uma consulta hoje. obrigado. 
+ 
+Tranquilo! Mandei imaginando que ficaria para esta semana mesmo
+ 
+Obrigado
+ 
+Boa tarde! Para referência, o projeto que estamos com esse problema de conexão é o SIMIL-precificacao-rotinas-batch - Repos, que foi feito baseado no projeto SISME-rotinas - Repos.
 
-Sobre a sua dúvida do VIP: é ele que entrega o HTTPS. O certificado é instalado no VIP, e o VIP repassa para o servidor da esteira na porta 80. Apontando o DNS direto para o IP da VM, a URL fica só em HTTP. Além disso, se a VM for recriada pelo Terraform, o IP muda e o DNS quebra; com o VIP isso não acontece.
 
-O fluxo fica assim:
 
-1. Certificado TE079 para a URL (abrir primeiro, porque o número dessa REQ é citado no pedido do VIP).
+ À CAIXA
 
-2. REQ de VIP, com estes campos:
-• Qual o tipo de serviço?: Alterar configurações em balanceador
-• Detalhe do serviço: VIP
-• Atividade a ser executada: Solicitar inclusão de VIP
+Prezados,
 
-Descrição:
-Criação de VIP para a URL <sua-url>
+Conforme solicitado análise Validação do agente Control-M – SIMIL-precificacao-rotinas-batch (DES)
 
-Apontamento/Balanceamento para o servidor:
-IP: <IP da VM do SIEMP>
-HOST: <hostname da VM do SIEMP>
+Foi validada a configuração do agente Control-M no servidor caddeapllx2501.agil.nprd.caixa.gov.br (10.116.200.250), aplicada pela release em 15/10/2026.
 
-http://<sua-url>
-Porta 80
+Resultado: o agente está instalado e em execução, mas não se comunica com o servidor Control-M.
 
-Favor instalar o certificado da requisição abaixo:
-<REQ do certificado TE079> - <sua-url>
+Processos do agente (Listener, Tracker e Tracker-Worker) em execução.
+O agente está configurado para o servidor crjdeaprlx038 (autorizados: crjdeaprlx038 e crjdeaprlx039), portas 7015/7016.
 
-https://<sua-url>
+O ag_diag_comm retorna Failed no ping ao Control-M/Server.
 
-3. A Rede cria o VIP e informa o IP alocado. Depois a Segurança disponibiliza o certificado no balanceador para ser instalado no VIP.
+O nome crjdeaprlx038 não é resolvido. As entradas no /etc/hosts, vindas do arquivo etc/hosts-des do repositório SIMIL-precificacao-rotinas-batch-config, estão comentadas. 
 
-4. REQ de DNS para a URL apontar para o IP do VIP.
+Ele também não está no DNS.
+Pelos IPs antigos (10.116.99.99 e 10.116.99.100), a porta 7015 recusa a conexão.
 
-5. Com tudo pronto, a gente ajusta as variáveis de URL na release e roda o deploy.
+Comparação: um agente de DES que funciona normalmente (caddeapllx2695) aponta para o servidor sspdeaprlx0028 (10.116.84.154), portas 18007/18008, com comunicação OK. A partir do caddeapllx2501, a porta 18007 desse servidor está acessível.
 
-Qualquer dúvida é só chamar!
+Conclusão: a configuração aplicada aponta para um servidor Control-M que não está acessível. Para o agente funcionar no BR DES - Negocial, é preciso ajustar o servidor e as portas do Control-M, além do arquivo etc/hosts-des, e depois confirmar o cadastro do agente no servidor.
+
+
+Atenciosamente,
+
+Jessé Mouta Pereira Batista
+Analista
+CTIS / CESTI Esteira DEVOPS DES TQS NPRD
+
+
