@@ -39,3 +39,44 @@ Senha: no JBoss 5 o datasource referencia um security-domain onde a senha fica g
 Proxy: vou validar se o proxytqs.caixa resolve nas VMs de TQS e te retorno.
 Intranet sem Oracle: ótimo. Nesse caso sugiro remover o datasource SIGSJ04 do SIGSJ-intranet-config (e o ojdbc8 do jboss-deployments), senão a release vai cobrar as variáveis de banco sem necessidade. Vou só confirmar no pacote que nada referencia o datasource.
 Boleto: anotado, vamos incluir no pedido das URLs.
+
+
+
+
+
+Microsoft Windows [versão 10.0.26200.9711]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\p585600>nslookup proxytqs.caixa
+Servidor:  dfaddssd001.corp.caixa.gov.br
+Address:  10.222.149.10
+
+*** dfaddssd001.corp.caixa.gov.br não encontrou proxytqs.caixa: Non-existent domain
+
+C:\Users\p585600>nslookup proxydes.caixa
+Servidor:  dfaddssd001.corp.caixa.gov.br
+Address:  10.222.149.10
+
+Nome:    proxydes.caixa
+Addresses:  10.252.32.65
+          10.252.32.63
+
+
+C:\Users\p585600
+
+nao existe proxytqs aqui
+
+
+
+p585600@10.116.202.53's password:
+Last login: Fri Nov  6 16:31:37 2026 from 10.122.150.31
+[p585600@caddeapllx2863 ~]$
+[p585600@caddeapllx2863 ~]$
+[p585600@caddeapllx2863 ~]$ cd /tmp && mkdir -p intra && cd intra
+[p585600@caddeapllx2863 intra]$
+[p585600@caddeapllx2863 intra]$
+[p585600@caddeapllx2863 intra]$ unzip -o -q /opt/jboss-eap/standalone/deployments/sigsj_intranet-ear.ear
+[p585600@caddeapllx2863 intra]$
+[p585600@caddeapllx2863 intra]$
+[p585600@caddeapllx2863 intra]$ grep -rl 'SIGSJ04\|datasources/' . 2>/dev/null | head
+[p585600@caddeapllx2863 intra]$
