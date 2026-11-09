@@ -1,73 +1,35 @@
-Também vale mandar ao Paulo os números REQ000146953662 / REQ000146953837 como modelo atualizado do VIP.
- 
-Descrição da solicitação: Criação de VIP para a URL sigsj-intranet.des.caixa
+Paulo, corrigindo a referência que te passei: aquela REQ antiga não vale mais. O modelo atual é o que o Evandro abriu para o SIGSJ, que já foi atendido pela Rede: REQ000146953662 (VIP do sigsj-intranet.des.caixa). Pode usar como base.
+
+Sobre a sua dúvida do VIP: é ele que entrega o HTTPS. O certificado é instalado no VIP, e o VIP repassa para o servidor da esteira na porta 80. Apontando o DNS direto para o IP da VM, a URL fica só em HTTP. Além disso, se a VM for recriada pelo Terraform, o IP muda e o DNS quebra; com o VIP isso não acontece.
+
+O fluxo fica assim:
+
+1. Certificado TE079 para a URL (abrir primeiro, porque o número dessa REQ é citado no pedido do VIP).
+
+2. REQ de VIP, com estes campos:
+• Qual o tipo de serviço?: Alterar configurações em balanceador
+• Detalhe do serviço: VIP
+• Atividade a ser executada: Solicitar inclusão de VIP
+
+Descrição:
+Criação de VIP para a URL <sua-url>
 
 Apontamento/Balanceamento para o servidor:
-IP: 10.116.194.179
-HOST: caddeapllx955.agil.nprd.caixa.gov.br
+IP: <IP da VM do SIEMP>
+HOST: <hostname da VM do SIEMP>
 
-http://sigsj-intranet.des.caixa
+http://<sua-url>
 Porta 80
 
 Favor instalar o certificado da requisição abaixo:
-WO0000082153634 REQ000146906949 - sigsj-intranet.des.caixa
+<REQ do certificado TE079> - <sua-url>
 
-https://sigsj-intranet.des.caixa
-Qual o tipo de serviço?: Alterar configurações em balanceador
-Detalhe do serviço: VIP
-Atividade a ser executada: Solicitar inclusão de VIP
-Qual é o nome do sistema/serviço?: 
-Qual é o VIP de acesso ao sistema/serviço?: 
-Qual é o FQDN de acesso ao sistema/serviço?: 
+https://<sua-url>
 
+3. A Rede cria o VIP e informa o IP alocado. Depois a Segurança disponibiliza o certificado no balanceador para ser instalado no VIP.
 
-1. Segue script para criação do VIP solicitado:
+4. REQ de DNS para a URL apontar para o IP do VIP.
 
-=> IP do VIP alocado: 10.116.180.8.
+5. Com tudo pronto, a gente ajusta as variáveis de URL na release e roda o deploy.
 
-OBS.: Lembrando que o certificado será instalado somente no VIP, entregando ao servidor na porta 80.
-
-
-((( PLANO DE EXECUÇÃO )))
-
-CADDEAPRLB003-1 (10.122.82.100)
-add ns ip 10.116.180.8 255.255.255.255 -type VIP -snmp DISABLED -hostRoute ENABLED
-add server LB_SR_CADDEAPLLX955 10.116.194.179
-add serviceGroup LB_SG_10.116.180.8_HTTP_80 HTTP -maxClient 0 -maxReq 0 -cip DISABLED -usip NO -useproxyport YES -cltTimeout 180 -svrTimeout 360 -CKA NO -TCPB NO -CMP NO -netProfile NETPROF_SNAT
-add lb vserver LB_VS_10.116.180.8_HTTP_80 HTTP 10.116.180.8 80 -persistenceType NONE -timeout 15 -cltTimeout 180 -comment siccp-intra.esteiras.hmp.caixa -RHIstate ACTIVE
-add lb vserver LB_VS_10.116.180.8_SSL_443 SSL 10.116.180.8 443 -persistenceType SOURCEIP -timeout 15 -cltTimeout 180 -comment siccp-intra.esteiras.hmp.caixa -RHIstate ACTIVE
-bind lb vserver LB_VS_10.116.180.8_HTTP_80 LB_SG_ALWAYS_UP_HTTP_80
-bind lb vserver LB_VS_10.116.180.8_SSL_443 LB_SG_10.116.180.8_HTTP_80
-bind lb vserver LB_VS_10.116.180.8_HTTP_80 -policyName http_to_https_pol -priority 1 -gotoPriorityExpression END -type REQUEST
-bind serviceGroup LB_SG_10.116.180.8_HTTP_80 LB_SR_CADDEAPLLX955 80
-bind serviceGroup LB_SG_10.116.180.8_HTTP_80 -monitorName CEF_TCP_DEFAULT_MON
-set ssl vserver LB_VS_10.116.180.8_SSL_443 -sslProfile CEF_SSL_PROFILE_FRONTEND_SECURITY
-save ns config
-
-
-((( PLANO DE VALIDAÇÃO )))
-
-CADDEAPRLB003-1 (10.122.82.100)
-
-sh lb vserver LB_VS_10.116.180.8_SSL_443
-
-
-((( PLANO DE ROLLBACK )))
-
-rm lb vserver LB_VS_10.116.180.8_HTTP_80 HTTP
-rm lb vserver LB_VS_10.116.180.8_SSL_443 SSL
-rm serviceGroup LB_SG_10.116.180.8_HTTP_80 HTTP
-rm server LB_SR_CADDEAPLLX955 10.116.194.179
-rm ns ip 10.116.180.8
-save ns config
-
-
-2. A equipe de segurança precisa gerar e disponibilizar o certificado no balanceado para que possamos aplicar ao novo VIP criado.
-
-
-Atenciosamente,
-Valdir Soares
-TELEDATA\CETEL\REDE
-
-é essa mesmo da pra pedir aqui
-
+Qualquer dúvida é só chamar!
