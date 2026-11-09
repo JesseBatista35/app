@@ -1,103 +1,31 @@
-Skip to main content
-projetos
-/
-Caixa
-/
-Pipelines
-/
-Releases
-/
-SIIFX-caixinhas-api-aplicacao
-Search
+Oi Paulo, segue o passo a passo para solicitar a URL customizada do SIEMP-java-web (mesmo fluxo usado no SIGSJ). A aplicação roda em VM da esteira (Terraform), então o balanceamento é para o servidor na porta 80.
 
+Antes de começar, definir:
+• A URL desejada por ambiente (ex.: siemp-java-web.des.caixa / siemp-java-web.tqs.caixa)
+• Hostname e IP da VM de cada ambiente
 
+1. Certificado digital (Segurança)
+Abrir REQ de certificado TE079 para a URL (uma REQ por URL).
+Exemplo SIGSJ: REQ000146906949 (sigsj-intranet.des.caixa).
 
+2. VIP + instalação do certificado (Rede)
+Com o certificado gerado, abrir REQ solicitando a criação de um VIP exclusivo para a URL e a instalação do certificado no VIP (porta 443).
+Modelo de referência: REQ000141059391.
 
+3. Balanceamento
+Na mesma solicitação (ou em seguida), pedir que o VIP balanceie para o servidor da aplicação: hostname/IP da VM na porta 80.
 
+4. Regra de acesso
+A fábrica solicita a regra de acesso ao VIP na porta 443 para quem vai consumir/acessar a aplicação.
 
+5. DNS
+Abrir REQ de DNS para a URL (FQDN) resolver para o IP do VIP.
 
+6. Esteira (nosso time)
+Com VIP e DNS prontos, ajustamos as variáveis de URL na Library da release (URL_CUSTOMIZADA, URL_ALIAS, URL_REDIRECT e URL_REWRITE) e rodamos a release para o Apache da VM responder pelo novo nome.
 
-All pipelines
-
-SIIFX
-
-SIIFX-caixinhas-api-aplicacao
-Predefined variables
-SonarQube Variables (1)
-Variáveis com dados do SonarQube
-Scopes: Release
-Usuario-Azure-DevOps (12)
-Scopes: Release
-MONITORACAO_LOGS (4)
-REQ000143540550 - Conforme autorizado na req por FLAVIO ALMEIDA GAGLIARDI, removido as variáveis JAVA_OPTS_MONITORING e URL_APM_SERVER, por entrar em conflitos com releases que utilizam o Application Insights
-Scopes: Release
-EGRESS_IP_OKD (81)
-WO0000072264656 - Config Portal Infrafácil NO_PROXY
-Scopes: Release
-OKD-REGISTRY-CENTRALIZADO (7)
-Credenciais para o Registry Centralizado - Produtos 4 (OKD)
-Scopes: Release
-OKD-4-NPRD (12)
-Credenciais para o Cluster OKD4 de NPRD (DES/TQS/HMP)
-Scopes: EC DES,EC TQS,EC TGE,EC TGS,EC HMP
-SIIFX-CAIXINHAS-API-APLICACAO-DES (28)
-Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-DES
-Scopes: EC DES
-SIIFX-BT-VAULT-DES (1)
-SIIFX-BT-VAULT-DES
-Scopes: EC DES
-SIIFX-BT-VAULT-SECRET-DES (2)
-Scopes: EC DES
-SIIFX-BT-VAULT-TQS (2)
-SIIFX-BT-VAULT-TQS
-Scopes: EC TQS
-SIIFX-BT-VAULT-SECRET-TQS (2)
-Scopes: EC TQS
-SIIFX-CAIXINHAS-API-APLICACAO-TQS (28)
-Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-TQS - WO0000081121281
-Scopes: EC TQS
-SIIFX-CAIXINHAS-API-APLICACAO-TGE (28)
-Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-TGE
-Scopes: EC TGE
-SIIFX-BT-VAULT-TGE (2)
-SIIFX-BT-VAULT-TGE
-Scopes: EC TGE
-SIIFX-CAIXINHAS-API-APLICACAO-TGS (28)
-Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-TGS
-Scopes: EC TGS
-SIIFX-BT-VAULT-TGS (1)
-SIIFX-BT-VAULT-TGS
-Scopes: EC TGS
-SIIFX-CAIXINHAS-API-APLICACAO-HMP (28)
-Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-HMP
+7. Validação
+• nslookup <url> → deve retornar o IP do VIP
+• Acessar https://<url>/<contexto>/ no navegador
 
-Scopes: EC HMP
-SIIFX-BT-VAULT-SECRET-TGE (2)
-Scopes: EC TGE
-BT_CLIENT_ID
-43d12af3-6c96-428b-81f3-3ad809962beb
-BT_CLIENT_SECRET
-********
-OKD-4-APL (12)
-Scopes: EC PRD
-SIIFX-CAIXINHAS-API-APLICACAO-PRD (28)
-Grupo de variáveis de SIIFX-CAIXINHAS-API-APLICACAO-PRD
-Scopes: EC PRD
-SIIFX-BT-VAULT-SECRET-PRD (2)
-Grupo de variáveis SIIFX-BT-VAULT-SECRET-PRD
-Scopes: EC PRD
-|Manage variable groups
-Row 2
-
-Showing filters 1 through 2
-
-Showing filters 1 through 2
-
-List item deselected
-
-List item deselected
-
-List item deselected
-
-List item selected
-
+A ordem importa: certificado → VIP com certificado → balanceamento → DNS → esteira. Qualquer dúvida, é só chamar!
