@@ -44,7 +44,7 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
 
-		<arqref-core.version>3.7.2.2</arqref-core.version>
+		<arqref-core.version>3.7.1</arqref-core.version>
 		<arqref-services.version>3.6.3.13</arqref-services.version>
 		<arqref-web.version>3.1.0.1</arqref-web.version>
 
@@ -143,7 +143,7 @@
 				<groupId>br.gov.caixa.arqref</groupId>
 				<artifactId>arqref-core</artifactId>
 				<version>${arqref-core.version}</version>
-				<!--<scope>provided</scope>-->
+				<scope>provided</scope>
 				<exclusions>
 					<exclusion>
 						<groupId>org.hibernate</groupId>
@@ -184,45 +184,13 @@
 				<groupId>net.sf.jasperreports</groupId>
 				<artifactId>jasperreports</artifactId>
 				<version>6.6.0</version>
-				<!-- <scope>provided</scope>-->
+				<scope>provided</scope>
 				<exclusions>
 					<!-- itext 2.1.7.js6 so existe nos repos HTTP do Jaspersoft (bloqueados pelo Maven 3.8+);
 					     substituido por OpenPDF na compilacao e runtime -->
 					<exclusion>
 						<groupId>com.lowagie</groupId>
 						<artifactId>itext</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.olap4j</groupId>
-						<artifactId>olap4j</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.codehaus.castor</groupId>
-						<artifactId>castor-xml</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.apache.lucene</groupId>
-						<artifactId>lucene-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.apache.lucene</groupId>
-						<artifactId>lucene-analyzers-common</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.apache.lucene</groupId>
-						<artifactId>lucene-queryparser</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.jfree</groupId>
-						<artifactId>jfreechart</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.eclipse.jdt.core.compiler</groupId>
-						<artifactId>ecj</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.google.zxing</groupId>
-						<artifactId>core</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
