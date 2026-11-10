@@ -1,74 +1,15 @@
-Comandos do SIRUR, em ordem:
+Veja o que são, sem expor senha nenhuma (no 6.4; o comando mascara valores reais e mostra só as referências de vault):
 
-1. CLI do 471 (10.116.97.59): qual pacote está no repositório
+grep -E 'SECRET|API_KEY|PASSWORD' /tmp/props_sirur.cli | sed -E 's/value="([^$][^"]*)"/value="***"/'
 
-/opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=localhost:9999
-/deployment=SIRUR:read-attribute(name=runtime-name)
-/profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":read-attribute(name=connection-url)
-/host=hc_cbrdeapllx473/server=sifec-intranet_node1_lx473/subsystem=datasources/data-source="jdbc/OracleSirurDS":test-connection-in-pool
-/profile=full-ha-sifec-intranet/subsystem=keycloak/secure-deployment=sirur-web.war:read-attribute(name=resource)
+E veja se o 7.4 tem vault configurado (CLI do 471):
 
-2. No 6.4 (sbrdeapllx0001): properties do SIRUR
+/host=*/core-service=vault:read-resource
+7.4 sem vault (o mais provável): precisamos dos valores reais dessas properties. Quem tem é o dev ou o responsável pelo SIRUR (o resource name normalmente é um cli-ser-... e o secret vem do Keycloak). Não dá para extrair do vault do 6.4.
+7.4 com vault FEC-SIRUR: copiamos como está.
 
-sed -n '57701,58040p' /opt/jboss/jboss-eap/dc/configuration/domain.xml | grep -E '<property name="SIRUR_' | sed -E 's#.*name="([^"]*)" value="([^"]*)".*#/server-group=sifec-intranet/system-property=\1:add(value="\2")#' > /tmp/props_sirur.cli; wc -l /tmp/props_sirur.cli
-grep -viE 'SECRET|API_KEY|PASSWORD|SENHA' /tmp/props_sirur.cli
+2. Datasource: no 7.4 o jdbc/OracleSirurDS aponta para scan-oradesbr01.extra.caixa.gov.br:1521:ORADES01. Me mande:
 
-E o datasource do SIRUR no 6.4, para comparar (sem senha):
-
+o resultado do test-connection-in-pool (ficou sem resposta no seu print);
+o grep do datasource no 6.4, para conferir se o SIRUR do 6.4 usa esse banco ou o oracle-nprd-1000 ... prim_D01NGSRV:
 grep -A4 'OracleSirurDS"' /opt/jboss/jboss-eap/dc/configuration/domain.xml | grep -E "jndi-name|connection-url|user-name" | sort -u
-
-Me mande as saídas dos dois blocos. Com elas eu confiro os valores, te passo os comandos de aplicar as properties e o restart, e depois o deploy:
-
-deploy --name=SIRUR --server-groups=sifec-intranet
-
-(Esse último ainda não: só depois das properties e do restart.)
-
-
-
-
--sh-4.1$
--sh-4.1$ sed -n '57701,58040p' /opt/jboss/jboss-eap/dc/configuration/domain.xml | grep -E '<property name="SIRUR_' | sed -E 's#.*name="([^"]*)" value="([^"]*)".*#/server-group=sifec-intranet/system-property=\1:add(value="\2")#' > /tmp/props_sirur.cli; wc -l /tmp/props_sirur.cli
-6 /tmp/props_sirur.cli
--sh-4.1$
--sh-4.1$
--sh-4.1$
--sh-4.1$
--sh-4.1$ grep -viE 'SECRET|API_KEY|PASSWORD|SENHA' /tmp/props_sirur.cli
-/server-group=sifec-intranet/system-property=SIRUR_AMBIENTE:add(value="D")
-/server-group=sifec-intranet/system-property=SIRUR_SITAE_USUARIO:add(value="SRURTAED")
-/server-group=sifec-intranet/system-property=SIRUR_SSO_INTRANET_SERVICE_RESOURCE_NAME:add(value="${VAULT::FEC-SIRUR::SirurSSOIntraResource::1}")
--sh-4.1$
--sh-4.1$
--sh-4.1$
--sh-4.1$
-}
-
-
-
-
-
-[root@cbrdeapllx471 p585600]#
-[root@cbrdeapllx471 p585600]#
-[root@cbrdeapllx471 p585600]# ^C
-[root@cbrdeapllx471 p585600]# /opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=localhost:9999
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /] /deployment=SIRUR:read-attribute(name=runtime-name)
-{
-    "outcome" => "success",
-    "result" => "sifec-sirur-2.9.3-b928.ear"
-}
-
-[domain@localhost:9999 /] /profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":read-attribute(name=connection-url)
-{
-    "outcome" => "success",
-    "result" => "jdbc:oracle:thin:@scan-oradesbr01.extra.caixa.gov.br:1521:ORADES01"
-}
-
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /] /host=hc_cbrdeapllx473/server=sifec-intranet_node1_lx473/subsystem=datasources/data-source="jdbc/OracleSirurDS":test-connection-in-pool
-
-
