@@ -1,10 +1,5 @@
-<img width="1873" height="856" alt="image" src="https://github.com/user-attachments/assets/711589fb-9789-4345-9316-8e874962a651" />
+<img width="1147" height="779" alt="image" src="https://github.com/user-attachments/assets/0ad6be8c-a6b8-4a6b-8119-d923d8a00535" />
 
 
-nao tem nenhum que passou e aploicação nova 
 
-Usando o paconte do nexus 
-
-do ano de 2020
-
-<img width="1824" height="928" alt="image" src="https://github.com/user-attachments/assets/1d034b78-4069-4b05-b454-3f57d1441d48" />
+<img width="1296" height="722" alt="image" src="https://github.com/user-attachments/assets/c30bf7db-0e5b-48ec-9779-31254c071826" />
