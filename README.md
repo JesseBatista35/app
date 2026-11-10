@@ -1,33 +1,52 @@
-Então a recomendação é seguir com o VIP, usando como modelo a REQ000146953662 e o passo a passo
+WO0000082248436 
+ 
+Identificado erro no SIPEN durante a montagem do menu da aplicação:
+ 
+javax.servlet.jsp.JspException: Erro na montagem do Menu
+ 
+ 
+A análise dos logs mostrou a mensagem:
+ 
+Houve um erro na conexão para obtenção dos dados de login.
 
-O fluxo fica assim:
+SISTEMA NÃO DISPONÍVEL
+ 
+ 
+Foi realizada a reciclagem da instância (sipen_node3_lx0006). Após a subida, a aplicação iniciou normalmente, recompilou as JSPs e deixaram de ocorrer os erros de montagem do menu. Indício de indisponibilidade temporária do componente responsável pela obtenção dos dados de login/perfil do usuário.
+ 
+Errata
+ 
+Voltou a acontecer 
+ 
+Identificada a origem da falha do SIPEN. O erro apresentado ("Erro na montagem do Menu") é apenas reflexo de uma falha anterior na obtenção dos dados de login/perfil do usuário.
+ 
+A análise do código mostrou que a montagem do menu depende da chamada:
+ 
+br.com.politec.mainframe.dao.LoginMainframeImpl.consultaDadosLogin()
+ 
+que realiza integração com Mainframe/CICS através de Connection.execute().
+ 
+Quando ocorre falha nesta consulta, uma LoginException é gerada e posteriormente mascarada pela aplicação, resultando apenas em:
+ 
+Erro na montagem do Menu.
 
-1. Certificado TE079 para a URL (abrir primeiro, porque o número dessa REQ é citado no pedido do VIP).
+null
+ 
+Indícios apontam para instabilidade ou indisponibilidade na integração de autenticação/perfil com o Mainframe, não sendo identificado problema de deploy ou infraestrutura JBoss durante a análise.
 
-2. REQ de VIP, com estes campos:
-• Qual o tipo de serviço?: Alterar configurações em balanceador
-• Detalhe do serviço: VIP
-• Atividade a ser executada: Solicitar inclusão de VIP
 
-Descrição:
-Criação de VIP para a URL <sua-url>
+ Solicitamos verificar motivo da indisponibilidade do ambiente de desenvolvimento SIPEN.
 
-Apontamento/Balanceamento para o servidor:
-IP: <IP da VM do SIEMP>
-HOST: <hostname da VM do SIEMP>
+https://sipen2.desenvolvimento.extracaixa/sipen/
 
-http://<sua-url>
-Porta 80
+Erro na montagem do Menu.
+null
 
-Favor instalar o certificado da requisição abaixo:
-<REQ do certificado TE079> - <sua-url>
 
-https://<sua-url>
 
-3. A Rede cria o VIP e informa o IP alocado. Depois a Segurança disponibiliza o certificado no balanceador para ser instalado no VIP.
 
-4. REQ de DNS para a URL apontar para o IP do VIP.
 
-5. Com tudo pronto, a gente ajusta as variáveis de URL na release e roda o deploy.
 
-Qualquer dúvida é só chamar!
+<img width="1871" height="998" alt="image" src="https://github.com/user-attachments/assets/add88f4b-0af5-4578-9420-07bb677c6d1d" />
+
+
