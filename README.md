@@ -1,6 +1,6 @@
 group_id:artifact_id:version:extension
-br.gov.caixa.SirotconEAP:sirotcon-ejb:2.3.0.1:jar
 com.oracle.database.jdbc:ojdbc8:23.26.0.0.0:jar
+
 
 
 <?xml version='1.0' encoding='UTF-8'?>
@@ -44,6 +44,10 @@ com.oracle.database.jdbc:ojdbc8:23.26.0.0.0:jar
         <extension module="org.wildfly.extension.undertow"/>
         <extension module="org.wildfly.iiop-openjdk"/>
     </extensions>
+    <system-properties>
+        <property name="CONNECTOR-FARM-HOST" value="10.116.89.101"/>
+        <property name="CONNECTOR-FARM-PORT" value="8111"/>
+    </system-properties>
     <management>
         <audit-log>
             <formatters>
@@ -124,6 +128,18 @@ com.oracle.database.jdbc:ojdbc8:23.26.0.0.0:jar
             <logger category="stdout">
                 <level name="OFF"/>
             </logger>
+            <logger category="br.gov.caixa.sirot" use-parent-handlers="false">
+                <level name="DEBUG"/>
+                <handlers>
+                    <handler name="sirot"/>
+                </handlers>
+            </logger>
+            <logger category="br.gov.caixa.libsp" use-parent-handlers="false">
+                <level name="DEBUG"/>
+                <handlers>
+                    <handler name="ceflib"/>
+                </handlers>
+            </logger>
             <root-logger>
                 <level name="INFO"/>
                 <handlers>
@@ -195,7 +211,7 @@ com.oracle.database.jdbc:ojdbc8:23.26.0.0.0:jar
             <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:ee:6.0">
-            <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
+            <spec-descriptor-property-replacement>true</spec-descriptor-property-replacement>
             <concurrent>
                 <context-services>
                     <context-service name="default" jndi-name="java:jboss/ee/concurrency/context/default" use-transaction-setup-provider="true"/>
@@ -503,9 +519,6 @@ com.oracle.database.jdbc:ojdbc8:23.26.0.0.0:jar
             </proxy>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
-            <bindings>
-                <lookup name="java:global/sirotcon-ejb-2.3.0.1-farm/SIROTConBean!br.gov.caixa.sirot.ejb.SIROTCon" lookup="java:global/sirotcon-ejb/SIROTConBean!br.gov.caixa.sirot.ejb.SIROTCon"/>
-            </bindings>
             <remote-naming/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:pojo:1.0"/>
@@ -593,3 +606,23 @@ com.oracle.database.jdbc:ojdbc8:23.26.0.0.0:jar
         </outbound-socket-binding>
     </socket-binding-group>
 </server>
+
+
+
+Ordem para não quebrar de novo:
+
+Subir os dois arquivos no repo, na branch que a release usa.
+No 2854, como root, tirar o SIROT externo antes de rodar a release. A release não apaga o jar que já está na pasta.
+bash
+   cd /opt/jboss-eap/standalone/deployments/
+   \mv -f sirotcon-ejb.jar /tmp/
+   \rm -f sirotcon-ejb.jar.* sigsj_internet-ear.ear.failed
+Rodar a release.
+Validar:
+bash
+   ls /opt/jboss-eap/standalone/deployments/
+   grep -E 'WFLYUT0021|WFLYSRV0010|WFLYEE0047|NumberFormatException|ClassNotFound' /logs/jboss/jboss-eap/standalone/sigsj-internet/server.log | tail -10
+
+Se aparecer ClassNotFoundException: br.gov.caixa.log.Log, falta o CeflogEAP/ceflib no build do internet. Esse ajuste é da fábrica, no pom, como foi feito no intranet.
+
+O TQS (2865) também tem o sirotcon-ejb.jar externo. Lá vale a mesma limpeza do passo 2 antes da próxima release de TQS.
