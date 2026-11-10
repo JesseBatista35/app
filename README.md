@@ -626,3 +626,41 @@ bash
 Se aparecer ClassNotFoundException: br.gov.caixa.log.Log, falta o CeflogEAP/ceflib no build do internet. Esse ajuste é da fábrica, no pom, como foi feito no intranet.
 
 O TQS (2865) também tem o sirotcon-ejb.jar externo. Lá vale a mesma limpeza do passo 2 antes da próxima release de TQS.
+
+
+
+
+
+[p585600@caddeapllx2854 ~]$
+[p585600@caddeapllx2854 ~]$
+[p585600@caddeapllx2854 ~]$
+[p585600@caddeapllx2854 ~]$ cd /opt/jboss-eap/standalone/deployments/
+[p585600@caddeapllx2854 deployments]$ \mv -f sirotcon-ejb.jar /tmp/
+mv: não foi possível remover 'sirotcon-ejb.jar': Permissão negada
+[p585600@caddeapllx2854 deployments]$ sudo su
+[sudo] senha para p585600:
+[root@caddeapllx2854 deployments]# \mv -f sirotcon-ejb.jar /tmp/
+[root@caddeapllx2854 deployments]# \rm -f sirotcon-ejb.jar.* sigsj_internet-ear.ear.failed
+[root@caddeapllx2854 deployments]#
+[root@caddeapllx2854 deployments]#
+[root@caddeapllx2854 deployments]#
+
+
+
+
+
+
+
+oi super Jesse Mouta Pereira Batista
+ 
+bom dia
+ 
+vi aqui que tem uma falha de ambiente contigo, do SIPEN
+ 
+WO0000082248436
+ 
+Em TQS está sem comunicação com o CICS (ibmaplacs.tqs.extranet.caixa)
+ 
+veja se tb não seria o mesmo problema em DES
+ 
+
