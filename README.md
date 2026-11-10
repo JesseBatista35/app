@@ -649,18 +649,14 @@ mv: não foi possível remover 'sirotcon-ejb.jar': Permissão negada
 
 
 
+Fala Cledson, boa tarde! Desculpa a demora pra te responder, mano, o dia tá corrido aqui.
 
+Dei uma olhada no SIPEN DES (WO0000082248436) e lá o cenário é um pouco diferente do TQS. Em DES a comunicação com o CICS está ok: as chamadas voltam sem erro (Erro CICS 0, Resp 0000, Erro SQL 0).
 
-oi super Jesse Mouta Pereira Batista
- 
-bom dia
- 
-vi aqui que tem uma falha de ambiente contigo, do SIPEN
- 
-WO0000082248436
- 
-Em TQS está sem comunicação com o CICS (ibmaplacs.tqs.extranet.caixa)
- 
-veja se tb não seria o mesmo problema em DES
+O problema é no programa PENPO308 (transação PH), que traz os dados de login/perfil pra montar o menu:
+- Quando responde normal (18 a 166ms), volta com os dados completos (82844 bytes) e o login funciona.
+- Quando demora (6 a 9 segundos), volta com a área de saída vazia, mas com RC 0. Aí a aplicação quebra no "Erro na montagem do Menu".
+
+Começou em 08/11 e foi piorando. Hoje está praticamente contínuo desde as 06:18. Os mesmos usuários alternam entre funcionar e falhar,
  
 
