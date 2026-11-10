@@ -1,32 +1,42 @@
+Duas coisas chamam atenção:
 
--sh-4.1$
--sh-4.1$
--sh-4.1$ awk 'NR>248632' server.log | grep -n "JCicsConnect.login\|Erro na montagem" | head
-3207:2026-11-10 09:32:56,517ERROR(ajp-/10.116.88.25:13309-5)JBWEB000236: Servlet.service() for servlet jsp threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-3244:2026-11-10 09:32:56,518ERROR(ajp-/10.116.88.25:13309-5)JBWEB000236: Servlet.service() for servlet Controller threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-4569:2026-11-10 09:50:22,990ERROR(ajp-/10.116.88.25:13309-7)JBWEB000236: Servlet.service() for servlet jsp threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-4606:2026-11-10 09:50:22,990ERROR(ajp-/10.116.88.25:13309-7)JBWEB000236: Servlet.service() for servlet Controller threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-4771:2026-11-10 09:52:50,576ERROR(ajp-/10.116.88.25:13309-6)JBWEB000236: Servlet.service() for servlet jsp threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-4808:2026-11-10 09:52:50,577ERROR(ajp-/10.116.88.25:13309-6)JBWEB000236: Servlet.service() for servlet Controller threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-4982:2026-11-10 09:55:12,134ERROR(ajp-/10.116.88.25:13309-6)JBWEB000236: Servlet.service() for servlet jsp threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-5019:2026-11-10 09:55:12,135ERROR(ajp-/10.116.88.25:13309-6)JBWEB000236: Servlet.service() for servlet Controller threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-5220:2026-11-10 09:56:52,797ERROR(ajp-/10.116.88.25:13309-7)JBWEB000236: Servlet.service() for servlet jsp threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
-5257:2026-11-10 09:56:52,798ERROR(ajp-/10.116.88.25:13309-7)JBWEB000236: Servlet.service() for servlet Controller threw exception: javax.servlet.jsp.JspException: Erro na montagem do Menu.
--sh-4.1$
--sh-4.1$
--sh-4.1$ FJ=$(find / -name "framework.jar" -path "*sipen*" 2>/dev/null | head -1); echo $FJ
-^C
--sh-4.1$
--sh-4.1$
--sh-4.1$
--sh-4.1$ mkdir -p /tmp/jc && cd /tmp/jc && unzip -o -q $FJ 'br/gov/caixa/util/jcicsconnect/*'
-unzip:  cannot find or open br/gov/caixa/util/jcicsconnect/*, br/gov/caixa/util/jcicsconnect/*.zip or br/gov/caixa/util/jcicsconnect/*.ZIP.
+O erro volta só 3 minutos depois do restart (restart às 09:30, primeira falha às 09:32). Então o restart não resolve nada: o problema aparece já no primeiro login.
+Depois do restart de hoje, o JCicsConnect.login não aparece, só o “Erro na montagem do Menu”. A causa de hoje pode ser outra, ou estar logada de outro jeito.
 
-No zipfiles found.
--sh-4.1$
--sh-4.1$
--sh-4.1$ javap -c -l -p br/gov/caixa/util/jcicsconnect/JCicsConnect.class | sed -n '/login(/,/LineNumberTable/p'
-Error: class not found: br/gov/caixa/util/jcicsconnect/JCicsConnect.class
--sh-4.1$
--sh-4.1$
--sh-4.1$
+O find foi interrompido (Ctrl+C), então $FJ ficou vazio e o unzip e o javap falharam por isso.
+
+1. Ver o contexto antes da primeira falha de hoje:
+
+bash
+cd /logs/jboss-eap/hc/servers/sipen_node3_lx0006/
+awk 'NR>=248632+3100 && NR<=248632+3245' server.log
+
+Se ficar grande demais, filtre:
+
+bash
+awk 'NR>=248632+3100 && NR<=248632+3245' server.log | grep -v DEBUG
+
+Vale olhar também o log da aplicação no mesmo horário:
+
+bash
+grep -n "09:32:5" sipen.log | grep -v DEBUG | head -50
+
+2. Achar o framework.jar. No modo domain ele fica dentro do EAR, extraído no tmp/vfs da instância. Primeiro descubra o jboss.home pelo processo:
+
+bash
+ps -ef | grep sipen_node3_lx0006 | grep -o "jboss.home.dir=[^ ]*"
+
+Depois procure só ali, o que é bem mais rápido que varrer o /:
+
+bash
+JH=<caminho que apareceu acima>
+find $JH -name "framework.jar" 2>/dev/null
+
+Com o caminho em mãos:
+
+bash
+FJ=<caminho do framework.jar>
+mkdir -p /tmp/jc && cd /tmp/jc && unzip -o -q "$FJ" 'br/gov/caixa/util/jcicsconnect/*'
+javap -c -l -p br/gov/caixa/util/jcicsconnect/JCicsConnect.class | sed -n '/login(/,/LocalVariableTable/p'
+
+O passo 1 é o mais importante agora. Manda o trecho que aparecer.
