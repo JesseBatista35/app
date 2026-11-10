@@ -1,49 +1,24 @@
-Agora, o datasource.
+1. Restart (CLI do 471; aplica a URL nova e carrega as properties do SIRUR):
 
-1. No 6.4, usuário e senha do OracleSirurDS (senha mascarada se for texto):
+/server-group=sifec-intranet:restart-servers(blocking=true)
+/host=hc_cbrdeapllx473/server=sifec-intranet_node1_lx473:read-attribute(name=server-state)
 
-grep -A12 'jndi-name="java:/jdbc/OracleSirurDS"' /opt/jboss/jboss-eap/dc/configuration/domain.xml | grep -E "user-name|password" | sed -E 's#<password>([^$][^<]*)</password>#<password>***</password>#' | sort -u
+Espere ficar running.
 
-2. No 471 (CLI), aponte para o banco do 6.4 e veja o usuário atual:
+2. Teste do banco:
 
-/profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":write-attribute(name=connection-url,value="jdbc:oracle:thin:@oracle-nprd-1000.caixa:1521/prim_D01NGSRV")
-/profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":read-attribute(name=user-name)
+/host=hc_cbrdeapllx473/server=sifec-intranet_node1_lx473/subsystem=datasources/data-source="jdbc/OracleSirurDS":test-connection-in-pool
+[true]: pode seguir.
+Falhar (ex.: ORA-01017 invalid username/password): a senha do 7.4 é diferente da do 6.4. Me mande o erro, que buscamos a senha.
 
-Me mande as duas saídas. Se o usuário do 7.4 bater com o do 6.4, já vamos para o restart, o teste de conexão e o deploy do SIRUR.
+3. Log no 473 (abra antes do deploy):
 
+sudo tail -f /opt/jboss/jboss-eap/hc/servers/sifec-intranet_node1_lx473/log/server.log | grep -E "WFLYSRV0010|WFLYCTL0013|WFLYUT0021|ERROR|VAULT|PBOX|WELD-00|RESTEASY003940|sirur|SIRUR"
 
+4. Deploy do SIRUR (CLI do 471):
 
-h-4.1$
--sh-4.1$ grep -A12 'jndi-name="java:/jdbc/OracleSirurDS"' /opt/jboss/jboss-eap/dc/configuration/domain.xml | grep -E "user-name|password" | sed -E 's#<password>([^$][^<]*)</password>#<password>***</password>#' | sort -u
-                            <user-name>SRURBD01</user-name>
--sh-4.1$
--sh-4.1$
--sh-4.1$
+deploy --name=SIRUR --server-groups=sifec-intranet
 
+O esperado é WFLYUT0021 ... /sirur-web e WFLYSRV0010: "SIRUR" foi implantado (sifec-sirur-2.9.3-b928.ear). O pacote também é do 6.4, então pode aparecer o mesmo WELD-001318 do Jackson que o RURAL teve. Se aparecer, me mande que montamos a mensagem para o dev.
 
-
-
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /] /profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":write-attribute(name=connection-url,value="jdbc:oracle:thin:@oracle-nprd-1000.caixa:1521/prim_D01NGSRV")
-{
-    "outcome" => "success",
-    "result" => undefined,
-    "server-groups" => {"sifec-intranet" => {"host" => {"hc_cbrdeapllx473" => {"sifec-intranet_node1_lx473" => {"response" => {
-        "outcome" => "success",
-        "result" => undefined,
-        "response-headers" => {
-            "operation-requires-reload" => true,
-            "process-state" => "reload-required"
-        }
-    }}}}}}
-}
-
-[domain@localhost:9999 /] /profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":read-attribute(name=user-name)
-{
-    "outcome" => "success",
-    "result" => "SRURBD01"
-}
-
-[domain@localhost:9999 /]
+Depois do restart, confira se o fec-web abre com estilo. Se não abrir: /server-group=sifec-intranet/deployment=SIFEC:redeploy.
