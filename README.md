@@ -10,3 +10,40 @@ grep -A12 'jndi-name="java:/jdbc/OracleSirurDS"' /opt/jboss/jboss-eap/dc/configu
 /profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":read-attribute(name=user-name)
 
 Me mande as duas saídas. Se o usuário do 7.4 bater com o do 6.4, já vamos para o restart, o teste de conexão e o deploy do SIRUR.
+
+
+
+h-4.1$
+-sh-4.1$ grep -A12 'jndi-name="java:/jdbc/OracleSirurDS"' /opt/jboss/jboss-eap/dc/configuration/domain.xml | grep -E "user-name|password" | sed -E 's#<password>([^$][^<]*)</password>#<password>***</password>#' | sort -u
+                            <user-name>SRURBD01</user-name>
+-sh-4.1$
+-sh-4.1$
+-sh-4.1$
+
+
+
+
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /] /profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":write-attribute(name=connection-url,value="jdbc:oracle:thin:@oracle-nprd-1000.caixa:1521/prim_D01NGSRV")
+{
+    "outcome" => "success",
+    "result" => undefined,
+    "server-groups" => {"sifec-intranet" => {"host" => {"hc_cbrdeapllx473" => {"sifec-intranet_node1_lx473" => {"response" => {
+        "outcome" => "success",
+        "result" => undefined,
+        "response-headers" => {
+            "operation-requires-reload" => true,
+            "process-state" => "reload-required"
+        }
+    }}}}}}
+}
+
+[domain@localhost:9999 /] /profile=full-ha-sifec-intranet/subsystem=datasources/data-source="jdbc/OracleSirurDS":read-attribute(name=user-name)
+{
+    "outcome" => "success",
+    "result" => "SRURBD01"
+}
+
+[domain@localhost:9999 /]
