@@ -1,5 +1,13 @@
-Marcio, a release do internet em DES está falhando porque o SIROT agora vai embutido no EAR, mas faltam duas bibliotecas que ele usa: ceflog-1.0.0.0-farm.jar e ceflib-2.5.0.1.jar. O erro é ClassNotFoundException: br.gov.caixa.log.Log.
-
-O intranet leva as duas na pasta lib/ do EAR. Consegue incluir as duas no pom do internet, igual está no intranet, e gerar um novo build?
-
-Do nosso lado, já tiramos o SIROT externo do servidor e ajustamos o config para o embutido. Com o build novo, rodamos a release de novo.
+A aplicação SILCR não está falhando por datasource ou JNDI. O deploy é interrompido pelo CDI/Weld durante a validação de injeções.
+ 
+Foram identificadas dependências não resolvidas:
+ 
+- DadosSICLIDao em DadosSICLIBean
+- AliquotasIofDao em AliquotasIofBean
+- Logger em UserProfile
+ 
+Verificar se as implementações dos DAOs estão empacotadas na EAR e sendo reconhecidas como beans CDI (beans.xml, anotações @Stateless/@ApplicationScoped/@Dependent etc.).
+ 
+Verificar também a injeção de Logger em UserProfile. O servidor encontrou apenas um producer com qualifier @BatchProperty, incompatível com a injeção @Inject Logger sem qualifier.
+ 
+Necessário corrigir o empacotamento/configuração CDI da versão silcr-1.19.0-b152.ear.
