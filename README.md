@@ -1,245 +1,595 @@
-2026-11-10T13:52:03.5565299Z ##[section]Starting: Check Deployments [JBOSS]
-2026-11-10T13:52:03.5568401Z ==============================================================================
-2026-11-10T13:52:03.5568486Z Task         : Bash
-2026-11-10T13:52:03.5568531Z Description  : Run a Bash script on macOS, Linux, or Windows
-2026-11-10T13:52:03.5568683Z Version      : 3.227.0
-2026-11-10T13:52:03.5568730Z Author       : Microsoft Corporation
-2026-11-10T13:52:03.5568786Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
-2026-11-10T13:52:03.5568868Z ==============================================================================
-2026-11-10T13:52:03.6720067Z Generating script.
-2026-11-10T13:52:03.6727984Z Script contents:
-2026-11-10T13:52:03.6728481Z ansible-playbook /opt/ads-agent/_work/r19325/a/esteira-jboss-vm-v2/site.yml --tags check_deployments -e sistema_ambiente=des -e sistema_nome=sigsj-internet -e site=ctc_nprd
-2026-11-10T13:52:03.6731224Z ========================== Starting Command Output ===========================
-2026-11-10T13:52:03.6738459Z [command]/bin/bash /opt/ads-agent/_work/_temp/a3f5f546-534c-4f44-9a5b-7a671fad0a59.sh
-2026-11-10T13:52:05.8974783Z 
-2026-11-10T13:52:05.8975424Z PLAY [local] *******************************************************************
-2026-11-10T13:52:05.9261272Z 
-2026-11-10T13:52:05.9261900Z PLAY [Configurando o DNS] ******************************************************
-2026-11-10T13:52:06.1430959Z 
-2026-11-10T13:52:06.1431624Z PLAY [local] *******************************************************************
-2026-11-10T13:52:06.1469675Z 
-2026-11-10T13:52:06.1470464Z PLAY [Verificando serviços] ****************************************************
-2026-11-10T13:52:06.1564378Z 
-2026-11-10T13:52:06.1564891Z PLAY [Configuração LDAP] *******************************************************
-2026-11-10T13:52:06.1598525Z [WARNING]: Found variable using reserved name: when
-2026-11-10T13:52:06.1603029Z 
-2026-11-10T13:52:06.1603234Z PLAY [jboss] *******************************************************************
-2026-11-10T13:52:06.1687838Z 
-2026-11-10T13:52:06.1688378Z PLAY [Stack Jboss] *************************************************************
-2026-11-10T13:52:06.1935040Z Tuesday 10 November 2026  10:52:06 -0300 (0:00:00.357)       0:00:00.357 ****** 
-2026-11-10T13:52:06.8659925Z 
-2026-11-10T13:52:06.8660668Z TASK [Verifica ser o Jboss já foi instalado] ***********************************
-2026-11-10T13:52:06.8661351Z [DEPRECATION WARNING]: Distribution rhel 9.3 on host 
-2026-11-10T13:52:06.8662041Z caddeapllx2854.agil.nprd.caixa.gov.br should use /usr/libexec/platform-python, 
-2026-11-10T13:52:06.8662758Z but is using /usr/bin/python for backward compatibility with prior Ansible 
-2026-11-10T13:52:06.8663428Z releases. A future Ansible release will default to using the discovered 
-2026-11-10T13:52:06.8663599Z platform python for this host. See https://docs.ansible.com/ansible/2.9/referen
-2026-11-10T13:52:06.8663780Z ce_appendices/interpreter_discovery.html for more information. This feature 
-2026-11-10T13:52:06.8663967Z will be removed in version 2.12. Deprecation warnings can be disabled by 
-2026-11-10T13:52:06.8664124Z setting deprecation_warnings=False in ansible.cfg.
-2026-11-10T13:52:06.8664272Z ok: [caddeapllx2854.agil.nprd.caixa.gov.br]
-2026-11-10T13:52:06.8689220Z 
-2026-11-10T13:52:06.8690007Z PLAY [jboss] *******************************************************************
-2026-11-10T13:52:06.8732502Z 
-2026-11-10T13:52:06.8732984Z PLAY [jboss] *******************************************************************
-2026-11-10T13:52:06.8772982Z 
-2026-11-10T13:52:06.8773312Z PLAY [jboss] *******************************************************************
-2026-11-10T13:52:06.8802718Z 
-2026-11-10T13:52:06.8803273Z PLAY [Copiando deployments adicionais] *****************************************
-2026-11-10T13:52:06.8829032Z 
-2026-11-10T13:52:06.8829451Z PLAY [Copiando modules adicionais] *********************************************
-2026-11-10T13:52:06.8856004Z 
-2026-11-10T13:52:06.8856363Z PLAY [jboss] *******************************************************************
-2026-11-10T13:52:06.8892210Z 
-2026-11-10T13:52:06.8892469Z PLAY [jboss] *******************************************************************
-2026-11-10T13:52:06.8923043Z 
-2026-11-10T13:52:06.8923494Z PLAY [jboss] *******************************************************************
-2026-11-10T13:52:06.8967614Z Tuesday 10 November 2026  10:52:06 -0300 (0:00:00.703)       0:00:01.060 ****** 
-2026-11-10T13:52:07.3302802Z 
-2026-11-10T13:52:07.3303333Z TASK [Wait for Jboss Management port] ******************************************
-2026-11-10T13:52:07.3303504Z ok: [caddeapllx2854.agil.nprd.caixa.gov.br]
-2026-11-10T13:52:07.3339642Z Tuesday 10 November 2026  10:52:07 -0300 (0:00:00.437)       0:00:01.498 ****** 
-2026-11-10T13:52:08.3134705Z FAILED - RETRYING: Check if Jboss is Running (120 retries left).
-2026-11-10T13:52:13.8581023Z 
-2026-11-10T13:52:13.8581549Z TASK [Check if Jboss is Running] ***********************************************
-2026-11-10T13:52:13.8581730Z ok: [caddeapllx2854.agil.nprd.caixa.gov.br]
-2026-11-10T13:52:13.8616446Z Tuesday 10 November 2026  10:52:13 -0300 (0:00:06.527)       0:00:08.025 ****** 
-2026-11-10T13:52:14.3513821Z FAILED - RETRYING: Check Deployment details looking for status OK (60 retries left).
-2026-11-10T13:52:19.9556523Z FAILED - RETRYING: Check Deployment details looking for status OK (59 retries left).
-2026-11-10T13:52:25.4199654Z FAILED - RETRYING: Check Deployment details looking for status OK (58 retries left).
-2026-11-10T13:52:30.8126608Z FAILED - RETRYING: Check Deployment details looking for status OK (57 retries left).
-2026-11-10T13:52:36.1928282Z FAILED - RETRYING: Check Deployment details looking for status OK (56 retries left).
-2026-11-10T13:52:41.5907186Z FAILED - RETRYING: Check Deployment details looking for status OK (55 retries left).
-2026-11-10T13:52:46.9713215Z FAILED - RETRYING: Check Deployment details looking for status OK (54 retries left).
-2026-11-10T13:52:52.3562157Z FAILED - RETRYING: Check Deployment details looking for status OK (53 retries left).
-2026-11-10T13:52:57.7517968Z FAILED - RETRYING: Check Deployment details looking for status OK (52 retries left).
-2026-11-10T13:53:03.1316674Z FAILED - RETRYING: Check Deployment details looking for status OK (51 retries left).
-2026-11-10T13:53:08.5188391Z FAILED - RETRYING: Check Deployment details looking for status OK (50 retries left).
-2026-11-10T13:53:13.9068868Z FAILED - RETRYING: Check Deployment details looking for status OK (49 retries left).
-2026-11-10T13:53:19.2856177Z FAILED - RETRYING: Check Deployment details looking for status OK (48 retries left).
-2026-11-10T13:53:24.6697748Z FAILED - RETRYING: Check Deployment details looking for status OK (47 retries left).
-2026-11-10T13:53:30.0651159Z FAILED - RETRYING: Check Deployment details looking for status OK (46 retries left).
-2026-11-10T13:53:35.4422276Z FAILED - RETRYING: Check Deployment details looking for status OK (45 retries left).
-2026-11-10T13:53:40.8208048Z FAILED - RETRYING: Check Deployment details looking for status OK (44 retries left).
-2026-11-10T13:53:46.1997649Z FAILED - RETRYING: Check Deployment details looking for status OK (43 retries left).
-2026-11-10T13:53:51.5840831Z FAILED - RETRYING: Check Deployment details looking for status OK (42 retries left).
-2026-11-10T13:53:56.9599227Z FAILED - RETRYING: Check Deployment details looking for status OK (41 retries left).
-2026-11-10T13:54:02.3682687Z FAILED - RETRYING: Check Deployment details looking for status OK (40 retries left).
-2026-11-10T13:54:07.7607555Z FAILED - RETRYING: Check Deployment details looking for status OK (39 retries left).
-2026-11-10T13:54:13.1363143Z FAILED - RETRYING: Check Deployment details looking for status OK (38 retries left).
-2026-11-10T13:54:18.5353856Z FAILED - RETRYING: Check Deployment details looking for status OK (37 retries left).
-2026-11-10T13:54:23.9263879Z FAILED - RETRYING: Check Deployment details looking for status OK (36 retries left).
-2026-11-10T13:54:29.3055670Z FAILED - RETRYING: Check Deployment details looking for status OK (35 retries left).
-2026-11-10T13:54:34.6906332Z FAILED - RETRYING: Check Deployment details looking for status OK (34 retries left).
-2026-11-10T13:54:40.0703698Z FAILED - RETRYING: Check Deployment details looking for status OK (33 retries left).
-2026-11-10T13:54:45.4506929Z FAILED - RETRYING: Check Deployment details looking for status OK (32 retries left).
-2026-11-10T13:54:50.8445608Z FAILED - RETRYING: Check Deployment details looking for status OK (31 retries left).
-2026-11-10T13:54:56.2230852Z FAILED - RETRYING: Check Deployment details looking for status OK (30 retries left).
-2026-11-10T13:55:01.6081373Z FAILED - RETRYING: Check Deployment details looking for status OK (29 retries left).
-2026-11-10T13:55:07.0016476Z FAILED - RETRYING: Check Deployment details looking for status OK (28 retries left).
-2026-11-10T13:55:12.3850022Z FAILED - RETRYING: Check Deployment details looking for status OK (27 retries left).
-2026-11-10T13:55:17.7695647Z FAILED - RETRYING: Check Deployment details looking for status OK (26 retries left).
-2026-11-10T13:55:23.1987736Z FAILED - RETRYING: Check Deployment details looking for status OK (25 retries left).
-2026-11-10T13:55:28.5786436Z FAILED - RETRYING: Check Deployment details looking for status OK (24 retries left).
-2026-11-10T13:55:33.9728993Z FAILED - RETRYING: Check Deployment details looking for status OK (23 retries left).
-2026-11-10T13:55:39.3626557Z FAILED - RETRYING: Check Deployment details looking for status OK (22 retries left).
-2026-11-10T13:55:44.7405403Z FAILED - RETRYING: Check Deployment details looking for status OK (21 retries left).
-2026-11-10T13:55:50.1256540Z FAILED - RETRYING: Check Deployment details looking for status OK (20 retries left).
-2026-11-10T13:55:55.5242273Z FAILED - RETRYING: Check Deployment details looking for status OK (19 retries left).
-2026-11-10T13:56:00.9100869Z FAILED - RETRYING: Check Deployment details looking for status OK (18 retries left).
-2026-11-10T13:56:06.2896015Z FAILED - RETRYING: Check Deployment details looking for status OK (17 retries left).
-2026-11-10T13:56:11.6774562Z FAILED - RETRYING: Check Deployment details looking for status OK (16 retries left).
-2026-11-10T13:56:17.0542729Z FAILED - RETRYING: Check Deployment details looking for status OK (15 retries left).
-2026-11-10T13:56:22.4454298Z FAILED - RETRYING: Check Deployment details looking for status OK (14 retries left).
-2026-11-10T13:56:27.8389630Z FAILED - RETRYING: Check Deployment details looking for status OK (13 retries left).
-2026-11-10T13:56:33.2169134Z FAILED - RETRYING: Check Deployment details looking for status OK (12 retries left).
-2026-11-10T13:56:38.5924525Z FAILED - RETRYING: Check Deployment details looking for status OK (11 retries left).
-2026-11-10T13:56:43.9810527Z FAILED - RETRYING: Check Deployment details looking for status OK (10 retries left).
-2026-11-10T13:56:49.3551454Z FAILED - RETRYING: Check Deployment details looking for status OK (9 retries left).
-2026-11-10T13:56:54.7331462Z FAILED - RETRYING: Check Deployment details looking for status OK (8 retries left).
-2026-11-10T13:57:00.1595384Z FAILED - RETRYING: Check Deployment details looking for status OK (7 retries left).
-2026-11-10T13:57:05.5554765Z FAILED - RETRYING: Check Deployment details looking for status OK (6 retries left).
-2026-11-10T13:57:10.9401605Z FAILED - RETRYING: Check Deployment details looking for status OK (5 retries left).
-2026-11-10T13:57:16.3509602Z FAILED - RETRYING: Check Deployment details looking for status OK (4 retries left).
-2026-11-10T13:57:21.7314109Z FAILED - RETRYING: Check Deployment details looking for status OK (3 retries left).
-2026-11-10T13:57:27.1173776Z FAILED - RETRYING: Check Deployment details looking for status OK (2 retries left).
-2026-11-10T13:57:32.5256422Z FAILED - RETRYING: Check Deployment details looking for status OK (1 retries left).
-2026-11-10T13:57:37.9117133Z 
-2026-11-10T13:57:37.9118216Z TASK [Check Deployment details looking for status OK] **************************
-2026-11-10T13:57:37.9125371Z fatal: [caddeapllx2854.agil.nprd.caixa.gov.br]: FAILED! => {"attempts": 60, "changed": false, "connection": "close", "content": "{\"outcome\" : \"success\", \"result\" : {\"ojdbc8.jar\" : {\"content\" : [{\"hash\" : { \"BYTES_VALUE\" : \"Fj3DWG0Y7U3HRZ/bKwfzUOqmSTk=\" }}], \"disabled-time\" : null, \"disabled-timestamp\" : null, \"enabled\" : true, \"enabled-time\" : 1794318722505, \"enabled-timestamp\" : \"2026-11-10 10:52:02,505 BRT\", \"managed\" : true, \"name\" : \"ojdbc8.jar\", \"owner\" : [{ \"subsystem\" : \"deployment-scanner\" },{ \"scanner\" : \"default\" }], \"persistent\" : false, \"runtime-name\" : \"ojdbc8.jar\", \"status\" : \"OK\", \"subdeployment\" : null, \"subsystem\" : {\"logging\" : null}}, \"sigsj_internet-ear.ear\" : {\"content\" : [{\"hash\" : { \"BYTES_VALUE\" : \"fMdjrhnJGcY5oK3heP/8IKgECzs=\" }}], \"disabled-time\" : null, \"disabled-timestamp\" : null, \"enabled\" : true, \"enabled-time\" : 1794318722460, \"enabled-timestamp\" : \"2026-11-10 10:52:02,460 BRT\", \"managed\" : true, \"name\" : \"sigsj_internet-ear.ear\", \"owner\" : [{ \"subsystem\" : \"deployment-scanner\" },{ \"scanner\" : \"default\" }], \"persistent\" : false, \"runtime-name\" : \"sigsj_internet-ear.ear\", \"status\" : \"FAILED\", \"subdeployment\" : {\"br.gov.caixa-sigsj_internet-war-2.67.war\" : null, \"br.gov.caixa.farm-sirotcon-ejb-2.3.0.2-farm.jar\" : null}, \"subsystem\" : null}, \"sirotcon-ejb.jar\" : {\"content\" : [{\"hash\" : { \"BYTES_VALUE\" : \"cLE7JH7Axwql5UcepAdPvwrhtws=\" }}], \"disabled-time\" : null, \"disabled-timestamp\" : null, \"enabled\" : true, \"enabled-time\" : 1794318722474, \"enabled-timestamp\" : \"2026-11-10 10:52:02,474 BRT\", \"managed\" : true, \"name\" : \"sirotcon-ejb.jar\", \"owner\" : [{ \"subsystem\" : \"deployment-scanner\" },{ \"scanner\" : \"default\" }], \"persistent\" : false, \"runtime-name\" : \"sirotcon-ejb.jar\", \"status\" : \"OK\", \"subdeployment\" : null, \"subsystem\" : {\"ejb3\" : null, \"logging\" : null}}}}", "content_encoding": "identity", "content_length": "1691", "content_type": "application/json; charset=utf-8", "cookies": {}, "cookies_string": "", "date": "Tue, 10 Nov 2026 13:57:37 GMT", "elapsed": 0, "json": {"outcome": "success", "result": {"ojdbc8.jar": {"content": [{"hash": {"BYTES_VALUE": "Fj3DWG0Y7U3HRZ/bKwfzUOqmSTk="}}], "disabled-time": null, "disabled-timestamp": null, "enabled": true, "enabled-time": 1794318722505, "enabled-timestamp": "2026-11-10 10:52:02,505 BRT", "managed": true, "name": "ojdbc8.jar", "owner": [{"subsystem": "deployment-scanner"}, {"scanner": "default"}], "persistent": false, "runtime-name": "ojdbc8.jar", "status": "OK", "subdeployment": null, "subsystem": {"logging": null}}, "sigsj_internet-ear.ear": {"content": [{"hash": {"BYTES_VALUE": "fMdjrhnJGcY5oK3heP/8IKgECzs="}}], "disabled-time": null, "disabled-timestamp": null, "enabled": true, "enabled-time": 1794318722460, "enabled-timestamp": "2026-11-10 10:52:02,460 BRT", "managed": true, "name": "sigsj_internet-ear.ear", "owner": [{"subsystem": "deployment-scanner"}, {"scanner": "default"}], "persistent": false, "runtime-name": "sigsj_internet-ear.ear", "status": "FAILED", "subdeployment": {"br.gov.caixa-sigsj_internet-war-2.67.war": null, "br.gov.caixa.farm-sirotcon-ejb-2.3.0.2-farm.jar": null}, "subsystem": null}, "sirotcon-ejb.jar": {"content": [{"hash": {"BYTES_VALUE": "cLE7JH7Axwql5UcepAdPvwrhtws="}}], "disabled-time": null, "disabled-timestamp": null, "enabled": true, "enabled-time": 1794318722474, "enabled-timestamp": "2026-11-10 10:52:02,474 BRT", "managed": true, "name": "sirotcon-ejb.jar", "owner": [{"subsystem": "deployment-scanner"}, {"scanner": "default"}], "persistent": false, "runtime-name": "sirotcon-ejb.jar", "status": "OK", "subdeployment": null, "subsystem": {"ejb3": null, "logging": null}}}}, "msg": "OK (1691 bytes)", "redirected": false, "status": 200, "url": "http://10.116.202.45:9990/management/", "x_content_type_options": "nosniff", "x_frame_options": "SAMEORIGIN"}
-2026-11-10T13:57:37.9158052Z Tuesday 10 November 2026  10:57:37 -0300 (0:05:24.054)       0:05:32.079 ****** 
-2026-11-10T13:57:50.7213719Z 
-2026-11-10T13:57:50.7214385Z TASK [systemd] *****************************************************************
-2026-11-10T13:57:50.7214663Z changed: [caddeapllx2854.agil.nprd.caixa.gov.br]
-2026-11-10T13:57:50.7260406Z Tuesday 10 November 2026  10:57:50 -0300 (0:00:12.810)       0:05:44.890 ****** 
-2026-11-10T13:57:51.0538463Z 
-2026-11-10T13:57:51.0539462Z TASK [Wait for Jboss Management port] ******************************************
-2026-11-10T13:57:51.0539699Z ok: [caddeapllx2854.agil.nprd.caixa.gov.br]
-2026-11-10T13:57:51.0575979Z Tuesday 10 November 2026  10:57:51 -0300 (0:00:00.331)       0:05:45.221 ****** 
-2026-11-10T13:57:52.0065761Z FAILED - RETRYING: Check if Jboss is Running (120 retries left).
-2026-11-10T13:57:57.4855994Z FAILED - RETRYING: Check if Jboss is Running (119 retries left).
-2026-11-10T13:58:02.9096625Z 
-2026-11-10T13:58:02.9097157Z TASK [Check if Jboss is Running] ***********************************************
-2026-11-10T13:58:02.9097343Z ok: [caddeapllx2854.agil.nprd.caixa.gov.br]
-2026-11-10T13:58:02.9132408Z Tuesday 10 November 2026  10:58:02 -0300 (0:00:11.855)       0:05:57.077 ****** 
-2026-11-10T13:58:03.3802604Z FAILED - RETRYING: Check Deployment details looking for status OK (60 retries left).
-2026-11-10T13:58:08.9106389Z FAILED - RETRYING: Check Deployment details looking for status OK (59 retries left).
-2026-11-10T13:58:14.2971958Z FAILED - RETRYING: Check Deployment details looking for status OK (58 retries left).
-2026-11-10T13:58:19.6768586Z FAILED - RETRYING: Check Deployment details looking for status OK (57 retries left).
-2026-11-10T13:58:25.0791469Z FAILED - RETRYING: Check Deployment details looking for status OK (56 retries left).
-2026-11-10T13:58:30.4621072Z FAILED - RETRYING: Check Deployment details looking for status OK (55 retries left).
-2026-11-10T13:58:35.8392831Z FAILED - RETRYING: Check Deployment details looking for status OK (54 retries left).
-2026-11-10T13:58:41.2392799Z FAILED - RETRYING: Check Deployment details looking for status OK (53 retries left).
-2026-11-10T13:58:46.6191516Z FAILED - RETRYING: Check Deployment details looking for status OK (52 retries left).
-2026-11-10T13:58:52.0005322Z FAILED - RETRYING: Check Deployment details looking for status OK (51 retries left).
-2026-11-10T13:58:57.3849217Z FAILED - RETRYING: Check Deployment details looking for status OK (50 retries left).
-2026-11-10T13:59:02.7708784Z FAILED - RETRYING: Check Deployment details looking for status OK (49 retries left).
-2026-11-10T13:59:08.1661341Z FAILED - RETRYING: Check Deployment details looking for status OK (48 retries left).
-2026-11-10T13:59:13.5659775Z FAILED - RETRYING: Check Deployment details looking for status OK (47 retries left).
-2026-11-10T13:59:18.9476425Z FAILED - RETRYING: Check Deployment details looking for status OK (46 retries left).
-2026-11-10T13:59:24.3196709Z FAILED - RETRYING: Check Deployment details looking for status OK (45 retries left).
-2026-11-10T13:59:29.7224763Z FAILED - RETRYING: Check Deployment details looking for status OK (44 retries left).
-2026-11-10T13:59:35.1034493Z FAILED - RETRYING: Check Deployment details looking for status OK (43 retries left).
-2026-11-10T13:59:40.4864800Z FAILED - RETRYING: Check Deployment details looking for status OK (42 retries left).
-2026-11-10T13:59:45.8947077Z FAILED - RETRYING: Check Deployment details looking for status OK (41 retries left).
-2026-11-10T13:59:51.2895718Z FAILED - RETRYING: Check Deployment details looking for status OK (40 retries left).
-2026-11-10T13:59:56.6642523Z FAILED - RETRYING: Check Deployment details looking for status OK (39 retries left).
-2026-11-10T14:00:02.0653104Z FAILED - RETRYING: Check Deployment details looking for status OK (38 retries left).
-2026-11-10T14:00:07.4555199Z FAILED - RETRYING: Check Deployment details looking for status OK (37 retries left).
-2026-11-10T14:00:12.8408412Z FAILED - RETRYING: Check Deployment details looking for status OK (36 retries left).
-2026-11-10T14:00:18.2413639Z FAILED - RETRYING: Check Deployment details looking for status OK (35 retries left).
-2026-11-10T14:00:23.6290940Z FAILED - RETRYING: Check Deployment details looking for status OK (34 retries left).
-2026-11-10T14:00:29.0088292Z FAILED - RETRYING: Check Deployment details looking for status OK (33 retries left).
-2026-11-10T14:00:34.4023549Z FAILED - RETRYING: Check Deployment details looking for status OK (32 retries left).
-2026-11-10T14:00:39.7894370Z FAILED - RETRYING: Check Deployment details looking for status OK (31 retries left).
-2026-11-10T14:00:45.1728858Z FAILED - RETRYING: Check Deployment details looking for status OK (30 retries left).
-2026-11-10T14:00:50.5794873Z FAILED - RETRYING: Check Deployment details looking for status OK (29 retries left).
-2026-11-10T14:00:55.9570990Z FAILED - RETRYING: Check Deployment details looking for status OK (28 retries left).
-2026-11-10T14:01:01.3384699Z FAILED - RETRYING: Check Deployment details looking for status OK (27 retries left).
-2026-11-10T14:01:06.7391220Z FAILED - RETRYING: Check Deployment details looking for status OK (26 retries left).
-2026-11-10T14:01:12.1410551Z FAILED - RETRYING: Check Deployment details looking for status OK (25 retries left).
-2026-11-10T14:01:17.5239072Z FAILED - RETRYING: Check Deployment details looking for status OK (24 retries left).
-2026-11-10T14:01:22.9287761Z FAILED - RETRYING: Check Deployment details looking for status OK (23 retries left).
-2026-11-10T14:01:28.3146785Z FAILED - RETRYING: Check Deployment details looking for status OK (22 retries left).
-2026-11-10T14:01:33.7023853Z FAILED - RETRYING: Check Deployment details looking for status OK (21 retries left).
-2026-11-10T14:01:39.0943042Z FAILED - RETRYING: Check Deployment details looking for status OK (20 retries left).
-2026-11-10T14:01:44.4768425Z FAILED - RETRYING: Check Deployment details looking for status OK (19 retries left).
-2026-11-10T14:01:49.8577388Z FAILED - RETRYING: Check Deployment details looking for status OK (18 retries left).
-2026-11-10T14:01:55.2641431Z FAILED - RETRYING: Check Deployment details looking for status OK (17 retries left).
-2026-11-10T14:02:00.6506611Z FAILED - RETRYING: Check Deployment details looking for status OK (16 retries left).
-2026-11-10T14:02:06.0315543Z FAILED - RETRYING: Check Deployment details looking for status OK (15 retries left).
-2026-11-10T14:02:11.4220357Z FAILED - RETRYING: Check Deployment details looking for status OK (14 retries left).
-2026-11-10T14:02:16.7963021Z FAILED - RETRYING: Check Deployment details looking for status OK (13 retries left).
-2026-11-10T14:02:22.1907835Z FAILED - RETRYING: Check Deployment details looking for status OK (12 retries left).
-2026-11-10T14:02:27.5792616Z FAILED - RETRYING: Check Deployment details looking for status OK (11 retries left).
-2026-11-10T14:02:32.9608961Z FAILED - RETRYING: Check Deployment details looking for status OK (10 retries left).
-2026-11-10T14:02:38.3765890Z FAILED - RETRYING: Check Deployment details looking for status OK (9 retries left).
-2026-11-10T14:02:43.7615273Z FAILED - RETRYING: Check Deployment details looking for status OK (8 retries left).
-2026-11-10T14:02:49.1365035Z FAILED - RETRYING: Check Deployment details looking for status OK (7 retries left).
-2026-11-10T14:02:54.5157307Z FAILED - RETRYING: Check Deployment details looking for status OK (6 retries left).
-2026-11-10T14:02:59.9045184Z FAILED - RETRYING: Check Deployment details looking for status OK (5 retries left).
-2026-11-10T14:03:05.2805853Z FAILED - RETRYING: Check Deployment details looking for status OK (4 retries left).
-2026-11-10T14:03:10.6680414Z FAILED - RETRYING: Check Deployment details looking for status OK (3 retries left).
-2026-11-10T14:03:16.0712828Z FAILED - RETRYING: Check Deployment details looking for status OK (2 retries left).
-2026-11-10T14:03:21.4662807Z FAILED - RETRYING: Check Deployment details looking for status OK (1 retries left).
-2026-11-10T14:03:26.8447624Z 
-2026-11-10T14:03:26.8448085Z TASK [Check Deployment details looking for status OK] **************************
-2026-11-10T14:03:26.8460475Z fatal: [caddeapllx2854.agil.nprd.caixa.gov.br]: FAILED! => {"attempts": 60, "changed": false, "connection": "close", "content": "{\"outcome\" : \"success\", \"result\" : {\"ojdbc8.jar\" : {\"content\" : [{\"hash\" : { \"BYTES_VALUE\" : \"Fj3DWG0Y7U3HRZ/bKwfzUOqmSTk=\" }}], \"disabled-time\" : null, \"disabled-timestamp\" : null, \"enabled\" : true, \"enabled-time\" : 1794319069757, \"enabled-timestamp\" : \"2026-11-10 10:57:49,757 BRT\", \"managed\" : true, \"name\" : \"ojdbc8.jar\", \"owner\" : [{ \"subsystem\" : \"deployment-scanner\" },{ \"scanner\" : \"default\" }], \"persistent\" : false, \"runtime-name\" : \"ojdbc8.jar\", \"status\" : \"OK\", \"subdeployment\" : null, \"subsystem\" : {\"logging\" : null}}, \"sigsj_internet-ear.ear\" : {\"content\" : [{\"hash\" : { \"BYTES_VALUE\" : \"fMdjrhnJGcY5oK3heP/8IKgECzs=\" }}], \"disabled-time\" : null, \"disabled-timestamp\" : null, \"enabled\" : true, \"enabled-time\" : 1794319069717, \"enabled-timestamp\" : \"2026-11-10 10:57:49,717 BRT\", \"managed\" : true, \"name\" : \"sigsj_internet-ear.ear\", \"owner\" : [{ \"subsystem\" : \"deployment-scanner\" },{ \"scanner\" : \"default\" }], \"persistent\" : false, \"runtime-name\" : \"sigsj_internet-ear.ear\", \"status\" : \"FAILED\", \"subdeployment\" : {\"br.gov.caixa-sigsj_internet-war-2.67.war\" : null, \"br.gov.caixa.farm-sirotcon-ejb-2.3.0.2-farm.jar\" : null}, \"subsystem\" : null}, \"sirotcon-ejb.jar\" : {\"content\" : [{\"hash\" : { \"BYTES_VALUE\" : \"cLE7JH7Axwql5UcepAdPvwrhtws=\" }}], \"disabled-time\" : null, \"disabled-timestamp\" : null, \"enabled\" : true, \"enabled-time\" : 1794319069726, \"enabled-timestamp\" : \"2026-11-10 10:57:49,726 BRT\", \"managed\" : true, \"name\" : \"sirotcon-ejb.jar\", \"owner\" : [{ \"subsystem\" : \"deployment-scanner\" },{ \"scanner\" : \"default\" }], \"persistent\" : false, \"runtime-name\" : \"sirotcon-ejb.jar\", \"status\" : \"OK\", \"subdeployment\" : null, \"subsystem\" : {\"ejb3\" : null, \"logging\" : null}}}}", "content_encoding": "identity", "content_length": "1691", "content_type": "application/json; charset=utf-8", "cookies": {}, "cookies_string": "", "date": "Tue, 10 Nov 2026 14:03:26 GMT", "elapsed": 0, "json": {"outcome": "success", "result": {"ojdbc8.jar": {"content": [{"hash": {"BYTES_VALUE": "Fj3DWG0Y7U3HRZ/bKwfzUOqmSTk="}}], "disabled-time": null, "disabled-timestamp": null, "enabled": true, "enabled-time": 1794319069757, "enabled-timestamp": "2026-11-10 10:57:49,757 BRT", "managed": true, "name": "ojdbc8.jar", "owner": [{"subsystem": "deployment-scanner"}, {"scanner": "default"}], "persistent": false, "runtime-name": "ojdbc8.jar", "status": "OK", "subdeployment": null, "subsystem": {"logging": null}}, "sigsj_internet-ear.ear": {"content": [{"hash": {"BYTES_VALUE": "fMdjrhnJGcY5oK3heP/8IKgECzs="}}], "disabled-time": null, "disabled-timestamp": null, "enabled": true, "enabled-time": 1794319069717, "enabled-timestamp": "2026-11-10 10:57:49,717 BRT", "managed": true, "name": "sigsj_internet-ear.ear", "owner": [{"subsystem": "deployment-scanner"}, {"scanner": "default"}], "persistent": false, "runtime-name": "sigsj_internet-ear.ear", "status": "FAILED", "subdeployment": {"br.gov.caixa-sigsj_internet-war-2.67.war": null, "br.gov.caixa.farm-sirotcon-ejb-2.3.0.2-farm.jar": null}, "subsystem": null}, "sirotcon-ejb.jar": {"content": [{"hash": {"BYTES_VALUE": "cLE7JH7Axwql5UcepAdPvwrhtws="}}], "disabled-time": null, "disabled-timestamp": null, "enabled": true, "enabled-time": 1794319069726, "enabled-timestamp": "2026-11-10 10:57:49,726 BRT", "managed": true, "name": "sirotcon-ejb.jar", "owner": [{"subsystem": "deployment-scanner"}, {"scanner": "default"}], "persistent": false, "runtime-name": "sirotcon-ejb.jar", "status": "OK", "subdeployment": null, "subsystem": {"ejb3": null, "logging": null}}}}, "msg": "OK (1691 bytes)", "redirected": false, "status": 200, "url": "http://10.116.202.45:9990/management/", "x_content_type_options": "nosniff", "x_frame_options": "SAMEORIGIN"}
-2026-11-10T14:03:26.8477837Z 
-2026-11-10T14:03:26.8478589Z PLAY RECAP *********************************************************************
-2026-11-10T14:03:26.8479028Z caddeapllx2854.agil.nprd.caixa.gov.br : ok=6    changed=1    unreachable=0    failed=1    skipped=0    rescued=1    ignored=0   
-2026-11-10T14:03:26.8479122Z 
-2026-11-10T14:03:26.8479425Z Tuesday 10 November 2026  11:03:26 -0300 (0:05:23.934)       0:11:21.012 ****** 
-2026-11-10T14:03:26.8479687Z =============================================================================== 
-2026-11-10T14:03:26.8481396Z Check Deployment details looking for status OK ------------------------ 324.05s
-2026-11-10T14:03:26.8481676Z Check Deployment details looking for status OK ------------------------ 323.93s
-2026-11-10T14:03:26.8481912Z systemd ---------------------------------------------------------------- 12.81s
-2026-11-10T14:03:26.8482139Z Check if Jboss is Running ---------------------------------------------- 11.86s
-2026-11-10T14:03:26.8482429Z Check if Jboss is Running ----------------------------------------------- 6.53s
-2026-11-10T14:03:26.8482669Z Verifica ser o Jboss já foi instalado ----------------------------------- 0.70s
-2026-11-10T14:03:26.8482906Z Wait for Jboss Management port ------------------------------------------ 0.44s
-2026-11-10T14:03:26.8484738Z Wait for Jboss Management port ------------------------------------------ 0.33s
-2026-11-10T14:03:26.8485010Z Playbook run took 0 days, 0 hours, 11 minutes, 20 seconds
-2026-11-10T14:03:26.9208565Z ##[error]Bash exited with code '2'.
-2026-11-10T14:03:26.9224950Z ##[section]Finishing: Check Deployments [JBOSS]
+group_id:artifact_id:version:extension
+br.gov.caixa.SirotconEAP:sirotcon-ejb:2.3.0.1:jar
+com.oracle.database.jdbc:ojdbc8:23.26.0.0.0:jar
 
 
-Tudo bem?
-Tem como você verificar porque a release da internet não está subindo?
-https://devops.caixa/projetos/Caixa/_releaseProgress?_a=release-environment-logs&releaseId=553319&environmentId=2571963
+<?xml version='1.0' encoding='UTF-8'?>
 
-
-eles subuirma algima coisa aqui que quebrou
-
-
-
-Last login: Thu Oct 22 16:27:03 2026 from 10.122.150.31
-[p585600@caddeapllx2854 ~]$
-[p585600@caddeapllx2854 ~]$
-[p585600@caddeapllx2854 ~]$
-[p585600@caddeapllx2854 ~]$
-[p585600@caddeapllx2854 ~]$
-[p585600@caddeapllx2854 ~]$
-[p585600@caddeapllx2854 ~]$
-
-
+<server xmlns="urn:jboss:domain:16.0">
+    <extensions>
+        <extension module="org.jboss.as.modcluster"/>
+        <extension module="org.jboss.as.clustering.infinispan"/>
+        <extension module="org.jboss.as.connector"/>
+        <extension module="org.jboss.as.deployment-scanner"/>
+        <extension module="org.jboss.as.ee"/>
+        <extension module="org.jboss.as.ejb3"/>
+        <extension module="org.jboss.as.jaxrs"/>
+        <extension module="org.jboss.as.jdr"/>
+        <extension module="org.jboss.as.jmx"/>
+        <extension module="org.jboss.as.jpa"/>
+        <extension module="org.jboss.as.jsf"/>
+        <extension module="org.jboss.as.jsr77"/>
+        <extension module="org.jboss.as.logging"/>
+        <extension module="org.jboss.as.mail"/>
+        <extension module="org.jboss.as.naming"/>
+        <extension module="org.jboss.as.pojo"/>
+        <extension module="org.jboss.as.remoting"/>
+        <extension module="org.jboss.as.sar"/>
+        <extension module="org.jboss.as.transactions"/>
+        <extension module="org.jboss.as.webservices"/>
+        <extension module="org.jboss.as.weld"/>
+        <extension module="org.wildfly.extension.batch.jberet"/>
+        <extension module="org.wildfly.extension.bean-validation"/>
+        <extension module="org.wildfly.extension.clustering.web"/>
+        <extension module="org.wildfly.extension.core-management"/>
+        <extension module="org.wildfly.extension.discovery"/>
+        <extension module="org.wildfly.extension.ee-security"/>
+        <extension module="org.wildfly.extension.elytron"/>
+        <extension module="org.wildfly.extension.health"/>
+        <extension module="org.wildfly.extension.io"/>
+        <extension module="org.wildfly.extension.messaging-activemq"/>
+        <extension module="org.wildfly.extension.metrics"/>
+        <extension module="org.wildfly.extension.request-controller"/>
+        <extension module="org.wildfly.extension.security.manager"/>
+        <extension module="org.wildfly.extension.undertow"/>
+        <extension module="org.wildfly.iiop-openjdk"/>
+    </extensions>
+    <management>
+        <audit-log>
+            <formatters>
+                <json-formatter name="json-formatter"/>
+            </formatters>
+            <handlers>
+                <file-handler name="file" formatter="json-formatter" path="audit-log.log" relative-to="jboss.server.data.dir"/>
+            </handlers>
+            <logger log-boot="true" log-read-only="false" enabled="false">
+                <handlers>
+                    <handler name="file"/>
+                </handlers>
+            </logger>
+        </audit-log>
+        <management-interfaces>
+            <http-interface http-authentication-factory="management-http-authentication">
+                <http-upgrade enabled="true" sasl-authentication-factory="management-sasl-authentication"/>
+                <socket-binding http="management-http"/>
+            </http-interface>
+        </management-interfaces>
+        <access-control provider="simple">
+            <role-mapping>
+                <role name="SuperUser">
+                    <include>
+                        <user name="$local"/>
+                    </include>
+                </role>
+            </role-mapping>
+        </access-control>
+    </management>
+    <profile>
+        <subsystem xmlns="urn:jboss:domain:logging:8.0">
+            <console-handler name="CONSOLE">
+                <level name="INFO"/>
+                <formatter>
+                    <named-formatter name="COLOR-PATTERN"/>
+                </formatter>
+            </console-handler>
+            <periodic-rotating-file-handler name="FILE" autoflush="true">
+                <formatter>
+                    <named-formatter name="PATTERN"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="server.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
+            <periodic-rotating-file-handler name="sirot" autoflush="true">
+                <formatter>
+                    <named-formatter name="PATTERN"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="sirot.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
+            <periodic-rotating-file-handler name="ceflib" autoflush="true">
+                <formatter>
+                    <named-formatter name="PATTERN"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="ceflib.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
+            <logger category="com.arjuna">
+                <level name="WARN"/>
+            </logger>
+            <logger category="org.jboss.as.config">
+                <level name="DEBUG"/>
+            </logger>
+            <logger category="sun.rmi">
+                <level name="WARN"/>
+            </logger>
+            <logger category="io.prometheus">
+                <level name="FATAL"/>
+            </logger>
+            <logger category="io.undertow">
+                <level name="ERROR"/>
+            </logger>
+            <logger category="stdout">
+                <level name="OFF"/>
+            </logger>
+            <root-logger>
+                <level name="INFO"/>
+                <handlers>
+                    <handler name="CONSOLE"/>
+                    <handler name="FILE"/>
+                </handlers>
+            </root-logger>
+            <formatter name="PATTERN">
+                <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
+            </formatter>
+            <formatter name="COLOR-PATTERN">
+                <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
+            </formatter>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:batch-jberet:2.0">
+            <default-job-repository name="in-memory"/>
+            <default-thread-pool name="batch"/>
+            <security-domain name="ApplicationDomain"/>
+            <job-repository name="in-memory">
+                <in-memory/>
+            </job-repository>
+            <thread-pool name="batch">
+                <max-threads count="10"/>
+                <keepalive-time time="30" unit="seconds"/>
+            </thread-pool>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:bean-validation:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:core-management:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:datasources:6.0">
+            <datasources>
+                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true" statistics-enabled="true">
+                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+                    <driver>h2</driver>
+                    <security>
+                        <user-name>sa</user-name>
+                        <password>sa</password>
+                    </security>
+                </datasource>
+                <datasource jndi-name="java:jboss/datasources/SIGSJ04" pool-name="SIGSJ04" enabled="true" use-java-context="true" statistics-enabled="true">
+                    <connection-url>__SIGSJ04_CONNECTION_STRING__</connection-url>
+                    <driver>ojdbc8.jar</driver>
+                    <pool>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>50</max-pool-size>
+                        <flush-strategy>IdleConnections</flush-strategy>
+                    </pool>
+                    <security>
+                        <user-name>__SIGSJ04_USER__</user-name>
+                        <password>__SIGSJ04_PASSWORD__</password>
+                    </security>
+                    <timeout>
+                        <idle-timeout-minutes>5</idle-timeout-minutes>
+                    </timeout>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker"/>
+                        <validate-on-match>true</validate-on-match>
+                        <stale-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker"/>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter"/>
+                    </validation>
+                </datasource>
+                <drivers>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                </drivers>
+            </datasources>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:deployment-scanner:2.0">
+            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:ee:6.0">
+            <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
+            <concurrent>
+                <context-services>
+                    <context-service name="default" jndi-name="java:jboss/ee/concurrency/context/default" use-transaction-setup-provider="true"/>
+                </context-services>
+                <managed-thread-factories>
+                    <managed-thread-factory name="default" jndi-name="java:jboss/ee/concurrency/factory/default" context-service="default"/>
+                </managed-thread-factories>
+                <managed-executor-services>
+                    <managed-executor-service name="default" jndi-name="java:jboss/ee/concurrency/executor/default" context-service="default" hung-task-termination-period="0" hung-task-threshold="60000" keepalive-time="5000"/>
+                </managed-executor-services>
+                <managed-scheduled-executor-services>
+                    <managed-scheduled-executor-service name="default" jndi-name="java:jboss/ee/concurrency/scheduler/default" context-service="default" hung-task-termination-period="0" hung-task-threshold="60000" keepalive-time="3000"/>
+                </managed-scheduled-executor-services>
+            </concurrent>
+            <default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/ExampleDS" jms-connection-factory="java:jboss/DefaultJMSConnectionFactory" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:ee-security:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:ejb3:9.0">
+            <session-bean>
+                <stateless>
+                    <bean-instance-pool-ref pool-name="slsb-strict-max-pool"/>
+                </stateless>
+                <stateful default-access-timeout="5000" cache-ref="simple" passivation-disabled-cache-ref="simple"/>
+                <singleton default-access-timeout="5000"/>
+            </session-bean>
+            <mdb>
+                <resource-adapter-ref resource-adapter-name="${ejb.resource-adapter-name:activemq-ra.rar}"/>
+                <bean-instance-pool-ref pool-name="mdb-strict-max-pool"/>
+            </mdb>
+            <pools>
+                <bean-instance-pools>
+                    <strict-max-pool name="mdb-strict-max-pool" derive-size="from-cpu-count" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                    <strict-max-pool name="slsb-strict-max-pool" derive-size="from-worker-pools" instance-acquisition-timeout="5" instance-acquisition-timeout-unit="MINUTES"/>
+                </bean-instance-pools>
+            </pools>
+            <caches>
+                <cache name="simple"/>
+                <cache name="distributable" passivation-store-ref="infinispan" aliases="passivating clustered"/>
+            </caches>
+            <passivation-stores>
+                <passivation-store name="infinispan" cache-container="ejb" max-size="10000"/>
+            </passivation-stores>
+            <async thread-pool-name="default"/>
+            <timer-service thread-pool-name="default" default-data-store="default-file-store">
+                <data-stores>
+                    <file-data-store name="default-file-store" path="timer-service-data" relative-to="jboss.server.data.dir"/>
+                </data-stores>
+            </timer-service>
+            <remote cluster="ejb" connectors="http-remoting-connector" thread-pool-name="default">
+                <channel-creation-options>
+                    <option name="MAX_OUTBOUND_MESSAGES" value="1234" type="remoting"/>
+                </channel-creation-options>
+            </remote>
+            <thread-pools>
+                <thread-pool name="default">
+                    <max-threads count="48"/>
+                    <keepalive-time time="60" unit="seconds"/>
+                </thread-pool>
+            </thread-pools>
+            <iiop enable-by-default="false" use-qualified-name="false"/>
+            <default-security-domain value="other"/>
+            <application-security-domains>
+                <application-security-domain name="other" security-domain="ApplicationDomain"/>
+            </application-security-domains>
+            <default-missing-method-permissions-deny-access value="true"/>
+            <statistics enabled="${wildfly.ejb3.statistics-enabled:${wildfly.statistics-enabled:false}}"/>
+            <log-system-exceptions value="true"/>
+        </subsystem>
+        <subsystem xmlns="urn:wildfly:elytron:13.0" final-providers="combined-providers" disallowed-providers="OracleUcrypto">
+            <providers>
+                <aggregate-providers name="combined-providers">
+                    <providers name="elytron"/>
+                    <providers name="openssl"/>
+                </aggregate-providers>
+                <provider-loader name="elytron" module="org.wildfly.security.elytron"/>
+                <provider-loader name="openssl" module="org.wildfly.openssl"/>
+            </providers>
+            <audit-logging>
+                <file-audit-log name="local-audit" path="audit.log" relative-to="jboss.server.log.dir" format="JSON"/>
+            </audit-logging>
+            <security-domains>
+                <security-domain name="ApplicationDomain" default-realm="ApplicationRealm" permission-mapper="default-permission-mapper">
+                    <realm name="ApplicationRealm" role-decoder="groups-to-roles"/>
+                    <realm name="local"/>
+                </security-domain>
+                <security-domain name="ManagementDomain" default-realm="ManagementRealm" permission-mapper="default-permission-mapper">
+                    <realm name="ManagementRealm" role-decoder="groups-to-roles"/>
+                    <realm name="local" role-mapper="super-user-mapper"/>
+                </security-domain>
+            </security-domains>
+            <security-realms>
+                <identity-realm name="local" identity="$local"/>
+                <properties-realm name="ApplicationRealm">
+                    <users-properties path="application-users.properties" relative-to="jboss.server.config.dir" digest-realm-name="ApplicationRealm"/>
+                    <groups-properties path="application-roles.properties" relative-to="jboss.server.config.dir"/>
+                </properties-realm>
+                <properties-realm name="ManagementRealm">
+                    <users-properties path="mgmt-users.properties" relative-to="jboss.server.config.dir" digest-realm-name="ManagementRealm"/>
+                    <groups-properties path="mgmt-groups.properties" relative-to="jboss.server.config.dir"/>
+                </properties-realm>
+            </security-realms>
+            <mappers>
+                <simple-permission-mapper name="default-permission-mapper" mapping-mode="first">
+                    <permission-mapping>
+                        <principal name="anonymous"/>
+                        <permission-set name="default-permissions"/>
+                    </permission-mapping>
+                    <permission-mapping match-all="true">
+                        <permission-set name="login-permission"/>
+                        <permission-set name="default-permissions"/>
+                    </permission-mapping>
+                </simple-permission-mapper>
+                <constant-realm-mapper name="local" realm-name="local"/>
+                <simple-role-decoder name="groups-to-roles" attribute="groups"/>
+                <constant-role-mapper name="super-user-mapper">
+                    <role name="SuperUser"/>
+                </constant-role-mapper>
+            </mappers>
+            <permission-sets>
+                <permission-set name="login-permission">
+                    <permission class-name="org.wildfly.security.auth.permission.LoginPermission"/>
+                </permission-set>
+                <permission-set name="default-permissions">
+                    <permission class-name="org.wildfly.extension.batch.jberet.deployment.BatchPermission" module="org.wildfly.extension.batch.jberet" target-name="*"/>
+                    <permission class-name="org.wildfly.transaction.client.RemoteTransactionPermission" module="org.wildfly.transaction.client"/>
+                    <permission class-name="org.jboss.ejb.client.RemoteEJBPermission" module="org.jboss.ejb-client"/>
+                </permission-set>
+            </permission-sets>
+            <http>
+                <http-authentication-factory name="management-http-authentication" security-domain="ManagementDomain" http-server-mechanism-factory="global">
+                    <mechanism-configuration>
+                        <mechanism mechanism-name="DIGEST">
+                            <mechanism-realm realm-name="ManagementRealm"/>
+                        </mechanism>
+                    </mechanism-configuration>
+                </http-authentication-factory>
+                <http-authentication-factory name="application-http-authentication" security-domain="ApplicationDomain" http-server-mechanism-factory="global">
+                    <mechanism-configuration>
+                        <mechanism mechanism-name="BASIC">
+                            <mechanism-realm realm-name="ApplicationRealm"/>
+                        </mechanism>
+                    </mechanism-configuration>
+                </http-authentication-factory>
+                <provider-http-server-mechanism-factory name="global"/>
+            </http>
+            <sasl>
+                <sasl-authentication-factory name="application-sasl-authentication" sasl-server-factory="configured" security-domain="ApplicationDomain">
+                    <mechanism-configuration>
+                        <mechanism mechanism-name="JBOSS-LOCAL-USER" realm-mapper="local"/>
+                        <mechanism mechanism-name="DIGEST-MD5">
+                            <mechanism-realm realm-name="ApplicationRealm"/>
+                        </mechanism>
+                    </mechanism-configuration>
+                </sasl-authentication-factory>
+                <sasl-authentication-factory name="management-sasl-authentication" sasl-server-factory="configured" security-domain="ManagementDomain">
+                    <mechanism-configuration>
+                        <mechanism mechanism-name="JBOSS-LOCAL-USER" realm-mapper="local"/>
+                        <mechanism mechanism-name="DIGEST-MD5">
+                            <mechanism-realm realm-name="ManagementRealm"/>
+                        </mechanism>
+                    </mechanism-configuration>
+                </sasl-authentication-factory>
+                <configurable-sasl-server-factory name="configured" sasl-server-factory="elytron">
+                    <properties>
+                        <property name="wildfly.sasl.local-user.default-user" value="$local"/>
+                    </properties>
+                </configurable-sasl-server-factory>
+                <mechanism-provider-filtering-sasl-server-factory name="elytron" sasl-server-factory="global">
+                    <filters>
+                        <filter provider-name="WildFlyElytron"/>
+                    </filters>
+                </mechanism-provider-filtering-sasl-server-factory>
+                <provider-sasl-server-factory name="global"/>
+            </sasl>
+            <tls>
+                <key-stores>
+                    <key-store name="applicationKS">
+                        <credential-reference clear-text="password"/>
+                        <implementation type="JKS"/>
+                        <file path="application.keystore" relative-to="jboss.server.config.dir"/>
+                    </key-store>
+                </key-stores>
+                <key-managers>
+                    <key-manager name="applicationKM" key-store="applicationKS" generate-self-signed-certificate-host="localhost">
+                        <credential-reference clear-text="password"/>
+                    </key-manager>
+                </key-managers>
+                <server-ssl-contexts>
+                    <server-ssl-context name="applicationSSC" key-manager="applicationKM"/>
+                </server-ssl-contexts>
+            </tls>
+        </subsystem>
+        <subsystem xmlns="urn:wildfly:health:1.0" security-enabled="false"/>
+        <subsystem xmlns="urn:jboss:domain:iiop-openjdk:2.1">
+            <orb socket-binding="iiop"/>
+            <initializers security="elytron" transactions="spec"/>
+            <security server-requires-ssl="false" client-requires-ssl="false"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:infinispan:12.0">
+            <cache-container name="ejb" default-cache="passivation" aliases="sfsb" modules="org.wildfly.clustering.ejb.infinispan">
+                <local-cache name="passivation">
+                    <file-store passivation="true" purge="false"/>
+                </local-cache>
+            </cache-container>
+            <cache-container name="web" default-cache="passivation" modules="org.wildfly.clustering.web.infinispan">
+                <local-cache name="passivation">
+                    <file-store passivation="true" purge="false"/>
+                </local-cache>
+                <local-cache name="sso"/>
+            </cache-container>
+            <cache-container name="server" default-cache="default" modules="org.wildfly.clustering.server">
+                <local-cache name="default"/>
+            </cache-container>
+            <cache-container name="hibernate" modules="org.infinispan.hibernate-cache">
+                <local-cache name="entity">
+                    <heap-memory size="10000"/>
+                    <expiration max-idle="100000"/>
+                </local-cache>
+                <local-cache name="local-query">
+                    <heap-memory size="10000"/>
+                    <expiration max-idle="100000"/>
+                </local-cache>
+                <local-cache name="timestamps"/>
+                <local-cache name="pending-puts">
+                    <expiration max-idle="60000"/>
+                </local-cache>
+            </cache-container>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:io:3.0">
+            <worker name="default"/>
+            <buffer-pool name="default"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jaxrs:2.0"/>
+        <subsystem xmlns="urn:jboss:domain:jca:5.0">
+            <archive-validation enabled="true" fail-on-error="true" fail-on-warn="false"/>
+            <bean-validation enabled="true"/>
+            <default-workmanager>
+                <short-running-threads>
+                    <core-threads count="50"/>
+                    <queue-length count="50"/>
+                    <max-threads count="50"/>
+                    <keepalive-time time="10" unit="seconds"/>
+                </short-running-threads>
+                <long-running-threads>
+                    <core-threads count="50"/>
+                    <queue-length count="50"/>
+                    <max-threads count="50"/>
+                    <keepalive-time time="10" unit="seconds"/>
+                </long-running-threads>
+            </default-workmanager>
+            <cached-connection-manager/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jdr:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:jmx:1.3">
+            <expose-resolved-model/>
+            <expose-expression-model/>
+            <remoting-connector/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jpa:1.1">
+            <jpa default-extended-persistence-inheritance="DEEP"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:jsf:1.1"/>
+        <subsystem xmlns="urn:jboss:domain:jsr77:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:mail:4.0">
+            <mail-session name="default" jndi-name="java:jboss/mail/Default">
+                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            </mail-session>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:messaging-activemq:13.0">
+            <server name="default">
+                <security elytron-domain="ApplicationDomain"/>
+                <statistics enabled="${wildfly.messaging-activemq.statistics-enabled:${wildfly.statistics-enabled:false}}"/>
+                <security-setting name="#">
+                    <role name="guest" send="true" consume="true" create-non-durable-queue="true" delete-non-durable-queue="true"/>
+                </security-setting>
+                <address-setting name="#" dead-letter-address="jms.queue.DLQ" expiry-address="jms.queue.ExpiryQueue" max-size-bytes="10485760" page-size-bytes="2097152" message-counter-history-day-limit="10"/>
+                <http-connector name="http-connector" socket-binding="http" endpoint="http-acceptor"/>
+                <http-connector name="http-connector-throughput" socket-binding="http" endpoint="http-acceptor-throughput">
+                    <param name="batch-delay" value="50"/>
+                </http-connector>
+                <in-vm-connector name="in-vm" server-id="0">
+                    <param name="buffer-pooling" value="false"/>
+                </in-vm-connector>
+                <http-acceptor name="http-acceptor" http-listener="default"/>
+                <http-acceptor name="http-acceptor-throughput" http-listener="default">
+                    <param name="batch-delay" value="50"/>
+                    <param name="direct-deliver" value="false"/>
+                </http-acceptor>
+                <in-vm-acceptor name="in-vm" server-id="0">
+                    <param name="buffer-pooling" value="false"/>
+                </in-vm-acceptor>
+                <jms-queue name="ExpiryQueue" entries="java:/jms/queue/ExpiryQueue"/>
+                <jms-queue name="DLQ" entries="java:/jms/queue/DLQ"/>
+                <connection-factory name="InVmConnectionFactory" entries="java:/ConnectionFactory" connectors="in-vm"/>
+                <connection-factory name="RemoteConnectionFactory" entries="java:jboss/exported/jms/RemoteConnectionFactory" connectors="http-connector"/>
+                <pooled-connection-factory name="activemq-ra" entries="java:/JmsXA java:jboss/DefaultJMSConnectionFactory" connectors="in-vm" transaction="xa"/>
+            </server>
+        </subsystem>
+        <subsystem xmlns="urn:wildfly:metrics:1.0" security-enabled="false" exposed-subsystems="*" prefix="${wildfly.metrics.prefix:jboss}"/>
+        <subsystem xmlns="urn:jboss:domain:modcluster:5.0">
+            <proxy name="default" advertise-socket="modcluster" listener="ajp">
+                <dynamic-load-provider>
+                    <load-metric type="cpu"/>
+                </dynamic-load-provider>
+            </proxy>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:naming:2.0">
+            <bindings>
+                <lookup name="java:global/sirotcon-ejb-2.3.0.1-farm/SIROTConBean!br.gov.caixa.sirot.ejb.SIROTCon" lookup="java:global/sirotcon-ejb/SIROTConBean!br.gov.caixa.sirot.ejb.SIROTCon"/>
+            </bindings>
+            <remote-naming/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:pojo:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:remoting:4.0">
+            <http-connector name="http-remoting-connector" connector-ref="default" sasl-authentication-factory="application-sasl-authentication"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:request-controller:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:resource-adapters:6.0"/>
+        <subsystem xmlns="urn:jboss:domain:sar:1.0"/>
+        <subsystem xmlns="urn:jboss:domain:security-manager:1.0">
+            <deployment-permissions>
+                <maximum-set>
+                    <permission class="java.security.AllPermission"/>
+                </maximum-set>
+            </deployment-permissions>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:transactions:6.0">
+            <core-environment node-identifier="${jboss.tx.node.id:1}">
+                <process-id>
+                    <uuid/>
+                </process-id>
+            </core-environment>
+            <recovery-environment socket-binding="txn-recovery-environment" status-socket-binding="txn-status-manager"/>
+            <coordinator-environment statistics-enabled="${wildfly.transactions.statistics-enabled:${wildfly.statistics-enabled:false}}"/>
+            <object-store path="tx-object-store" relative-to="jboss.server.data.dir"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:undertow:12.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">
+            <buffer-cache name="default"/>
+            <server name="default-server">
+                <ajp-listener name="ajp" socket-binding="ajp" max-parameters="30000" max-post-size="52428800"/>
+                <http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true"/>
+                <https-listener name="https" socket-binding="https" ssl-context="applicationSSC" enable-http2="true"/>
+                <host name="default-host" alias="localhost">
+                    <location name="/" handler="welcome-content"/>
+                    <http-invoker http-authentication-factory="application-http-authentication"/>
+                </host>
+            </server>
+            <servlet-container name="default">
+                <jsp-config/>
+                <websockets/>
+            </servlet-container>
+            <handlers>
+                <file name="welcome-content" path="${jboss.home.dir}/welcome-content"/>
+            </handlers>
+            <application-security-domains>
+                <application-security-domain name="other" security-domain="ApplicationDomain"/>
+            </application-security-domains>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:webservices:2.0" statistics-enabled="${wildfly.webservices.statistics-enabled:${wildfly.statistics-enabled:false}}">
+            <wsdl-host>${jboss.bind.address:127.0.0.1}</wsdl-host>
+            <endpoint-config name="Standard-Endpoint-Config"/>
+            <endpoint-config name="Recording-Endpoint-Config">
+                <pre-handler-chain name="recording-handlers" protocol-bindings="##SOAP11_HTTP ##SOAP11_HTTP_MTOM ##SOAP12_HTTP ##SOAP12_HTTP_MTOM">
+                    <handler name="RecordingHandler" class="org.jboss.ws.common.invocation.RecordingServerHandler"/>
+                </pre-handler-chain>
+            </endpoint-config>
+            <client-config name="Standard-Client-Config"/>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:weld:4.0"/>
+    </profile>
+    <interfaces>
+        <interface name="management">
+            <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
+        </interface>
+        <interface name="public">
+            <inet-address value="${jboss.bind.address:127.0.0.1}"/>
+        </interface>
+        <interface name="unsecure">
+            <inet-address value="${jboss.bind.address.unsecure:127.0.0.1}"/>
+        </interface>
+    </interfaces>
+    <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
+        <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
+        <socket-binding name="modcluster" multicast-address="${jboss.modcluster.multicast.address:224.0.1.105}" multicast-port="23364"/>
+        <socket-binding name="http" port="${jboss.http.port:8080}"/>
+        <socket-binding name="https" port="${jboss.https.port:8443}"/>
+        <socket-binding name="iiop" interface="unsecure" port="3528"/>
+        <socket-binding name="iiop-ssl" interface="unsecure" port="3529"/>
+        <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
+        <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9993}"/>
+        <socket-binding name="txn-recovery-environment" port="4712"/>
+        <socket-binding name="txn-status-manager" port="4713"/>
+        <outbound-socket-binding name="mail-smtp">
+            <remote-destination host="${jboss.mail.server.host:localhost}" port="${jboss.mail.server.port:25}"/>
+        </outbound-socket-binding>
+    </socket-binding-group>
+</server>
