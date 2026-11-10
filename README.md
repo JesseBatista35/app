@@ -1,5 +1,4 @@
-<img width="1849" height="1023" alt="image" src="https://github.com/user-attachments/assets/664dab21-26a0-4bd8-a15e-73b2db69d22e" />
+foreach ($ext in "pom","jar") { curl.exe -s -k -o NUL -w "$ext %{http_code} %{size_download}B`n" "https://binario.caixa/repository/caixa-group-br/br/gov/caixa/arqref/arqref-services/3.31.0/arqref-services-3.31.0.$ext" }
 
 
-esse aqui baixou
-
+<arqref-services.version>3.31.0</arqref-services.version>
