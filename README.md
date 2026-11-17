@@ -11,3 +11,22 @@ Para referência, o rollback exato fica assim. Não rode agora:
 
 /profile=full-ha-sifec-intranet/subsystem=keycloak/secure-deployment=ccr-api.war:add(realm=internet,resource=cli-ser-fec_api,bearer-only=true,ssl-required=external)
 /server-group=sifec-intranet/deployment=SIFEC-CCR:redeploy
+
+
+
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /] /profile=full-ha-sifec-intranet/subsystem=keycloak/secure-deployment=ccr-api.war:remove
+{
+    "outcome" => "success",
+    "result" => undefined,
+    "server-groups" => {"sifec-intranet" => {"host" => {"hc_cbrdeapllx473" => {"sifec-intranet_node1_lx473" => {"response" => {
+        "outcome" => "success",
+        "result" => undefined
+    }}}}}}
+}
+
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
