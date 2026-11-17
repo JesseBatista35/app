@@ -1,15 +1,9 @@
+Pessoal, conforme combinado com Alessandro, Paulo e Gustavo, o ajuste do ccr-api foi aplicado no SIFEC-CCR do 7.4 (DES).
 
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]# grep -a "IJ031084\|IJ000453" $LOG | awk '{print $1}' | tail -20
-15:30:03,401
-15:30:03,435
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]# tail -f $LOG | grep -aiE "ccr-api|IJ0|ORA-|ERROR"
-15:33:08,173 WARN  [org.keycloak.adapters.RefreshableKeycloakSecurityContext] (default task-115) Refresh token failure status: 400 {"error":"invalid_grant","error_description":"Refresh token expired"}
-15:33:08,414 WARN  [org.keycloak.adapters.RefreshableKeycloakSecurityContext] (default task-115) Refresh token failure status: 400 {"error":"invalid_grant","error_description":"Refresh token expired"}
+O que foi feito:
 
+Backup do domain.xml e da configuração atual do Keycloak, para rollback se necessário.
+Removido o secure-deployment do ccr-api.war. O container deixa de validar o token, igual ao 6.4, e a validação volta a ser feita pela aplicação, aceitando os realms intranet e internet.
+Redeploy do SIFEC-CCR concluído às 15:22, sem erros. O ccr-web (tela do CCR) continua protegido normalmente pelo Keycloak.
+
+Próximo passo: @Matheus Rocha Nascimento, pode testar o /v8/contratos/simular com token intranet e com token internet? Se aparecer qualquer erro, me passa o horário que eu verifico no log.
