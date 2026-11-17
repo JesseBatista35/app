@@ -1,10 +1,4 @@
-
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$ ps -ef | grep -oE 'jboss\.domain\.[a-z.]*dir=[^ ]*|--domain-config=[^ ]*' | sort -u
---domain-config=[^
-jboss.domain.base.dir=/opt/jboss/jboss-eap/dc
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
+ls -l /opt/jboss/jboss-eap/dc/configuration/domain*.xml
+cp -p /opt/jboss/jboss-eap/dc/configuration/domain.xml /tmp/domain.xml.bkp_ccr_dc_$(date +%Y%m%d_%H%M)
+ls -l /tmp/domain.xml.bkp_ccr_dc_*
+grep -c "ccr-api.war" /opt/jboss/jboss-eap/dc/configuration/domain.xml
