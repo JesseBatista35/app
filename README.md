@@ -1,23 +1,8 @@
-Pessoal, conforme combinado com Alessandro, Paulo e Gustavo, o ajuste do ccr-api foi aplicado no SIFEC-CCR do 7.4 (DES).
+Outro ponto, independente do 401:
+@Alessandro Ricardo Lima, durante a análise encontramos também um erro de banco no CCR no 7.4, na consulta de contrato (ContratacaoRest.consultaListaAutorizacao → ContratoAPXBean.consultarContratoPorId):
 
-O que foi feito:
+ORA-25156: a junção externa de estilo antigo (+) não pode ser usada com junções ANSI
 
-Backup do domain.xml e da configuração atual do Keycloak, para rollback se necessário.
-Removido o secure-deployment do ccr-api.war. O container deixa de validar o token, igual ao 6.4, e a validação volta a ser feita pela aplicação, aceitando os realms intranet e internet.
-Redeploy do SIFEC-CCR concluído às 15:22, sem erros. O ccr-web (tela do CCR) continua protegido normalmente pelo Keycloak.
+O SQL gerado mistura cross join (padrão ANSI, gerado pelo Hibernate 5 do JBoss 7.4) com (+) (outer join no estilo antigo do Oracle), e o Oracle não aceita os dois na mesma consulta. No 6.4, com o Hibernate 4, isso não acontecia. Normalmente a causa é a unidade de persistência usar um dialeto Oracle antigo. O ajuste sugerido é definir hibernate.dialect como org.hibernate.dialect.Oracle10gDialect (ou Oracle12cDialect) no persistence.xml do CCR, ou revisar essa consulta. É correção no pacote e gera erro 500 nessa funcionalidade. Se precisar, passo o trecho do log.
 
-Próximo passo: @Matheus Rocha Nascimento, pode testar o /v8/contratos/simular com token intranet e com token internet? Se aparecer qualquer erro, me passa o horário que eu verifico no log.
-
-
-
-
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]# tail -f $LOG | grep -aiE "ccr-api|IJ0|ORA-|ERROR"
-15:33:08,173 WARN  [org.keycloak.adapters.RefreshableKeycloakSecurityContext] (default task-115) Refresh token failure status: 400 {"error":"invalid_grant","error_description":"Refresh token expired"}
-15:33:08,414 WARN  [org.keycloak.adapters.RefreshableKeycloakSecurityContext] (default task-115) Refresh token failure status: 400 {"error":"invalid_grant","error_description":"Refresh token expired"}
-15:33:29,790 WARN  [org.keycloak.adapters.RefreshableKeycloakSecurityContext] (default task-115) Refresh token failure status: 400 {"error":"invalid_grant","error_description":"Refresh token expired"}
-15:33:29,800 WARN  [org.keycloak.adapters.RefreshableKeycloakSecurityContext] (default task-115) Refresh token failure status: 400 {"error":"invalid_grant","error_description":"Refresh token expired"}
-15:33:29,812 WARN  [org.keycloak.adapters.RefreshableKeycloakSecurityContext] (default task-115) Refresh token failure status: 400 {"error":"invalid_grant","error_description":"Refresh token expired"}
-15:33:29,822 WARN  [org.keycloak.adapters.RefreshableKeycloakSecurityContext] (default task-115) Refresh token failure status: 400 {"error":"invalid_grant","error_description":"Refresh token expired"}
-
+Para os próximos ambientes: em DES o container não valida mais o token do ccr-api. Nos ambientes seguintes e em produção, precisamos prever a segregação intranet/internet, como já existe hoje em produção.
