@@ -1,15 +1,16 @@
+primeiro backup, o de 2023, porque ele não serve:
 
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$ ls -l /opt/jboss/jboss-eap/dc/configuration/domain*.xml
-cp -p /opt/jboss/jboss-eap/dc/configuration/domain.xml /tmp/domain.xml.bkp_ccr_dc_$(date +%Y%m%d_%H%M)
-ls -l /tmp/domain.xml.bkp_ccr_dc_*
-grep -c "ccr-api.war" /opt/jboss/jboss-eap/dc/configuration/domain.xml
--rw-r--r-- 1 jboss jboss 332581 Nov 16 14:47 /opt/jboss/jboss-eap/dc/configuration/domain.xml
--rw-r--r-- 1 p585600 usucef 332581 Nov 16 14:47 /tmp/domain.xml.bkp_ccr_dc_20261117_1517
-1
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
+bash
+rm /tmp/domain.xml.bkp_ccr_20261117_1516
+
+Próximo passo: entrar no CLI, tirar o snapshot e guardar a configuração atual.
+
+bash
+/opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=10.116.97.59:9990
+
+Já dentro do CLI, rode apenas estes dois:
+
+:take-snapshot
+/profile=full-ha-sifec-intranet/subsystem=keycloak/secure-deployment=ccr-api.war:read-resource(recursive=true)
+
+Me mande a saída. Ainda não remova nada.
