@@ -1,9 +1,3 @@
-
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]# grep -a "Contexto web registrado" $LOG | grep -i apx | tail -3
-16:28:06,575 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 116) WFLYUT0021: Contexto web registrado: '/apx-web' para servidor 'default-server'
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
-[root@cbrdeapllx473 p585600]#
+SIFEC-APX 1.7.9.4-b40 implantado no 7.4 (DES) às 16:28. A primeira tentativa falhou porque faltava a sessão de e-mail java:jboss/mail/APXMail, que o Jeferson criou no profile, e na segunda subiu sem erros.
+URL para teste: https://migracaosifec.des.caixa/apx-web/
+Quem do APX pode validar?
