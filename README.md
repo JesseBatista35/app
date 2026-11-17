@@ -1,13 +1,2 @@
-
-[domain@localhost:9999 /]
-[domain@localhost:9999 /] /server-group=sifec-intranet/deployment=SIFEC-CCR:redeploy
-{
-    "outcome" => "success",
-    "result" => undefined,
-    "server-groups" => {"sifec-intranet" => {"host" => {"hc_cbrdeapllx473" => {"sifec-intranet_node1_lx473" => {"response" => {
-        "outcome" => "success",
-        "result" => undefined
-    }}}}}}
-}
-
-[domain@localhost:9999 /]
+LOG=$(ps -ef | grep -o 'jboss.server.log.dir=[^ ]*' | grep sifec-intranet | head -1 | cut -d= -f2)/server.log; echo $LOG
+grep -aE "Keycloak subsystem override|ccr-api|SIFEC-CCR|WFLYSRV0016|WFLYSRV0010" $LOG | tail -20
