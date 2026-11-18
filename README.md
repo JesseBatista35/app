@@ -1,112 +1,33 @@
-Skip to main content
-Azure DevOps
-projetos
-/
-Caixa
-/
-Pipelines
-/
-Releases
-/
-SIEMP-java-web
-Search
-
-
+A
 Caixa
 
-Overview
+Informamos que, em análise da build do SICLG-V2-FRONTEND, identificamos que a configuração do SonarQube na pipeline estava com parâmetros voltados para projetos Java. Com isso, o relatório de cobertura gerado pelo Jest (coverage/lcov.info) não era importado, e apenas os arquivos de configuração (jest.config.js e jest.config.spec.js) eram contabilizados na cobertura.
 
-Boards
+Ajuste realizado pela equipe da Esteira DevOps:
+- Configurada na pipeline a importação do relatório de cobertura do Jest (lcov);
+- Removidos da análise os arquivos de configuração, os arquivos de teste (*.spec.ts / *.spec.js) e os diretórios gerados na build (dist/ e coverage/).
 
-Repos
+Após o ajuste, o SonarQube passou a medir corretamente o código da aplicação (src/), e a cobertura no código novo passou de 0,0% para 68,6%. O arquivo jest.config.spec.js deixou de ser necessário e pode ser removido do repositório.
 
-Pipelines
-Pipelines
-Environments
-Releases
-Library
-Task groups
-Deployment groups
-Portal Infra
+Conforme a TE102, o Quality Gate ainda reprova pelos critérios abaixo, que dependem de ajuste no código da aplicação pela equipe de desenvolvimento:
 
-Test Plans
+1. Cobertura de testes no código novo: 68,6%, abaixo do mínimo de 80%.
+   Os arquivos com maior volume de linhas e condições sem cobertura são:
+   - src/app/feature/termo-recebimento-formulario/termo-recebimento-formulario.component.ts
+   - src/app/feature/inicio/inicio.component.ts
+   - src/app/app.component.ts (0%)
+   - src/app/feature/termo-recebimento-listagem/termo-recebimento-listagem.component.ts
+   - Componentes de src/app/feature/ com cobertura entre 18% e 40% (gestao-formal-*, documentacao-*, relatorio-*, administracao-instrumentos-contratuais, legado-placeholder).
+   A lista completa está no SonarQube em Measures > Coverage on New Code.
 
-Artifacts
-Project settings
-All pipelines
-
-SIEMP
-
-SIEMP-java-web
-Predefined variables
-Filter by keywords
-Scope
-
+2. Issues críticas: 10 issues de severidade Critical e 11 bugs no código da aplicação.
+   A lista está no SonarQube em Issues, filtrando Severity = Critical na branch master.
 
-CGC_UNIDADE_DES
-7390
-CGC_UNIDADE_OPS
-7259
-http_context_additional
-http_context_default
-siemp_java
-http_sso
-no
-produto_nome_vm
-Jboss
-produto_versao_vm
-7.4
-sistema_ambiente
-des
-sistema_ambiente
-tqs
-sistema_ambiente
-hmp
-sistema_ambiente
-prd
-sistema_ambiente
-prd
-sistema_nome
-siemp-java-web
-SITE
-ctc_nprd
-SITE
-ctc_npcn
-SITE
-dtc_pcn
-tf_var_template_name
-eap74-openjdk17-apache24-rhel93-v012
-UNIDADE
-BR
-vm_destroy_before_create
+A parte relacionada à Esteira DevOps foi concluída, e por isso a demanda está sendo encerrada. Após as correções, basta executar uma nova build. Caso ocorra algum erro relacionado à esteira, pedimos que seja aberta uma nova demanda.
 
-vm_servers_recreate
+Link do projeto no SonarQube:
+https://sonar-esteira.apps.produtos4.caixa/dashboard?id=SICLG-V2-FRONTEND&branch=master
 
-Row 4
+Atenciosamente,
 
-Collapsed
-
-Row 3
-
-Row 2
-
-Row 3
-
-Row 2
-
-Row 2
-
-Showing 4 deployments
-
-Expanded
-
-Row 3
-
-Collapsed
-
-Showing 3 deployments
-
-Showing filters 1 through 2
-
-Showing filters 1 through 2
-
+CTIS / CESTI Esteira DEVOPS DES TQS NPRD
