@@ -1,63 +1,15 @@
+1. Descobrir em qual host/servidor o sipen roda, para olharmos o log. No CLI:
 
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$
-[p585600@cbrdeapllx471 ~]$ sudo su
+/host=*/server-config=*:read-attribute(name=group)
 
-We trust you have received the usual lecture from the local System
-Administrator. It usually boils down to these three things:
+Procure na saída o servidor que tem "result" => "sipen". Vai aparecer o nome do host (ex.: hc_cbrdeapllx4xx) e do servidor.
 
-    #1) Respect the privacy of others.
-    #2) Think before you type.
-    #3) With great power comes great responsibility.
+2. Deploy (no CLI, depois de abrir o log do servidor do sipen):
 
-[sudo] password for p585600:
-[root@cbrdeapllx471 p585600]#
-[root@cbrdeapllx471 p585600]#
-[root@cbrdeapllx471 p585600]# cd /tmp/
-[root@cbrdeapllx471 tmp]#
-[root@cbrdeapllx471 tmp]#
-[root@cbrdeapllx471 tmp]# curl --noproxy '*' -f -o pen-ear-2.32.0.2.ear http://binario.caixa:8081/repository/releases/br/gov/caixa/sipen/pen-ear/2.32.0.2/pen-ear-2.32.0.2.ear
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 27.2M  100 27.2M    0     0   115M      0 --:--:-- --:--:-- --:--:--  115M
-[root@cbrdeapllx471 tmp]#
-[root@cbrdeapllx471 tmp]#
-[root@cbrdeapllx471 tmp]# ls -l pen-ear-2.32.0.2.ear
--rw-r--r-- 1 root root 28553606 Nov 19 14:20 pen-ear-2.32.0.2.ear
-[root@cbrdeapllx471 tmp]#
-[root@cbrdeapllx471 tmp]#
-[root@cbrdeapllx471 tmp]# unzip -t pen-ear-2.32.0.2.ear | tail -1
-No errors detected in compressed data of pen-ear-2.32.0.2.ear.
-[root@cbrdeapllx471 tmp]#
-[root@cbrdeapllx471 tmp]#
-[root@cbrdeapllx471 tmp]# /opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=localhost:9999
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-[domain@localhost:9999 /] deployment-info --name=SIPEN
-NAME  RUNTIME-NAME
-SIPEN sipen-2.29.0.1-2.29.0.1-b1893.ear
+deploy /tmp/pen-ear-2.32.0.2.ear --name=SIPEN --runtime-name=pen-ear-2.32.0.2.ear --force
 
-SERVER-GROUP    STATE
-siemp           not added
-sifec-intranet  not added
-sifec-intranet2 not added
-sipen           enabled
+O --force troca a 2.29.0.1 pela 2.32.0.2 no server-group sipen.
 
-[domain@localhost:9999 /] :read-children-names(child-type=server-group)
-{
-    "outcome" => "success",
-    "result" => [
-        "siemp",
-        "sifec-intranet",
-        "sifec-intranet2",
-        "sipen"
-    ]
-}
+Atenção: depois do deploy, a 2.29.0.1 sai do domain. Se precisar voltar, dá para baixá-la de novo do binario.
 
-[domain@localhost:9999 /]
-[domain@localhost:9999 /]
-
-
+Me mande primeiro a saída do passo 1. Com ela te digo o IP e o caminho do log antes do deploy.
