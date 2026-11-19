@@ -1,5 +1,3 @@
-Resumo do dia pra sala (ADDR SIGSJ – 19/11):
-
 SIGSJ DES — resumo do dia (19/11)
 
 Avançamos bastante após a liberação de acesso pela infra. Status por módulo:
@@ -17,12 +15,12 @@ Resolvido hoje:
 • Properties em DES — RESOLVIDO. O diretório /apl/sigsj/properties (que faltava e quebrava a tela pós-login) foi corrigido e agora é entregue automaticamente pela esteira nos 3 módulos. Seguindo o modelo do Rafael (SIGCX-config), log4j + properties ficam no repo de config (pasta configuration/) — não precisa mais aplicar na mão.
 
 Pendências:
-• Internet – banco: datasource SIGSJ04 com ORA-01017. Corrigido o usuário para SGSJSD01 (usuário de aplicação, conforme legado); senha será incluída pela Segurança (REQ000147111475).
+• Internet – banco: datasource SIGSJ04 com ORA-01017. Corrigido o usuário para SGSJSD01 (usuário de aplicação, conforme legado); senha a ser incluída pela Segurança via REQ000147111475 / WO0000082363801 (variável SIGSJ04_PASSWORD, library SIGSJ-INTERNET-DES).
 • Internet – firewall SIROT: aguardando a Rede aplicar as regras pro login funcionar.
 • Internet – estáticos/encoding: tela sem CSS/imagens e acentuação (ISO-8859-1), a tratar com os devs.
 
 Reunião de terça (24/11, 11h): como DES já está resolvido, o áudio com a Gisele e o Marcio passa a ser para validar os valores dos properties e alinhar TQS/PRD (onde os valores mudam em relação a DES), não mais para resolver DES.
 
 Próximos passos:
-• Validar o login do internet assim que a senha (Segurança) e o firewall (Rede) estiverem aplicados.
+• Validar o login do internet assim que a senha (REQ000147111475) e o firewall (99053) estiverem aplicados.
 • Levar o modelo de properties pra reunião de terça e alinhar TQS/PRD.
