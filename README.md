@@ -1,7 +1,25 @@
-Boa tarde, Vitor! Podemos marcar o áudio pra segunda-feira, com a Gisele e o Marcio — hoje estamos focados aplicando as correções e não daria pra parar agora.
+Isso! Roda a release de DES do intranet agora. Quando terminar, valida na 955 que veio tudo pela esteira:
 
-Pra adiantar: peguei com o Rafael Augusto o modelo de como entregar essas configurações pela esteira (referência do SIGCX-config). Seguindo esse padrão, estamos colocando o log4j e os properties direto no repo de config (pasta configuration/), pros 3 módulos — assim a esteira entrega sozinha, sem aplicar na mão na VM. Isso resolve de forma definitiva o log4j e o diretório de properties que faltava.
+bash
+echo "== custom.sh chegou? =="
+head -3 /opt/jboss-eap/standalone/configuration/custom.sh
 
-Na segunda a gente faz o áudio, tira as dúvidas sobre o diretório e eu apresento um modelo desses properties pra validarmos os valores junto com vocês (DES/TQS/PRD).
+echo "== arquivos nos destinos =="
+ls -la /log_jboss/config-log4j/
+ls -la /apl/sigsj/properties/
 
-Qual horário fica bom pra vocês na segunda?
+echo "== a pasta de origem foi esvaziada pelo mv? =="
+ls -la /opt/jboss-eap/standalone/configuration/properties/ 2>/dev/null
+
+echo "== app respondendo =="
+curl -s -o /dev/null -w "intranet default.jsp: %{http_code}\n" http://10.116.194.179/sigsj_intranet/default.jsp
+
+O que tem que vir:
+
+custom.sh presente;
+/log_jboss/config-log4j/sigsj_intranet.xml lá;
+/apl/sigsj/properties/ com os 3 properties;
+a pasta de origem (configuration/properties/) vazia (o mv levou os arquivos) — isso confirma que o custom.sh rodou;
+default.jsp 200.
+
+Se vier tudo certo, faz o login no navegador (https://sigsj-intranet.des.caixa/sigsj_intranet/) pra confirmar que o pós-login abre. Aí o intranet está 100% pela esteira e seguimos pro internet e boleto.
