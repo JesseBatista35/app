@@ -1,3 +1,1 @@
-Jesse Mouta Pereira Batista, uma dúvida...a pendência abaixo já está sendo verificada com a equipe de rede.? Foi aberta alguma REQ específica ( se não foi precisa abrir ....?):
- 
-VIP do intranet: o 503 (caddeapllx135 - eap_71_esteiraagil) é roteamento do VIP, que ainda direciona para a esteira ágil antiga precisa tratar com a Rede.
+Gagliardi, sobre o 503 do intranet: ainda não abri REQ específica. Identifiquei pelo print, mas quero confirmar a causa antes de abrir (se é o VIP roteando pra esteira ágil antiga ou config da aplicação) pra não abrir REQ errada como aconteceu antes com VIP. Vou validar agora e, se confirmar que é o VIP, abro a REQ pra Rede ajustar o balanceamento. Te retorno em seguida.
