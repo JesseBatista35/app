@@ -1,15 +1,54 @@
-1. Descobrir em qual host/servidor o sipen roda, para olharmos o log. No CLI:
 
-/host=*/server-config=*:read-attribute(name=group)
 
-Procure na saída o servidor que tem "result" => "sipen". Vai aparecer o nome do host (ex.: hc_cbrdeapllx4xx) e do servidor.
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /] /host=*/server-config=*:read-attribute(name=group)
+{
+    "outcome" => "success",
+    "result" => [
+        {
+            "address" => [
+                ("host" => "hc_cbrdeapllx473"),
+                ("server-config" => "sifec-intranet2_node1_llx473")
+            ],
+            "outcome" => "success",
+            "result" => "sifec-intranet2"
+        },
+        {
+            "address" => [
+                ("host" => "hc_cbrdeapllx473"),
+                ("server-config" => "sifec-intranet_node1_lx473")
+            ],
+            "outcome" => "success",
+            "result" => "sifec-intranet"
+        },
+        {
+            "address" => [
+                ("host" => "hc_cbrdeapllx472"),
+                ("server-config" => "sifec-intranet_node1_lx472")
+            ],
+            "outcome" => "success",
+            "result" => "sifec-intranet"
+        },
+        {
+            "address" => [
+                ("host" => "hc_cbrdeapllx465"),
+                ("server-config" => "siemp_node1_lx465")
+            ],
+            "outcome" => "success",
+            "result" => "siemp"
+        },
+        {
+            "address" => [
+                ("host" => "hc_cbrdeapllx409"),
+                ("server-config" => "sipen_node1_DES_llx409")
+            ],
+            "outcome" => "success",
+            "result" => "sipen"
+        }
+    ]
+}
 
-2. Deploy (no CLI, depois de abrir o log do servidor do sipen):
-
-deploy /tmp/pen-ear-2.32.0.2.ear --name=SIPEN --runtime-name=pen-ear-2.32.0.2.ear --force
-
-O --force troca a 2.29.0.1 pela 2.32.0.2 no server-group sipen.
-
-Atenção: depois do deploy, a 2.29.0.1 sai do domain. Se precisar voltar, dá para baixá-la de novo do binario.
-
-Me mande primeiro a saída do passo 1. Com ela te digo o IP e o caminho do log antes do deploy.
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
