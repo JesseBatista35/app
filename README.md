@@ -1,40 +1,11 @@
+cd /tmp && rm -rf earx && mkdir earx && cd earx
+unzip -o /opt/jboss-eap/standalone/deployments/sigsj_intranet-ear.ear >/dev/null 2>&1
+# explode os wars/jars internos também
+for f in $(find . -name "*.war" -o -name "*.jar"); do d="${f}.d"; mkdir -p "$d"; unzip -o "$f" -d "$d" >/dev/null 2>&1; done
 
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$ find /opt/jboss-eap/standalone/deployments -name "*.ear" -o -name "*.war" 2>/dev/null
-/opt/jboss-eap/standalone/deployments/sigsj_intranet-ear.ear
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$ grep -rl "SenhasSIIBC" /opt/jboss-eap/standalone/deployments/ 2>/dev/null
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$ ls -la /apl/sigsj/lib/ 2>/dev/null
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$ grep -n "library.path" /opt/jboss-eap/bin/standalone.conf
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$
-[p585600@caddeapllx955 ~]$ sudo su
-[sudo] senha para p585600:
-Sinto muito, tente novamente.
-[sudo] senha para p585600:
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]# find /opt/jboss-eap/standalone/deployments -name "*.ear" -o -name "*.war" 2>/dev/null
-/opt/jboss-eap/standalone/deployments/sigsj_intranet-ear.ear
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]# grep -rl "SenhasSIIBC" /opt/jboss-eap/standalone/deployments/ 2>/dev/null
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]# ls -la /apl/sigsj/lib/ 2>/dev/null
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]# grep -n "library.path" /opt/jboss-eap/bin/standalone.conf
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]#
-[root@caddeapllx955 p585600]#
-
+# agora procura de verdade
+grep -rl "SenhasSIIBC" . 2>/dev/null
+echo "--- SIROT/SIPER? ---"
+grep -rliE "sirot|siper|CONNECTOR-FARM|sendRajada" . 2>/dev/null | head
+echo "--- classe da lib? ---"
+find . -iname "*SenhasSIIBC*" 2>/dev/null
