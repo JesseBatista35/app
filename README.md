@@ -1,1 +1,7 @@
-Gagliardi, sobre o 503 do intranet: ainda não abri REQ específica. Identifiquei pelo print, mas quero confirmar a causa antes de abrir (se é o VIP roteando pra esteira ágil antiga ou config da aplicação) pra não abrir REQ errada como aconteceu antes com VIP. Vou validar agora e, se confirmar que é o VIP, abro a REQ pra Rede ajustar o balanceamento. Te retorno em seguida.
+É que conseguimos realizar um teste no sigsj-boleto para verificar a situação após a finalização da infra, por meio de um SOAP e estamos recebendo o erro abaixo :
+ 
+Erro 500 - Solicitação Inválida - caddeapllx135 - eap_71_esteiraagil
+ 
+O SIGSJ-BOLETO também acessa o SIROT.
+ 
+ <img width="800" height="327" alt="image" src="https://github.com/user-attachments/assets/32b78c94-fea0-48b0-b1e8-462adedfbaf6" />
