@@ -1,26 +1,17 @@
-SIGSJ DES — resumo do dia (19/11)
+Pessoal, boa tarde!
 
-Avançamos bastante após a liberação de acesso pela infra. Status por módulo:
+Como sabem, assumi o acompanhamento do ADDR nas últimas semanas enquanto o Murilo estava de férias. Ele volta na segunda-feira (22/11) e reassume a partir daí.
 
-✅ Intranet — funcionando ponta a ponta. A causa do 500 pós-login era o diretório /apl/sigsj/properties faltando na VM (a esteira não entregava). Login (LDAP + SIROT GJ01) e Avisos (GJ02) OK.
+Para facilitar a continuidade, segue em anexo um documento com o consolidado do que foi feito até aqui: mapa do ambiente, situação de cada pacote, ajustes realizados, decisões tomadas, pendências e o roteiro de deploy.
 
-✅ Boleto — respondendo (SOAP com XML válido).
+Resumo da situação:
 
-⏳ Internet — a página renderiza e o login já passa da criptografia (instalei na VM a biblioteca nativa libSenhasSIIBC.so, que faltava). O login ainda depende de 2 pendências abaixo.
+Ambiente estável. O JBoss 7.4 (DES) está funcionando, sem pendências de ambiente do nosso lado.
+15 pacotes no ar no sifec-intranet, mais o SIPEN (2.32.0.2) e o SIEMP.
+CCR: o 401 foi resolvido e validado. O pacote com a correção do ORA-25156 já está implantado e aguarda validação.
+Aguardando nova build da fábrica: LCR, SIRUR, CONSTRUCARD, BNDES, MANTER DOCUMENTO, ARC, HUB-API, EMP, EMPRESAS e RURAL. Os erros de cada um estão detalhados no documento.
+Aguardando validação funcional: os pacotes implantados, listados no documento.
 
-Resolvido hoje:
-• Lib nativa SenhasSIIBC (internet) — instalada e configurado o java.library.path.
-• Causa do login do internet — as VMs novas não alcançavam o farm do SIROT (10.116.89.101:8111). Abertas 3 regras de firewall (internet 99053, intranet 99052, boleto 99054) com o Jeferson.
-• Erro caddeapllx135 (intranet/boleto) — era roteamento de VIP pro servidor antigo; normalizou, hoje os VIPs entregam nas VMs novas.
-• Properties em DES — RESOLVIDO. O diretório /apl/sigsj/properties (que faltava e quebrava a tela pós-login) foi corrigido e agora é entregue automaticamente pela esteira nos 3 módulos. Seguindo o modelo do Rafael (SIGCX-config), log4j + properties ficam no repo de config (pasta configuration/) — não precisa mais aplicar na mão.
+A partir de segunda, as demandas do ADDR seguem com o @Murilo Silva Andrade Souza.
 
-Pendências:
-• Internet – banco: datasource SIGSJ04 com ORA-01017. Corrigido o usuário para SGSJSD01 (usuário de aplicação, conforme legado); senha a ser incluída pela Segurança via REQ000147111475 / WO0000082363801 (variável SIGSJ04_PASSWORD, library SIGSJ-INTERNET-DES).
-• Internet – firewall SIROT: aguardando a Rede aplicar as regras pro login funcionar.
-• Internet – estáticos/encoding: tela sem CSS/imagens e acentuação (ISO-8859-1), a tratar com os devs.
-
-Reunião de terça (24/11, 11h): como DES já está resolvido, o áudio com a Gisele e o Marcio passa a ser para validar os valores dos properties e alinhar TQS/PRD (onde os valores mudam em relação a DES), não mais para resolver DES.
-
-Próximos passos:
-• Validar o login do internet assim que a senha (REQ000147111475) e o firewall (99053) estiverem aplicados.
-• Levar o modelo de properties pra reunião de terça e alinhar TQS/PRD.
+Obrigado a todos pela parceria nessas semanas!
