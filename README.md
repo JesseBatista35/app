@@ -1,23 +1,63 @@
-IPs:
 
-Servidor	IP	Função
-cbrdeapllx471	10.116.97.59	Domain Controller (CLI e deploy)
-cbrdeapllx473	10.116.97.79	Onde as aplicações rodam (log)
-1. Baixar o SIPEN no 471 (bash)
-bash
-ssh p585600@10.116.97.59
-sudo su
-cd /tmp
-curl --noproxy '*' -f -o pen-ear-2.32.0.2.ear http://binario.caixa:8081/repository/releases/br/gov/caixa/sipen/pen-ear/2.32.0.2/pen-ear-2.32.0.2.ear
-ls -l pen-ear-2.32.0.2.ear
-unzip -t pen-ear-2.32.0.2.ear | tail -1
-2. Ver em qual server-group o SIPEN roda (CLI do 471)
-bash
-/opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=localhost:9999
+[p585600@cbrdeapllx471 ~]$
+[p585600@cbrdeapllx471 ~]$
+[p585600@cbrdeapllx471 ~]$
+[p585600@cbrdeapllx471 ~]$
+[p585600@cbrdeapllx471 ~]$ sudo su
 
-Dentro do CLI:
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
 
-deployment-info --name=SIPEN
-:read-children-names(child-type=server-group)
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
 
-Me mande as saídas. Ainda não faça o deploy. Primeiro confirmamos o server-group certo e depois te passo o comando final.
+[sudo] password for p585600:
+[root@cbrdeapllx471 p585600]#
+[root@cbrdeapllx471 p585600]#
+[root@cbrdeapllx471 p585600]# cd /tmp/
+[root@cbrdeapllx471 tmp]#
+[root@cbrdeapllx471 tmp]#
+[root@cbrdeapllx471 tmp]# curl --noproxy '*' -f -o pen-ear-2.32.0.2.ear http://binario.caixa:8081/repository/releases/br/gov/caixa/sipen/pen-ear/2.32.0.2/pen-ear-2.32.0.2.ear
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 27.2M  100 27.2M    0     0   115M      0 --:--:-- --:--:-- --:--:--  115M
+[root@cbrdeapllx471 tmp]#
+[root@cbrdeapllx471 tmp]#
+[root@cbrdeapllx471 tmp]# ls -l pen-ear-2.32.0.2.ear
+-rw-r--r-- 1 root root 28553606 Nov 19 14:20 pen-ear-2.32.0.2.ear
+[root@cbrdeapllx471 tmp]#
+[root@cbrdeapllx471 tmp]#
+[root@cbrdeapllx471 tmp]# unzip -t pen-ear-2.32.0.2.ear | tail -1
+No errors detected in compressed data of pen-ear-2.32.0.2.ear.
+[root@cbrdeapllx471 tmp]#
+[root@cbrdeapllx471 tmp]#
+[root@cbrdeapllx471 tmp]# /opt/jboss/jboss-eap/bin/jboss-cli.sh --connect --controller=localhost:9999
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+[domain@localhost:9999 /] deployment-info --name=SIPEN
+NAME  RUNTIME-NAME
+SIPEN sipen-2.29.0.1-2.29.0.1-b1893.ear
+
+SERVER-GROUP    STATE
+siemp           not added
+sifec-intranet  not added
+sifec-intranet2 not added
+sipen           enabled
+
+[domain@localhost:9999 /] :read-children-names(child-type=server-group)
+{
+    "outcome" => "success",
+    "result" => [
+        "siemp",
+        "sifec-intranet",
+        "sifec-intranet2",
+        "sipen"
+    ]
+}
+
+[domain@localhost:9999 /]
+[domain@localhost:9999 /]
+
+
