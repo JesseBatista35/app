@@ -1,4 +1,1 @@
-Muito obrigado pelo trabalho nessas 3 semanas mestre. Vc faz um trabalho de excelente qualidade, E obrigado pela paciência e ajuda que me deu enquanto o Gustavo estava fora.
-
-
- o rodrigo mando uno meu privado
+Valeu, Rodrigo! Obrigado pela confiança e pelo apoio nessas semanas. Foi um trabalho em equipe, e deixei tudo documentado para o Murilo seguir. Qualquer coisa, estou por aqui!
