@@ -1,210 +1,107 @@
-Intranet (955):
+Skip to main content
+Azure DevOps
+projetos
+/
+Caixa
+/
+Repos
+/
+Files
+/
 
-bash
-ls /log_jboss/config-log4j/; echo "===="; cat /log_jboss/config-log4j/sigsj_intranet.xml
-
-Internet (2854):
-
-bash
-ls /log_jboss/config-log4j/; echo "===="; cat /log_jboss/config-log4j/sigsj_internet.xml
-
-Boleto (2557):
-
-bash
-ls /log_jboss/config-log4j/; echo "===="; cat /log_jboss/config-log4j/sigsj_ws_boleto.xm
-
+SIGCX-config
+Search
 
 
+Caixa
 
-[root@caddeapllx955 properties]# ls /log_jboss/config-log4j/; echo "===="; cat /log_jboss/config-log4j/sigsj_intranet.xml
-sigsj_intranet.xml
-====
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-    <appender name="SIGSJ" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="Append" value="true" />
-        <param name="Encoding" value="ISO-8859-1" />
-        <param name="File" value="/log_jboss/sigsj_intranet/sigsj_intranet.log" />
-        <param name="DatePattern" value="'.'yyyy-MM-dd-a"></param>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%5p] %d{yyyy/MM/dd HH:mm:ss} %c{2}[%t] - %m%n" />
-        </layout>
-    </appender>
-    <logger name="br.gov.caixa.sigsj">
-        <level value="DEBUG" />
-    </logger>
-    <root>
-        <priority value="INFO" />
-        <appender-ref ref="SIGSJ" />
-    </root>
-</log4j:configuration>
-[root@caddeapllx955 properties]#
+Overview
 
+Boards
 
+Repos
+Files
+Commits
+Pushes
+Branches
+Tags
+Pull requests
 
+Pipelines
 
-[root@caddeapllx2854 properties]#
-[root@caddeapllx2854 properties]# ls /log_jboss/config-log4j/; echo "===="; cat /log_jboss/config-log4j/sigsj_internet.xml
-sigsj_internet.xml
-====
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-    <appender name="SIGSJ" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="Append" value="true" />
-        <param name="Encoding" value="ISO-8859-1" />
-        <param name="File" value="/log_jboss/sigsj_internet/sigsj_internet.log" />
-        <param name="DatePattern" value="'.'yyyy-MM-dd-a"></param>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%5p] %d{yyyy/MM/dd HH:mm:ss} %c{2}[%t] - %m%n" />
-        </layout>
-    </appender>
-    <logger name="br.gov.caixa.sigsj">
-        <level value="DEBUG" />
-    </logger>
-    <root>
-        <priority value="INFO" />
-        <appender-ref ref="SIGSJ" />
-    </root>
-</log4j:configuration>
-[root@caddeapllx2854 properties]#
+Test Plans
 
+Artifacts
+Project settings
+SIGCX-config
 
+ansible
+configuration
+properties
+connector-log4j.xml
+map.properties
+siranpkg.nbc.properties
+sirot2.xml
+custom-deploy.sh
+custom.sh
+etc
+httpd
+jboss-custom.cli
+jboss-deployments
+jboss-modules-custom
+standalone-full-ha.xml
+standalone.conf
 
+master
 
-drwxr-xr-x 3 jboss jboss   24 nov 19 15:22 ..
--rw-r--r-- 1 jboss jboss 1357 nov 19 15:22 b2b.properties
--rw-r--r-- 1 jboss jboss  279 nov 19 15:22 config.properties
--rw-r--r-- 1 jboss jboss   24 nov 19 15:22 release.properties
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]# ls /log_jboss/config-log4j/; echo "===="; cat /log_jboss/config-log4j/sigsj_ws_boleto.xm
-sigsj_ws_boleto.xml
-====
-cat: /log_jboss/config-log4j/sigsj_ws_boleto.xm: Arquivo ou diretório inexistente
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
+/
+Type to find a file or folder...
+Files
+failed
 
+Clone
 
-no repo ja tinahsmo fgeito esse
-jboss/custom.sh
+Contents
+History
 
-
-
-
-#!/bin/bash
-# Configuração externa do log4j do SIGSJ-internet
-# A aplicação lê o XML em /log_jboss/config-log4j/XXX_INTERNET_XML_XXX (web.xml / CaixaConfigServlet)
-# e grava o log em /log_jboss/sigsj_internet/
-set -e
-
-mkdir -p /log_jboss/config-log4j /log_jboss/sigsj_internet
-
-cat > /log_jboss/config-log4j/XXX_INTERNET_XML_XXX <<'EOF'
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-    <appender name="SIGSJ" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="Append" value="true" />
-        <param name="Encoding" value="ISO-8859-1" />
-        <param name="File" value="/log_jboss/sigsj_internet/sigsj_internet.log" />
-        <param name="DatePattern" value="'.'yyyy-MM-dd-a"></param>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%5p] %d{yyyy/MM/dd HH:mm:ss} %c{2}[%t] - %m%n" />
-        </layout>
-    </appender>
-    <logger name="br.gov.caixa.sigsj">
-        <level value="DEBUG" />
-    </logger>
-    <root>
-        <priority value="INFO" />
-        <appender-ref ref="SIGSJ" />
-    </root>
-</log4j:configuration>
-EOF
-
-chown -R jboss:jboss /log_jboss
-chmod 755 /log_jboss /log_jboss/config-log4j /log_jboss/sigsj_internet
-chmod 644 /log_jboss/config-log4j/sigsj_internet.xml
+ansible
+11 de mar.
+d1393d11
+Updated ctc_prod1 Thiago Jorge Araujo
+configuration
+19 de fev.
+27972a93
+Updated custom.sh Claudio Monteiro Lima
+etc
+9 de fev.
+7d191b20
+Added hosts-des Claudio Monteiro Lima
+httpd
+6 de fev.
+cae711ba
+Added vhost.conf Claudio Monteiro Lima
+jboss-custom.cli
+6 de fev.
+3715942f
+Updated jboss-custom.cli Claudio Monteiro Lima
+jboss-deployments
+5 de fev.
+c1676a2a
+Updated jboss-deployments Claudio Monteiro Lima
+jboss-modules-custom
+6 de fev.
+3101152b
+Updated jboss-modules-custom Claudio Monteiro Lima
+standalone-full-ha.xml
+10 de fev.
+c4e9af51
+Correções standalone-full-ha.xml Claudio Monteiro Lima
+standalone.conf
+13 de fev.
+57d9d711
+Updated standalone.conf Claudio Monteiro Lima
 
 
 
 
-#!/bin/bash
-# Configuração externa do log4j do SIGSJ-intranet
-# A aplicação lê o XML em /log_jboss/config-log4j/sigsj_intranet.xml (web.xml / CaixaConfigServlet)
-# e grava o log em /log_jboss/sigsj_intranet/
-set -e
-
-mkdir -p /log_jboss/config-log4j /log_jboss/sigsj_intranet
-
-cat > /log_jboss/config-log4j/sigsj_intranet.xml <<'EOF'
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-    <appender name="SIGSJ" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="Append" value="true" />
-        <param name="Encoding" value="ISO-8859-1" />
-        <param name="File" value="/log_jboss/sigsj_intranet/sigsj_intranet.log" />
-        <param name="DatePattern" value="'.'yyyy-MM-dd-a"></param>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%5p] %d{yyyy/MM/dd HH:mm:ss} %c{2}[%t] - %m%n" />
-        </layout>
-    </appender>
-    <logger name="br.gov.caixa.sigsj">
-        <level value="DEBUG" />
-    </logger>
-    <root>
-        <priority value="INFO" />
-        <appender-ref ref="SIGSJ" />
-    </root>
-</log4j:configuration>
-EOF
-
-chown -R jboss:jboss /log_jboss
-chmod 755 /log_jboss /log_jboss/config-log4j /log_jboss/sigsj_intranet
-chmod 644 /log_jboss/config-log4j/sigsj_intranet.xml
-
-
-
-#!/bin/bash
-# Configuração externa do log4j do SIGSJ-boleto
-# A aplicação lê o XML em /log_jboss/config-log4j/sigsj_ws_boleto.xml
-# e grava o log em /log_jboss/sigsj_internet/<nome-do-servidor>.log (igual ao legado)
-set -e
-
-mkdir -p /log_jboss/config-log4j /log_jboss/sigsj_internet
-
-cat > /log_jboss/config-log4j/sigsj_ws_boleto.xml <<'EOF'
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-   <appender name="SIGSJ" class="org.apache.log4j.DailyRollingFileAppender">
-       <param name="Append" value="true" />
-       <param name="Encoding" value="ISO-8859-1" />
-       <param name="File" value="/log_jboss/sigsj_internet/${jboss.server.name}.log" />
-       <param name="DatePattern" value="'.'yyyy-MM-dd-a"></param>
-       <layout class="org.apache.log4j.PatternLayout">
-           <param name="ConversionPattern" value="[%5p] %d{yyyy/MM/dd HH:mm:ss} %c{2}[%t] - %m%n" />
-       </layout>
-   </appender>
-   <logger name="br.gov.caixa.sigsj">
-       <level value="DEBUG" />
-   </logger>
-   <root>
-       <priority value="INFO" />
-       <appender-ref ref="SIGSJ" />
-   </root>
-</log4j:configuration>
-EOF
-
-chown -R jboss:jboss /log_jboss
-chmod 755 /log_jboss /log_jboss/config-log4j /log_jboss/sigsj_internet
-chmod 644 /log_jboss/config-log4j/sigsj_ws_boleto.xml
-
-
-agente ja tinha feito se tiver certo e sso tirar e colcoar na ppasta configuration
+quer dar uma olhada aqui em algo antes
