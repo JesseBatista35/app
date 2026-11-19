@@ -1,55 +1,19 @@
-@sspdeapllx0039 lib]#
-[root@sspdeapllx0039 lib]#
-[root@sspdeapllx0039 lib]#
-[root@sspdeapllx0039 lib]# timeout 5 bash -c "cat < /dev/null > /dev/tcp/10.116.89.101/8111" && echo "0039 ABRIU 101:8111" || echo "0039 SEM CONEXAO 101:8111"
-0039 ABRIU 101:8111
-[root@sspdeapllx0039 lib]#
-[root@sspdeapllx0039 lib]#
-[root@sspdeapllx0039 lib]# cd /tmp && rm -rf sirotjar && unzip -o $B/deployapp/sirotconEjb_v2.2.7.jar -d /tmp/sirotjar >/dev/null 2>&1
-[root@sspdeapllx0039 tmp]# find /tmp/sirotjar -name "*.properties" -exec echo "== {} ==" \; -exec cat {} \;
-== /tmp/sirotjar/cefsirot2con.properties ==
-PROJECT_NAME=Helperclass CEFSirotCon
-PROJECT_VERSION=v2.2.4
-LOG_STATISTICS=true
-RAJADA_LENIENTE=false
-REDE_TRANSMISSORA=7999
-DEFAULT_TIMEOUT=30000
-RECONECTAR_A_CADA=50
-<!--SERVER=10.192.227.38-->
-SERVER=localhost
-<!--SERVER=10.192.228.120-->
-PORT=8111
-<!--PORT=8111-->
-SO_LINGER=0
-MANTEM_CONEXAO=false
-<!--LOG4J_CONFIG_FILE=/log_ias/config-log4j/sirot2/sirot2-{IAS.INSTANCE}.xml -->
-LOG4J_CONFIG_FILE=/log_jboss/config-log4j/sirot2/sirot2.xml
-LOG_LEVEL=1
-LOG_CONSOLE=true
+Solicitação de Liberação de Regra de Firewall – Comunicação JBoss x SIROT Connector
+ 
+Sistema / Aplicação: SIGSJ Intranet (sigsj-intranet)
+Servidor Origem: caddeapllx955 (IP: 10.116.194.179)
+Servidor Destino: sspdeaplux0100 (IP: 10.116.89.101)
+Porta / Protocolo: 8111 / TCP (Bidirecional / Retorno estabelecido)
+Justificativa Técnica: A aplicação sigsj-intranet hospedada no caddeapllx955 necessita comunicar com o gateway SIROT Connector no sspdeaplux0100 na porta 8111/TCP. Atualmente, o servidor origem alcança o destino via ICMP (ping) e nas portas TCP 22 e 8080, mas as requisições na porta 8111/TCP sofrem timeout (CEFException: [ID=1795098566118 08111] Connection timed out). Já foi validado que o serviço Connector está ativo e escutando em *.8111 no destino (sspdeaplux0100) e que não há bloqueio nos firewalls locais de ambos os servidores.
 
-== /tmp/sirotjar/ceflog2.properties ==
-ARQUIVO_CONFIGURACAO_LOG4J=/log_jboss/config-log4j/sirot2/sirot2.xml[root@sspdeapllx0039 tmp]# grep -rniE "8111|8[0-9]{3}|10\.116\.|host|ip|farm|siper|conector" /tmp/sirotjar 2>/dev/null | grep -viE "class|META-INF|password" | head -20
-Binary file /tmp/sirotjar/log4j-1.2.8.jar matches
-/tmp/sirotjar/cefsirot2con.properties:9:SERVER=localhost
-/tmp/sirotjar/cefsirot2con.properties:11:PORT=8111
-/tmp/sirotjar/cefsirot2con.properties:12:<!--PORT=8111-->
-Binary file /tmp/sirotjar/ceflib2.0.5.jar matches
-[root@sspdeapllx0039 tmp]#
-[root@sspdeapllx0039 tmp]#
-[root@sspdeapllx0039 tmp]#
-[root@sspdeapllx0039 tmp]# find / -iname "*sirot*" 2>/dev/null | grep -viE "/proc/|\.class" | head
-/opt/jboss/jboss-5.1.0.GA/server/sigsj_boleto/deployapp/sirotconEjb_v2.2.7.jar
-/opt/jboss/jboss-5.1.0.GA/server/sigsj_boleto/tmp/a382g2o-yibr8q-mvscq520-1-mvscqf2n-a2/boletoService-war-2.2.1.war/WEB-INF/classes/br/gov/caixa/sigsj/boletoservice/dao/sirot
-/opt/jboss/jboss-5.1.0.GA/server/sigsj_boleto/tmp/a382g2o-yibr8q-mvscq520-1-mvscqf2n-a2/boletoService-war-2.2.1.war/WEB-INF/classes/br/gov/caixa/sigsj/boletoservice/common/sirot
-/opt/jboss/jboss-5.1.0.GA/server/sigsj_boleto/tmp/a382g2o-yibr8q-mvscq520-1-mvscqf2n-a2/boletoService-war-2.2.1.war/WEB-INF/classes/br/gov/caixa/sigsj/boletoservice/common/transaction/sirot
-/opt/jboss/jboss-5.1.0.GA/server/sigsj_boleto/tmp/a382g2o-yibr8q-mvscq520-1-mvscqf2n-a2/boletoService-war-2.2.1.war/WEB-INF/classes/br/gov/caixa/sigsj/boletoservice/transaction/sirot
-/opt/jboss/jboss-5.1.0.GA/server/backup/sigsj_boleto/deployapp/sirotconEjb_v2.2.7.jar
-/opt/jboss/jboss-5.1.0.GA/server/backup/sicuc_inter/deployapp/sirotconEjb_v2.2.7.jar
-/opt/jboss/jboss-5.1.0.GA/server/backup/sigsj_intranet/deployapp/sirotconEjb_v2.2.7.jar
-/opt/jboss/jboss-5.1.0.GA/server/backup/sigsj_internet/deployapp/sirotconEjb_v2.2.7.jar
-/opt/jboss/jboss-5.1.0.GA/server/backup/sigsj_inter01_bkp.20180430/deployapp/sirotconEjb_v2.2.7.jar
-[root@sspdeapllx0039 tmp]# cat /apl/sigsj/properties/*.properties 2>/dev/null | grep -iE "siper|sirot|farm|conector|8111|10\.116\.89\.101"
-[root@sspdeapllx0039 tmp]#
-[root@sspdeapllx0039 tmp]#
-[root@sspdeapllx0039 tmp]#
-[root@sspdeapllx0039 tmp]#
+
+Dados inseridos com sucesso! ID:99052 - SIGSJ Intranet
+
+
+<img width="1582" height="414" alt="image" src="https://github.com/user-attachments/assets/ce1ef4a2-6982-4e10-b940-ee6331213eb3" />
+
+Dados inseridos com sucesso! ID:99053
+
+o jeferson ja pediu repgra para o internet e o intranet
+
+ta certo?
