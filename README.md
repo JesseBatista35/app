@@ -1,22 +1,16 @@
-Para verificar (é do SIPEN, então no 409, IP 10.116.97.41)
-
-1. O que mais aconteceu às 15:08:52:
+No 473 (10.116.97.79), sifec-intranet:
 
 bash
-LOG=/opt/jboss/jboss-eap/hc/servers/sipen_node1_DES_llx409/log/server.log
-grep -a -A15 "15:08:52,769" $LOG | grep -aE "ERROR|WARN|ARJUNA|Exception|MQJCA|JMS" | head -20
+grep -a "consultarCorrelationClientePorCPF" /opt/jboss/jboss-eap/hc/servers/sifec-intranet_node1_lx473/log/server.log | tail -3
 
-2. Comparar o WMQ, como ela pediu (CLI do 471):
-
-/server-group=sipen:read-attribute(name=profile)
-
-Com o profile que aparecer:
-
-/profile=<profile que apareceu>/subsystem=resource-adapters:read-resource(recursive=true)
-
-No 6.4 (10.116.88.20), sem mostrar senha:
+No 409 (10.116.97.41), SIPEN:
 
 bash
-grep -n -A40 'wmq.jmsra' /opt/jboss/jboss-eap/dc/configuration/domain.xml | grep -viE 'password' | head -80
+grep -a "consultarCorrelationClientePorCPF" /opt/jboss/jboss-eap/hc/servers/sipen_node1_DES_llx409/log/server.log | tail -3
 
-Também vale conferir a versão: no 7.4 está ativo o wmq.jmsra.rar, enquanto no domain existem também o 7.0.1.12 e o 7.5.0.8 sem uso.
+O servidor que mostrar a linha das 15:08:52 é o certo. Depois, no mesmo log, olhamos o que veio junto:
+
+bash
+grep -a -A15 "15:08:52,769" <log onde apareceu> | grep -aE "ERROR|WARN|ARJUNA|Exception|MQJCA|JMS" | head -20
+
+No documento de passagem, eu coloquei a Claudia como contato do SIPEN. Se ela for do CCR, ajusto antes de você mandar. Me confirma.
