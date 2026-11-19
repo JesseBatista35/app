@@ -1,45 +1,23 @@
-[p585600@sspdeapllx0039 ~]$
-[p585600@sspdeapllx0039 ~]$
-[p585600@sspdeapllx0039 ~]$
-[p585600@sspdeapllx0039 ~]$ for f in b2b.properties config.properties release.properties; do echo "==== $f ===="; sed -E 's#(senha|password|pwd|secret)[[:space:]]*=.*#\1=***#I' /apl/sigsj/properties/$f; done
-==== b2b.properties ====
-# Parametros especificos para o consumo do B2B no canal Intranet #
-intranet.clote.url.lista = http://10.116.89.232:5033/GSJ_LOTE_LISTA
-#intranet.clote.url.lista = https://sigsj.b2b.des.caixa.gov.br/GSJ_LOTE_LISTA
-intranet.clote.url.download.v2 = http://10.116.89.232:5033/GSJ_LOTE_DOWNLOAD_v2
-#intranet.clote.url.download.v2 = http://sigsj.b2b.des.corerj.caixa/GSJ_LOTE_DOWNLOAD_v2
-intranet.clote.url.upload = http://10.116.89.232:5033/GSJ_LOTE_UPLOAD
-intranet.clote.url.upload.v2 = http://10.116.89.232:5033/GSJ_LOTE_UPLOAD_v2?LOTE_FILENAME=
-intranet.clote.url.download = http://10.116.89.232:5033/GSJ_LOTE_DOWNLOAD
+asso 1 — copiar na 955 (intranet) e testar agora. Como root na 955:
 
+bash
+mkdir -p /apl/sigsj/properties
+cd /apl/sigsj/properties
+scp p585600@10.116.88.96:/apl/sigsj/properties/\*.properties .
+chown -R jboss:jboss /apl/sigsj
+chmod 644 /apl/sigsj/properties/*.properties
+ls -la /apl/sigsj/properties/
 
+Depois testa (não precisa reiniciar, mas se o bundle for lido no boot pode precisar — testa primeiro sem):
 
-#intranet.clote.url.upload = http://10.116.89.232:5033/GSJ_LOTE_UPLOAD
-#intranet.clote.url.lista = http://10.116.89.232:5033/GSJ_LOTE_LISTA
-#intranet.clote.url.download = http://10.116.89.232:5033/GSJ_LOTE_DOWNLOAD
+bash
+curl -s -o /dev/null -w "intranet default.jsp: %{http_code}\n" http://10.116.194.179/sigsj_intranet/default.jsp
 
+E o teste real: login pelo navegador e ver se o bemVindo.xhtml renderiza. Se ainda der 500, aí reinicia o JBoss (systemctl restart jboss-eap-standalone) e testa de novo — alguns bundles só recarregam no start.
 
-#Parametros de conex�o com p B2B para a funcionalidade Carregamento Lote, para o canal Internet
+Se renderizar → confirmado, os properties eram a causa. Replicamos nas outras duas VMs e eu monto o custom.sh definitivo.
+Se ainda der NPE na GJ02 → aí é código mesmo (devs), e passamos.
 
-internet.clote.url.upload = http://10.116.89.232:5033/GSJ_LOTE_UPLOAD
-internet.clote.url.upload.v2 = http://10.116.89.232:5033/GSJ_LOTE_UPLOAD_v2?LOTE_FILENAME=
-internet.clote.url.lista = https://sigsj.b2b.des.caixa.gov.br/GSJ_LOTE_LISTA
-internet.clote.url.download = https://sigsj.b2b.des.caixa.gov.br/GSJ_LOTE_DOWNLOAD
-internet.clote.url.download.v2 = http://10.116.89.232:5033/GSJ_LOTE_DOWNLOAD_v2
+Passo 2 — depois de confirmar, eu te entrego o custom.sh (log4j + properties) pra commitar em configuration/ dos 3 repos, e a esteira passa a entregar sozinha. O conteúdo dos properties já tenho; só falta os devs confirmarem que concordam com esses valores pra DES (mas estão com cara de DES corretos).
 
-
-timeout.b2b = 90
-
-==== config.properties ====
-sigsj.release = 1.13.0
-#sigsj.convivencia.url = http://sigsj-convivencia-des-esteiras.nprd2.caixa/convivencia/v1
-sigsj.convivencia.url = https://sigsj-convivencia-des.apps.nprd.caixa/convivencia/v1
-sigsj.ambiente = DES
-simtr.url = http://simtr-api-intranet-des.apps.nprd.caixa/
-
-==== release.properties ====
-sigsj.release = 1.13.0
-
-[p585600@sspdeapllx0039 ~]$
-[p585600@sspdeapllx0039 ~]$
-[p585600@sspdeapllx0039 ~]$
+Roda o passo 1 e me diz se o intranet subiu a tela pós-login. Se subir, já comemora — o intranet fica completo (auth + avisos), e sobra só o internet (banco SGSJSD01) e o custom.sh definitivo.
