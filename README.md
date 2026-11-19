@@ -1,52 +1,28 @@
+Resumo do dia pra sala (ADDR SIGSJ – 19/11):
 
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]# ls -la /log_jboss/config-log4j/
-total 4
-drwxr-xr-x 2 jboss jboss  33 nov 19 16:38 .
-drwxr-xr-x 4 jboss jboss  48 nov 12 16:55 ..
--rw-r--r-- 1 jboss jboss 776 nov 19 16:38 sigsj_ws_boleto.xml
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]# rm -f /opt/jboss-eap/standalone/configuration/properties/sigsj_boleto.xml
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]# ls -la /log_jboss/config-log4j/
-total 4
-drwxr-xr-x 2 jboss jboss  33 nov 19 16:38 .
-drwxr-xr-x 4 jboss jboss  48 nov 12 16:55 ..
--rw-r--r-- 1 jboss jboss 776 nov 19 16:38 sigsj_ws_boleto.xml
-[root@caddeapllx2557 properties]# ls -la /opt/jboss-eap/standalone/configuration/properties/
-total 4
-drwxr-xr-x 2 jboss jboss    6 nov 19 16:42 .
-drwxrwxr-x 4 jboss jboss 4096 nov 19 16:17 ..
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]#
-[root@caddeapllx2557 properties]# curl -s -o /dev/null -w "boleto: %{http_code}\n" http://10.116.201.25/boletoService/contaJudicial
-boleto: 200
-[root@caddeapllx2557 properties]#
+SIGSJ DES — resumo do dia (19/11)
 
+Avançamos bastante após a liberação de acesso pela infra. Status por módulo:
 
-Blz Jesse Mouta Pereira Batista !! Mas podemos fazer a áudio na terça-feira, dia 24/11, as 11 horas? Vc confirmando eu já mando uma convocação!
- 
-Blz, já vou fazer a convocação !! Obrigado !!
- 
-Jesse Mouta Pereira Batista, encaminhei a convocação para a áudio dia 24/11 as 11 horas, segue o link:
- 
-https://teams.microsoft.com/meet/2351495207299071?p=F7PF6EUEhBYGGNri4K
-Ingressar na reunião no Teams
- 
-Muito obrigado !!
+✅ Intranet — funcionando ponta a ponta. A causa do 500 pós-login era o diretório /apl/sigsj/properties faltando na VM (a esteira não entregava). Login (LDAP + SIROT GJ01) e Avisos (GJ02) OK.
 
+✅ Boleto — respondendo (SOAP com XML válido).
 
- ele marocu a reunia para a terça,
+⏳ Internet — a página renderiza e o login já passa da criptografia (instalei na VM a biblioteca nativa libSenhasSIIBC.so, que faltava). O login ainda depende de 2 pendências abaixo.
 
- me ajuda a fechar o resmu odo dia do que foi feit o hoje
+Resolvido hoje:
+• Lib nativa SenhasSIIBC (internet) — instalada e configurado o java.library.path.
+• Causa do login do internet — as VMs novas não alcançavam o farm do SIROT (10.116.89.101:8111). Abertas 3 regras de firewall (internet 99053, intranet 99052, boleto 99054) com o Jeferson.
+• Erro caddeapllx135 (intranet/boleto) — era roteamento de VIP pro servidor antigo; normalizou, hoje os VIPs entregam nas VMs novas.
+• Properties em DES — RESOLVIDO. O diretório /apl/sigsj/properties (que faltava e quebrava a tela pós-login) foi corrigido e agora é entregue automaticamente pela esteira nos 3 módulos. Seguindo o modelo do Rafael (SIGCX-config), log4j + properties ficam no repo de config (pasta configuration/) — não precisa mais aplicar na mão.
+
+Pendências:
+• Internet – banco: datasource SIGSJ04 com ORA-01017. Corrigido o usuário para SGSJSD01 (usuário de aplicação, conforme legado); senha será incluída pela Segurança (REQ000147111475).
+• Internet – firewall SIROT: aguardando a Rede aplicar as regras pro login funcionar.
+• Internet – estáticos/encoding: tela sem CSS/imagens e acentuação (ISO-8859-1), a tratar com os devs.
+
+Reunião de terça (24/11, 11h): como DES já está resolvido, o áudio com a Gisele e o Marcio passa a ser para validar os valores dos properties e alinhar TQS/PRD (onde os valores mudam em relação a DES), não mais para resolver DES.
+
+Próximos passos:
+• Validar o login do internet assim que a senha (Segurança) e o firewall (Rede) estiverem aplicados.
+• Levar o modelo de properties pra reunião de terça e alinhar TQS/PRD.
