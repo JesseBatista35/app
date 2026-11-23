@@ -1,9 +1,6 @@
--sh-4.2$
--sh-4.2$
--sh-4.2$ POD=$(oc get pods -n sipgc-des --no-headers | grep informacoes | grep Running | awk '{print $1}' | head -1); oc exec -it $POD -n sipgc-des -- bash -c "timeout 5 bash -c '</dev/tcp/des.sigoc.caixa/443' && echo ABERTA || echo SEM CONEXAO"
-SEM CONEXAO
--sh-4.2$
+<img width="1841" height="575" alt="image" src="https://github.com/user-attachments/assets/3c35ee16-763e-4173-b93b-7036ea3ea13a" />
 
 
+calkma nao estou entendeo nada. ja tinah pediod uma regra apra des eu nao lembranva.. 
 
-eu nao enteid porque esse teste na ofoi pedido regra nehum a que estava entes fizeram errada eu nao solicitei uma nova, vou fazer isso agora
+porem ainda noa gerou CHG, acho que falta aporvaçoes
