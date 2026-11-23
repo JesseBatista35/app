@@ -1,22 +1,24 @@
+Login Cluster
 
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc login --token=sha256~93rEc0glXen2hmUCI9fh4BPECRiXlrexk_XOYaKSjSU --server=https://api.produtos4.caixa:6443
-Logged into "https://api.produtos4.caixa:6443" as "p585600@corp.caixa.gov.br" using the token provided.
+View raw log
 
-You have access to 269 projects, the list has been suppressed. You can list all projects with 'oc projects'
+Starting: Login Cluster
+==============================================================================
+Task         : Bash
+Description  : Run a Bash script on macOS, Linux, or Windows
+Version      : 3.227.0
+Author       : Microsoft Corporation
+Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash
+==============================================================================
+Generating script.
+========================== Starting Command Output ===========================
+/usr/bin/bash /opt/ads-agent/_work/_temp/85b8ad5c-4ce1-4a3c-a52a-fa661bad7290.sh
++ echo ''
++ egrep -q '^(okd4|ocp)'
++ oc login https://cloudnprd2.caixa --insecure-skip-tls-verify=true --token=***
+error: dial tcp 10.116.180.18:443: i/o timeout - verify you have provided the correct host and port and that the server is currently running.
+##[error]Bash exited with code '1'.
+Finishing: Login Cluster
 
-Using project "build-images-ads".
--sh-4.2$
--sh-4.2$
--sh-4.2$
--sh-4.2$ oc get build -l buildconfig=sisgf-frontend
-NAME                 TYPE     FROM     STATUS     STARTED       DURATION
-sisgf-frontend-415   Source   Binary   Complete   3 days ago    20s
-sisgf-frontend-416   Source   Binary   Complete   3 hours ago   22s
--sh-4.2$
--sh-4.2$
--sh-4.2$
+da dan opau para fazer long no cluster agora
 
-
-nao tem build travada
