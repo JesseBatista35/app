@@ -1,18 +1,8 @@
-ok,
- 
-Estou tentando fazer o login, mais está retornando erro,
-Você sabe me dizer como acessar o log do pod pra mim verificar o que está acontecendo?
- 
-vou cdar uma olhada, para ver o erro. 
- 
-na vm
- 
-para acesso ao log precisa ser configurado. pelo graylog. 
- 
-Cid Hikaro de Sousa Sasaki 
- 
-se puder ver com Cid. 
+ssh 10.116.202.45
+sudo su -
 
+# ultimas linhas do log da aplicacao
+tail -60 /log_jboss/sigsj_internet/sigsj_internet.log
 
- em ajda a olhar me da o ip para ver esse erro
- 
+# so os erros do seu teste de agora
+grep -nE "ERROR|Exception|Caused by|ORA-|SenhasSIIBC|SIROT|SIPER|getResponse|Connection" /log_jboss/sigsj_internet/sigsj_internet.log | tail -40
