@@ -1,11 +1,1 @@
-Bom dia Jesse
- 
-O java da aplicação sigsj-internet precisa ser de 32 bits
- 
-está com o 32 bits no POD?
-
-
-ach oque ele ta confidnidn oas coisa o internete intranet e boleto, não está no okd nao pe pod ele é uma vm
-
-
- 
+sigsj-internet (assim como intranet e boleto) roda em VM (JBoss EAP 7.4, esteira-jboss-vm-v2), não em pod/OKD — então não há pod pra verificar. Sobre os bits: a VM está com Java 64 bits e está correto. A biblioteca nativa de criptografia (libSenhasSIIBC.so) que o sistema usa é 64 bits (peguei do legado, confirmei o ELF), e ela carregou e funcionou na VM — o login já passa da etapa de criptografia. Se precisasse de 32 bits, essa lib 64 bits não teria sequer carregado. Então não precisamos de Java 32 bits.
