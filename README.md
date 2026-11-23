@@ -1,15 +1,3 @@
-
-[root@caddeapllx2854 ~]#
-[root@caddeapllx2854 ~]#
-[root@caddeapllx2854 ~]#
-[root@caddeapllx2854 ~]# timeout 5 bash -c "cat < /dev/null > /dev/tcp/10.116.89.101/8111" && echo "SIROT OK" || echo "SIROT BLOQUEADO"
-SIROT BLOQUEADO
-[root@caddeapllx2854 ~]#
-[root@caddeapllx2854 ~]#
-[root@caddeapllx2854 ~]#
-
-
-
 ## -*- shell-script -*- ######################################################
 ##                                                                          ##
 ##  JBoss EAP Bootstrap Script Configuration                                ##
@@ -68,7 +56,7 @@ if [ "x$JAVA_OPTS" = "x" ]; then
    JAVA_OPTS="$JAVA_OPTS -Xbootclasspath/a:${JBOSS_HOME}/modules/system/layers/base/org/jboss/logmanager/main/jboss-logmanager-2.1.18.Final-redhat-00001.jar"
    #JAVA_OPTS="$JAVA_OPTS -Djboss.modules.system.pkgs=org.jboss.byteman,org.jboss.logmanager"
    JAVA_OPTS="$JAVA_OPTS -Dsun.util.logging.disableCallerCheck=true"
-   JAVA_OPTS="$JAVA_OPTS -Djava.util.logging.manager=org.jboss.logmanager.LogManager"   
+   JAVA_OPTS="$JAVA_OPTS -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
    JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jmx_exporter/jmx_prometheus.jar=8778:/opt/jmx_exporter/jmx_prometheus.yaml"
    JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/apm_agent/elastic-apm-agent-1.15.0.jar -Delastic.apm.config_file=/opt/apm_agent/elasticapm-1.15.0.properties -Delastic.apm.service_name=__SistemaNome__ -Delastic.apm.environment=__SistemaAmbiente__ -Delastic.apm.application_packages=br.gov.caixa -Delastic.apm.server_urls=__URL_APM_SERVER__ -Delastic.apm.global_labels=deployment=__DEPLOYMENT__"
 else
@@ -101,9 +89,6 @@ else
    echo "GC_LOG set in environment to $GC_LOG"
 fi
 
-
-alkgum ajuste a fazer aqui no .conf???
-
-
-
-essa regra fopi a que pedios né???
+# SIGSJ - lib nativa SenhasSIIBC (criptografia SIPER/SIROT)
+# Necessario para o login do SIGSJ-internet carregar a libSenhasSIIBC.so em /apl/sigsj/lib
+JAVA_OPTS="$JAVA_OPTS -Djava.library.path=/apl/sigsj/lib"
