@@ -1,20 +1,32 @@
-Mensagem pro Rafael (Augusto/Guimarães):
+A correção é definir o node-timeout no JBoss. Ela vale só para o SIGEC-CSC e não toca no Apache compartilhado. Na 765, como root:
 
-Rafael, boa tarde! Seguindo tua orientação do SIGCX-config, montei a entrega de config externa do SIGSJ pela esteira. Usando o SIGSJ-intranet-config como exemplo, ficou assim:
+bash
+JB=/opt/jboss/jboss-eap
+CFG=$JB/standalone/configuration/standalone-full-ha.xml
+cp -p $CFG $CFG.bkp.$(date +%Y%m%d%H%M)
 
-configuration/
-├── custom.sh
-└── properties/
-    ├── sigsj_intranet.xml   (log4j)
-    ├── config.properties
-    ├── b2b.properties
-    └── release.properties
+# ler o valor atual (deve vir undefined)
+$JB/bin/jboss-cli.sh -c '/subsystem=modcluster/mod-cluster-config=configuration:read-attribute(name=node-timeout)'
 
-O custom.sh move esses arquivos de /opt/jboss-eap/standalone/configuration/properties/ pro destino final na VM (/log_jboss/config-log4j/ e /apl/sigsj/properties/). Em DES funcionou 100%.
+Se der erro de conexão, repita acrescentando --controller=10.116.193.253:9990 logo depois do -c. Se a leitura funcionar:
 
-Minha dúvida é sobre os múltiplos ambientes (DES, TQS, PRD): os valores desses properties mudam por ambiente (ex.: sigsj.ambiente, URLs de convivência/SIMTR/B2B). Qual o modelo que vocês recomendam seguir?
+bash
+$JB/bin/jboss-cli.sh -c '/subsystem=modcluster/mod-cluster-config=configuration:write-attribute(name=node-timeout,value=600)'
+$JB/bin/jboss-cli.sh -c ':reload'
 
-Replace Tokens + Library — deixar os arquivos com placeholders (ex.: __CONVIVENCIA_URL__) e os valores na Library por stage (EC DES/TQS/PRD), igual ao standalone-full-ha.xml. Nesse caso, o passo de Replace Tokens da esteira processa os arquivos dentro de configuration/properties/? Ou ele só pega os arquivos padrão (standalone, etc.)?
-Pasta por ambiente — ter configuration/properties/des, .../tqs, .../prd e o custom.sh escolher a pasta pelo __SistemaAmbiente__, no mesmo espírito do so/etc/host-{{ambiente}} do template.
+O :reload deixa a aplicação fora do ar por alguns segundos em TQS. Escolha um momento sem teste em andamento.
 
-Qual dos dois é o padrão suportado? Quero deixar já preparado pra TQS e PRD sem precisar de ajuste manual. Valeu!
+Validar
+bash
+# na 765: confirmar que gravou no XML
+grep -n 'node-timeout' $CFG
+
+# no 137: o nó deve reaparecer no mod_cluster-manager
+curl -s http://10.116.223.233/mod_cluster-manager | grep -iE 'node|timeout' | head -20
+
+Depois, peça ao usuário para repetir a exportação. No 137, acompanhe o access log: o tempo (último campo) deve passar de 120000000 sem 504.
+
+bash
+tail -f /logs/apache2/sigec-csc/sigec-csc.esteiras.tqs.caixa-access.log | grep exportarbase
+
+Atenção à persistência: a task "Configurando JBoss" da esteira pode regerar o standalone-full-ha.xml na próxima release e apagar o node-timeout. Depois que o teste passar, vale ver no template do esteira-jboss-vm se dá para parametrizar esse valor.
