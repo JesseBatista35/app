@@ -1,32 +1,39 @@
-A correção é definir o node-timeout no JBoss. Ela vale só para o SIGEC-CSC e não toca no Apache compartilhado. Na 765, como root:
 
-bash
-JB=/opt/jboss/jboss-eap
-CFG=$JB/standalone/configuration/standalone-full-ha.xml
-cp -p $CFG $CFG.bkp.$(date +%Y%m%d%H%M)
-
-# ler o valor atual (deve vir undefined)
-$JB/bin/jboss-cli.sh -c '/subsystem=modcluster/mod-cluster-config=configuration:read-attribute(name=node-timeout)'
-
-Se der erro de conexão, repita acrescentando --controller=10.116.193.253:9990 logo depois do -c. Se a leitura funcionar:
-
-bash
-$JB/bin/jboss-cli.sh -c '/subsystem=modcluster/mod-cluster-config=configuration:write-attribute(name=node-timeout,value=600)'
-$JB/bin/jboss-cli.sh -c ':reload'
-
-O :reload deixa a aplicação fora do ar por alguns segundos em TQS. Escolha um momento sem teste em andamento.
-
-Validar
-bash
-# na 765: confirmar que gravou no XML
-grep -n 'node-timeout' $CFG
-
-# no 137: o nó deve reaparecer no mod_cluster-manager
-curl -s http://10.116.223.233/mod_cluster-manager | grep -iE 'node|timeout' | head -20
-
-Depois, peça ao usuário para repetir a exportação. No 137, acompanhe o access log: o tempo (último campo) deve passar de 120000000 sem 504.
-
-bash
-tail -f /logs/apache2/sigec-csc/sigec-csc.esteiras.tqs.caixa-access.log | grep exportarbase
-
-Atenção à persistência: a task "Configurando JBoss" da esteira pode regerar o standalone-full-ha.xml na próxima release e apagar o node-timeout. Depois que o teste passar, vale ver no template do esteira-jboss-vm se dá para parametrizar esse valor.
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]# JB=/opt/jboss/jboss-eap
+[root@caddeapllx765 p585600]# ls $JB/bin/jboss-cli.sh
+/opt/jboss/jboss-eap/bin/jboss-cli.sh
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]# grep -n -A12 'urn:jboss:domain:modcluster' $JB/standalone/configuration/standalone-full-ha.xml | grep -iE 'modcluster|proxy|node-timeout|balancer|advertise'
+512:        <subsystem xmlns="urn:jboss:domain:modcluster:3.0">
+513-            <mod-cluster-config advertise-socket="modcluster" proxies="proxy1 proxy2" balancer="${jboss_modcluster_balancer:mybalancer}" load-balancing-group="${jboss_modcluster_balancer:mybalancer}" connector="ajp">
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]# JB=/opt/jboss/jboss-eap
+[root@caddeapllx765 p585600]# CFG=$JB/standalone/configuration/standalone-full-ha.xml
+[root@caddeapllx765 p585600]# cp -p $CFG $CFG.bkp.$(date +%Y%m%d%H%M)
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]# $JB/bin/jboss-cli.sh -c '/subsystem=modcluster/mod-cluster-config=configuration:read-attribute(name=node-timeout)'
+Failed to connect to the controller: The controller is not available at localhost:9990: java.net.ConnectException: WFLYPRT0053: Não foi possível conectar-se oa remote+http://localhost:9990. A conexão falhou: WFLYPRT0053: Não foi possível conectar-se oa remote+http://localhost:9990. A conexão falhou: Conexão recusada
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]# $JB/bin/jboss-cli.sh -c --controller=10.116.193.253:9990 '/subsystem=modcluster/mod-cluster-config=configuration:read-attribute(name=node-timeout)'
+{
+    "outcome" => "success",
+    "result" => -1
+}
+[root@caddeapllx765 p585600]# $JB/bin/jboss-cli.sh -c '/subsystem=modcluster/mod-cluster-config=configuration:write-attribute(name=node-timeout,value=600)'
+Failed to connect to the controller: The controller is not available at localhost:9990: java.net.ConnectException: WFLYPRT0053: Não foi possível conectar-se oa remote+http://localhost:9990. A conexão falhou: WFLYPRT0053: Não foi possível conectar-se oa remote+http://localhost:9990. A conexão falhou: Conexão recusada
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]# $JB/bin/jboss-cli.sh -c ':reload'
+Failed to connect to the controller: The controller is not available at localhost:9990: java.net.ConnectException: WFLYPRT0053: Não foi possível conectar-se oa remote+http://localhost:9990. A conexão falhou: WFLYPRT0053: Não foi possível conectar-se oa remote+http://localhost:9990. A conexão falhou: Conexão recusada
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]#
+[root@caddeapllx765 p585600]# $JB/bin/jboss-cli.sh -c ':reload'
+Failed to connect to the controller: The controller is not available at localhost:9990: java.net.ConnectException: WFLYPRT0053: Não foi possível conectar-se oa remote+http://localhost:9990. A conexão falhou: WFLYPRT0053: Não foi possível conectar-se oa remote+http://localhost:9990. A conexão falhou: Conexão recusada
+[root@caddeapllx765 p585600]#
