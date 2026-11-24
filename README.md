@@ -1,26 +1,18 @@
-O write e o reload falharam só porque ficaram sem o --controller: o management escuta no IP da VM, não no localhost. Repita os dois com ele:
+Prezado Ilson Fogaça de Souza,
 
-bash
-CLI="$JB/bin/jboss-cli.sh -c --controller=10.116.193.253:9990"
+Conforme combinado, foi agendada reunião via Teams para hoje, 24/11/2026, às 15h30, para validarmos em conjunto o teste da funcionalidade de Exportação de Base. Como não houve participação na sala, não foi possível realizar a validação.
 
-$CLI '/subsystem=modcluster/mod-cluster-config=configuration:write-attribute(name=node-timeout,value=600)'
-$CLI ':reload'
+Resumo da análise:
+- O erro HTTP 504 Gateway Timeout ocorria sempre em aproximadamente 120 segundos, conforme registrado nos logs do Apache (caddeapllx137/138), nas ocorrências de 09, 10, 17, 18 e 23/11/2026, no endpoint /csc-api/cessaocarteiras/v1/baseelegiveis/exportarbase/108/arquivo/excel/etapa/0.
+- O timeout era aplicado pelo Apache/mod_cluster, que encerrava a espera pela resposta do JBoss (caddeapllx765) após 120 segundos, enquanto a aplicação ainda processava a requisição.
+- Foi aplicado ajuste no JBoss do ambiente TQS (caddeapllx765), definindo o node-timeout do mod_cluster para 600 segundos (10 minutos), alinhado aos timeouts já configurados na Route OpenShift e no frontend.
 
-O write deve responder "outcome" => "success" com "process-state" => "reload-required". O reload derruba a aplicação por alguns segundos.
+Solicitamos que seja realizado novo teste da Exportação de Base no ambiente TQS (https://sigec-csc-frontend-tqs.apps.nprd.caixa) e que o resultado seja registrado nesta requisição, informando o horário do teste e se a exportação foi concluída com sucesso.
 
-Depois, confirme:
+Observação: o ajuste amplia o tempo de espera, mas não reduz o tempo de processamento da exportação. Recomendamos que a equipe de desenvolvimento avalie a performance das consultas envolvidas (conforme análise iniciada em sala) e, se possível, a adoção de exportação assíncrona.
 
-bash
-sleep 30
-$CLI '/subsystem=modcluster/mod-cluster-config=configuration:read-attribute(name=node-timeout)'
-grep -n 'node-timeout' $CFG
-$CLI ':read-attribute(name=server-state)'
+A requisição permanecerá pendente aguardando o retorno do teste.
 
-O esperado é result => 600, a linha node-timeout="600" no XML e server-state => running.
-
-Com isso, peça ao usuário para repetir a exportação. No 137, acompanhe:
-
-bash
-tail -f /logs/apache2/sigec-csc/sigec-csc.esteiras.tqs.caixa-access.log | grep exportarbase
-
-Se aparecer status 200 com o último campo acima de 120000000, a correção está confirmada. Esse mesmo número mostra quanto a exportação realmente demora, e serve para a conversa com o dev sobre a query.
+Atenciosamente,
+Jessé Batista
+Analista CTIS / CESTI – Esteira DevOps DES TQS NPRD
